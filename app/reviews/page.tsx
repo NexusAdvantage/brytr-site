@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageUrl } from "@/lib/seo";
 import Link from "next/link";
 import Image from "next/image";
 import { Shell } from "@/app/layout-shell";
@@ -41,7 +42,7 @@ import { valueProps } from "@/content/value-props";
 export const metadata: Metadata = {
   title: `Brytr Reviews: ${reviewProof.average} Across ${reviewProof.countLabel} Google Reviews`,
   description: `Brytr Co holds a ${reviewProof.average} average across ${reviewProof.countLabel} Google reviews for permanent outdoor lighting in the Omaha metro. Read what they mention, then read them on Google.`,
-  alternates: { canonical: "/reviews" },
+  ...pageUrl("/reviews"),
 };
 const trail = [{ name: "Home", href: "/" }, { name: "Reviews", href: "/reviews" }];
 

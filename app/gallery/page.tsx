@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageUrl } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { Shell } from "@/app/layout-shell";
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
   title: "Permanent Lighting Gallery | Real Omaha Installs",
   description:
     "Brytr permanent lighting on finished Omaha homes, grouped by what the system is set to: everyday warm white, saved scenes, and two-zone splits.",
-  alternates: { canonical: "/gallery" },
+  ...pageUrl("/gallery"),
 };
 const trail = [{ name: "Home", href: "/" }, { name: "Gallery", href: "/gallery" }];
 

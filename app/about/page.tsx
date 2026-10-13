@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageUrl } from "@/lib/seo";
 import Link from "next/link";
 import { Shell } from "@/app/layout-shell";
 import { PageHero, PageCta, SectionHead, TextLink } from "@/components/sections/page-parts";
@@ -40,7 +41,7 @@ export const metadata: Metadata = {
   title: { absolute: "About Brytr Co | Family Owned, Omaha" },
   description:
     "The whole Haven line rather than one piece of it, the same crew from the measure to the handover, and more than one brand on the truck. Omaha metro.",
-  alternates: { canonical: "/about" },
+  ...pageUrl("/about"),
 };
 const trail = [{ name: "Home", href: "/" }, { name: "About", href: "/about" }];
 

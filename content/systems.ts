@@ -98,7 +98,7 @@ export const systems: System[] = [
     maker: "Haven Lighting",
     tier: "Component",
     short: "Overhead bistro runs for structures.",
-    title: "Haven X Bistro Lights | Patio and Pergola | Brytr",
+    title: "Haven X Bistro Lights | Patio and Pergola",
     h1: "Haven X bistro lights.",
     keyword: "haven x bistro lights",
     icon: "pergola",

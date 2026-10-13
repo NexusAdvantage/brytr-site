@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { reviewProof } from "@/content/reviews";
+import { baseOpenGraph } from "@/lib/seo";
 import localFont from "next/font/local";
 import "./globals.css";
 /* Section-level CSS, imported after the brand lock so its @layer components rules join
@@ -36,7 +37,7 @@ export const metadata: Metadata = {
   /* The review count comes from content/reviews.ts, and from countLabel rather than count,
    * so this description reads 215+ and does not go stale. It was hardcoded here as 177 while
    * the Google Business Profile said 196, on the site's default description. */
-  description: `Permanent outdoor lighting installed once for Omaha homes. Smart app control, every color, every holiday. ${reviewProof.average} from ${reviewProof.countLabel} ${reviewProof.platform} reviews. Free design consultation.`,
+  description: `Permanent outdoor lighting installed once for Omaha homes. App control, every color, every holiday. ${reviewProof.average} from ${reviewProof.countLabel} ${reviewProof.platform} reviews. Free design consultation.`,
   /* THE SHARE CARD, and it was missing on all seventy-four pages.
    *
    * `openGraph` declared a type, a locale and a site name and no image, so every link to this site
@@ -61,18 +62,9 @@ export const metadata: Metadata = {
    *
    * Declared here rather than per page so it applies everywhere by default. A page with a better
    * image of its own can still override `openGraph.images`; none does yet, and a good default beats
-   * seventy-four bare cards. */
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    siteName: "Brytr Co",
-    images: [{
-      url: "/img/seq-everyday.jpg",
-      width: 2400,
-      height: 1350,
-      alt: "A brick and cedar ranch west of Omaha at dusk, its roofline picked out in warm white",
-    }],
-  },
+   * seventy-four bare cards. The object itself lives in lib/seo.ts so pages that add og:url
+   * can spread it back in rather than losing it to Next's shallow merge. */
+  openGraph: baseOpenGraph,
   twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },
 };

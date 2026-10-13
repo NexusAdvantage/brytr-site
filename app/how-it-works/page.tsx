@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageUrl } from "@/lib/seo";
 import Link from "next/link";
 import { Shell } from "@/app/layout-shell";
 import { PageHero, PageCta, SectionHead, TextLink } from "@/components/sections/page-parts";
@@ -35,8 +36,8 @@ import { valueProps } from "@/content/value-props";
 export const metadata: Metadata = {
   title: "How It Works: Install Day, Start to Finish",
   description:
-    "What happens on a Brytr install day in Omaha: the fascia measured off the ladder, the channel screwed on and sealed as we go, then every scene walked with you before we leave.",
-  alternates: { canonical: "/how-it-works" },
+    "A Brytr install day in Omaha: the fascia measured off the ladder, the channel screwed on and sealed as we go, every scene walked with you before we leave.",
+  ...pageUrl("/how-it-works"),
 };
 const trail = [{ name: "Home", href: "/" }, { name: "How it works", href: "/how-it-works" }];
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageUrl } from "@/lib/seo";
 import { Shell } from "@/app/layout-shell";
 import { PageHero, PageCta, SectionHead } from "@/components/sections/page-parts";
 import { PhotoBand, PhotoStrip } from "@/components/sections/photo-parts";
@@ -36,7 +37,7 @@ export const metadata: Metadata = {
   title: "Permanent Lighting FAQ",
   description:
     "Every question we get about permanent outdoor lighting in Omaha: install day, damage to the fascia, HOA approval and winter installs.",
-  alternates: { canonical: "/faq" },
+  ...pageUrl("/faq"),
 };
 const trail = [{ name: "Home", href: "/" }, { name: "FAQ", href: "/faq" }];
 

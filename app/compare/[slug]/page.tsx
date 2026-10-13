@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageUrl } from "@/lib/seo";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { compares, compareBySlug } from "@/content/compares";
@@ -59,7 +60,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const c = compareBySlug(slug);
   if (!c) return {};
-  return { title: c.title, description: c.verdict.slice(0, 155), alternates: { canonical: `/compare/${c.slug}` } };
+  return { title: c.title, description: c.verdict.slice(0, 155), ...pageUrl(`/compare/${c.slug}`) };
 }
 
 export default async function ComparePage({ params }: { params: Promise<{ slug: string }> }) {

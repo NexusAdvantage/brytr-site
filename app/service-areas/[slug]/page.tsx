@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageUrl } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -58,7 +59,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     /* Deliberately distinct from the homepage title so two pages never compete. */
     title: `${c.name} ${c.state} Permanent Lighting Installer`,
     description: `Permanent outdoor lighting installed in ${c.name}, ${c.state}. Roofline, landscape, hardscape and bistro runs. ${c.drive} from our shop.`,
-    alternates: { canonical: `/service-areas/${c.slug}` },
+    ...pageUrl(`/service-areas/${c.slug}`),
   };
 }
 

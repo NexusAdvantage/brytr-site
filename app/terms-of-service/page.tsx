@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageUrl } from "@/lib/seo";
 import { Shell } from "@/app/layout-shell";
 import { PageHero } from "@/components/sections/page-parts";
 import { site } from "@/content/site";
@@ -7,7 +8,7 @@ import { Jsonld, breadcrumb } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Terms of Service",
   description: "The terms that apply to using the Brytr Co website and to requesting a quote, including what a published price does and does not commit us to.",
-  alternates: { canonical: "/terms-of-service" },
+  ...pageUrl("/terms-of-service"),
   robots: { index: false, follow: true },
 };
 const trail = [{ name: "Home", href: "/" }, { name: "Terms of service", href: "/terms-of-service" }];

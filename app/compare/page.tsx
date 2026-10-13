@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageUrl } from "@/lib/seo";
 import Link from "next/link";
 import { compares } from "@/content/compares";
 import { Shell } from "@/app/layout-shell";
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
   title: "Every Permanent Lighting Brand Compared (2026)",
   description:
     "The permanent outdoor lighting brands on the Omaha market, compared by an installer who carries two of them: Haven, Jellyfish, Gemstone, Trimlight and more.",
-  alternates: { canonical: "/compare" },
+  ...pageUrl("/compare"),
 };
 const trail = [{ name: "Home", href: "/" }, { name: "Compare", href: "/compare" }];
 

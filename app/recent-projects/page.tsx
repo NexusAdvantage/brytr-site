@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageUrl } from "@/lib/seo";
 import { Shell } from "@/app/layout-shell";
 import { PageHero, PageCta, SectionHead, TextLink } from "@/components/sections/page-parts";
 import { Jsonld, breadcrumb } from "@/lib/schema";
@@ -49,7 +50,7 @@ export const metadata: Metadata = {
    * version of this page carried twice before it. Nothing here counts anything. */
   description:
     "Finished Brytr permanent lighting installs around the Omaha metro, published from our own project records as each job is completed.",
-  alternates: { canonical: "/recent-projects" },
+  ...pageUrl("/recent-projects"),
   /* SAID OUT LOUD RATHER THAN ASSUMED. The install instructions asked for this page to be
    * indexable. It already inherits index/follow from the root layout and it already has a sitemap
    * entry pointing at this file, so this is belt and braces: a page whose body is client-rendered

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageUrl } from "@/lib/seo";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { posts, postBySlug } from "@/content/blog";
@@ -42,7 +43,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const p = postBySlug(slug);
   if (!p) return {};
-  return { title: p.title, description: p.dek.slice(0, 155), alternates: { canonical: `/blog/${p.slug}` } };
+  return { title: p.title, description: p.dek.slice(0, 155), ...pageUrl(`/blog/${p.slug}`) };
 }
 
 const anchor = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");

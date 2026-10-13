@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageUrl } from "@/lib/seo";
 import { Shell } from "@/app/layout-shell";
 import { PageHero } from "@/components/sections/page-parts";
 import { site } from "@/content/site";
@@ -7,7 +8,7 @@ import { Jsonld, breadcrumb } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Accessibility Statement",
   description: "How the Brytr Co website is built for accessibility: the standard we hold it to, what we test, the parts we know are imperfect, and how to tell us about a barrier.",
-  alternates: { canonical: "/accessibility" },
+  ...pageUrl("/accessibility"),
   robots: { index: false, follow: true },
 };
 const trail = [{ name: "Home", href: "/" }, { name: "Accessibility", href: "/accessibility" }];

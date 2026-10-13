@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageUrl } from "@/lib/seo";
 import Link from "next/link";
 import { cities, metroCities, iowaCities } from "@/content/cities";
 import { Shell } from "@/app/layout-shell";
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
   title: "Service Areas: The Omaha Metro and Council Bluffs",
   description:
     "Where Brytr installs permanent outdoor lighting: every town in the Omaha metro plus Council Bluffs, with the real drive to each from our shop.",
-  alternates: { canonical: "/service-areas" },
+  ...pageUrl("/service-areas"),
 };
 const trail = [{ name: "Home", href: "/" }, { name: "Service areas", href: "/service-areas" }];
 

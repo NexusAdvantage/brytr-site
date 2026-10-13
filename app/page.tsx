@@ -14,6 +14,7 @@ import {
   faqItems,
 } from "@/components/sections/home";
 import type { Metadata } from "next";
+import { pageUrl } from "@/lib/seo";
 import { Jsonld, localBusiness, faqSchema } from "@/lib/schema";
 
 /* THE HOME PAGE WAS THE ONE ROUTE WITH NO CANONICAL. The other seventy-three declare their own; this
@@ -24,7 +25,7 @@ import { Jsonld, localBusiness, faqSchema } from "@/lib/schema";
  *
  * Title and description are inherited from the layout deliberately - they are already written for
  * this page, and repeating them here is two places to update and one place to forget. */
-export const metadata: Metadata = { alternates: { canonical: "/" } };
+export const metadata: Metadata = { ...pageUrl("/") };
 
 export default function Home() {
   return (

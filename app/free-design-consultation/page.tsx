@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageUrl } from "@/lib/seo";
 import { site } from "@/content/site";
 import { reviews, reviewProof } from "@/content/reviews";
 import { Shell } from "@/app/layout-shell";
@@ -43,7 +44,7 @@ import { valueProps } from "@/content/value-props";
 export const metadata: Metadata = {
   title: "Free Lighting Design Consultation | Omaha",
   description: "Book a free on-site permanent lighting design consultation in the Omaha metro. We walk the property, measure the roofline, and hand you a written quote.",
-  alternates: { canonical: "/free-design-consultation" },
+  ...pageUrl("/free-design-consultation"),
 };
 const trail = [{ name: "Home", href: "/" }, { name: "Free design consultation", href: "/free-design-consultation" }];
 

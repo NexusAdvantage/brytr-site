@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageUrl } from "@/lib/seo";
 import { services } from "@/content/services";
 import Link from "next/link";
 import { Shell } from "@/app/layout-shell";
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
   title: "Outdoor Lighting Company in Omaha, NE",
   description:
     "Permanent outdoor lighting for Omaha homes: roofline, Christmas, soffit, landscape, hardscape, pergola and gameday. One channel, one app, installed once.",
-  alternates: { canonical: "/services" },
+  ...pageUrl("/services"),
 };
 const trail = [{ name: "Home", href: "/" }, { name: "Services", href: "/services" }];
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageUrl } from "@/lib/seo";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { systems, systemBySlug } from "@/content/systems";
@@ -47,7 +48,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const s = systemBySlug(slug);
   if (!s) return {};
-  return { title: s.title, description: s.lede.slice(0, 155), alternates: { canonical: `/lighting-systems/${s.slug}` } };
+  return { title: s.title, description: s.lede.slice(0, 155), ...pageUrl(`/lighting-systems/${s.slug}`) };
 }
 
 export default async function SystemPage({ params }: { params: Promise<{ slug: string }> }) {

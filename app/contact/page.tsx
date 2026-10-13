@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageUrl } from "@/lib/seo";
 import Link from "next/link";
 import { Shell } from "@/app/layout-shell";
 import { PageHero, PageCta, SectionHead, TextLink } from "@/components/sections/page-parts";
@@ -51,7 +52,7 @@ export const metadata: Metadata = {
   title: { absolute: "Contact Brytr Co | Omaha, NE | Permanent Outdoor Lighting" },
   description:
     "Call Brytr Co on 402-810-3973, send a message, or book the on-site design. Permanent outdoor lighting across the Omaha metro and Council Bluffs.",
-  alternates: { canonical: "/contact" },
+  ...pageUrl("/contact"),
 };
 const trail = [{ name: "Home", href: "/" }, { name: "Contact", href: "/contact" }];
 

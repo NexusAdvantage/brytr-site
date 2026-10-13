@@ -90,8 +90,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...compares.map((c) => at(`/compare/${c.slug}`, 0.7, "content/compares.ts")),
     ...cities.map((c) => at(`/service-areas/${c.slug}`, 0.7, "content/cities.ts")),
     ...posts.map((p) => at(`/blog/${p.slug}`, 0.5, "content/blog.ts")),
-    at("/privacy-policy", 0.2, "app/privacy-policy/page.tsx", "yearly"),
-    at("/terms-of-service", 0.2, "app/terms-of-service/page.tsx", "yearly"),
-    at("/accessibility", 0.2, "app/accessibility/page.tsx", "yearly"),
+    /* /privacy-policy, /terms-of-service AND /accessibility ARE NOT LISTED, removed 13 Oct 2026.
+     * All three are noindex, and a sitemap that lists a noindex page asks Google to index the
+     * one URL it has been told not to. Ahrefs scored it as the site's only Error. They are
+     * still linked from the footer, so they are still crawled. */
   ];
 }

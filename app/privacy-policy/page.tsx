@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageUrl } from "@/lib/seo";
 import { Shell } from "@/app/layout-shell";
 import { PageHero } from "@/components/sections/page-parts";
 import { site } from "@/content/site";
@@ -7,7 +8,7 @@ import { Jsonld, breadcrumb } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "How Brytr Co collects, uses and stores the information you send through this site, who it is shared with, how long it is kept, and how to ask us to delete it.",
-  alternates: { canonical: "/privacy-policy" },
+  ...pageUrl("/privacy-policy"),
   robots: { index: false, follow: true },
 };
 const trail = [{ name: "Home", href: "/" }, { name: "Privacy policy", href: "/privacy-policy" }];

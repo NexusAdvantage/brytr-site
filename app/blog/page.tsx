@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageUrl } from "@/lib/seo";
 import Link from "next/link";
 import Image from "next/image";
 import { posts, categories } from "@/content/blog";
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
   title: "Permanent Lighting Resources",
   description:
     "Honest guides to permanent outdoor lighting in Omaha: HOA approval, DIY versus professional install, winter installs, and what actually fails.",
-  alternates: { canonical: "/blog" },
+  ...pageUrl("/blog"),
 };
 const trail = [{ name: "Home", href: "/" }, { name: "Resources", href: "/blog" }];
 

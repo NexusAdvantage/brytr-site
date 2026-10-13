@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageUrl } from "@/lib/seo";
 import Link from "next/link";
 import { systems } from "@/content/systems";
 import { systemDetail } from "@/content/system-detail";
@@ -38,7 +39,7 @@ export const metadata: Metadata = {
   title: "Permanent Lighting Systems We Install",
   description:
     "The permanent lighting we install in Omaha: Haven Evolution on the roofline, Q Series soffit, 9 Series landscape, X Bistro overhead, and the app behind it.",
-  alternates: { canonical: "/lighting-systems" },
+  ...pageUrl("/lighting-systems"),
 };
 const trail = [{ name: "Home", href: "/" }, { name: "Lighting systems", href: "/lighting-systems" }];
 
