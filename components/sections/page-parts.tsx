@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { COMPARE_HIDDEN } from "@/content/compares";
 import Link from "next/link";
 import Image from "next/image";
 import { site } from "@/content/site";
@@ -447,6 +448,8 @@ export function PageCta({
     { href: "/compare", label: "compare the brands we are asked about" },
     { href: "/how-it-works", label: "what install day looks like" },
   ]
+    /* Comparison pages hidden, 28 Oct 2026. See COMPARE_HIDDEN in content/compares.ts. */
+    .filter((l) => !(COMPARE_HIDDEN && l.href === "/compare"))
     .filter((l) => !omit.includes(l.href))
     .slice(0, 3);
 
