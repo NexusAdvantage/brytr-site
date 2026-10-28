@@ -44,7 +44,7 @@ export default function Page() {
             <p className="mt-2 text-[0.95rem] text-muted-foreground">
               Anything on this page you want explained, call{" "}
               <a href={site.phoneHref} className="u text-foreground underline decoration-accent decoration-2 underline-offset-4">{site.phone}</a>{" "}
-              and ask for Zac or Sam. We would rather answer it directly.
+              and ask.
             </p>
           </div>
           </div>

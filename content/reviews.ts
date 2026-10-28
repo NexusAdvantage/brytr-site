@@ -55,7 +55,6 @@ export const reviews: Review[] = [
     text:
       "We couldn’t be happier with the outdoor lighting Brytr installed for our home! From the initial consultation to the final installation, the entire process was professional, seamless, and exceeded our expectations.",
     name: "Meghan Gibbons",
-    when: "2 months ago",
   },
   {
     text:

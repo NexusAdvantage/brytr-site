@@ -2,28 +2,28 @@ export type Faq = { q: string; a: string };
 
 export const homeFaqs: Faq[] = [
   { q: "Can you actually see it during the day?",
-    a: "Barely, and that is the whole point. The channel is a slim extruded aluminum track that tucks up into the eave line. From the street in daylight it reads as trim rather than as fixtures. Ask us to show you a daytime photo of a house we finished on your own block." },
+    a: "The track is low profile and runs along the roofline, so it blends in during the day. Ask us for daytime photos at the consultation." },
   /* "What does it cost?" WAS HERE and is gone. It stated a pricing model - by linear foot plus
    * complexity - and then pointed at /pricing to "publish real ranges", which was a page of
    * invented figures. Removed 27 Aug 2026 with the page. When Brytr gives us a real basis this
    * question is the single most valuable one on the site and should come back first. Until then
    * the honest answer is a phone call, which is what /contact is for. */
   { q: "Does it damage my soffit or fascia?",
-    a: "It fastens into the fascia board wherever the roof allows, and every penetration is sealed as it is made. Done correctly it is no more invasive than hanging a gutter. Done badly it is a leak, so the sealing is checked before we leave." },
+    a: "It is fastened to the house and sealed. We go over how it mounts on your home at the design consultation." },
   { q: "What happens when a section stops working?",
-    a: "You call us and we come out. It is usually a driver or a single bad connection rather than the whole run, so most of these are a short visit." },
+    a: "Call us. We service anything we installed." },
   { q: "Can it be installed in winter?",
-    a: "Yes, and we do it all winter in Nebraska. Extreme cold affects adhesive and sealant cure times, so we adjust method rather than turning the work down. If conditions genuinely will not allow a good install that day, we reschedule rather than push through." },
+    a: "It depends on the weather. We will talk through timing with you when we schedule the install." },
   { q: "Do I need to be home for the install?",
-    a: "Not for the whole day, but we do want you there at the end. Handover includes walking the app with you and switching through every scene before we leave, which is the step most installers skip." },
+    a: "We will sort that out with you when we schedule it. Either way, we will make sure you know how to use the app." },
   /* THE HOA ANSWER ENDED "...and bring it to the visit, and we will go through it with you."
    * Removed 29 Aug 2026 off the client punch list: HOA has never been a problem for Brytr and it
    * is not something the crew discusses on site, so the site should not be promising a covenant
    * review at the appointment. The useful half - read your own clause first - stays. */
   { q: "Will my HOA allow it?",
-    a: "Most do, and several of the newer west Omaha developments have specific language about permanent exterior lighting. Read the lighting clause in your covenant before you plan anything." },
+    a: "That depends on your HOA. Check its rules on exterior lighting before you plan anything." },
   { q: "How long does an install take?",
-    a: "It depends on the size of the elevation and whether landscape or hardscape fixtures go on the same visit. We give you the actual number in the written quote after the on-site measure, rather than a figure on a web page." },
+    a: "It depends on the house and what is being installed. We can talk about timing when we give you your quote." },
 ];
 
 /* THE PRICING FAQ SET IS GONE. Nine questions, and every one of them answered with a specific
@@ -38,20 +38,24 @@ export const homeFaqs: Faq[] = [
  * The rest are in git: `git show c53361a:content/faqs.ts`. Do not restore any of them without
  * figures from Brytr in writing. */
 export const pricingFaqs: Faq[] = [
-  { q: "Is there a charge for the consultation?", a: "No. The on-site assessment, the design and the written quote are free." },
+  { q: "Is there a charge for the consultation?", a: "No. The design consultation and the written quote are free." },
 ];
 
+/* `name` is no longer interpolated into a question: "How long does Holiday and Seasonal Scenes
+ * take to install?" was broken grammar on several pages. Kept as a parameter so callers do not
+ * change. */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const serviceFaqsFor = (name: string): Faq[] => [
-  { q: `How long does ${name} take to install?`,
-    a: "We confirm it in your written quote after the on-site measure, because it depends on the elevation." },
+  { q: "How long does an install take?",
+    a: "It depends on the house and what is being installed. We can talk about timing when we give you your quote." },
   { q: "Is this permanent or seasonal?",
-    a: "Permanent. The channel and the LEDs stay on the house year round and there is nothing to take down in January." },
+    a: "Permanent. It stays up year round, so there is nothing to take down in January." },
   { q: "Can I add to it later?",
-    a: "Yes. Landscape fixtures, bistro runs on a pergola, and additional elevations can all be added to an existing controller and appear in the same app." },
+    a: "Yes. You can add more lighting later, such as landscape, patio or more of the roofline." },
   { q: "What areas do you cover?",
     a: "The Omaha metro and Council Bluffs. Every city we serve is named on our service areas page." },
   { q: "Will it work with my existing smart home?",
-    a: "The system runs on its own app and controller. Tell us what you are running and we will tell you honestly what does and does not integrate." },
-  { q: "How do I get a number?",
-    a: `Book a free design consultation. We measure on site, design it with you, and hand you a written quote.` },
+    a: "The lighting runs from its own app. Tell us what you use at home and we can talk about what works with it." },
+  { q: "How do I get a quote?",
+    a: "Book a free design consultation. We visit, design it with you, and give you a written quote." },
 ];
