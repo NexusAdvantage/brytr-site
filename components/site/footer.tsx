@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { site, nav } from "@/content/site";
+import { COMPARE_HIDDEN } from "@/content/compares";
 import { ChannelEdge } from "@/components/ui/bits";
 import { brandLogo } from "@/content/badges";
 import { reviewProof } from "@/content/reviews";
@@ -14,7 +15,8 @@ const company = [
    * Brytr. /pricing redirects to the home page. */
   ["About", "/about"], ["How it works", "/how-it-works"],
   ["Reviews", "/reviews"], ["Gallery", "/gallery"],
-  ["Recent projects", "/recent-projects"], ["FAQ", "/faq"], ["Compare brands", "/compare"],
+  ["Recent projects", "/recent-projects"], ["FAQ", "/faq"],
+  ...(COMPARE_HIDDEN ? [] : [["Compare brands", "/compare"]]),
 ];
 
 export function Footer() {

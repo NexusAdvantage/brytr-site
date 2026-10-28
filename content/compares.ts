@@ -233,3 +233,11 @@ export const compares: Compare[] = [
 ];
 
 export const compareBySlug = (slug: string) => compares.find((c) => c.slug === slug);
+
+/* HIDDEN, 28 OCT 2026. Zac (Loom, 28 Oct) asked for every brand comparison page to be hidden
+ * until Brytr and Nexus go through the copy together on a call. While this is true:
+ *   /compare and every /compare/* page 307s to /lighting-systems (next.config.ts)
+ *   nothing on the site links to them (nav, footer, closers, value bands, blog, system pages)
+ *   the sitemap does not list them
+ * The pages and their copy are untouched. To bring them back, set this to false. */
+export const COMPARE_HIDDEN = true;

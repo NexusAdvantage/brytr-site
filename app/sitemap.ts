@@ -2,7 +2,7 @@ import { execFileSync } from "node:child_process";
 import type { MetadataRoute } from "next";
 import { services } from "@/content/services";
 import { systems } from "@/content/systems";
-import { compares } from "@/content/compares";
+import { compares, COMPARE_HIDDEN } from "@/content/compares";
 import { cities } from "@/content/cities";
 import { posts } from "@/content/blog";
 import { site } from "@/content/site";
@@ -75,7 +75,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     at("/free-design-consultation", 0.9, "app/free-design-consultation/page.tsx"),
     at("/services", 0.8, "app/services/page.tsx"),
     at("/lighting-systems", 0.8, "app/lighting-systems/page.tsx"),
-    at("/compare", 0.8, "app/compare/page.tsx"),
+    ...(COMPARE_HIDDEN ? [] : [at("/compare", 0.8, "app/compare/page.tsx")]),
     at("/service-areas", 0.8, "app/service-areas/page.tsx"),
     at("/blog", 0.6, "app/blog/page.tsx", "weekly"),
     at("/about", 0.6, "app/about/page.tsx"),
@@ -87,7 +87,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     at("/contact", 0.6, "app/contact/page.tsx"),
     ...services.map((s) => at(`/services/${s.slug}`, 0.8, "content/services.ts")),
     ...systems.map((s) => at(`/lighting-systems/${s.slug}`, 0.7, "content/systems.ts")),
-    ...compares.map((c) => at(`/compare/${c.slug}`, 0.7, "content/compares.ts")),
+    ...(COMPARE_HIDDEN ? [] : compares.map((c) => at(`/compare/${c.slug}`, 0.7, "content/compares.ts"))),
     ...cities.map((c) => at(`/service-areas/${c.slug}`, 0.7, "content/cities.ts")),
     ...posts.map((p) => at(`/blog/${p.slug}`, 0.5, "content/blog.ts")),
     /* /privacy-policy, /terms-of-service AND /accessibility ARE NOT LISTED, removed 13 Oct 2026.
