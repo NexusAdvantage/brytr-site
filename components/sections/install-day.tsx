@@ -51,10 +51,10 @@ type Stage = {
 
 const stages: Stage[] = [
   {
-    when: "Before anything is drilled",
-    h: "Bare fascia, measured again.",
-    p: "Measured again off the ladder before a single hole is drilled.",
-    alt: "Cross-section of a roof edge: shingles, decking and a bare fascia board with a dimension line under it",
+    when: "Before the install",
+    h: "Planned with you.",
+    p: "The layout is planned with you at the design consultation.",
+    alt: "Drawing of a roof edge before anything is installed",
     art: (
       <>
         <Roof />
@@ -74,12 +74,12 @@ const stages: Stage[] = [
     ),
   },
   {
-    when: "The channel goes on",
-    h: "Channel up, one elevation at a time.",
+    when: "The install",
+    h: "The track goes up.",
     /* WAS "Extruded aluminum, color matched to your trim, on a fixed screw pitch. Nothing through
        a shingle." Both halves are claims the client has retracted. */
-    p: "Extruded aluminum, screwed to the fascia on a fixed pitch, sealed as each fixing is driven.",
-    alt: "The same roof edge with the aluminum channel fastened under the fascia board on two screws",
+    p: "We handle the install along your roofline.",
+    alt: "The same roof edge with the lighting track in place",
     art: (
       <>
         <Roof />
@@ -95,12 +95,12 @@ const stages: Stage[] = [
     ),
   },
   {
-    when: "Sealing, as we go",
-    h: "Every penetration sealed at the moment it is made.",
+    when: "Fastened",
+    h: "Fastened and sealed.",
     /* WAS "...while the hole is clean and the board is dry." The client put a question mark
        against the dry board, so the claim is now only about when the sealant goes on. */
-    p: "Sealant on the screw as it is driven, rather than a pass along the run at the end of the day.",
-    alt: "The same roof edge with sealant at each screw and the conductor run inside the channel",
+    p: "The track is fastened to the house and sealed.",
+    alt: "The same roof edge with the track fastened in place",
     art: (
       <>
         <Roof />
@@ -125,10 +125,10 @@ const stages: Stage[] = [
     ),
   },
   {
-    when: "Before we leave",
-    h: "Diffuser on, and every scene walked with you.",
-    p: "Diffuser clipped in, then every scene walked through with you.",
-    alt: "The finished roof edge with the diffuser fitted, the diodes lit and light falling away below",
+    when: "Done",
+    h: "Lit, and on your phone.",
+    p: "The lights are on and the app is set up with your scenes.",
+    alt: "The finished roof edge with the lights on",
     art: (
       <>
         <Roof />

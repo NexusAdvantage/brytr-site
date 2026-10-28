@@ -51,7 +51,7 @@ export function ChannelDetail({ className }: { className?: string }) {
       viewBox="0 0 700 450"
       className={className}
  role="img"
-      aria-label="A measured cross-section through a roof edge: the shingle course, the fascia board the channel is screwed to, the sealed fixings, and the addressable LED behind its lens."
+      aria-label="A drawing of a roof edge: the shingles, the fascia board, the lighting track and the LEDs."
     >
       <rect width="700" height="450" fill={paper} />
 
@@ -86,42 +86,37 @@ export function ChannelDetail({ className }: { className?: string }) {
       <circle cx="306" cy="228" r="3.4" fill={accent} />
       <circle cx="306" cy="278" r="3.4" fill={accent} />
 
-      {/* ── the dimension: channel depth ── */}
-      <g stroke={faint} strokeWidth="1" fill="none">
-        <path d="M400 214v76M394 214h12M394 290h12" />
-      </g>
-      <text x="408" y="257" fill={ink} fontSize="11.5" opacity="0.75">1 3/8 in.</text>
 
       {/* ── callouts, written out so each label sits where it belongs ── */}
       <g>
         <circle cx="352" cy="162" r="3" fill={accent} />
         <path d="M352 162 430 104" stroke={faint} strokeWidth="1" fill="none" />
         <text x="438" y="100" fill={ink} fontSize="13" fontWeight="700">Shingle course</text>
-        <text x="438" y="116" fill={ink} fontSize="11.5" opacity="0.75">Left alone where we can</text>
+        <text x="438" y="116" fill={ink} fontSize="11.5" opacity="0.75">Roof surface</text>
       </g>
       <g>
         <circle cx="315" cy="196" r="3" fill={accent} />
         <path d="M315 196 214 150" stroke={faint} strokeWidth="1" fill="none" />
         <text x="206" y="146" textAnchor="end" fill={ink} fontSize="13" fontWeight="700">Fascia board</text>
-        <text x="206" y="162" textAnchor="end" fill={ink} fontSize="11.5" opacity="0.75">What the channel screws to</text>
+        <text x="206" y="162" textAnchor="end" fill={ink} fontSize="11.5" opacity="0.75">Along the roof edge</text>
       </g>
       <g>
         <circle cx="306" cy="278" r="3" fill={accent} />
         <path d="M306 278 176 300" stroke={faint} strokeWidth="1" fill="none" />
-        <text x="168" y="296" textAnchor="end" fill={ink} fontSize="13" fontWeight="700">Sealed fixing</text>
-        <text x="168" y="312" textAnchor="end" fill={ink} fontSize="11.5" opacity="0.75">Sealed as it is made</text>
+        <text x="168" y="296" textAnchor="end" fill={ink} fontSize="13" fontWeight="700">Fixing</text>
+        <text x="168" y="312" textAnchor="end" fill={ink} fontSize="11.5" opacity="0.75">Fastened and sealed</text>
       </g>
       <g>
         <circle cx="356" cy="248" r="3" fill={paper} />
         <path d="M368 244 470 214" stroke={faint} strokeWidth="1" fill="none" />
-        <text x="478" y="210" fill={ink} fontSize="13" fontWeight="700">Addressable LED</text>
-        <text x="478" y="226" fill={ink} fontSize="11.5" opacity="0.75">One every 4 in.</text>
+        <text x="478" y="210" fill={ink} fontSize="13" fontWeight="700">LEDs</text>
+        <text x="478" y="226" fill={ink} fontSize="11.5" opacity="0.75">Inside the track</text>
       </g>
       <g>
         <circle cx="352" cy="288" r="3" fill={accent} />
         <path d="M352 288 470 336" stroke={faint} strokeWidth="1" fill="none" />
         <text x="478" y="332" fill={ink} fontSize="13" fontWeight="700">Lens</text>
-        <text x="478" y="348" fill={ink} fontSize="11.5" opacity="0.75">Faces down, not at the street</text>
+        <text x="478" y="348" fill={ink} fontSize="11.5" opacity="0.75">Covers the LEDs</text>
       </g>
 
       {/* the sheet line, so the drawing reads as a drawing */}
