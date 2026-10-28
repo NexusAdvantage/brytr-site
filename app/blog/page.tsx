@@ -33,7 +33,7 @@ import { COMPARE_HIDDEN } from "@/content/compares";
 export const metadata: Metadata = {
   title: "Permanent Lighting Resources",
   description:
-    "Honest guides to permanent outdoor lighting in Omaha: HOA approval, DIY versus professional install, winter installs, and what actually fails.",
+    "Guides to permanent outdoor lighting in Omaha: HOA rules, DIY versus professional install, winter installs, and how long LEDs last.",
   ...pageUrl("/blog"),
 };
 const trail = [{ name: "Home", href: "/" }, { name: "Resources", href: "/blog" }];
@@ -57,8 +57,8 @@ export default function BlogHub() {
         photo={featPic?.photo ?? "/img/christmas-detail.jpg"}
         photoAlt={featPic?.photoAlt ?? "A finished Brytr install in the Omaha metro at night"}
         objectPosition="50% 48%"
-        h1="Answers before you buy, including the ones that do not flatter us."
-        lede="Written from installing this product rather than from a manufacturer's brochure. Nothing here is sponsored, nothing is a press release, and it is written to help you decide, whoever you buy from."
+        h1="Guides to permanent lighting."
+        lede="Plain answers to common questions about permanent outdoor lighting, to help you decide."
         trail={trail}
       />
 
@@ -135,8 +135,7 @@ export default function BlogHub() {
             ))}
           </ul>
           <p className="mt-4 text-xs text-on-dark-muted">
-            Anchors, not filters. This rack scrolls away with the page, and nothing on this site is pinned
-            except the header.
+            Jump to a topic.
           </p>
         </div>
       </section>
@@ -146,8 +145,8 @@ export default function BlogHub() {
         * pictures is a sitemap, and a reader who is not sure they want to read anything here
         * needs a reason to stay that is not another headline. */}
       <PhotoStrip
-        title="Everything below is written from doing this."
-        lede="Not sponsored, not manufacturer copy, and not written by somebody who has never been on a roof in February. These are installs by the people who wrote the guides."
+        title="Some of our work."
+        lede="Brytr installs around the Omaha area."
         shots={pick("blog-index", 3)}
         cols={3}
         ground="muted"
@@ -207,8 +206,7 @@ export default function BlogHub() {
           </div>
 
           <p className="mt-10 max-w-[80ch] text-sm leading-relaxed text-muted-foreground">
-            None of these are sponsored and none of them are manufacturer copy. Where we do not know
-            something we say so.
+            Questions about anything here? Ask us at the free design consultation.
             {!COMPARE_HIDDEN && (
               <>
                 {" "}
