@@ -39,7 +39,7 @@ import { COMPARE_HIDDEN } from "@/content/compares";
 export const metadata: Metadata = {
   title: "Permanent Lighting Systems We Install",
   description:
-    "The permanent lighting we install in Omaha: Jellyfish and Haven roofline lighting, plus Haven soffit, landscape and bistro lighting, all controlled from an app.",
+    "The permanent lighting we install in Omaha: Jellyfish and Haven roofline lighting, plus soffit, landscape and bistro lighting, all controlled from an app.",
   ...pageUrl("/lighting-systems"),
 };
 const trail = [{ name: "Home", href: "/" }, { name: "Lighting systems", href: "/lighting-systems" }];
@@ -65,27 +65,9 @@ const identical: string[] = [
   "Call us for service on anything we installed",
 ];
 
-const core: { slug: string; role: string }[] = [
-  { slug: "jellyfish-lighting", role: "Roofline" },
-  { slug: "haven-evolution", role: "Roofline" },
-];
-
-const roles: { heading: string; note: string; slugs: string[] }[] = [
-  {
-    heading: "The roofline",
-    note: "Two roofline systems we install",
-    slugs: ["jellyfish-lighting", "haven-evolution"],
-  },
-  {
-    heading: "More lighting",
-    note: "Soffit, landscape and bistro",
-    slugs: ["haven-q-series", "haven-9-series-landscape-lights", "haven-x-bistro-lights"],
-  },
-  {
-    heading: "Control",
-    note: "From your phone",
-    slugs: ["app-and-controls"],
-  },
+const core: { slug: string; role: string; name: string }[] = [
+  { slug: "jellyfish-lighting", role: "Roofline", name: "Jellyfish Lighting" },
+  { slug: "haven-evolution", role: "Roofline", name: "Haven Lighting" },
 ];
 
 const houses: { h: string; profile: string[]; verdict: string; label: string; href: string }[] = [
@@ -98,7 +80,7 @@ const houses: { h: string; profile: string[]; verdict: string; label: string; hr
     ],
     verdict: "Roofline lighting is a good place to start. We plan it with you at the consultation.",
     label: "Jellyfish or Haven",
-    href: "/lighting-systems",
+    href: "/services/permanent-roofline-lighting",
   },
   {
     h: "A two story home",
@@ -108,8 +90,8 @@ const houses: { h: string; profile: string[]; verdict: string; label: string; hr
       "Colors for gameday and holidays",
     ],
     verdict: "Soffit lighting can go with the roofline. We look at your house with you and plan it.",
-    label: "Roofline plus Haven Q Series",
-    href: "/lighting-systems/haven-q-series",
+    label: "Roofline plus soffit lighting",
+    href: "/services/soffit-lighting",
   },
   {
     h: "A whole property",
@@ -118,8 +100,8 @@ const houses: { h: string; profile: string[]; verdict: string; label: string; hr
       "Lighting for the yard as well as the house",
     ],
     verdict: "Landscape and patio lighting can go in with the roofline or be added later.",
-    label: "Roofline plus Haven landscape or bistro",
-    href: "/lighting-systems/haven-9-series-landscape-lights",
+    label: "Roofline plus landscape or bistro",
+    href: "/services/landscape-lighting",
   },
 ];
 
@@ -135,7 +117,7 @@ export default function SystemsHub() {
         photoAlt="Close view of roofline lighting on an Omaha home, warm white LEDs along the gables and eaves"
         objectPosition="50% 55%"
         h1="The lighting systems we install."
-        lede="We install two roofline systems, Jellyfish and Haven. We also install Haven soffit, landscape and bistro lighting."
+        lede="We install two roofline systems, Jellyfish and Haven, plus soffit, landscape and bistro lighting."
         trail={trail}
       />
 
@@ -173,22 +155,11 @@ export default function SystemsHub() {
                   </div>
                   <div className="flex flex-1 flex-col px-6 py-6">
                     <h3 className="font-display text-[1.3rem] font-bold leading-snug text-foreground">
-                      <Link href={`/lighting-systems/${c.slug}`} className="hover:text-accent-deep">{sy.name}</Link>
+                      {c.name}
                     </h3>
                     <p className="mt-3 text-[1.02rem] leading-relaxed text-muted-foreground">
                       {d?.position ?? sy.short}
                     </p>
-                    <dl className="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-lg bg-border ring-1 ring-border">
-                      {sy.specs.slice(0, 4).map((sp) => (
-                        <div key={sp.label} className="bg-card px-4 py-3.5">
-                          <dt className="label text-muted-foreground">{sp.label}</dt>
-                          <dd className="mt-1.5 text-[0.9rem] font-semibold leading-snug text-foreground">{sp.value}</dd>
-                        </div>
-                      ))}
-                    </dl>
-                    <div className="mt-auto border-t border-border pt-5">
-                      <TextLink href={`/lighting-systems/${c.slug}`}>The full sheet for {sy.name}</TextLink>
-                    </div>
                   </div>
                 </article>
               );
@@ -277,57 +248,6 @@ export default function SystemsHub() {
         bLabel="Lighting under the eave at night."
         ground="raise"
       />
-
-      {/* ── THE LINEUP, BY ROLE ──
-        * Seven pages, four roles. People arrive thinking they have seven
-        * choices; they have a roofline run, plus some additions. */}
-      <section className="section bg-muted">
-        <div className="shell">
-          <SectionHead
-            title="Everything we install."
-          />
-
-          <div className="mt-10 grid items-start gap-5 lg:grid-cols-2">
-            {roles.map((g) => (
-              <div key={g.heading} className="overflow-hidden rounded-lg bg-card shadow-[var(--shadow-lg)] ring-1 ring-border">
-                <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-border px-6 py-4">
-                  <p className="label flex items-center gap-3 text-foreground">
-                    <span className="block h-4 w-1 bg-accent" aria-hidden />
-                    {g.heading}
-                  </p>
-                  <p className="text-sm text-muted-foreground">{g.note}</p>
-                </div>
-                <ul className="divide-y divide-border">
-                  {g.slugs.map((sl) => {
-                    const s = bySlug(sl);
-                    const d = systemDetail[sl];
-                    return (
-                      <li key={sl}>
-                        <Link
-                          href={`/lighting-systems/${sl}`}
-                          className="group block px-6 py-4 transition-colors duration-[--dur-fast] hover:bg-muted"
-                        >
-                          <span className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                            <span className="font-display text-[1.05rem] font-bold text-foreground group-hover:underline">
-                              {s.name}
-                            </span>
-                            <span className="u shrink-0 text-xs uppercase tracking-[0.08em] text-muted-foreground">
-                              {s.maker}
-                            </span>
-                          </span>
-                          <span className="mt-1 block text-sm leading-relaxed text-muted-foreground">
-                            {d?.position ?? s.short}
-                          </span>
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ── THREE PROPERTIES ──
         * The recommendation logic, published. What goes on a house is decided
