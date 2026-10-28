@@ -13,240 +13,222 @@ export type Compare = {
   aWinsHead: string;
   bWinsHead: string;
   rows: Row[];
-  costA: string;
+  costA: string;        // short status line under each name
   costB: string;
-  neutral?: boolean;    // Brytr in neither corner
-  labor?: boolean;     // DIY vs pro framing
+  stance: string;       // "Where we stand" line
+  labor?: boolean;      // DIY vs pro framing
 };
 
-const havenRows = (bName: string, b: Partial<Record<string, string>>): Row[] => [
-  { spec: "Manufacturer", a: "Haven Lighting", b: b.maker ?? bName },
-  { spec: "LED spacing", a: "4 in.", b: b.spacing ?? "Wider" },
-  { spec: "White channel", a: "Dedicated warm white", b: b.white ?? "Color-mixed" },
-  { spec: "Color range", a: "RGB + dedicated white", b: b.color ?? "RGB" },
-  /* WAS a: "Extruded aluminum, color matched". Brytr does not colour match the channel, and this
-     row was setting that against "Aluminum, stock finishes" on the competitor - so it claimed a
-     difference that does not exist. The real difference on our side is that it is a rigid
-     extrusion that gets screwed on. 29 Aug 2026. */
-  { spec: "Channel profile", a: "Extruded aluminum, screw-fixed", b: b.channel ?? "Aluminum, stock finishes" },
-  { spec: "App quality", a: "Best of the systems we install", b: b.app ?? "Workable" },
-  { spec: "Scene programming", a: "Unlimited saved scenes", b: b.scenes ?? "Supported" },
-  { spec: "Zoning", a: "Unlimited, per elevation", b: b.zones ?? "Supported, fewer" },
-  { spec: "Dimming", a: "1 to 100 percent per zone", b: b.dim ?? "Supported" },
-  { spec: "Weather rating", a: "IP66", b: b.ip ?? "Sealed channel" },
-  /* THE "Rated LED life | 25 years | Shorter" ROW IS GONE, 28 Aug 2026. The 25-year figure was
-     invented - see the note on `stats` in content/site.ts, where the same number was removed for
-     the same reason - and once our own column is a guess, the row cannot be repaired by softening
-     the competitor's. If Haven publishes a rated life, it goes back with the datasheet to hand. */
-  { spec: "Professionally installed", a: "Yes, by us", b: b.install ?? "Varies by dealer" },
-  { spec: "Price tier", a: "Premium", b: b.price ?? "Lower" },
+/* BRAND COMPARISONS, REWRITTEN 28 OCT 2026.
+ *
+ * Client feedback: the old pages ranked brands against each other, called Jellyfish (which Brytr
+ * sells) a "value tier" system, and scored Gemstone (which Brytr does not sell) above it. Brytr
+ * does not want to run down other brands.
+ *
+ * The rule now: describe each brand by what it is, how it is sold and who installs it. No specs
+ * for brands we do not carry, no scores, no "better" or "worse", no tiers. Anything about exact
+ * hardware is handled at the design consultation, not on a page. */
+
+type Other = { maker: string; sold: string; installer?: string };
+
+const rowsFor = (aName: string, aMaker: string, bName: string, b: Other): Row[] => [
+  { spec: "Manufacturer", a: aMaker, b: b.maker },
+  { spec: "What it is", a: "Permanent roofline lighting", b: "Permanent roofline lighting" },
+  { spec: "Color", a: "Full color and white", b: "Full color and white" },
+  { spec: "Control", a: `${aName} app, scenes and schedules`, b: "Manufacturer's app, scenes and schedules" },
+  { spec: "How it is sold", a: "Through authorized installers", b: b.sold },
+  { spec: "Installed in Omaha by", a: "Brytr", b: b.installer ?? "Their local dealer" },
+  { spec: "Brytr installs it", a: "Yes", b: "No" },
 ];
+
+const haven = (bName: string, b: Other) => rowsFor("Haven", "Haven Lighting", bName, b);
+const jelly = (bName: string, b: Other) => rowsFor("Jellyfish", "Jellyfish Lighting", bName, b);
+
+const OURS = "Installed by Brytr";
 
 export const compares: Compare[] = [
   {
     slug: "haven-vs-jellyfish-lighting",
     title: "Haven Evolution vs Jellyfish Lighting",
-    h1: "Haven Evolution versus Jellyfish, compared by an installer who sells both.",
+    h1: "Haven Evolution and Jellyfish, from an installer who fits both.",
     keyword: "haven lighting vs jellyfish",
     a: "Haven Evolution", b: "Jellyfish Lighting",
     verdict:
-      "We install both. On a large or complex roofline, Haven Evolution is worth the difference. On a simple one-story or a tighter budget, Jellyfish is the honest answer.",
-    aWinsHead: "Choose Haven Evolution if",
-    bWinsHead: "Choose Jellyfish if",
+      "We install both, and both are good permanent systems. Each gives you full color and white along the roofline, controlled from an app. Which one we put on your house comes down to your roofline and what else you want lit, and we walk through both at the design consultation.",
+    aWinsHead: "Haven may suit you if",
+    bWinsHead: "Jellyfish may suit you if",
     aWins: [
-      "You will use warm white as your everyday setting",
-      "You have long straight runs where LED spacing shows",
-      "You want the deepest zoning and scheduling",
-      "You are staying in the house a long time",
+      "You want roofline, soffit, landscape and bistro lighting from one manufacturer",
+      "You plan to add landscape or patio lighting later on the same app",
+      "You like the look of the Haven channel on your fascia",
     ],
     bWins: [
-      "Budget is the deciding constraint and you still want permanent",
-      "Your roofline is simple and single-story",
-      "You mostly want color scenes, not perfect white",
-      "You would rather spend the difference on landscape lighting",
+      "You want a widely installed name in permanent lighting",
+      "You want the Jellyfish app for scenes, schedules and holidays",
+      "You have seen a Jellyfish install you liked",
     ],
-    rows: havenRows("Jellyfish Lighting", {}),
-    costA: "Premium tier", costB: "Value tier",
+    rows: [
+      { spec: "Manufacturer", a: "Haven Lighting", b: "Jellyfish Lighting" },
+      { spec: "What it is", a: "Permanent roofline lighting", b: "Permanent roofline lighting" },
+      { spec: "Color", a: "Full color and white", b: "Full color and white" },
+      { spec: "Control", a: "Haven app, scenes and schedules", b: "Jellyfish app, scenes and schedules" },
+      { spec: "Also in the lineup", a: "Soffit, landscape and bistro fixtures", b: "Roofline focused" },
+      { spec: "Installed in Omaha by", a: "Brytr", b: "Brytr" },
+    ],
+    costA: OURS, costB: OURS,
+    stance: "We install both",
+  },
+  {
+    slug: "jellyfish-vs-gemstone-lights",
+    title: "Jellyfish Lighting vs Gemstone Lights",
+    h1: "Jellyfish Lighting and Gemstone Lights.",
+    keyword: "gemstone vs jellyfish lighting",
+    volume: "150/mo",
+    a: "Jellyfish Lighting", b: "Gemstone Lights",
+    verdict:
+      "Both are permanent roofline systems with full color, app control and scheduling, and both are well known names. Gemstone is sold through its own dealer network. Brytr installs Jellyfish, so that is the one we can measure, fit and service ourselves here in Omaha.",
+    aWinsHead: "Jellyfish may suit you if",
+    bWinsHead: "Gemstone may suit you if",
+    aWins: [
+      "You want a local Omaha crew to measure, install and service it",
+      "You want the Jellyfish app for scenes, schedules and holidays",
+      "You want a widely installed name in permanent lighting",
+    ],
+    bWins: [
+      "You already have a Gemstone dealer you trust",
+      "You have seen a Gemstone install you liked",
+    ],
+    rows: jelly("Gemstone Lights", { maker: "Gemstone Lights", sold: "Through its own dealer network" }),
+    costA: OURS, costB: "Sold through Gemstone dealers",
+    stance: "We install Jellyfish",
   },
   {
     slug: "haven-vs-gemstone-lights",
     title: "Haven Evolution vs Gemstone Lights",
-    h1: "Haven Evolution versus Gemstone Lights.",
+    h1: "Haven Evolution and Gemstone Lights.",
     keyword: "gemstone lights",
     volume: "1,900/mo",
     a: "Haven Evolution", b: "Gemstone Lights",
     verdict:
-      "Gemstone is a real competitor with a well-known name and a good track record. The decision usually comes down to white quality and who is on the ladder, not the brand on the box.",
-    aWinsHead: "Choose Haven Evolution if",
-    bWinsHead: "Choose Gemstone if",
-    aWins: ["Dedicated white channel matters to you", "You want a local company accountable for the install and the service", "You want the deeper app"],
-    bWins: ["You already have a Gemstone dealer you trust", "Their channel profile suits your fascia better", "Their pricing lands better for your run length"],
-    rows: havenRows("Gemstone Lights", { maker: "Gemstone Lights", app: "Good", price: "Comparable" }),
-    costA: "Premium tier", costB: "Comparable",
+      "Gemstone is a well known permanent lighting brand sold through its own dealer network. Brytr installs Haven and Jellyfish. Whichever brand you choose, the install is what decides how it looks in year five.",
+    aWinsHead: "Haven may suit you if",
+    bWinsHead: "Gemstone may suit you if",
+    aWins: [
+      "You want a local Omaha crew to measure, install and service it",
+      "You want roofline, landscape and bistro lighting on one app",
+    ],
+    bWins: ["You already have a Gemstone dealer you trust", "You have seen a Gemstone install you liked"],
+    rows: haven("Gemstone Lights", { maker: "Gemstone Lights", sold: "Through its own dealer network" }),
+    costA: OURS, costB: "Sold through Gemstone dealers",
+    stance: "We install Haven",
   },
   {
     slug: "haven-vs-trimlight",
     title: "Haven Evolution vs Trimlight",
-    h1: "Haven Evolution versus Trimlight.",
+    h1: "Haven Evolution and Trimlight.",
     keyword: "trimlight",
     volume: "1,700/mo",
     a: "Haven Evolution", b: "Trimlight",
     verdict:
-      "Trimlight is a large national franchise, which cuts both ways: consistent product, but your experience depends entirely on which franchisee shows up. We are one crew, in one market, and you can ask your neighbor about us.",
-    aWinsHead: "Choose Haven Evolution if",
-    bWinsHead: "Choose Trimlight if",
-    aWins: ["You want a local owner accountable for the install", "Dedicated white channel", "One app across roofline and landscape"],
-    bWins: ["Your local franchisee has strong reviews", "You are moving and want a brand that exists elsewhere"],
-    rows: havenRows("Trimlight", { maker: "Trimlight", app: "Good", install: "Franchise dependent", price: "Comparable" }),
-    costA: "Premium tier", costB: "Comparable",
+      "Trimlight is a national permanent lighting brand sold through franchise and dealer territories, so the installer is whoever covers your area. Brytr is a local Omaha company and installs Haven and Jellyfish with our own crew.",
+    aWinsHead: "Haven may suit you if",
+    bWinsHead: "Trimlight may suit you if",
+    aWins: [
+      "You want a locally owned company accountable for the install",
+      "You want roofline, landscape and bistro lighting on one app",
+    ],
+    bWins: ["The Trimlight installer in your area has a strong reputation", "You want a brand with coverage in other states"],
+    rows: haven("Trimlight", { maker: "Trimlight", sold: "Through franchise and dealer territories", installer: "The territory holder" }),
+    costA: OURS, costB: "Sold through local territories",
+    stance: "We install Haven",
   },
   {
     slug: "haven-vs-oelo",
     title: "Haven Evolution vs Oelo Lighting",
-    h1: "Haven Evolution versus Oelo.",
+    h1: "Haven Evolution and Oelo.",
     keyword: "oelo lighting",
     a: "Haven Evolution", b: "Oelo",
     verdict:
-      "Oelo sells locally and makes a solid product with a distinctive channel. If you have seen an Oelo install you liked, the honest comparison is white quality and app depth.",
-    aWinsHead: "Choose Haven Evolution if",
-    bWinsHead: "Choose Oelo if",
-    aWins: ["Dedicated white channel", "Deeper app and zoning", "We install it and we service it"],
-    bWins: ["You prefer their channel profile", "You want a specific Oelo color option", "Their local pricing works better for you"],
-    rows: havenRows("Oelo", { maker: "Oelo", price: "Comparable" }),
-    costA: "Premium tier", costB: "Comparable",
+      "Oelo is a permanent lighting brand with its own channel design and app, sold through local dealers. Brytr installs Haven and Jellyfish. If you have seen an Oelo install you liked, it is worth a look alongside ours.",
+    aWinsHead: "Haven may suit you if",
+    bWinsHead: "Oelo may suit you if",
+    aWins: [
+      "You want a local Omaha crew to measure, install and service it",
+      "You want roofline, landscape and bistro lighting on one app",
+    ],
+    bWins: ["You like the Oelo channel design", "You have an Oelo dealer you trust"],
+    rows: haven("Oelo", { maker: "Oelo", sold: "Through local dealers" }),
+    costA: OURS, costB: "Sold through Oelo dealers",
+    stance: "We install Haven",
+  },
+  {
+    slug: "haven-vs-everlights",
+    title: "Haven Evolution vs EverLights",
+    h1: "Haven Evolution and EverLights.",
+    keyword: "everlights permanent lighting",
+    a: "Haven Evolution", b: "EverLights",
+    verdict:
+      "EverLights is one of the longer standing names in permanent lighting, sold through its own dealers. Brytr installs Haven and Jellyfish, measured and fitted by our own local crew.",
+    aWinsHead: "Haven may suit you if",
+    bWinsHead: "EverLights may suit you if",
+    aWins: [
+      "You want a local Omaha crew to measure, install and service it",
+      "You want roofline, landscape and bistro lighting on one app",
+    ],
+    bWins: ["You want an established name in the category", "You have an EverLights dealer you trust"],
+    rows: haven("EverLights", { maker: "EverLights", sold: "Through its own dealers" }),
+    costA: OURS, costB: "Sold through EverLights dealers",
+    stance: "We install Haven",
+  },
+  {
+    slug: "haven-vs-minleon-rainmin",
+    title: "Haven Evolution vs Minleon and Rainmin",
+    h1: "Haven Evolution and Minleon or Rainmin.",
+    keyword: "minleon",
+    volume: "350/mo",
+    a: "Haven Evolution", b: "Minleon / Rainmin",
+    verdict:
+      "Minleon and Rainmin are installer channel products, often used for animated and holiday displays. Brytr installs Haven and Jellyfish for year round everyday lighting as well as holiday scenes.",
+    aWinsHead: "Haven may suit you if",
+    bWinsHead: "Minleon or Rainmin may suit you if",
+    aWins: ["Everyday white and seasonal color are both part of the plan", "You want roofline, landscape and bistro lighting on one app"],
+    bWins: ["Animated holiday shows are the main goal", "You already run a display and want to extend it"],
+    rows: haven("Minleon / Rainmin", { maker: "Minleon / Rainmin", sold: "Through specialist installers", installer: "A specialist installer" }),
+    costA: OURS, costB: "Sold through installers",
+    stance: "We install Haven",
   },
   {
     slug: "haven-vs-govee",
     title: "Haven vs Govee: DIY Kit or Pro Install?",
-    h1: "Haven versus Govee: a professional install or a DIY kit.",
+    h1: "A professional install or a Govee kit.",
     keyword: "govee permanent outdoor lights",
     volume: "36,000/mo",
     labor: true,
     a: "Brytr professional install", b: "Govee DIY kit",
     verdict:
-      "This is not really a brand comparison, it is a labor comparison. A Govee kit costs a fraction of a professional install and you will be on a ladder at the roofline drilling into your own fascia. Some people should absolutely do that. Most should not.",
-    aWinsHead: "Choose a professional install if",
-    bWinsHead: "Choose a DIY kit if",
+      "This is less about brand and more about who does the work. A Govee kit costs less upfront and you install it yourself. A professional install means we measure, fit, seal every fixing and walk you through the app before we leave. Both are reasonable choices for different people.",
+    aWinsHead: "A professional install may suit you if",
+    bWinsHead: "A DIY kit may suit you if",
     aWins: [
-      "You are not comfortable at roof height",
-      "You want the channel screwed into the fascia rather than stuck to it",
-      "You want one number to call when a section dies",
-      "You care what it looks like in daylight",
+      "You would rather not work at roof height",
+      "You want the channel screwed into the fascia and every fixing sealed",
+      "You want one local number to call for service",
     ],
     bWins: [
-      "You genuinely enjoy this kind of project",
-      "You have a single-story ranch with easy access",
-      "You are testing the idea before committing",
-      "Budget is the only consideration",
+      "You enjoy this kind of project",
+      "You have a single story roofline with easy access",
+      "You want to try permanent lighting at a lower upfront cost",
     ],
     rows: [
       { spec: "Who installs it", a: "Brytr", b: "You" },
-      { spec: "Ladder time", a: "None for you", b: "A full weekend, at height" },
-      { spec: "Channel", a: "Extruded aluminum, screw-fixed", b: "Adhesive or clip mount" },
-      { spec: "Daylight appearance", a: "Hidden in the eave", b: "Usually visible" },
-      { spec: "Wire management", a: "Concealed", b: "Your problem" },
-      /* WAS "Corners and transitions | Cut and sealed on site | Bend and hope". Our half implied a
-         mitre and their half mocked bending the channel around a corner, which is what we do. Both
-         sides of a comparison row have to be true. 29 Aug 2026. */
-      { spec: "Terminations", a: "Capped and sealed on site", b: "Whatever is in the box" },
-          { spec: "If a section fails", a: "We come out", b: "Back on the ladder" },
-      { spec: "Weather rating", a: "IP66 channel system", b: "Varies by kit" },
-      { spec: "App", a: "Haven, purpose built", b: "Govee, general purpose" },
-      { spec: "Resale appeal", a: "Reads as a building feature", b: "Reads as a gadget" },
-      { spec: "Cost", a: "Premium tier", b: "A fraction of it" },
+      { spec: "Time on a ladder", a: "None for you", b: "Usually a weekend" },
+      { spec: "Mounting", a: "Aluminum channel, screw fixed and sealed", b: "Per the kit instructions" },
+      { spec: "Service later", a: "We come out", b: "You handle it" },
+      { spec: "Control", a: "Manufacturer's app", b: "Govee app" },
+      { spec: "Upfront cost", a: "Higher", b: "Lower" },
     ],
-    costA: "Premium tier", costB: "Consumer kit pricing",
-  },
-  {
-    slug: "haven-vs-minleon-rainmin",
-    title: "Haven Evolution vs Minleon and Rainmin",
-    h1: "Haven Evolution versus Minleon and Rainmin.",
-    keyword: "minleon",
-    volume: "350/mo",
-    a: "Haven Evolution", b: "Minleon / Rainmin",
-    verdict:
-      "Minleon and Rainmin are installer-channel products, common on professionally installed holiday displays. Strong for animated color work, less aimed at the everyday warm-white use case that most homeowners actually live in.",
-    aWinsHead: "Choose Haven Evolution if",
-    bWinsHead: "Choose Minleon or Rainmin if",
-    aWins: ["Everyday warm white is the point", "You want the architectural look in daylight", "You want one app for everything"],
-    bWins: ["You want elaborate animated holiday shows", "You already run a display and want to extend it", "Your installer specializes in that ecosystem"],
-    rows: havenRows("Minleon / Rainmin", { maker: "Minleon / Rainmin", white: "Color-mixed", app: "Show-oriented", price: "Varies" }),
-    costA: "Premium tier", costB: "Varies by installer",
-  },
-  {
-    slug: "haven-vs-ghouly",
-    title: "Haven vs Ghouly: Who Makes the Lights?",
-    h1: "Who actually manufactures your permanent lights?",
-    keyword: "who makes permanent lights",
-    a: "Haven Evolution", b: "Ghouly and other OEM supply",
-    verdict:
-      "Most permanent lighting sold in the US comes off the same handful of overseas production lines, Ghouly among them. What you are actually buying is the channel, the controller, the app and the crew. Not the LED.",
-    aWinsHead: "What a branded system buys you",
-    bWinsHead: "What white-label supply buys you",
-    aWins: [
-      "Somebody local to call when it needs looking at",
-      "A controller and app under active development",
-      "Consistent channel extrusion and finishes",
-      "An installer network with training standards",
-    ],
-    bWins: [
-      "A lower material cost, sometimes much lower",
-      "The same LED chips as branded product in some cases",
-      "Freedom for an installer to price aggressively",
-      "Fine if your installer is genuinely good and sticks around",
-    ],
-    rows: [
-      { spec: "Who makes the LED", a: "Contract manufactured to Haven spec", b: "Often the same lines" },
-          { spec: "Controller", a: "Haven, actively developed", b: "Generic, varies" },
-      { spec: "App", a: "Purpose built, updated", b: "Whatever ships with the controller" },
-      { spec: "Channel extrusion", a: "Consistent profile and finishes", b: "Varies batch to batch" },
-      { spec: "Color consistency across runs", a: "Binned and matched", b: "Not guaranteed" },
-      { spec: "Replacement parts in 5 years", a: "Supported line", b: "Uncertain" },
-      { spec: "Install standards", a: "Trained network", b: "Installer dependent" },
-      { spec: "Price", a: "Premium", b: "Lowest" },
-    ],
-    costA: "Premium tier", costB: "Lowest material cost",
-  },
-  {
-    slug: "haven-vs-everlights",
-    title: "Haven Evolution vs EverLights",
-    h1: "Haven Evolution versus EverLights.",
-    keyword: "everlights permanent lighting",
-    a: "Haven Evolution", b: "EverLights",
-    verdict:
-      "EverLights was one of the first names in permanent lighting and still shapes how people search for the category. The comparison is mature product versus current hardware.",
-    aWinsHead: "Choose Haven Evolution if",
-    bWinsHead: "Choose EverLights if",
-    aWins: ["Current generation LED density and white quality", "Deeper app", "Local crew accountable for the work"],
-    bWins: ["You want the established category name", "You have seen an install you liked", "Their dealer coverage suits you"],
-    rows: havenRows("EverLights", { maker: "EverLights", app: "Mature", price: "Comparable" }),
-    costA: "Premium tier", costB: "Comparable",
-  },
-  {
-    slug: "jellyfish-vs-gemstone-lights",
-    title: "Jellyfish vs Gemstone: Honest Comparison",
-    h1: "Jellyfish versus Gemstone Lights.",
-    keyword: "gemstone vs jellyfish lighting",
-    volume: "150/mo",
-    neutral: true,
-    a: "Jellyfish Lighting", b: "Gemstone Lights",
-    verdict:
-      "Neither of these is our premium system, so we have no dog in this fight. Jellyfish is usually the cheaper install and easier to find a dealer for. Gemstone usually has the better channel and the better white. If you are choosing between just these two, the deciding factor is which local installer you trust.",
-    aWinsHead: "Jellyfish tends to win on",
-    bWinsHead: "Gemstone tends to win on",
-    aWins: ["Install cost", "Dealer availability", "Parts and service access", "Simple rooflines"],
-    bWins: ["Channel profile and finish", "White quality", "Perceived build quality", "Long straight runs"],
-    rows: [
-      { spec: "Manufacturer", a: "Jellyfish Lighting", b: "Gemstone Lights" },
-      { spec: "LED spacing", a: "Wider", b: "Tighter" },
-      { spec: "White", a: "Color-mixed", b: "Better than Jellyfish" },
-      { spec: "Channel profile", a: "Standard", b: "Slimmer, better finished" },
-      { spec: "App", a: "Workable", b: "Good" },
-      { spec: "Dealer network", a: "Broad", b: "Narrower" },
-      { spec: "Typical install cost", a: "Lower", b: "Higher" },
-      { spec: "Brytr carries it", a: "Yes, we install it", b: "No" },
-    ],
-    costA: "Value tier", costB: "Mid tier",
+    costA: OURS, costB: "Installed by you",
+    stance: "Labor, not brand",
   },
 ];
 
