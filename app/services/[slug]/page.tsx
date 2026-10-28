@@ -285,14 +285,14 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 {/* Roofline services name both brands: Brytr installs Jellyfish and Haven and the
                   * choice is made at the consultation. */}
                 <p className="font-display text-lg font-bold text-on-dark">
-                  {rooflineSys ? "The system: Jellyfish or Haven" : `The system: ${sys.name}`}
+                  {rooflineSys ? "The system: Jellyfish or Haven" : "Installed by Brytr"}
                 </p>
                 <p className="mt-1 text-sm text-on-dark-muted">
-                  {rooflineSys ? "Both are permanent roofline systems. We help you pick one at the design consultation." : sys.short}
+                  {rooflineSys ? "Both are permanent roofline systems. We help you pick one at the design consultation." : "We go over the product with you at the design consultation."}
                 </p>
               </div>
-              <TextLink onDark href={rooflineSys ? "/lighting-systems" : `/lighting-systems/${sys.slug}`}>
-                {rooflineSys ? "See both systems" : "See the system"}
+              <TextLink onDark href="/lighting-systems">
+                {rooflineSys ? "See both systems" : "The systems we install"}
               </TextLink>
             </div>
           )}
