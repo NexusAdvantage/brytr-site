@@ -1,4 +1,5 @@
 import { pick } from "./photo-sets";
+import { COMPARE_HIDDEN } from "./compares";
 import type { Service } from "./services";
 import type { City } from "./cities";
 
@@ -107,7 +108,7 @@ export const valueProps: Record<string, ValueProp> = {
     ],
     photos: ["homePrairieTwilight", "walkthroughDusk", "crewPortrait"],
     cta: BOOK,
-    alt: { href: "/compare", label: "Compare the brands" },
+    alt: COMPARE_HIDDEN ? { href: "/lighting-systems", label: "The systems we install" } : { href: "/compare", label: "Compare the brands" },
   },
 
   "/faq": {
@@ -176,7 +177,7 @@ export const valueProps: Record<string, ValueProp> = {
     ],
     photos: ["installDayPavilion", "detailGableMiter", "crewRoofFascia"],
     cta: BOOK,
-    alt: { href: "/compare", label: "Compare the brands" },
+    alt: COMPARE_HIDDEN ? { href: "/lighting-systems", label: "The systems we install" } : { href: "/compare", label: "Compare the brands" },
   },
 
   "/lighting-systems": {
@@ -189,7 +190,7 @@ export const valueProps: Record<string, ValueProp> = {
     ],
     photos: ["archAtNight", "serviceRoofline", "serviceSoffit"],
     cta: BOOK,
-    alt: { href: "/compare", label: "Compare the brands" },
+    alt: COMPARE_HIDDEN ? { href: "/how-it-works", label: "How an install runs" } : { href: "/compare", label: "Compare the brands" },
   },
 
   /* THE "/pricing" BAND IS GONE with the page it belonged to. It carried three claims and all
@@ -250,7 +251,7 @@ export const valueProps: Record<string, ValueProp> = {
     points: CORE,
     photos: ["serviceWholeHome", "servicePatio", "serviceLandscape"],
     cta: BOOK,
-    alt: { href: "/compare", label: "Compare the brands" },
+    alt: COMPARE_HIDDEN ? { href: "/lighting-systems", label: "The systems we install" } : { href: "/compare", label: "Compare the brands" },
   },
 
   /* THE "/warranty" ENTRY IS GONE, 28 Aug 2026, with the page. Deleting the route and leaving its
@@ -279,7 +280,7 @@ export function serviceValueProp(s: Service): ValueProp {
     ],
     photos: [s.photo ?? "homeWideRanch", ...shots(`vb-${s.slug}`, 2)],
     cta: BOOK,
-    alt: { href: "/compare", label: "Compare the brands" },
+    alt: COMPARE_HIDDEN ? { href: "/lighting-systems", label: "The systems we install" } : { href: "/compare", label: "Compare the brands" },
   };
 }
 
@@ -320,7 +321,7 @@ export function systemValueProp(name: string, slug: string): ValueProp {
     ],
     photos: shots(`vb-sys-${slug}`, 3),
     cta: BOOK,
-    alt: { href: "/compare", label: "Compare the brands" },
+    alt: COMPARE_HIDDEN ? { href: "/lighting-systems", label: "The systems we install" } : { href: "/compare", label: "Compare the brands" },
   };
 }
 
