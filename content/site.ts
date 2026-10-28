@@ -1,6 +1,6 @@
 /* Confirmed facts only. Anything not verified from the client is absent by design.
  * Verified: 215+ five-star Google reviews · 5.0 average (Google Business Profile, 28 Aug 2026)
- * One crew from measure to handover · founders Zac Van Buren & Sam Greguska
+ * Owners Zac Van Buren & Sam Greguska
  * Phone 402-810-3973 · Omaha, NE · carries both Haven Evolution and Jellyfish
  */
 /* The review count and average live in content/reviews.ts and are read from there rather than
@@ -49,13 +49,13 @@ export const site = {
   founders: [
     {
       name: "Zac Van Buren",
-      role: "Co-founder",
-      handles: ["Design consultations", "Photography and drone work", "Customer walkthroughs"],
+      role: "Owner",
+      handles: [],
     },
     {
       name: "Sam Greguska",
-      role: "Co-founder",
-      handles: ["Product and manufacturer relationships", "Install standards", "Crew training"],
+      role: "Owner",
+      handles: [],
     },
   ],
   social: {
@@ -78,13 +78,12 @@ export const site = {
        in this string while reviews.ts said the same, and the client has corrected this number
        twice - each correction had to find three files or the site disagreed with itself. */
     { figure: reviewProof.average, label: `Average from ${reviewProof.countLabel} Google reviews`, icon: "stars" },
-    { figure: "1 crew", label: "From the measure to the handover", icon: "hardHat" },
+
     /* This slot held "25 yr — LED rating on the Signature system", which was an invented number
      * on an invented tier. It was swapped for IP66, but that rating came out of the same batch
-     * of specs I wrote without a source, so it is not safe either. Replaced with the one thing
-     * in this row the client confirmed on camera: we do not leave until the customer has seen it
-     * both ways. If Haven publishes an ingress rating, put it back with the datasheet to hand. */
-    { figure: "Every scene", label: "Switched through with you before we leave", icon: "dayNight" },
+     * of specs I wrote without a source, so it is not safe either. Oct 2026: now the brand count,
+     * and the "1 crew" entry is gone because the crews are subcontractors. */
+    { figure: "2 brands", label: "Jellyfish and Haven", icon: "dayNight" },
   ],
 } as const;
 

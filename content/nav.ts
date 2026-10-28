@@ -87,7 +87,7 @@ export const navTree: NavItem[] = [
     ],
     feature: {
       label: "Not sure where to start",
-      body: "Most homes begin with the roofline and add landscape later. We will lay out both on the walk-around.",
+      body: "You can start with the roofline and add more later. We will talk through it at the design consultation.",
       href: "/free-design-consultation",
       cta: "Book a free consultation",
     },
