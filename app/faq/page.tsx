@@ -36,7 +36,7 @@ import { valueProps } from "@/content/value-props";
 export const metadata: Metadata = {
   title: "Permanent Lighting FAQ",
   description:
-    "Every question we get about permanent outdoor lighting in Omaha: install day, damage to the fascia, HOA approval and winter installs.",
+    "Common questions about permanent outdoor lighting in Omaha: the install, the fascia, HOA rules and winter installs.",
   ...pageUrl("/faq"),
 };
 const trail = [{ name: "Home", href: "/" }, { name: "FAQ", href: "/faq" }];
@@ -64,7 +64,7 @@ const pick = (src: typeof homeFaqs, ...qs: string[]) =>
 const groups: { h: string; note: string; items: typeof homeFaqs; wide?: boolean }[] = [
   {
     h: "Before you buy",
-    note: "The ones that decide whether this is even the right product for the house.",
+    note: "Questions to ask before you decide.",
     items: pick(homeFaqs,
       "Can you actually see it during the day?",
       /* "What does it cost?" removed from content/faqs.ts - see the note there. */
@@ -73,7 +73,7 @@ const groups: { h: string; note: string; items: typeof homeFaqs; wide?: boolean 
   },
   {
     h: "Product and specs",
-    note: "What is actually screwed to the building, and what it does after that.",
+    note: "What it is and what it does.",
     items: pick(service,
       "Is this permanent or seasonal?",
       "Can I add to it later?",
@@ -81,7 +81,7 @@ const groups: { h: string; note: string; items: typeof homeFaqs; wide?: boolean 
   },
   {
     h: "Install",
-    note: "What install day asks of you while it happens.",
+    note: "What to expect.",
     items: [
       ...pick(homeFaqs,
         "How long does an install take?",
@@ -91,12 +91,12 @@ const groups: { h: string; note: string; items: typeof homeFaqs; wide?: boolean 
   },
   {
     h: "Service and support",
-    note: "The part that matters in year four, when nobody is selling you anything.",
+    note: "After the install.",
     items: [
       ...pick(homeFaqs, "What happens when a section stops working?"),
       ...pick(service,
         "What areas do you cover?",
-        "How do I get a number?"),
+        "How do I get a quote?"),
     ],
   },
   /* THE "Cost and financing" GROUP IS GONE. Nine answers, every specific in them invented: a
@@ -117,7 +117,7 @@ const all = groups.flatMap((g) => g.items);
 const shortAnswers: { q: string; a: string; to: string }[] = [
   {
     q: "Can you see it in the daytime?",
-    a: "Barely, and that is the point. A slim aluminum track tucked into the eave line, which reads as trim from the street.",
+    a: "The track is low profile and runs along the roofline, so it blends in during the day.",
     to: "Before you buy",
   },
   /* The "What does it cost?" short answer is gone. It stated a pricing basis and pointed at the
@@ -126,27 +126,27 @@ const shortAnswers: { q: string; a: string; to: string }[] = [
    * a link into nothing. */
   {
     q: "Will it damage my fascia?",
-    a: "It fastens into the fascia board wherever the roof allows, and every penetration is sealed as it is made.",
+    a: "It is fastened to the house and sealed. We go over how it mounts at the consultation.",
     to: "Install",
   },
   {
     q: "Can it be installed in winter?",
-    a: "Yes, all winter. Cold changes sealant cure times, so we change method rather than turn the work down.",
+    a: "It depends on the weather. We will talk through timing with you.",
     to: "Install",
   },
   {
     q: "Will my HOA allow it?",
-    a: "Most do. Read your covenant's lighting clause before you plan anything.",
+    a: "That depends on your HOA. Check its rules on exterior lighting first.",
     to: "Before you buy",
   },
   {
     q: "How long does it take?",
-    a: "We give you the actual number in the written quote after the on-site measure.",
+    a: "It depends on the house. We can talk about timing when we give you your quote.",
     to: "Install",
   },
   {
     q: "What if a section goes dark?",
-    a: "You call us and we come out. It is usually a driver or one bad connection rather than the whole run.",
+    a: "Call us. We service anything we installed.",
     to: "Service and support",
   },
 ];
@@ -155,7 +155,7 @@ const shortAnswers: { q: string; a: string; to: string }[] = [
 const cannot: { h: string; p: string }[] = [
   {
     h: "What your house costs",
-    p: "Two houses with the same footage can be a long way apart on price, because the number is driven by story count, corners and how many zones you want. A figure typed here would be either the cheapest possible job or wrong.",
+    p: "Every house is different, so the price comes in your written quote after the design consultation.",
   },
   {
     /* THE SECOND SENTENCE READ "We pull yours and read it rather than guessing from the
@@ -163,11 +163,11 @@ const cannot: { h: string; p: string }[] = [
        city pages and the consultation page, surviving here in a card nobody was rereading.
        Brytr does not administer covenant submissions and does not discuss HOA on site. */
     h: "Whether your covenant allows it",
-    p: "Several of the newer west Omaha developments have specific language about permanent exterior lighting and no two sets of rules read the same. Yours is the only document that settles it, so read the lighting clause before you plan anything.",
+    p: "That depends on your HOA's rules. Read them before you plan anything.",
   },
   {
-    h: "Whether your fascia is sound",
-    p: "We will not mount a permanent fixture to failing timber and quietly hope. That is a judgment made off a ladder with a hand on the board, and it occasionally means telling you to get a carpenter first.",
+    h: "What suits your house",
+    p: "Which system and which lighting make sense for your house is something we work out with you at the consultation.",
   },
 ];
 
@@ -179,10 +179,10 @@ export default function FaqPage() {
 
       <PageHero
         photo="/img/g-pool-firebowl.jpg"
-        photoAlt="An Omaha back garden at night: a lit seat wall, a fire bowl on a pier, and the house roofline behind set to red"
+        photoAlt="An Omaha backyard at night: a lit seat wall, a fire bowl on a pier, and the house roofline behind set to red"
         objectPosition="50% 38%"
-        h1="Everything people ask us."
-        lede="In the words customers actually use, grouped by where in the decision they come up. The ones we get most are answered in the open, in one line each, so you do not have to click anything to find out what we will and will not tell you."
+        h1="Questions and answers."
+        lede="Common questions about permanent outdoor lighting, with short answers first."
         trail={trail}
       />
 
@@ -198,7 +198,7 @@ export default function FaqPage() {
       <section className="section bg-card">
         <div className="shell">
           <SectionHead
-            title="The ones we get most, answered here."
+            title="Short answers."
           />
 
           <dl className="mt-10 grid gap-x-10 gap-y-0 lg:grid-cols-2">
@@ -229,7 +229,7 @@ export default function FaqPage() {
       <section className="section bg-muted">
         <div className="shell">
           <SectionHead
-            title="Grouped by where in the decision it comes up."
+            title="All questions, by topic."
           />
 
           <nav aria-label="Question groups" className="mt-9 rounded-lg bg-primary px-6 py-5 shadow-[var(--shadow-dark)]">
@@ -290,15 +290,15 @@ export default function FaqPage() {
         * above and the raise band below. */}
       <PhotoStrip
         shots={photoPick("faq-strip", 3)}
-        title="What the questions are actually about."
+        title="Some of our work."
         ground="card"
       />
 
       <PhotoBand
         photo="poolPergolaDusk"
         label="The answer to most of the above"
-        note="A finished install in the metro"
-        caption="Almost every question on this page ends in the same place: it depends on your roof, and the way to find out is to stand in front of it. The consultation is an hour, it costs nothing, and you keep the written quote whether or not you ring us again."
+        note="A finished install in the Omaha area"
+        caption="A lot of these answers depend on your house. The design consultation is free, and you get a written quote."
         ground="raise"
       />
 
@@ -308,7 +308,7 @@ export default function FaqPage() {
           <div>
             <SectionHead
               onDark
-              title="Questions no FAQ page can answer."
+              title="Questions that depend on your house."
             />
             {/* THIS SECTION USED TO BE A SECOND CLOSER.
               * It carried the phone number at 2.1rem, a line about booking, and links to the
@@ -320,13 +320,10 @@ export default function FaqPage() {
               * What is left is the argument, which is the part only this section makes. The ask
               * happens once, immediately below. */}
             <p className="mt-5 text-lg leading-relaxed text-on-dark/85">
-              An FAQ page that answers everything is an FAQ page that has guessed at something.
-              These need somebody standing at your house, and most of them need somebody up a
-              ladder.
+              Some answers depend on your house.
             </p>
             <p className="mt-5 text-[1.02rem] leading-relaxed text-on-dark-muted">
-              None of them are hard. They are just specific, and specific means somebody has to
-              look at your roof rather than at a page about roofs in general.
+              We go over these with you at the free design consultation.
             </p>
           </div>
 
@@ -345,8 +342,8 @@ export default function FaqPage() {
         variant="phone"
         photos={valueProps["/faq"].photos}
         title="Ask us what is not on this page."
-        body="Most questions we have never been asked before turn out to be about somebody's specific roofline, which is a five minute phone call rather than a paragraph."
-        panelLink={{ href: "/free-design-consultation", label: "Book the on-site measure" }}
+        body="Call us with any question about permanent lighting for your house."
+        panelLink={{ href: "/free-design-consultation", label: "Book a free design" }}
       />
     </Shell>
   );
