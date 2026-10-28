@@ -9,6 +9,7 @@ import { PhotoPair } from "@/components/sections/photo-parts";
 import { Jsonld, breadcrumb } from "@/lib/schema";
 import { ValueBand } from "@/components/sections/value-band";
 import { valueProps } from "@/content/value-props";
+import { COMPARE_HIDDEN } from "@/content/compares";
 
 /* /lighting-systems — WAVE 3, PAGE 1 of the page-by-page pass.
  *
@@ -427,13 +428,18 @@ export default function SystemsHub() {
 
           <p className="mt-7 max-w-[80ch] text-sm leading-relaxed text-on-dark-muted">
             None of this is a substitute for a measure. It is the reasoning we would use, published so
-            you can check whether the person in your driveway is using it.{" "}
-            <Link
-              href="/compare"
-              className="text-on-dark underline decoration-accent decoration-2 underline-offset-4"
-            >
-              How these compare with the brands we do not carry
-            </Link>.
+            you can check whether the person in your driveway is using it.
+            {!COMPARE_HIDDEN && (
+              <>
+                {" "}
+                <Link
+                  href="/compare"
+                  className="text-on-dark underline decoration-accent decoration-2 underline-offset-4"
+                >
+                  How these compare with the brands we do not carry
+                </Link>.
+              </>
+            )}
           </p>
         </div>
       </section>
