@@ -7,7 +7,7 @@ import { brandLogo } from "@/content/badges";
 import { reviewProof } from "@/content/reviews";
 import { services } from "@/content/services";
 import { cities } from "@/content/cities";
-import { systems } from "@/content/systems";
+import { systems, SYSTEM_PAGES_HIDDEN } from "@/content/systems";
 
 const company = [
   /* "Pricing and financing" was here and is gone with the page, 27 Aug 2026. Both halves of that
@@ -95,9 +95,13 @@ export function Footer() {
           <nav aria-label="Lighting systems" className="lg:col-span-1">
             <h2 className="label text-accent">Systems</h2>
             <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2.5 lg:grid-cols-1">
-              {systems.map((s) => (
+              {/* Brands only while the product pages are hidden, 28 Oct 2026. */}
+              {(SYSTEM_PAGES_HIDDEN
+                ? [{ slug: "jellyfish", name: "Jellyfish Lighting", href: "/lighting-systems" }, { slug: "haven", name: "Haven Lighting", href: "/lighting-systems" }]
+                : systems.map((s) => ({ slug: s.slug, name: s.name, href: `/lighting-systems/${s.slug}` }))
+              ).map((s) => (
                 <li key={s.slug}>
-                  <Link href={`/lighting-systems/${s.slug}`} className="text-sm text-on-dark-muted hover:text-accent">{s.name}</Link>
+                  <Link href={s.href} className="text-sm text-on-dark-muted hover:text-accent">{s.name}</Link>
                 </li>
               ))}
             </ul>
