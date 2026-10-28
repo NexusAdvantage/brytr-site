@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { systems, systemBySlug } from "@/content/systems";
 import { detailForSystem } from "@/content/system-detail";
-import { compares } from "@/content/compares";
+import { compares, COMPARE_HIDDEN } from "@/content/compares";
 import { serviceFaqsFor } from "@/content/faqs";
 import { Shell } from "@/app/layout-shell";
 import { Faq } from "@/components/sections/faq";
@@ -68,7 +68,8 @@ export default async function SystemPage({ params }: { params: Promise<{ slug: s
     },
     ...generic.slice(1),
   ];
-  const rel = compares.find((c) => c.a.includes(s.name.split(" ")[0]) || c.b.includes(s.name.split(" ")[0]));
+  /* No head to head section while the comparison pages are hidden, 28 Oct 2026. */
+  const rel = COMPARE_HIDDEN ? undefined : compares.find((c) => c.a.includes(s.name.split(" ")[0]) || c.b.includes(s.name.split(" ")[0]));
   const alsoSee = (d?.alsoSee ?? [])
     .map((sl) => systems.find((o) => o.slug === sl))
     .filter((o): o is (typeof systems)[number] => !!o && o.slug !== s.slug);
