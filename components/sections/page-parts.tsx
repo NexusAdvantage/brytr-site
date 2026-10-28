@@ -5,7 +5,6 @@ import Image from "next/image";
 import { site } from "@/content/site";
 import { cities, metroCities } from "@/content/cities";
 import { services } from "@/content/services";
-import { systems } from "@/content/systems";
 import { images } from "@/content/images";
 import { reviewProof } from "@/content/reviews";
 import { Button } from "@/components/ui/button";
@@ -373,9 +372,9 @@ export function CityTiles({
               }`}
             >
               <span className={`font-display text-[0.95rem] font-bold ${onDark ? "text-on-dark" : "text-foreground"}`}>
-                {c.name}{c.state === "IA" ? ", IA" : ""}
+                {c.name}
               </span>
-              <span className={`u shrink-0 text-xs ${onDark ? "text-accent" : "text-accent-ink"}`}>{c.drive}</span>
+              <span className={`u shrink-0 text-xs ${onDark ? "text-accent" : "text-accent-ink"}`}>{c.state}</span>
             </Link>
           </li>
         ))}
@@ -446,7 +445,7 @@ export function PageCta({
     /* "how the pricing works" led this list and is gone with /pricing. Callers still passing
        omit={["/pricing"]} are harmless - the filter simply matches nothing now. */
     { href: "/compare", label: "compare the brands we are asked about" },
-    { href: "/how-it-works", label: "what install day looks like" },
+    { href: "/how-it-works", label: "how an install works" },
   ]
     /* Comparison pages hidden, 28 Oct 2026. See COMPARE_HIDDEN in content/compares.ts. */
     .filter((l) => !(COMPARE_HIDDEN && l.href === "/compare"))
@@ -456,11 +455,11 @@ export function PageCta({
   const head = (
     <>
       <SectionHead
-        title={title ?? "See it on your house before you buy."}
+        title={title ?? "Start with a free design."}
       />
       <p className="mt-4 max-w-[60ch] text-lg text-muted-foreground">
         {body ??
-          "We measure on site, design it with you, and hand you a written quote. If you decide against it, you’ve lost an hour and gained a plan."}
+          "We visit, design it with you, and give you a written quote."}
       </p>
         {/* NO TICK LIST. Three fragments restating the paragraph directly above them, under
           * the one heading on the page whose job is to get a form filled in. Removed on
@@ -496,13 +495,12 @@ export function PageCta({
    *                                    text rather than grepping for a string. The crews are
    *                                    subcontracted.
    *
-   * Replaced with two figures anybody can check: the six systems in content/systems.ts and the
-   * twelve towns in content/cities.ts, both counted from the arrays rather than typed, so neither
-   * can drift from what the site actually publishes. */
+   * Replaced with two figures anybody can check: the two brands we install and the twelve towns
+   * in content/cities.ts. (The count of six "systems" read as a contradiction, Oct 2026.) */
   const statList: [string, string][] = [
     [reviewProof.average, `from ${reviewProof.countLabel} reviews`],
     ["Free", "design consultation"],
-    [String(systems.length), "systems we install"],
+    ["2", "brands we install"],
     [String(cities.length), "towns we cover"],
   ];
 
@@ -521,7 +519,7 @@ export function PageCta({
         <div className="shell grid items-center gap-10 lg:grid-cols-[1fr_26rem] lg:gap-14">
           <div>
             {head}
-            <div className="mt-9 border-t border-border pt-7">{readNext}</div>
+            {nextLinks.length > 0 && (<div className="mt-9 border-t border-border pt-7">{readNext}</div>)}
 
             {/* A PHOTOGRAPH, FOR THE SAME REASON THE HOME CLOSER HAS ONE.
               *
@@ -552,13 +550,13 @@ export function PageCta({
             * alternative, because a closer that removes the phone from a trade site is worse than
             * one made of facts. */}
           <div>
-            <QuoteForm variant="compact" dark heading="Book the on-site design" submitLabel="Book my free design" />
+            <QuoteForm variant="compact" dark heading="Book a free design consultation" submitLabel="Book my free design" />
             <p className="mt-4 text-center text-sm text-muted-foreground">
               Or call{" "}
               <a href={site.phoneHref} className="u font-semibold text-foreground underline decoration-accent decoration-2 underline-offset-4">
                 {site.phone}
               </a>
-              . Same-day reply, most days.
+              . We will get back to you.
             </p>
           </div>
         </div>
@@ -575,7 +573,7 @@ export function PageCta({
             <div>
               <p className="label text-muted-foreground">Or call us directly</p>
               <a href={site.phoneHref} className="u mt-1.5 block text-3xl font-medium text-foreground hover:text-accent-deep">{site.phone}</a>
-              <p className="mt-2 text-xs text-muted-foreground">Same-day reply, most days</p>
+              <p className="mt-2 text-xs text-muted-foreground">We will get back to you</p>
             </div>
             {stats && (
               <dl className="grid grid-cols-2 gap-4">
@@ -588,7 +586,7 @@ export function PageCta({
               </dl>
             )}
           </div>
-          <div className="mt-7">{readNext}</div>
+          {nextLinks.length > 0 && (<div className="mt-7">{readNext}</div>)}
         </div>
         <QuoteForm variant="full" city={city} />
       </div>
