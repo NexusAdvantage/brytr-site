@@ -34,9 +34,9 @@ import { valueProps } from "@/content/value-props";
  */
 
 export const metadata: Metadata = {
-  title: "How It Works: Install Day, Start to Finish",
+  title: "How It Works: Consultation to Install",
   description:
-    "A Brytr install day in Omaha: the fascia measured off the ladder, the channel screwed on and sealed as we go, every scene walked with you before we leave.",
+    "How a Brytr install works: a free design consultation at your house, a written quote, the install, and service afterwards.",
   ...pageUrl("/how-it-works"),
 };
 const trail = [{ name: "Home", href: "/" }, { name: "How it works", href: "/how-it-works" }];
@@ -48,70 +48,21 @@ const trail = [{ name: "Home", href: "/" }, { name: "How it works", href: "/how-
  * "Zones wired the way you asked" both described a decision as the customer's, and Brytr makes
  * both of them. And "Miters at every transition" is gone with the rest of the mitre claim. */
 const invisible: [string, string][] = [
-  [
-    "Where the driver goes",
-    "We site it somewhere serviceable and dry, and not the middle of your garage wall. You will know where it is before we leave.",
-  ],
-  [
-    "How the wire gets there",
-    "Inside the channel where it can be, then the shortest concealed route. Nothing crosses a soffit in the open.",
-  ],
-  [
-    "How the run is zoned",
-    "We work the zoning out at the measure and wire it on install day. Adding one afterwards is a wiring job, not an app setting.",
-  ],
-  [
-    "The ladder, and your landscaping",
-    "Standoffs and pads, beds walked around, gutters not leaned on.",
-  ],
-  [
-    "The clean-up nobody credits",
-    "Offcuts, screws, packaging and the aluminum filings from every cut, off site with us.",
-  ],
+  ["Zones", "Different parts of the house can be set up as separate zones in the app."],
+  ["Wiring", "We handle the wiring as part of the install."],
+  ["Adding more later", "You can add lighting later, such as landscape or patio lighting."],
+  ["Service", "Call us for service on anything we installed."],
 ];
 
-/* WHERE WE DIFFER. Stated as a comparison, because "we care about quality" is what
- * everybody says and the only way to make it mean anything is to name the alternative.
- *
- * TWO ROWS DELETED 29 Aug 2026, and deleted rather than reworded for the same reason the
- * covenant row went: this component pairs a claim about us against a claim about the trade, and
- * a pair where our half is false is not repaired by softening theirs.
- *
- *   Corners are cut, not bent   "Mitered on the angle at every gable, dormer, bay and valley."
- *                               Brytr does not miter corners. The row was also attacking the
- *                               trade for doing the thing we do.
- *   The curb check in daylight  "We stand where your neighbors stand, at noon, and look at the
- *                               eave line. If you can pick the channel out, we have not
- *                               finished." Not true, and it was the strongest promise on the
- *                               page.
- *
- * One row was added to replace them, and it is the only differentiator on this page that
- * nothing else was claiming: one controller and one app across every fixture type. */
+/* REWRITTEN Oct 2026 as a neutral list of steps. It used to contrast Brytr with "the usual way"
+ * in the trade. The component still has three columns, so `trade` now holds plain detail
+ * about the step and is not a comparison. */
 const differences: { h: string; us: string; trade: string }[] = [
-  {
-    /* WAS: "We come back in the evening, put a powered sample on your actual elevation, and change
-       color on it while you watch." An after-dark return visit with a powered demo rig, which is a
-       second appointment nobody at Brytr has committed to. Then "against your own fascia color"
-       came out too, 29 Aug 2026, because it read as the colour-matching claim. */
-    h: "The design happens on your property",
-    us: "Measured and designed standing on your own driveway, against your own elevation and your own roof shape.",
-    trade: "Quoted from the driveway at two in the afternoon, off a photograph and a rough count.",
-  },
-  {
-    h: "Sealant goes on as the screw goes in",
-    us: "Every penetration sealed at the moment it is made, rather than bridged over later.",
-    trade: "A pass along the whole run at the end of the day, bridging holes that have already taken dust.",
-  },
-  {
-    h: "One controller, one app",
-    us: "Roofline, soffit, landscape and anything over the patio all answer to the same app, because they go in on the same system.",
-    trade: "The roofline on one app and the landscape lighting on another, or on a plug by the back door.",
-  },
-  {
-    h: "The scene library is built with you",
-    us: "Your everyday setting chosen first, then the scenes you actually asked for, saved with you holding the phone.",
-    trade: "Handed over with the factory presets and an app nobody opens twice.",
-  },
+  { h: "Design consultation", us: "We visit and design it with you at your house.", trade: "Free, with a written quote." },
+  { h: "Choosing a system", us: "Jellyfish or Haven, picked with you.", trade: "Both are permanent and app controlled." },
+  { h: "The install", us: "We handle the install.", trade: "The lighting stays up year round." },
+  { h: "Your scenes", us: "Set up in the app.", trade: "Warm white, holidays, gameday or your own colors." },
+  { h: "Afterwards", us: "Call us for service on anything we installed.", trade: "402-810-3973" },
   /* THE COVENANT ROW IS GONE, both halves of it, 27 Aug 2026.
    *
    * "We pull the rules for your neighborhood, read them, and file the submission ourselves" is an
@@ -138,8 +89,8 @@ export default function HowItWorks() {
         /* WAS "All of it happens to your fascia board.", with a lede about "the eight inches
           * between your shingles and your gutter". The client's punch list: "Not sure what this
           * means." A headline that has to be decoded is not a headline. */
-        h1="What actually happens on install day."
-        lede="Permanent lighting is a carpentry job with an electrical job inside it. Most of what decides whether you still like it in five years is settled at the roof edge, on the day the van turns up."
+        h1="How it works, from consultation to install."
+        lede="We visit, design it with you, give you a written quote, and handle the install. We are here for service afterwards."
         trail={trail}
       />
 
@@ -155,17 +106,16 @@ export default function HowItWorks() {
         <div className="shell">
           <SectionHead
             onDark
-            title="The same eight inches of fascia, four times through the day."
+            title="The install, start to finish."
           />
           <div className="mt-10"><InstallDaySequence /></div>
           <p className="mt-7 max-w-[76ch] text-sm leading-relaxed text-on-dark-muted">
-            Drawn to what we actually install: the channel into the fascia board, the conductor inside
-            the channel, the diffuser facing down.{" "}
+            A simple drawing of the roof edge.{" "}
             <Link
               href="/services/permanent-roofline-lighting"
               className="text-on-dark underline decoration-accent decoration-2 underline-offset-4"
             >
-              The same join, finished, in more detail
+              Roofline lighting in more detail
             </Link>.
           </p>
         </div>
@@ -176,18 +126,17 @@ export default function HowItWorks() {
         <div className="shell grid items-start gap-10 lg:grid-cols-[40fr_60fr] lg:gap-14">
           <div>
             <h2 className="mt-4 text-[clamp(1.75rem,3vw,2.5rem)] leading-[1.06] text-foreground">
-              What is not in the drawing.
+              A few more things.
             </h2>
             <div className="prose-body mt-6 space-y-4">
             {/* ONE PARAGRAPH. rules.md bans a second body paragraph stacked under a heading, and the
               * measured count was twelve of these on one service page and fifteen on a city page.
               * Kept whichever of the two carried the claim rather than the run-up to it. */}
               <p className="text-lg text-foreground">
-                The channel is the easy part. Five other decisions get made on your property that day,
-                and every one of them is a thing you would only notice if somebody got it wrong.
+                What else to know about an install.
               </p>
             </div>
-            <div className="mt-7"><TextLink href="/about">Who is actually on your roof</TextLink></div>
+            <div className="mt-7"><TextLink href="/about">About Brytr</TextLink></div>
           </div>
 
           <ul className="divide-y divide-border border-y border-border">
@@ -207,12 +156,12 @@ export default function HowItWorks() {
         * be like" — so the drawings stay and these three sit under them. Nothing is staged: two
         * of them are mid-install and the third is the walkthrough at the end of it. */}
       <PhotoStrip
-        title="Drawings explain the detail. This is the day."
-        lede="One crew and a walkthrough of every scene before anybody leaves."
+        title="Install day."
+        lede="A few photos from installs."
         shots={[
-          { photo: "installDayGarage", caption: "Morning. Van open, roofline measured, nothing on the house yet." },
-          { photo: "installDayPavilion", caption: "A run going on to a poolside pavilion. Anything with a structure to fasten to at both ends will take one." },
-          { photo: "walkthroughDusk", caption: "On your lawn, with every scene switched through in front of you." },
+          { photo: "installDayGarage", caption: "An install getting started." },
+          { photo: "installDayPavilion", caption: "Lighting going on a poolside pavilion." },
+          { photo: "walkthroughDusk", caption: "The finished lighting at dusk." },
         ]}
         cols={3}
         ground="raise"
@@ -225,7 +174,7 @@ export default function HowItWorks() {
       <section className="section bg-muted">
         <div className="shell">
           <SectionHead
-            title="What is not standard in this trade."
+            title="How it works, step by step."
           />
 
           <div className="mt-10 overflow-hidden rounded-lg bg-card shadow-[var(--shadow-lg)] ring-1 ring-border">
@@ -233,20 +182,20 @@ export default function HowItWorks() {
               <p className="label text-on-dark-muted">The step</p>
               <p className="label flex items-center gap-3 text-on-dark">
                 <span className="block h-4 w-1 bg-accent" aria-hidden />
-                How we do it
+                What happens
               </p>
-              <p className="label text-on-dark-muted">The usual way</p>
+              <p className="label text-on-dark-muted">Details</p>
             </div>
             <ul className="divide-y divide-border">
               {differences.map((d) => (
                 <li key={d.h} className="grid gap-3 px-6 py-5 lg:grid-cols-[30fr_35fr_35fr] lg:gap-8">
                   <h3 className="font-display text-[1.05rem] font-bold leading-snug text-foreground">{d.h}</h3>
                   <div>
-                    <p className="label mb-1.5 text-accent-ink lg:hidden">How we do it</p>
+                    <p className="label mb-1.5 text-accent-ink lg:hidden">What happens</p>
                     <p className="text-[0.95rem] leading-relaxed text-foreground">{d.us}</p>
                   </div>
                   <div>
-                    <p className="label mb-1.5 text-muted-foreground lg:hidden">The usual way</p>
+                    <p className="label mb-1.5 text-muted-foreground lg:hidden">Details</p>
                     <p className="text-[0.95rem] leading-relaxed text-muted-foreground">{d.trade}</p>
                   </div>
                 </li>
@@ -255,8 +204,7 @@ export default function HowItWorks() {
           </div>
 
           <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
-            The right-hand column describes practices that are common in this trade and that we have
-            chosen not to use. It is not a claim about any particular company.
+            Questions about any step? Ask us at the consultation.
           </p>
         </div>
       </section>
@@ -268,7 +216,7 @@ export default function HowItWorks() {
         <div className="shell">
           <SectionHead
             onDark
-            title="What happens before the van, and after it."
+            title="Before and after the install."
           />
 
           {/* THE EAVE SECTION, moved here from the home page. It was in a tall column there and sat
@@ -283,13 +231,13 @@ export default function HowItWorks() {
             <article className="flex flex-col rounded-lg bg-raise p-7 ring-1 ring-on-dark/10">
               <h3 className="font-display text-2xl font-bold text-on-dark">Before</h3>
               <p className="mt-3 text-[1.05rem] leading-relaxed text-on-dark/85">
-                One visit and one piece of paper. That is the whole of it.
+                A visit and a written quote.
               </p>
               <ul className="mt-6 flex-1 divide-y divide-on-dark/10 border-y border-on-dark/10">
                 {[
-                  ["The consultation", "About an hour, and no charge for the visit. It has its own page because it is the part people ask about most."],
-                  ["The written quote", "One number for the whole scope, itemized by elevation, hardware and zone, unchanged on install day."],
-                  ["The covenant", "Worth reading the lighting clause before anything is ordered, if your neighborhood has one."],
+                  ["The consultation", "Free. We visit and design it with you."],
+                  ["The written quote", "Yours to look over."],
+                  ["Your HOA", "If you have one, check its rules on exterior lighting."],
                 ].map(([h, p]) => (
                   <li key={h} className="py-4">
                     <p className="font-display text-[0.95rem] font-bold text-on-dark">{h}</p>
@@ -298,20 +246,20 @@ export default function HowItWorks() {
                 ))}
               </ul>
               <div className="mt-6 flex flex-wrap gap-x-7 gap-y-2">
-                <TextLink onDark href="/free-design-consultation">What the hour looks like</TextLink>
+                <TextLink onDark href="/free-design-consultation">About the consultation</TextLink>
               </div>
             </article>
 
             <article className="flex flex-col rounded-lg bg-raise p-7 ring-1 ring-on-dark/10">
               <h3 className="font-display text-2xl font-bold text-on-dark">After</h3>
               <p className="mt-3 text-[1.05rem] leading-relaxed text-on-dark/85">
-                What happens after we leave, which is the part you will actually judge us on.
+                We are here for service afterwards.
               </p>
               <ul className="mt-6 flex-1 divide-y divide-on-dark/10 border-y border-on-dark/10">
                 {[
-                  ["A section goes dark", "Almost always a driver or one bad connection rather than the whole run. We come out and fix that section."],
-                  ["You want another zone", "The back elevation, the pergola, the beds. It ties into the controller you already have."],
-                  ["Something we installed fails", "You call the number on this site and one of the two owners answers it."],
+                  ["Something stops working", "Call us. We service anything we installed."],
+                  ["You want to add more", "You can add lighting later, such as landscape or patio lighting."],
+                  ["Questions about the app", "Call us and we can help."],
                 ].map(([h, p]) => (
                   <li key={h} className="py-4">
                     <p className="font-display text-[0.95rem] font-bold text-on-dark">{h}</p>

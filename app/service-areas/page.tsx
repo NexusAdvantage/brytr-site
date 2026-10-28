@@ -10,6 +10,7 @@ import { pick } from "@/content/photo-sets";
 import { Jsonld, breadcrumb, localBusiness } from "@/lib/schema";
 import { ValueBand } from "@/components/sections/value-band";
 import { valueProps } from "@/content/value-props";
+import { site } from "@/content/site";
 
 /* /service-areas — WAVE 5, PAGE 1 of the page-by-page pass.
  *
@@ -34,7 +35,7 @@ import { valueProps } from "@/content/value-props";
 export const metadata: Metadata = {
   title: "Service Areas: The Omaha Metro and Council Bluffs",
   description:
-    "Where Brytr installs permanent outdoor lighting: every town in the Omaha metro plus Council Bluffs, with the real drive to each from our shop.",
+    "Where Brytr installs permanent outdoor lighting: towns across the Omaha metro, plus Council Bluffs.",
   ...pageUrl("/service-areas"),
 };
 const trail = [{ name: "Home", href: "/" }, { name: "Service areas", href: "/service-areas" }];
@@ -53,12 +54,11 @@ const ladder = [...cities].sort((a, b) => minutes(a.drive) - minutes(b.drive));
    City type there - so the "Scheduled route" band has nothing in it. The ternary keeps a fallback
    rather than assuming, because the tier union still allows "outstate" if a town comes back. */
 const bandFor = (tier: string) =>
-  tier === "metro" ? "Same week" : tier === "iowa" ? "Same week, over the river" : "Scheduled route";
+  tier === "iowa" ? "Over the river" : "Omaha metro";
 
 const bandStyle: Record<string, string> = {
-  "Same week": "border-accent/50 text-accent-ink",
-  "Same week, over the river": "border-accent/50 text-accent-ink",
-  "Scheduled route": "border-border text-muted-foreground",
+  "Omaha metro": "border-accent/50 text-accent-ink",
+  "Over the river": "border-accent/50 text-accent-ink",
 };
 
 /* THE THREE BANDS, and what each actually commits us to. */
@@ -66,15 +66,15 @@ const bands: { h: string; count: number; promise: string; p: string; href: strin
   {
     h: "The metro",
     count: metroCities.length,
-    promise: "Service inside the week",
-    p: "Everything within about thirty-five minutes of the shop on C Street. This is where most of what we have installed is, and it is why a dark run in December here is a visit rather than a project.",
+    promise: "Omaha and nearby towns",
+    p: "Omaha and the towns around it. Each one has its own page.",
     href: `/service-areas/${metroCities[0].slug}`,
   },
   {
     h: "Over the river",
     count: iowaCities.length,
-    promise: "Same crews, same materials",
-    p: "Council Bluffs is twenty minutes from us, which is closer than half the Nebraska metro. Iowa-side installs get the same crews and the same materials as anywhere else we work.",
+    promise: "Council Bluffs, Iowa",
+    p: "We serve Council Bluffs too.",
     href: `/service-areas/${iowaCities[0].slug}`,
   },
 ];
@@ -95,8 +95,8 @@ export default function AreasHub() {
         photo="/img/g-ranch-blue-white.jpg"
         photoAlt="A long Omaha ranch elevation lit blue and white with landscape uplighting"
         objectPosition="50% 45%"
-        h1="Every town we drive to, and how long it takes."
-        lede="A service area is only worth publishing if it says what it actually commits us to. Every town here is inside about thirty-five minutes of the shop, which is what lets a service call in February be the same week rather than a project."
+        h1="Every town we serve."
+        lede="We install permanent outdoor lighting across the Omaha metro and Council Bluffs."
         trail={trail}
       />
 
@@ -147,16 +147,16 @@ export default function AreasHub() {
       <section className="section bg-card">
         <div className="shell">
           <SectionHead
-            title="How far, and what that changes."
+            title="Towns we serve."
           />
 
           <div className="mt-10 overflow-hidden rounded-lg bg-background shadow-[var(--shadow-lg)] ring-1 ring-border">
             <div className="hidden bg-primary px-6 py-4 lg:grid lg:grid-cols-[30fr_14fr_24fr_32fr] lg:gap-8">
               <p className="label text-on-dark-muted">Town</p>
-              <p className="label text-on-dark-muted">Drive</p>
+              <p className="label text-on-dark-muted">State</p>
               <p className="label flex items-center gap-3 text-on-dark">
                 <span className="block h-4 w-1 bg-accent" aria-hidden />
-                Service call
+                Area
               </p>
               <p className="label text-on-dark-muted">Neighborhoods on its page</p>
             </div>
@@ -173,7 +173,7 @@ export default function AreasHub() {
                         {c.name}
                         {c.state === "IA" ? ", Iowa" : ""}
                       </span>
-                      <span className="u text-sm font-medium text-accent-ink">{c.drive}</span>
+                      <span className="u text-sm font-medium text-accent-ink">{c.state === "IA" ? "Iowa" : "Nebraska"}</span>
                       <span>
                         <span
                           className={`u text-[0.7rem] uppercase tracking-[0.08em] ${bandStyle[band]}`}
@@ -193,9 +193,7 @@ export default function AreasHub() {
           </div>
 
           <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
-            Drive times are from the shop at 13436 C St in normal traffic, not at rush hour and not with a
-            trailer. Neighborhood lists are real subdivisions, and every one of those pages says to ring
-            us anyway if yours is not on it.
+            Town not listed? Call us at {site.phone}.
           </p>
         </div>
       </section>
@@ -204,7 +202,7 @@ export default function AreasHub() {
       <section className="section bg-muted">
         <div className="shell">
           <SectionHead
-            title="The promise is not the same everywhere."
+            title="Nebraska and Iowa."
           />
           {/* TWO COLUMNS FOR TWO BANDS. It was three, so a third of the row was empty from the
             * moment the service area came back to the metro and Council Bluffs. */}
@@ -230,7 +228,7 @@ export default function AreasHub() {
                   <p className="mt-2.5 text-[0.95rem] leading-relaxed text-muted-foreground">{b.p}</p>
                 </div>
                 <div className="border-t border-border px-6 py-4">
-                  <TextLink href={b.href}>See a page in this band</TextLink>
+                  <TextLink href={b.href}>See a town page</TextLink>
                 </div>
               </article>
             ))}
@@ -244,8 +242,8 @@ export default function AreasHub() {
         * which town most of them are in and inventing one on a page about drive times would be
         * a strange place to start lying. */}
       <PhotoStrip
-        title="The same crew, whichever line on the table you are on."
-        lede="Drive time changes how quickly we can get back out to you. It does not change who turns up or what goes on the house."
+        title="Some of our work around Omaha."
+        lede="Installs from around the metro."
         shots={pick("areas-index", 3)}
         cols={3}
         ground="raise"
@@ -255,17 +253,14 @@ export default function AreasHub() {
       <section className="section bg-primary">
         <div className="shell grid items-start gap-10 lg:grid-cols-[50fr_50fr] lg:gap-14">
           <div>
-            <SectionHead onDark  title="Why the radius stops where it does." />
+            <SectionHead onDark  title="Not sure if we serve you?" />
             <div className="prose-body mt-6 space-y-4">
             {/* ONE PARAGRAPH. rules.md bans a second body paragraph stacked under a heading, and the
               * measured count was twelve of these on one service page and fifteen on a city page.
               * Kept whichever of the two carried the claim rather than the run-up to it. */}
               <p className="text-base leading-relaxed text-on-dark-muted">
-                That is why the area stops where it does. Everything we serve is inside about
-                thirty-five minutes of the shop, Council Bluffs included, and a dark section on any of
-                it is a visit rather than a route day. Further out we would be selling a system we
-                could not service properly, so we do not, and if you ring from out there we will say
-                so on the call rather than drive out and load the number.
+                We serve the Omaha metro and Council Bluffs. If you are not sure whether your town is
+                covered, give us a call.
               </p>
             </div>
           </div>
@@ -274,7 +269,7 @@ export default function AreasHub() {
             <div className="rounded-lg bg-raise p-6 ring-1 ring-on-dark/10">
               <p className="label flex items-center gap-3 text-on-dark">
                 <span className="block h-4 w-1 bg-accent" aria-hidden />
-                Same everywhere
+                In every town
               </p>
               <ul className="mt-5 divide-y divide-on-dark/10 border-t border-on-dark/10">
                 {[
@@ -290,9 +285,9 @@ export default function AreasHub() {
                      from the curb, then every scene walked through with you." We do not do a
                      daylight curb check and the client has said so in writing, so the row now
                      promises only the half of it that is real. */
-                  "The same crew in every town we serve",
-                  "The written quote before install day, unchanged on it",
-                  "The scene walk before anybody leaves",
+                  "A free design consultation",
+                  "A written quote",
+                  "Service on anything we installed",
                 ].map((x) => (
                   <li key={x} className="py-3 text-[0.95rem] leading-relaxed text-on-dark-muted">{x}</li>
                 ))}
@@ -301,15 +296,12 @@ export default function AreasHub() {
             <div className="rounded-lg bg-raise p-6 ring-1 ring-on-dark/10">
               <p className="label flex items-center gap-3 text-on-dark">
                 <span className="block h-4 w-1 bg-on-dark/25" aria-hidden />
-                Different as you go out
+                Good to know
               </p>
               <ul className="mt-5 divide-y divide-on-dark/10 border-t border-on-dark/10">
                 {[
-                  "How fast a service call gets scheduled",
-                  "Whether your install shares a day with a neighbor's",
-                  "How long we will hold a route date before it moves",
-                  "Whether we can drop by to look at something small",
-                  "Outside the metro: we will turn the work down",
+                  "Each town has its own page",
+                  "Call us if your town is not listed",
                 ].map((x) => (
                   <li key={x} className="py-3 text-[0.95rem] leading-relaxed text-on-dark-muted">{x}</li>
                 ))}
