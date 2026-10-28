@@ -39,7 +39,7 @@ import { COMPARE_HIDDEN } from "@/content/compares";
 export const metadata: Metadata = {
   title: "Permanent Lighting Systems We Install",
   description:
-    "The permanent lighting we install in Omaha: Haven Evolution on the roofline, Q Series soffit, 9 Series landscape, X Bistro overhead, and the app behind it.",
+    "The permanent lighting we install in Omaha: Jellyfish and Haven roofline lighting, plus Haven soffit, landscape and bistro lighting, all controlled from an app.",
   ...pageUrl("/lighting-systems"),
 };
 const trail = [{ name: "Home", href: "/" }, { name: "Lighting systems", href: "/lighting-systems" }];
@@ -47,137 +47,79 @@ const trail = [{ name: "Home", href: "/" }, { name: "Lighting systems", href: "/
 /* THE ROOFLINE SHEET. Third column is the whole point: a spec with no consequence attached
  * is a number, and a number does not help anybody decide anything. Every value in the
  * middle column is a Haven figure already carried on the product's own page. */
+/* Rewritten Oct 2026: the sheet was Haven Evolution only, with specs nobody sourced. It now
+ * lists qualitative points true of both roofline systems we install. */
 const sheet: { spec: string; value: string; why: string }[] = [
-  {
-    spec: "White light",
-    value: "Dedicated warm white channel",
-    why: "Warm white is the setting most houses sit on all year, so it is worth seeing on your own elevation before you decide.",
-  },
-  {
-    spec: "LED spacing",
-    value: "4 in.",
-    why: "Closer spacing reads as a continuous line rather than a string of points. On a broken-up roofline you will not notice; on a long straight two-story eave you will.",
-  },
-  {
-    spec: "Diffuser",
-    value: "Frosted polycarbonate",
-    why: "What you look at from the street is the diffuser, not the diode. It is the part that decides whether the run is a line of light or a row of bright dots.",
-  },
-  {
-    /* THIS ROW READ `spec: "Finish", value: "Color matched to fascia"` until 29 Aug 2026, with
-       a consequence column arguing that a matched channel is what makes the hardware vanish in
-       daylight. Brytr does not color match, so the row was selling a service that does not
-       exist AND was the anchor for the daylight argument on this page. The honest version of
-       the same row is the construction, which is what actually holds the line straight. */
-    spec: "Channel",
-    value: "Extruded aluminum, screw-fixed",
-    why: "A rigid extrusion screwed to the fascia holds a straight line for the length of the run. Adhesive and clip mounts are the ones that sag and lift.",
-  },
-  {
-    spec: "Zones",
-    value: "Per elevation and per fixture type",
-    why: "Zones are what let the back of the house stay dark while the front is lit. They are wired on install day, so this is decided before anybody drills.",
-  },
-  {
-    spec: "Dimming",
-    value: "1 to 100 percent",
-    why: "Dimming is how a color stays clean rather than turning to glare. It matters most on a low ranch elevation close to the street.",
-  },
-  {
-    spec: "Weather rating",
-    value: "IP66",
-    why: "It survives a Nebraska winter. It does not survive a bad install, which is why the fastening and the sealing get the attention on this site.",
-  },
-  {
-    spec: "App",
-    value: "Haven, iOS and Android",
-    why: "Scenes, sunset scheduling, zoning and dimming, on the same app whether the light is on the roofline, in the beds or over the patio.",
-  },
+  { spec: "Color", value: "Full color and white", why: "Warm white for everyday and colors when you want them." },
+  { spec: "Control", value: "App", why: "Jellyfish and Haven each have their own app on your phone." },
+  { spec: "Scenes", value: "Save your own", why: "Holidays, gameday, or any colors you like." },
+  { spec: "Schedules", value: "Yes", why: "Set the lights to come on and go off on their own." },
+  { spec: "Stays up", value: "Year round", why: "Nothing to hang or take down each season." },
+  { spec: "Installed by", value: "Brytr", why: "We handle the install and we are here for service afterwards." },
 ];
 
-/* WHAT THE SHEET DOES NOT COVER. Printing this is what keeps the sheet above from reading
- * as a hardware brochure: none of it is on a datasheet and all of it decides whether the
- * run is still right in year three.
- *
- * "Corners mitered and sealed on site" was the fourth item and came off 29 Aug 2026 with the
- * rest of the mitre claims. That left five items in a two-column grid, which is an orphan
- * cell, so the zoning commitment took the empty slot - true, on the punch list already as the
- * correction to "zones wired the way you asked", and belongs in a list about the things a
- * datasheet cannot tell you. */
 const identical: string[] = [
-  "The same crew on every job, measure to handover",
-  "The same fastening method into the fascia board wherever the roof allows",
-  "Every penetration sealed at the moment it is made",
-  "The scene walk before we leave, so nobody is handed an app they have not used",
-  "The zoning agreed before anything is drilled",
-  "The same fastening and sealing method, whichever hardware is on the house",
+  "A free design consultation at your house",
+  "A written quote",
+  "We handle the install",
+  "Call us for service on anything we installed",
 ];
 
-/* THE TWO THINGS EVERY JOB HAS. The roofline run, and the layer that operates it. */
 const core: { slug: string; role: string }[] = [
-  { slug: "haven-evolution", role: "The roofline" },
-  { slug: "app-and-controls", role: "The controls" },
+  { slug: "jellyfish-lighting", role: "Roofline" },
+  { slug: "haven-evolution", role: "Roofline" },
 ];
 
-/* THE LINEUP BY ROLE. Seven pages, four roles, and the roles are the thing nobody
- * explains, which is why people arrive thinking they have seven choices to make. */
 const roles: { heading: string; note: string; slugs: string[] }[] = [
   {
-    heading: "Where the run itself goes",
+    heading: "The roofline",
     note: "Two roofline systems we install",
     slugs: ["jellyfish-lighting", "haven-evolution"],
   },
   {
-    heading: "What goes on with it",
-    note: "Additions, not alternatives",
+    heading: "More lighting",
+    note: "Soffit, landscape and bistro",
     slugs: ["haven-q-series", "haven-9-series-landscape-lights", "haven-x-bistro-lights"],
   },
   {
-    heading: "How all of it is operated",
-    note: "The layer you actually touch",
+    heading: "Control",
+    note: "From your phone",
     slugs: ["app-and-controls"],
   },
 ];
 
-/* THREE PROPERTIES. The recommendation logic, published, because the shape of the building
- * decides what goes on it and almost nobody in this trade writes that down. */
-const houses: { h: string; profile: string[]; verdict: string; slug: string }[] = [
+const houses: { h: string; profile: string[]; verdict: string; label: string; href: string }[] = [
   {
-    h: "A single-story ranch, front elevation only",
+    h: "A single story home",
     profile: [
-      "One elevation lit, warm white most of the year",
-      "Roofline broken up by a gable or two",
-      "Nobody in the house is going to open the app weekly",
+      "Roofline lighting along the front",
+      "Warm white for everyday",
+      "Colors for holidays",
     ],
-    verdict:
-      "The roofline run and nothing else, and we will say so at the table. On a run this length in one color, the money is better spent getting the line straight and the terminations sealed than on anything added to it.",
-    slug: "haven-evolution",
+    verdict: "Roofline lighting is a good place to start. We plan it with you at the consultation.",
+    label: "Jellyfish or Haven",
+    href: "/lighting-systems",
   },
   {
-    h: "A two-story with dormers and a long eave line",
+    h: "A two story home",
     profile: [
-      "Front and both sides, three or more zones",
-      "Long unbroken runs where spacing shows",
-      "Color on gamedays and holidays, white the rest of the year",
+      "Roofline lighting on more than one side",
+      "Lighting under the overhang",
+      "Colors for gameday and holidays",
     ],
-    /* THIS VERDICT READ "...where the spacing and the matched channel are visible from the
-       curb..." - the color-match claim and the curb sighting, both retracted, sitting three
-       sections below the sheet row where I had already taken them out. What that house
-       actually shows from the street is the spacing and whether the run holds its line. */
-    verdict:
-      "The roofline run, plus soffit fixtures wherever the overhang is deep enough to take them. This is the house where the spacing and the straightness of the run are visible from the street, and where the wash off the soffit does something the trim line cannot.",
-    slug: "haven-q-series",
+    verdict: "Soffit lighting can go with the roofline. We look at your house with you and plan it.",
+    label: "Roofline plus Haven Q Series",
+    href: "/lighting-systems/haven-q-series",
   },
   {
-    h: "A property rather than a house",
+    h: "A whole property",
     profile: [
-      "Roofline, plus beds, walls, a pergola or a pool deck",
-      "One app expected to run all of it",
-      "Scenes that span the house and the yard together",
+      "Roofline, plus beds, walls or a pergola",
+      "Lighting for the yard as well as the house",
     ],
-    verdict:
-      "The roofline run plus the ground-level and overhead lines on the same visit. The saving on doing the beds and the pergola while the crew is already on site is most of the cost of a second visit.",
-    slug: "haven-9-series-landscape-lights",
+    verdict: "Landscape and patio lighting can go in with the roofline or be added later.",
+    label: "Roofline plus Haven landscape or bistro",
+    href: "/lighting-systems/haven-9-series-landscape-lights",
   },
 ];
 
@@ -190,10 +132,10 @@ export default function SystemsHub() {
 
       <PageHero
         photo="/img/channel-detail.jpg"
-        photoAlt="Close view of a Brytr channel tucked into the fascia of an Omaha home, individual warm white LEDs visible along every gable and eave"
+        photoAlt="Close view of roofline lighting on an Omaha home, warm white LEDs along the gables and eaves"
         objectPosition="50% 55%"
-        h1="The lines we install, and what each is for."
-        lede="We install two roofline systems, Jellyfish and Haven. Haven also makes soffit, landscape and bistro fixtures that run on the same app, so a whole property can answer to one controller."
+        h1="The lighting systems we install."
+        lede="We install two roofline systems, Jellyfish and Haven. We also install Haven soffit, landscape and bistro lighting."
         trail={trail}
       />
 
@@ -214,7 +156,7 @@ export default function SystemsHub() {
           <SectionHead
             /* Not "the two things": the panels are directly underneath and counting them in
               * the heading is the habit I keep having to be told about. */
-            title="The roofline run, and the app that operates it."
+            title="Two roofline systems."
           />
           <div className="mt-10 grid gap-6 lg:grid-cols-2">
             {core.map((c) => {
@@ -260,7 +202,7 @@ export default function SystemsHub() {
       <section className="section bg-card">
         <div className="shell">
           <SectionHead
-            title="Every row, and what it actually does to the house."
+            title="What both systems do."
           />
 
           <div className="mt-10 overflow-hidden rounded-lg bg-background shadow-[var(--shadow-lg)] ring-1 ring-border">
@@ -268,9 +210,9 @@ export default function SystemsHub() {
               <p className="label text-on-dark-muted">Spec</p>
               <p className="label flex items-center gap-3 text-on-dark">
                 <span className="block h-4 w-1 bg-accent" aria-hidden />
-                Haven Evolution
+                Jellyfish and Haven
               </p>
-              <p className="label text-on-dark-muted">Why it matters</p>
+              <p className="label text-on-dark-muted">What it means</p>
             </div>
             <ul className="divide-y divide-border">
               {sheet.map((r) => (
@@ -281,7 +223,7 @@ export default function SystemsHub() {
                     * the strip, and it is right to: a colored left border on a block is as
                     * reliable a tell as an em-dash in a sentence. */}
                   <div className="rounded-sm bg-muted px-4 py-3 lg:-my-1">
-                    <p className="label mb-1 text-accent-ink lg:hidden">Haven Evolution</p>
+                    <p className="label mb-1 text-accent-ink lg:hidden">Jellyfish and Haven</p>
                     <p className="text-[0.95rem] font-medium text-foreground">{r.value}</p>
                   </div>
                   <p className="text-sm leading-relaxed text-muted-foreground">{r.why}</p>
@@ -298,7 +240,7 @@ export default function SystemsHub() {
               * before sections." These three survived because they are inside dark panels rather
               * than above section heads, which is a distinction the reader does not make. */}
             <h3 className="max-w-[46ch] font-display text-xl font-bold text-on-dark">
-              The hardware is the half of this you can shop, and none of it is on a datasheet.
+              Whichever system you pick.
             </h3>
             <ul className="mt-6 grid gap-x-10 gap-y-0 lg:grid-cols-2">
               {identical.map((x) => (
@@ -311,9 +253,7 @@ export default function SystemsHub() {
               ))}
             </ul>
             <p className="mt-6 max-w-[76ch] text-sm leading-relaxed text-on-dark-muted">
-              Good hardware fastened badly fails before cheap hardware fastened properly does, and
-              the failures in this category are workmanship far more often than product. That is why
-              the crew who measures your house is the crew who fits it and signs it off.
+              We install both brands and help you choose at the design consultation.
             </p>
           </div>
         </div>
@@ -329,12 +269,12 @@ export default function SystemsHub() {
         * specifications on this page a homeowner can actually verify with their own eyes, so
         * those are the two that get photographs. */}
       <PhotoPair
-        title="The specifications you can check yourself."
-        lede="Most of the sheet above has to be taken on trust. These two do not: how the channel reads by day, and how far apart the points sit."
+        title="By day and after dark."
+        lede="Roofline lighting on Omaha homes."
         a="dayBrickGable"
         b="homeEaveDownlights"
-        aLabel="The channel under the roof edge in daylight. This is the daylight question, photographed rather than asserted."
-        bLabel="And the spacing row: individual points under the eave, set at the measure rather than judged on the day."
+        aLabel="Roofline lighting in daylight."
+        bLabel="Lighting under the eave at night."
         ground="raise"
       />
 
@@ -344,7 +284,7 @@ export default function SystemsHub() {
       <section className="section bg-muted">
         <div className="shell">
           <SectionHead
-            title="Most of these are additions, not alternatives."
+            title="Everything we install."
           />
 
           <div className="mt-10 grid items-start gap-5 lg:grid-cols-2">
@@ -396,12 +336,11 @@ export default function SystemsHub() {
         <div className="shell">
           <SectionHead
             onDark
-            title="What we would quote you, by the shape of the property."
+            title="Ideas by type of home."
           />
 
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
             {houses.map((x) => {
-              const s = bySlug(x.slug);
               return (
                 <article
                   key={x.h}
@@ -415,11 +354,11 @@ export default function SystemsHub() {
                   </ul>
                   <div className="mt-6 flex-1">
                     <p className="label text-accent">Where it starts</p>
-                    <p className="mt-1.5 font-display text-lg font-bold text-on-dark">{s.name}</p>
+                    <p className="mt-1.5 font-display text-lg font-bold text-on-dark">{x.label}</p>
                     <p className="mt-2 text-[0.95rem] leading-relaxed text-on-dark-muted">{x.verdict}</p>
                   </div>
                   <div className="mt-6 border-t border-on-dark/12 pt-4">
-                    <TextLink onDark href={`/lighting-systems/${x.slug}`}>The spec sheet</TextLink>
+                    <TextLink onDark href={x.href}>Read more</TextLink>
                   </div>
                 </article>
               );
@@ -427,8 +366,7 @@ export default function SystemsHub() {
           </div>
 
           <p className="mt-7 max-w-[80ch] text-sm leading-relaxed text-on-dark-muted">
-            None of this is a substitute for a measure. It is the reasoning we would use, published so
-            you can check whether the person in your driveway is using it.
+            Every house is different. We plan yours with you at the free design consultation.
             {!COMPARE_HIDDEN && (
               <>
                 {" "}
