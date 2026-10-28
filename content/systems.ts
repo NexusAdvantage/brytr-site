@@ -167,4 +167,9 @@ export const systems: System[] = [
   },
 ];
 
+/* Product pages hidden, 28 Oct 2026, same call as the comparison pages: no individual product
+ * pages, specs or product lists until Brytr signs off on them. /lighting-systems/* redirects to
+ * /lighting-systems. Set to false to bring them back. */
+export const SYSTEM_PAGES_HIDDEN = true;
+
 export const systemBySlug = (slug: string) => systems.find((s) => s.slug === slug);

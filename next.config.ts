@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import { COMPARE_HIDDEN } from "./content/compares";
+import { SYSTEM_PAGES_HIDDEN } from "./content/systems";
 
 /* THE DOMAIN CUTOVER, and the two URLs that need catching.
  *
@@ -73,6 +74,10 @@ import { COMPARE_HIDDEN } from "./content/compares";
 const nextConfig: NextConfig = {
   async redirects() {
     return [
+      /* Product pages hidden, 28 Oct 2026. Temporary, so they can come back. */
+      ...(SYSTEM_PAGES_HIDDEN
+        ? [{ source: "/lighting-systems/:slug+", destination: "/lighting-systems", permanent: false }]
+        : []),
       { source: "/pricing", destination: "/", permanent: true },
       { source: "/warranty", destination: "/", permanent: true },
       { source: "/blog/permanent-lighting-warranty-comparison", destination: "/blog", permanent: true },
