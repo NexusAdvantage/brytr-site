@@ -62,14 +62,14 @@ const costs: { chip: string; h: string; p: string; cost: string }[] = [
   {
     chip: "Costs us margin",
     h: "More than one brand on the truck.",
-    p: "Almost every permanent lighting company in this metro is a dealer for a single manufacturer, which is a normal way to run the business and means the recommendation is settled before anyone looks at your house. We lead with Haven, we install every line of it, and where a house does not call for it we say so and quote what it does.",
+    p: "Almost every permanent lighting company in this metro is a dealer for a single manufacturer, which is a normal way to run the business and means the recommendation is settled before anyone looks at your house. We install Jellyfish and the full Haven line, so what goes on your house is chosen for the building.",
     cost: "Two sets of stock and two sets of training to keep straight.",
   },
   {
     chip: "Costs us the sale",
-    h: "We will tell you the cheaper one is right.",
-    p: "A simple single-story roofline with two elevations and no color ambition does not need the most expensive hardware we carry, and we say so at the table rather than after you have signed. Sometimes that is a worse day for us and a better system for you.",
-    cost: "The difference between the two quotes, on every house where the cheaper answer is the right one.",
+    h: "We will tell you what your house actually needs.",
+    p: "A simple single story roofline with two elevations does not need every fixture we carry, and we say so at the table rather than after you have signed. Sometimes that is a smaller job for us and a better fit for you.",
+    cost: "The add ons we talk people out of, on every house where less is the right answer.",
   },
   {
     chip: "Costs us margin",
@@ -151,7 +151,7 @@ export default function About() {
                 {
                   t: "Haven Evolution",
                   s: "Roofline",
-                  when: "The channel routed into the eave. A dedicated warm white diode, so warm white is real rather than mixed.",
+                  when: "The channel routed into the eave. A dedicated warm white diode alongside full color.",
                 },
                 {
                   t: "Haven Q Series",

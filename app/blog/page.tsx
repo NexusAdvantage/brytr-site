@@ -57,7 +57,7 @@ export default function BlogHub() {
         photoAlt={featPic?.photoAlt ?? "A finished Brytr install in the Omaha metro at night"}
         objectPosition="50% 48%"
         h1="Answers before you buy, including the ones that do not flatter us."
-        lede="Written from installing this product rather than from a manufacturer's brochure. Nothing here is sponsored, nothing is a press release, and where our own premium system loses, it says so."
+        lede="Written from installing this product rather than from a manufacturer's brochure. Nothing here is sponsored, nothing is a press release, and it is written to help you decide, whoever you buy from."
         trail={trail}
       />
 
@@ -207,13 +207,12 @@ export default function BlogHub() {
 
           <p className="mt-10 max-w-[80ch] text-sm leading-relaxed text-muted-foreground">
             None of these are sponsored and none of them are manufacturer copy. Where we do not know
-            something we say so, and the comparison pages list what we have not verified about each
-            competitor.{" "}
+            something we say so.{" "}
             <Link
               href="/compare"
               className="font-semibold text-foreground underline decoration-accent decoration-2 underline-offset-4"
             >
-              How we judged the brands
+              The brands people ask us about
             </Link>.
           </p>
         </div>
