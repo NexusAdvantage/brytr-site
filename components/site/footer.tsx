@@ -68,8 +68,8 @@ export function Footer() {
               </p>
             )}
             <p className="mt-4 text-sm text-on-dark-muted">
-              Permanent outdoor lighting for Omaha homes. Installed once, controlled from your phone,
-              and serviced by the people who put it up.
+              Permanent outdoor lighting for Omaha homes. Installed once and controlled from your
+              phone. Call us for service on anything we installed.
             </p>
             <div className="mt-5 flex gap-3">
               <a href={site.social.facebook} aria-label="Brytr on Facebook" className="grid size-10 place-items-center rounded-md border border-on-dark/20 text-accent hover:border-accent">
