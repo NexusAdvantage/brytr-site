@@ -11,6 +11,7 @@ import { pick } from "@/content/photo-sets";
 import { Jsonld, breadcrumb } from "@/lib/schema";
 import { ValueBand } from "@/components/sections/value-band";
 import { valueProps } from "@/content/value-props";
+import { COMPARE_HIDDEN } from "@/content/compares";
 
 /* /blog — WAVE 6 of the page-by-page pass.
  *
@@ -207,13 +208,18 @@ export default function BlogHub() {
 
           <p className="mt-10 max-w-[80ch] text-sm leading-relaxed text-muted-foreground">
             None of these are sponsored and none of them are manufacturer copy. Where we do not know
-            something we say so.{" "}
-            <Link
-              href="/compare"
-              className="font-semibold text-foreground underline decoration-accent decoration-2 underline-offset-4"
-            >
-              The brands people ask us about
-            </Link>.
+            something we say so.
+            {!COMPARE_HIDDEN && (
+              <>
+                {" "}
+                <Link
+                  href="/compare"
+                  className="font-semibold text-foreground underline decoration-accent decoration-2 underline-offset-4"
+                >
+                  The brands people ask us about
+                </Link>.
+              </>
+            )}
           </p>
         </div>
       </section>
