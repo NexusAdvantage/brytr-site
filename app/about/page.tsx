@@ -10,6 +10,7 @@ import { site } from "@/content/site";
 import { reviewProof } from "@/content/reviews";
 import { ValueBand } from "@/components/sections/value-band";
 import { valueProps } from "@/content/value-props";
+import { COMPARE_HIDDEN } from "@/content/compares";
 
 /* /about — WAVE 2, PAGE 2 of the page-by-page pass.
  *
@@ -134,7 +135,7 @@ export default function About() {
             </div>
             <div className="mt-7 flex flex-wrap gap-x-7 gap-y-2">
               <TextLink href="/lighting-systems">The systems we carry</TextLink>
-              <TextLink href="/compare">How they compare</TextLink>
+              {!COMPARE_HIDDEN && <TextLink href="/compare">How they compare</TextLink>}
             </div>
           </div>
 
