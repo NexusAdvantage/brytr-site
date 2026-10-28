@@ -151,31 +151,10 @@ export default function About() {
             </div>
             <ul className="divide-y divide-border">
               {[
-                {
-                  t: "Jellyfish Lighting",
-                  s: "Roofline",
-                  when: "Permanent roofline lighting in full color and white, run from the Jellyfish app.",
-                },
-                {
-                  t: "Haven Evolution",
-                  s: "Roofline",
-                  when: "Permanent roofline lighting in full color and white, run from the Haven app.",
-                },
-                {
-                  t: "Haven Q Series",
-                  s: "Soffit",
-                  when: "Lighting under the overhang that lights the face of the house.",
-                },
-                {
-                  t: "Haven 9 Series",
-                  s: "Landscape",
-                  when: "Path lights, uplights and lighting for beds and trees.",
-                },
-                {
-                  t: "Haven X Bistro",
-                  s: "Overhead",
-                  when: "Permanent bistro lighting for pergolas and patio covers.",
-                },
+                { t: "Roofline lighting", s: "Jellyfish or Haven", when: "Permanent roofline lighting in full color and white, run from an app." },
+                { t: "Soffit lighting", s: "Under the overhang", when: "Lighting under the overhang that lights the face of the house." },
+                { t: "Landscape lighting", s: "The yard", when: "Path lights, uplights and lighting for beds and trees." },
+                { t: "Bistro lighting", s: "Overhead", when: "Permanent bistro lighting for pergolas and patio covers." },
               ].map((x) => (
                 <li key={x.t} className="px-6 py-5">
                   <p className="label text-accent-ink">{x.s}</p>
