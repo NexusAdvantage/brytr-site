@@ -303,12 +303,12 @@ export function Services() {
                 * explicit that "Free, and genuinely no obligation" is not true, and this card is
                 * the most prominent place on the site the phrase appeared. What is left is the
                 * three things about the appointment that are true and checkable. */}
-              <p className="label text-accent">Free &middot; On site &middot; About an hour</p>
+              <p className="label text-accent">Free &middot; At your house</p>
               <h3 className="mt-3 font-display text-[1.5rem] font-bold leading-tight text-on-dark">
                 Not sure what your house needs?
               </h3>
               <p className="mt-3 text-[0.95rem] leading-snug text-on-dark-muted">
-                We walk the property with you and lay the design out on your own elevation.
+                We visit, design it with you, and give you a written quote.
               </p>
               <div className="mt-auto pt-8">
                 <Link
@@ -394,20 +394,6 @@ export function Services() {
  * was the cause of an earlier version of the same complaint: a 555px portrait beside a 400px
  * column centers both and leaves 77px of nothing above and below the copy.
  * ========================================================================= */
-const ABOUT_CARDS: { title: string; body: string }[] = [
-  {
-    title: "Local, not a franchise",
-    body: "The shop is on C Street in west Omaha and every crew drives out of it. No territory partner, no dispatcher in another state.",
-  },
-  {
-    title: "Two brands on the truck",
-    body: "We fit both Haven and Jellyfish, so the system we put on your house is the one that suits it rather than the only one we sell.",
-  },
-  {
-    title: "The same crew, start to finish",
-    body: "The design is laid out on your own elevation rather than off a satellite photograph.",
-  },
-];
 
 export function WhoWeAre() {
   const shot = images.installDayGarage;
@@ -442,16 +428,12 @@ export function WhoWeAre() {
                 * six, and it is the claim rather than a description of the claim. */}
               <h2 className="display-section text-foreground">We&rsquo;re local</h2>
               <p className="mt-5 text-[1.05rem] leading-relaxed text-muted-foreground">
-                Plenty of companies will sell you permanent lighting in Omaha, and every one of them
-                will promise someone to call. Most of them cannot keep that promise,
-                because there is nobody here to keep it: the number rings somewhere else, and
-                the crew that fitted your house was passing through.
+                Brytr is based in west Omaha. We install permanent outdoor lighting across the Omaha
+                metro and Council Bluffs.
               </p>
               <p className="mt-4 text-[1.05rem] leading-relaxed text-muted-foreground">
-                We are here. The shop is in west Omaha, the people who measure your roofline are the
-                people who fit it, and they are the people who come back to it. Permanent lighting is
-                the only thing we do, so how you feel about yours is not one line of our business.
-                It is the business.
+                We install Jellyfish and Haven, we handle the install, and you can call us for service
+                on anything we installed.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <AccentPill href="/free-design-consultation">Book a free design</AccentPill>
@@ -582,7 +564,7 @@ export function HowWeWork() {
             /* NO LEDE. Removed on instruction - "remove where it says this gets drilled in your
               * fascia and left there, that whole little section." It was also arguing for careful
               * installation, and the three points under it are no longer about installation. */
-            title="Installed once, and installed properly"
+            title="Installed once, and left up"
           />
 
           {/* THE FIVE STAGES ARE ONE DRAWING NOW - components/sections/install-run.tsx.
@@ -910,7 +892,7 @@ export function Faqs() {
             title="Questions homeowners ask first"
           />
           <p className="mt-4 text-[0.95rem] leading-relaxed text-on-dark-muted">
-            The rest of them, and the answers we give on the walk-around, are on the FAQ page.
+            More questions and answers are on the FAQ page.
           </p>
           {/* `items-start` so the two pills hug their labels. Without it the column stretches them
             * to the panel width and both read as full-width bars, which makes the secondary link
@@ -957,7 +939,7 @@ export function Closer() {
               * "your neighbors love it. you will regret it." As written that tells a reader they
               * will regret buying, on the section whose only job is the booking - so this reads
               * "won't", on the assumption that "will" was a slip. One word, easy to put back. */
-            title="Your neighbors love it. You won&rsquo;t regret it."
+            title="Talk to us about your house."
           />
 
           <p className="mt-10 text-base text-muted-foreground">Or call us directly</p>
