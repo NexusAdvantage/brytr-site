@@ -1,4 +1,5 @@
 import { pick } from "./photo-sets";
+import { COMPARE_HIDDEN } from "./compares";
 import type { Service } from "./services";
 import type { City } from "./cities";
 
@@ -80,12 +81,12 @@ export const valueProps: Record<string, ValueProp> = {
   },
 
   "/compare": {
-    title: "The same crew, whichever brand.",
-    lede: "We fit more than one system, so the recommendation is not pre-decided. These pages set them against each other on the things that change on a house.",
+    title: "The same crew, whichever system.",
+    lede: "Brytr installs Haven and Jellyfish. These pages describe the other brands people ask us about, plainly and without scoring them.",
     points: [
-      { h: "Hardware is half the decision", p: "The other half is who fastens it to your building and who answers when a section goes dark." },
-      { h: "Specs that change something", p: "Diode spacing, diffuser, how the channel is fixed. The ones you can see, not the ones on a datasheet." },
-      { h: "Told before you sign", p: "Where a system is genuinely weaker we say so on the page and again at the quote." },
+      { h: "Hardware is half the decision", p: "The other half is who fastens it to your building and who answers the phone afterwards." },
+      { h: "Described, not ranked", p: "What each brand is, how it is sold and who installs it locally." },
+      { h: "Specs at the consultation", p: "Hardware changes between generations, so we go through the exact product on site." },
     ],
     photos: ["archByDay", "homeModernStone", "detailGableMiter"],
     cta: BOOK,
@@ -107,7 +108,7 @@ export const valueProps: Record<string, ValueProp> = {
     ],
     photos: ["homePrairieTwilight", "walkthroughDusk", "crewPortrait"],
     cta: BOOK,
-    alt: { href: "/compare", label: "Compare the brands" },
+    alt: COMPARE_HIDDEN ? { href: "/lighting-systems", label: "The systems we install" } : { href: "/compare", label: "Compare the brands" },
   },
 
   "/faq": {
@@ -176,7 +177,7 @@ export const valueProps: Record<string, ValueProp> = {
     ],
     photos: ["installDayPavilion", "detailGableMiter", "crewRoofFascia"],
     cta: BOOK,
-    alt: { href: "/compare", label: "Compare the brands" },
+    alt: COMPARE_HIDDEN ? { href: "/lighting-systems", label: "The systems we install" } : { href: "/compare", label: "Compare the brands" },
   },
 
   "/lighting-systems": {
@@ -189,7 +190,7 @@ export const valueProps: Record<string, ValueProp> = {
     ],
     photos: ["archAtNight", "serviceRoofline", "serviceSoffit"],
     cta: BOOK,
-    alt: { href: "/compare", label: "Compare the brands" },
+    alt: COMPARE_HIDDEN ? { href: "/how-it-works", label: "How an install runs" } : { href: "/compare", label: "Compare the brands" },
   },
 
   /* THE "/pricing" BAND IS GONE with the page it belonged to. It carried three claims and all
@@ -250,7 +251,7 @@ export const valueProps: Record<string, ValueProp> = {
     points: CORE,
     photos: ["serviceWholeHome", "servicePatio", "serviceLandscape"],
     cta: BOOK,
-    alt: { href: "/compare", label: "Compare the brands" },
+    alt: COMPARE_HIDDEN ? { href: "/lighting-systems", label: "The systems we install" } : { href: "/compare", label: "Compare the brands" },
   },
 
   /* THE "/warranty" ENTRY IS GONE, 28 Aug 2026, with the page. Deleting the route and leaving its
@@ -279,7 +280,7 @@ export function serviceValueProp(s: Service): ValueProp {
     ],
     photos: [s.photo ?? "homeWideRanch", ...shots(`vb-${s.slug}`, 2)],
     cta: BOOK,
-    alt: { href: "/compare", label: "Compare the brands" },
+    alt: COMPARE_HIDDEN ? { href: "/lighting-systems", label: "The systems we install" } : { href: "/compare", label: "Compare the brands" },
   };
 }
 
@@ -320,18 +321,18 @@ export function systemValueProp(name: string, slug: string): ValueProp {
     ],
     photos: shots(`vb-sys-${slug}`, 3),
     cta: BOOK,
-    alt: { href: "/compare", label: "Compare the brands" },
+    alt: COMPARE_HIDDEN ? { href: "/lighting-systems", label: "The systems we install" } : { href: "/compare", label: "Compare the brands" },
   };
 }
 
 export function compareValueProp(a: string, b: string, slug: string): ValueProp {
   return {
-    title: "We fit both, so this is not a pitch.",
-    lede: `${a} and ${b} both go on houses in this metro every season. The useful question is which one suits your building, and who is fastening it.`,
+    title: "Chosen for your house, fitted by our crew.",
+    lede: `People ask us about ${a} and ${b} often. The useful question is which system suits your building, and who is installing it.`,
     points: [
-      { h: "Compared on what shows", p: "Diode spacing, diffuser and how the channel is fixed. The things you can actually see." },
-      { h: "The install is the variable", p: "The same hardware fitted badly fails long before the cheaper one fitted properly." },
-      { h: "Weaknesses named", p: "Where one is genuinely worse we write it down here and say it again at the quote." },
+      { h: "Plain descriptions", p: "No scores and no rankings. Just what each brand is and how it is sold." },
+      { h: "The install matters", p: "How the channel is fastened and sealed decides how any system looks in year five." },
+      { h: "Measured on site", p: "We go through exact hardware and pricing at the free design consultation." },
     ],
     photos: shots(`vb-cmp-${slug}`, 3),
     cta: BOOK,

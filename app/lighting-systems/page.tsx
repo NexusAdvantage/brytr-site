@@ -9,6 +9,7 @@ import { PhotoPair } from "@/components/sections/photo-parts";
 import { Jsonld, breadcrumb } from "@/lib/schema";
 import { ValueBand } from "@/components/sections/value-band";
 import { valueProps } from "@/content/value-props";
+import { COMPARE_HIDDEN } from "@/content/compares";
 
 /* /lighting-systems — WAVE 3, PAGE 1 of the page-by-page pass.
  *
@@ -50,7 +51,7 @@ const sheet: { spec: string; value: string; why: string }[] = [
   {
     spec: "White light",
     value: "Dedicated warm white channel",
-    why: "The single biggest visible difference in this category. A color-mixed white reads a shade cooler and slightly less even, and warm white is the setting most houses sit on all year.",
+    why: "Warm white is the setting most houses sit on all year, so it is worth seeing on your own elevation before you decide.",
   },
   {
     spec: "LED spacing",
@@ -123,8 +124,8 @@ const core: { slug: string; role: string }[] = [
 const roles: { heading: string; note: string; slugs: string[] }[] = [
   {
     heading: "Where the run itself goes",
-    note: "The roofline, on every job",
-    slugs: ["haven-evolution"],
+    note: "Two roofline systems we install",
+    slugs: ["jellyfish-lighting", "haven-evolution"],
   },
   {
     heading: "What goes on with it",
@@ -135,11 +136,6 @@ const roles: { heading: string; note: string; slugs: string[] }[] = [
     heading: "How all of it is operated",
     note: "The layer you actually touch",
     slugs: ["app-and-controls"],
-  },
-  {
-    heading: "The other system we install",
-    note: "Reviewed by the people who fit it",
-    slugs: ["jellyfish-lighting"],
   },
 ];
 
@@ -197,7 +193,7 @@ export default function SystemsHub() {
         photoAlt="Close view of a Brytr channel tucked into the fascia of an Omaha home, individual warm white LEDs visible along every gable and eave"
         objectPosition="50% 55%"
         h1="The lines we install, and what each is for."
-        lede="Haven Lighting makes the roofline channel, the soffit and architectural fixtures, the ground-level lights and the overhead bistro runs. We install all of it, which is why everything on a property answers to one app instead of three."
+        lede="We install two roofline systems, Jellyfish and Haven. Haven also makes soffit, landscape and bistro fixtures that run on the same app, so a whole property can answer to one controller."
         trail={trail}
       />
 
@@ -432,13 +428,18 @@ export default function SystemsHub() {
 
           <p className="mt-7 max-w-[80ch] text-sm leading-relaxed text-on-dark-muted">
             None of this is a substitute for a measure. It is the reasoning we would use, published so
-            you can check whether the person in your driveway is using it.{" "}
-            <Link
-              href="/compare"
-              className="text-on-dark underline decoration-accent decoration-2 underline-offset-4"
-            >
-              How these compare with the brands we do not carry
-            </Link>.
+            you can check whether the person in your driveway is using it.
+            {!COMPARE_HIDDEN && (
+              <>
+                {" "}
+                <Link
+                  href="/compare"
+                  className="text-on-dark underline decoration-accent decoration-2 underline-offset-4"
+                >
+                  How these compare with the brands we do not carry
+                </Link>.
+              </>
+            )}
           </p>
         </div>
       </section>

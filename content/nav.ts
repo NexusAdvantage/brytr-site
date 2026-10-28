@@ -1,6 +1,6 @@
 import { services } from "./services";
 import { systems } from "./systems";
-import { compares } from "./compares";
+import { compares, COMPARE_HIDDEN } from "./compares";
 /* content/cities.ts is no longer imported here. It fed the Service Areas panel, which this menu
  * no longer carries. The towns are listed in the footer, which imports cities.ts itself. */
 
@@ -73,12 +73,17 @@ export const navTree: NavItem[] = [
       },
       {
         heading: "The hardware",
+        /* Two columns wide while the comparison column is hidden, so the menu has no empty slot. */
+        span: COMPARE_HIDDEN ? 2 : undefined,
         links: systems.map((s) => ({ label: s.name, href: `/lighting-systems/${s.slug}` })),
       },
-      {
-        heading: "Against the other brands",
-        links: compares.map((c) => ({ label: `${c.a} vs ${c.b}`, href: `/compare/${c.slug}` })),
-      },
+      /* Hidden with the comparison pages, 28 Oct 2026. See COMPARE_HIDDEN. */
+      ...(COMPARE_HIDDEN
+        ? []
+        : [{
+            heading: "Against the other brands",
+            links: compares.map((c) => ({ label: `${c.a} vs ${c.b}`, href: `/compare/${c.slug}` })),
+          }]),
     ],
     feature: {
       label: "Not sure where to start",

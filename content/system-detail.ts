@@ -33,10 +33,10 @@ export const systemDetail: Record<string, SystemDetail> = {
     photoAlt: "An Omaha home with its Brytr lighting switched to red and blue game day colors",
     objectPosition: "50% 52%",
     position:
-      "The roofline product, and the line we lead with. This page is the manufacturer's hardware rather than the job we build with it.",
+      "Haven's roofline product. This page is the manufacturer's hardware rather than the job we build with it.",
     notFor: {
-      h: "Where it is the wrong hardware",
-      p: "Short simple rooflines, and any budget where the cost of the hardware decides whether the job happens at all. It is the most expensive thing we carry and it is genuinely overkill on a small ranch.",
+      h: "What it needs from you",
+      p: "WiFi that reaches the controller, and a walk through the app with our crew at handover. The right system for your house is decided at the on site design consultation.",
     },
     alsoSee: ["haven-q-series", "app-and-controls", "jellyfish-lighting"],
   },
@@ -86,10 +86,10 @@ export const systemDetail: Record<string, SystemDetail> = {
     photoAlt: "An Omaha home and pool deck lit pink at dusk",
     objectPosition: "50% 45%",
     position:
-      "The other system we install, so we have no reason to oversell it and none to trash it.",
+      "One of the two roofline systems we install, measured, fitted and serviced by our own crew.",
     notFor: {
-      h: "Where we would steer you off it",
-      p: "Long unbroken runs, and anyone who wants warm white to be the everyday setting on a house where they will notice the difference. Mixed white is the compromise that pays for the price gap, and it is a real compromise rather than a marketing one.",
+      h: "What it needs from you",
+      p: "WiFi that reaches the controller, and a walk through the app with our crew at handover. The right system for your house is decided at the on site design consultation.",
     },
     alsoSee: ["haven-evolution", "app-and-controls", "haven-q-series"],
   },

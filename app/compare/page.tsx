@@ -33,9 +33,9 @@ import { valueProps } from "@/content/value-props";
  */
 
 export const metadata: Metadata = {
-  title: "Every Permanent Lighting Brand Compared (2026)",
+  title: "Permanent Lighting Brands in Omaha (2026)",
   description:
-    "The permanent outdoor lighting brands on the Omaha market, compared by an installer who carries two of them: Haven, Jellyfish, Gemstone, Trimlight and more.",
+    "The permanent outdoor lighting brands on the Omaha market, described plainly by an installer who carries Jellyfish and Haven: Gemstone, Trimlight, Oelo and more.",
   ...pageUrl("/compare"),
 };
 const trail = [{ name: "Home", href: "/" }, { name: "Compare", href: "/compare" }];
@@ -43,96 +43,82 @@ const trail = [{ name: "Home", href: "/" }, { name: "Compare", href: "/compare" 
 /* THE MARKET, WITH OUR STANCE. The fourth column is the only thing on this page a
  * single-brand dealer cannot write, and the "Would not" rows are what make the other two
  * columns believable. */
-type Stance = "Install" | "Not ours" | "Would not";
+type Stance = "We install it" | "Not something we carry";
 const market: { brand: string; maker: string; what: string; stance: Stance; note: string }[] = [
-  {
-    brand: "Haven Evolution",
-    maker: "Haven Lighting",
-    what: "Dedicated warm white channel, 4 in. LED pitch, the best app of anything we install.",
-    stance: "Install",
-    note: "The roofline system we lead with.",
-  },
   {
     brand: "Jellyfish Lighting",
     maker: "Jellyfish Lighting",
-    what: "Color-mixed white, wider pitch, meaningfully cheaper on the same roofline.",
-    stance: "Install",
-    note: "We install it too, and say where it falls short.",
+    what: "Permanent roofline lighting in full color and white, controlled from the Jellyfish app with scenes and schedules.",
+    stance: "We install it",
+    note: "Measured, fitted and serviced by our crew.",
+  },
+  {
+    brand: "Haven Evolution",
+    maker: "Haven Lighting",
+    what: "Permanent roofline lighting, with soffit, landscape and bistro fixtures on the same Haven app.",
+    stance: "We install it",
+    note: "Measured, fitted and serviced by our crew.",
   },
   {
     brand: "Gemstone Lights",
     maker: "Gemstone",
-    what: "A good channel profile and a better white than most of the value tier. A real competitor.",
-    stance: "Not ours",
-    note: "We do not carry it, and it is the closest thing here to a fair fight.",
+    what: "A well known permanent lighting brand sold through its own dealer network.",
+    stance: "Not something we carry",
+    note: "Installed by Gemstone dealers.",
   },
   {
     brand: "Trimlight",
-    maker: "Trimlight, as a franchise",
-    what: "Consistent product nationally. The install is whoever holds your territory.",
-    stance: "Not ours",
-    note: "We do not carry it, and we are not a franchise.",
+    maker: "Trimlight",
+    what: "Permanent roofline lighting sold through franchise and dealer territories.",
+    stance: "Not something we carry",
+    note: "Installed by the territory holder.",
   },
   {
     brand: "Oelo",
     maker: "Oelo",
-    what: "Sold locally, distinctive channel, solid build. Worth looking at if you have seen one.",
-    stance: "Not ours",
-    note: "Sold locally, and not something we quote.",
+    what: "Permanent lighting with its own channel design and app, sold through local dealers.",
+    stance: "Not something we carry",
+    note: "Installed by Oelo dealers.",
   },
   {
     brand: "EverLights",
     maker: "EverLights",
-    what: "One of the first names in the category, and still how a lot of people search for it.",
-    stance: "Not ours",
-    note: "A mature product we do not carry.",
+    what: "One of the longer standing names in permanent lighting, and still a common search term for the category.",
+    stance: "Not something we carry",
+    note: "Installed by EverLights dealers.",
   },
   {
     brand: "Minleon / Rainmin",
     maker: "Minleon",
-    what: "Installer-channel product built for animated shows rather than for everyday warm white.",
-    stance: "Not ours",
-    note: "Different job, honestly done.",
+    what: "Installer channel products, often used for animated and holiday displays.",
+    stance: "Not something we carry",
+    note: "Installed by specialist installers.",
   },
   {
     brand: "Govee and consumer kits",
     maker: "Govee and others",
-    what: "A fraction of the cost, and you are the one on the ladder drilling your own fascia.",
-    stance: "Would not",
-    note: "Not a professional install. Fine for the right person.",
-  },
-  {
-    brand: "Unbranded OEM supply",
-    maker: "Ghouly and similar",
-    what: "The same overseas production lines behind several retail brands, sold direct.",
-    stance: "Would not",
-    note: "No dealer network behind it here.",
-  },
-  {
-    brand: "Adhesive-mount strip",
-    maker: "Various",
-    what: "Tape-mounted LED strip sold as permanent lighting. It is neither permanent nor a fixture.",
-    stance: "Would not",
-    note: "We have removed more of this than we would like.",
+    what: "Do it yourself kits at a lower upfront cost, installed by the homeowner.",
+    stance: "Not something we carry",
+    note: "Installed by you.",
   },
 ];
 
 const stanceStyle: Record<Stance, string> = {
-  Install: "border-accent/50 text-accent-ink",
-  "Not ours": "border-border text-foreground",
-  "Would not": "border-border text-muted-foreground",
+  "We install it": "border-accent/50 text-accent-ink",
+  "Not something we carry": "border-border text-foreground",
 };
 
 /* THE NINE, BY WHAT KIND OF ARGUMENT THEY ARE. Three frames, because a page where we are
  * competing and a page where we are refereeing should not look the same. */
 const argumentGroups: { heading: string; note: string; frame: string; slugs: string[]; neutral?: boolean }[] = [
   {
-    heading: "Ours against the one you are also being quoted",
-    note: "Where we have a stake, and say so",
+    heading: "The systems we install, next to other brands",
+    note: "Described, not scored",
     frame:
-      "On these, the system we lead with is in the left column. Each page gives the other side real reasons to win, because we install more than one of them and can afford to.",
+      "Each page describes both brands: what they are, how they are sold and who installs them in Omaha.",
     slugs: [
       "haven-vs-jellyfish-lighting",
+      "jellyfish-vs-gemstone-lights",
       "haven-vs-gemstone-lights",
       "haven-vs-trimlight",
       "haven-vs-oelo",
@@ -141,21 +127,11 @@ const argumentGroups: { heading: string; note: string; frame: string; slugs: str
     ],
   },
   {
-    heading: "Where we have no stake",
-    note: "We are refereeing, not competing",
-    /* No accent rule on this group. The amber underline is us putting our name to a
-     * recommendation, and this is the group where we have not made one. */
-    neutral: true,
+    heading: "A kit or a professional install",
+    note: "Who does the work",
     frame:
-      "Neither of these is our premium system, so this page is written without a horse in the race and looks different for it.",
-    slugs: ["jellyfish-vs-gemstone-lights"],
-  },
-  {
-    heading: "Not a brand argument at all",
-    note: "Labor, and who does it",
-    frame:
-      "One of these is a company and the other is a Saturday. Comparing them on spec misses the entire point, so these two pages compare the work instead.",
-    slugs: ["haven-vs-govee", "haven-vs-ghouly"],
+      "Less about brand and more about who does the work, so this page compares the job itself.",
+    slugs: ["haven-vs-govee"],
   },
 ];
 
@@ -182,7 +158,7 @@ export default function CompareHub() {
         data={{
           "@context": "https://schema.org",
           "@type": "Article",
-          headline: "The permanent lighting brands on the Omaha market, compared by an installer",
+          headline: "The permanent lighting brands on the Omaha market",
           author: { "@type": "Organization", name: "Brytr Co" },
         }}
       />
@@ -191,8 +167,8 @@ export default function CompareHub() {
         photo="/img/g-pool-blue.jpg"
         photoAlt="An Omaha home, pergola and pool deck lit blue at dusk"
         objectPosition="50% 48%"
-        h1="We install both of these and would not put either on every house."
-        lede="Every comparison page in this category is written by somebody who sells exactly one of the products on it. We install two of them, and we will tell you which of the rest we would not fit, which is the only reason this page can also tell you where our own premium system loses."
+        h1="Permanent lighting brands in the Omaha market."
+        lede="Brytr installs Jellyfish and Haven. Homeowners ask us about the other names they come across, so here is a plain description of each one. No scores and no rankings, just what each brand is and how it is sold."
         trail={trail}
       />
 
@@ -208,12 +184,11 @@ export default function CompareHub() {
         * the actual navigation instruction for the page below. */}
       <section className="bg-raise">
         <div className="shell py-12 lg:py-14">
-          <p className="label text-accent">Where we stand · on every brand below</p>
-          <dl className="mt-7 grid gap-px overflow-hidden rounded-lg bg-on-dark/12 ring-1 ring-on-dark/12 md:grid-cols-3">
+          <p className="label text-accent">How to read the table below</p>
+          <dl className="mt-7 grid gap-px overflow-hidden rounded-lg bg-on-dark/12 ring-1 ring-on-dark/12 md:grid-cols-2">
             {[
-              ["We install it", "Stocked, quoted and installed by us rather than ordered in for the job."],
-              ["Not ours", "We do not carry it and we will still tell you where it is good. Nothing here is scored to make ours win."],
-              ["We would not", "We have removed these rather than installed them, and we will say why."],
+              ["We install it", "Measured, quoted, fitted and serviced by our own local crew."],
+              ["Not something we carry", "A brand we do not install. Described plainly so you know what it is and how it is sold."],
             ].map(([k, v]) => (
               <div key={k} className="bg-primary px-6 py-6">
                 <dt className="font-display text-[1.1rem] font-bold text-on-dark">{k}</dt>
@@ -229,13 +204,13 @@ export default function CompareHub() {
       <section className="section bg-card">
         <div className="shell">
           <SectionHead
-            title="Everything sold as permanent lighting in this metro."
+            title="The brands people ask us about."
           />
 
           <div className="mt-10 overflow-hidden rounded-lg bg-background shadow-[var(--shadow-lg)] ring-1 ring-border">
             <div className="hidden bg-primary px-6 py-4 lg:grid lg:grid-cols-[22fr_38fr_24fr] lg:gap-8">
               <p className="label text-on-dark-muted">Brand</p>
-              <p className="label text-on-dark-muted">What you are getting</p>
+              <p className="label text-on-dark-muted">What it is</p>
               <p className="label flex items-center gap-3 text-on-dark">
                 <span className="block h-4 w-1 bg-accent" aria-hidden />
                 Where we stand
@@ -267,9 +242,8 @@ export default function CompareHub() {
           </div>
 
           <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
-            No column here is highlighted and no brand is scored out of ten. Everything said about a
-            product we do not carry is our own read as installers in this market rather than the
-            manufacturer&rsquo;s datasheet, and each comparison page says what we have not verified.
+            No brand here is scored or ranked. Hardware changes between product generations, so we go
+            through exact specs at the free design consultation.
           </p>
         </div>
       </section>
@@ -278,7 +252,7 @@ export default function CompareHub() {
       <section className="section bg-muted">
         <div className="shell">
           <SectionHead
-            title="Not all of these are the same kind of argument."
+            title="Side by side, one brand at a time."
           />
 
           <div className="mt-10 space-y-10">
@@ -305,7 +279,7 @@ export default function CompareHub() {
                           className="flex h-full flex-col rounded-lg bg-card p-6 shadow-[var(--shadow-lg)] ring-1 ring-border transition-transform duration-[--dur-base] ease-[--ease-out-expo] hover:-translate-y-0.5"
                         >
                           <span className="font-display text-[1.05rem] font-bold leading-snug text-foreground">
-                            {c.a} against {c.b}
+                            {c.a} and {c.b}
                           </span>
                           <span className="mt-2.5 flex-1 text-[0.95rem] leading-relaxed text-muted-foreground">
                             {gist(c.verdict)}
@@ -340,74 +314,42 @@ export default function CompareHub() {
         photo="aerialRedRoofline"
         label="Ours, from above"
         note="Drone frame, one of our own installs"
-        caption="Every comparison on this page is an opinion about somebody else's hardware. This is not: it is a run we fitted, photographed from overhead, following every ridge and valley on the roof. The only view that shows the line-work as a plan rather than as a picture."
+        caption="A run we fitted, photographed from overhead, following every ridge and valley on the roof."
         ground="raise"
       />
 
-      {/* ── METHODOLOGY ──
-        * How the judgments were reached, and what would change one. */}
+      {/* ── WHAT TO ASK ANY INSTALLER ──
+        * Replaced the "how these were judged" methodology on 28 Oct 2026 when the brand scoring
+        * came out. These questions apply whichever brand ends up on the house. */}
       <section className="section bg-primary">
         <div className="shell grid items-start gap-10 lg:grid-cols-[44fr_56fr] lg:gap-14">
           <div>
-            <SectionHead onDark  title="How these were judged." />
+            <SectionHead onDark title="What to ask any installer." />
             <div className="prose-body mt-6 space-y-4">
-            {/* ONE PARAGRAPH. rules.md bans a second body paragraph stacked under a heading, and the
-              * measured count was twelve of these on one service page and fifteen on a city page.
-              * Kept whichever of the two carried the claim rather than the run-up to it. */}
               <p className="text-base leading-relaxed text-on-dark-muted">
-                So where we have no direct experience, the page says so by name rather than filling the
-                gap with a plausible sentence. And where our own premium system loses to something
-                cheaper, that is on the page too, because a comparison in which the author never loses
-                is an advertisement.
+                Whatever brand you choose, the install decides how it looks in year five. These are the
+                questions worth asking anyone who quotes you, us included.
               </p>
             </div>
             <div className="mt-8 flex flex-wrap gap-x-7 gap-y-2">
-              <TextLink onDark href="/lighting-systems">The two we actually sell</TextLink>
+              <TextLink onDark href="/lighting-systems">The systems we install</TextLink>
             </div>
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div className="rounded-lg bg-raise p-6 ring-1 ring-on-dark/10">
-              <p className="label flex items-center gap-3 text-on-dark">
-                <span className="block h-4 w-1 bg-accent" aria-hidden />
-                How each thing was judged
-              </p>
-              <ul className="mt-5 divide-y divide-on-dark/10 border-t border-on-dark/10">
-                {[
-                  "White quality: side by side on a real elevation, never off a datasheet",
-                  /* WAS "Channel: from the curb at noon, which is where it matters" - the
-                     curb-at-noon device, retracted across the site off the client punch list.
-                     What the comparison pages actually turn on is how the channel is fixed. */
-                  "Channel: how it is fixed to the building, which is what lasts",
-                  "App: on whether a customer still opens it in year two",
-                  "Failure modes: on what actually fails in this category, not on a rated diode life",
-                  /* "Price: as a band, because per-foot varies house to house" removed
-                     27 Aug 2026. It asserted a pricing basis on a page that compares hardware,
-                     and this list is about how the comparison is judged - price was never one of
-                     the things actually judged here. */
-                ].map((x) => (
-                  <li key={x} className="py-3 text-[0.95rem] leading-relaxed text-on-dark-muted">{x}</li>
-                ))}
-              </ul>
-            </div>
-            <div className="rounded-lg bg-raise p-6 ring-1 ring-on-dark/10">
-              <p className="label flex items-center gap-3 text-on-dark">
-                <span className="block h-4 w-1 bg-on-dark/25" aria-hidden />
-                What would change a verdict
-              </p>
-              <ul className="mt-5 divide-y divide-on-dark/10 border-t border-on-dark/10">
-                {[
-                  "A manufacturer sending us their current datasheet",
-                  "A generation change in the hardware, which happens often",
-                  "A pattern of failures on something we install, which changes our own recommendation first",
-                  "A local dealer changing hands, on the franchise comparisons",
-                  "Anybody showing us we have a fact wrong: tell us and we will fix it",
-                ].map((x) => (
-                  <li key={x} className="py-3 text-[0.95rem] leading-relaxed text-on-dark-muted">{x}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
+          <ul className="divide-y divide-on-dark/10 border-y border-on-dark/10">
+            {[
+              ["Who is on the ladder?", "Whether the people who quote it are the people who fit it."],
+              ["How is the channel fixed?", "Screwed into the fascia, or held on with adhesive."],
+              ["When does the sealant go on?", "As each screw is driven, or in one pass at the end of the day."],
+              ["Can I see a finished job in daylight?", "How the channel sits on the fascia is what you see during the day."],
+              ["What happens at handover?", "Whether somebody walks through the app and your scenes with you before they leave."],
+            ].map(([h, p]) => (
+              <li key={h} className="py-4">
+                <p className="font-display text-[1.05rem] font-bold text-on-dark">{h}</p>
+                <p className="mt-1.5 text-[0.95rem] leading-relaxed text-on-dark-muted">{p}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { systems, systemBySlug } from "@/content/systems";
 import { detailForSystem } from "@/content/system-detail";
-import { compares } from "@/content/compares";
+import { compares, COMPARE_HIDDEN } from "@/content/compares";
 import { serviceFaqsFor } from "@/content/faqs";
 import { Shell } from "@/app/layout-shell";
 import { Faq } from "@/components/sections/faq";
@@ -68,7 +68,8 @@ export default async function SystemPage({ params }: { params: Promise<{ slug: s
     },
     ...generic.slice(1),
   ];
-  const rel = compares.find((c) => c.a.includes(s.name.split(" ")[0]) || c.b.includes(s.name.split(" ")[0]));
+  /* No head to head section while the comparison pages are hidden, 28 Oct 2026. */
+  const rel = COMPARE_HIDDEN ? undefined : compares.find((c) => c.a.includes(s.name.split(" ")[0]) || c.b.includes(s.name.split(" ")[0]));
   const alsoSee = (d?.alsoSee ?? [])
     .map((sl) => systems.find((o) => o.slug === sl))
     .filter((o): o is (typeof systems)[number] => !!o && o.slug !== s.slug);
@@ -191,7 +192,7 @@ export default async function SystemPage({ params }: { params: Promise<{ slug: s
       <section className="section bg-muted">
         <div className="shell">
           <SectionHead
-            title={`${s.name}: the honest read.`}
+            title={`${s.name}: what to know.`}
           />
 
           {/* NOT items-start. The two columns hold different numbers of rows — six wins against a
@@ -228,7 +229,7 @@ export default async function SystemPage({ params }: { params: Promise<{ slug: s
                   * fix as the Covered / Not covered pair on /warranty. */}
                 <p className="label flex items-center gap-3 text-foreground">
                   <span className="block size-3 border-2 border-foreground/35" aria-hidden />
-                  {d?.notFor.h ?? "Where it falls short"}
+                  {d?.notFor.h ?? "What it needs"}
                 </p>
               </div>
               {d?.notFor && (
@@ -246,7 +247,7 @@ export default async function SystemPage({ params }: { params: Promise<{ slug: s
                 </ul>
               )}
               <p className="mt-auto border-t border-border bg-muted px-6 py-4 text-sm leading-relaxed text-muted-foreground">
-                You would find all of this out anyway. We would rather you found it here.
+                Questions about any of it? We go through it all at the free design consultation.
               </p>
             </div>
           </div>
@@ -337,7 +338,7 @@ export default async function SystemPage({ params }: { params: Promise<{ slug: s
           <div className="shell">
             <SectionHead
               onDark
-              title={`${rel.a} against ${rel.b}.`}
+              title={`${rel.a} and ${rel.b}.`}
             />
             <div className="mt-9">
               <SpecTable

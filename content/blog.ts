@@ -1,3 +1,4 @@
+import { COMPARE_HIDDEN } from "./compares";
 export type Post = {
   slug: string; title: string; h1: string; keyword: string; category: string;
   dek: string; read: string; links: { label: string; href: string };
@@ -60,7 +61,8 @@ export const posts: Post[] = [
     h1: "DIY kits versus a professional permanent install.", keyword: "diy permanent christmas lights",
     category: "Before you buy", read: "6 min",
     dek: "A consumer kit costs a fraction of a professional install. Some people should absolutely buy one. Here is how to tell whether you are one of them.",
-    links: { label: "Haven vs Govee", href: "/compare/haven-vs-govee" },
+    /* Was the Haven vs Govee comparison, hidden 28 Oct 2026. See COMPARE_HIDDEN. */
+    links: COMPARE_HIDDEN ? { label: "What install day looks like", href: "/how-it-works" } : { label: "Haven vs Govee", href: "/compare/haven-vs-govee" },
     body: [
       { p: "We will say the unpopular thing first: if you have a single-story ranch with easy access, you enjoy this kind of project, and you do not much care how the channel reads in daylight, a DIY kit is a perfectly reasonable purchase." },
       { h: "Where DIY works" },
