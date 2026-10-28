@@ -74,35 +74,13 @@ const tags = Object.entries(tagCounts).sort((a, b) => b[1] - a[1] || a[0].locale
 
 /* WHY THE NUMBER IS WHAT IT IS. Practice, not adjectives — every one of these is a thing
  * described elsewhere on the site with its own page. */
+/* Rewritten Oct 2026. The cards claimed the same crew quotes, installs and services every job,
+ * and dug at franchises. Crews are subcontractors, so these are now plain. */
 const practice: { h: string; p: string; href: string }[] = [
-  {
-    h: "The same crew, start to finish",
-    p: "The person who quoted your house is on the ladder at it, and is the person who comes back if anything needs looking at.",
-    href: "/about",
-  },
-  {
-    /* WAS "Signed off twice, by you / Once from the curb, once walking every scene with you."
-       There is no daylight curb sign-off - the client struck it off the punch list - so there
-       is one sign-off on this site and it is the scene walk. */
-    h: "Signed off with you standing there",
-    p: "Every scene walked through with you before anybody leaves. A job is not finished until that has happened.",
-    href: "/how-it-works",
-  },
-  {
-    h: "One recommendation, not a default",
-    p: "We install more than one brand and quote the one your roofline actually calls for, including when that is the cheaper one.",
-    href: "/lighting-systems",
-  },
-  /* TWO CARDS SAID THE SAME THING. "One number to call / the people who fitted it are the people
-     who answer the phone, and they are twenty minutes away" sat directly beside the card below it,
-     which makes the same claim without the invented drive time. Two cards, one point, and five
-     cards in a three-column row left the last row a third empty. Four now, and the row fills at
-     every width. */
-  {
-    h: "One number, answered locally",
-    p: "A service call goes to the people who installed it. Not a portal, not a franchise dispatcher, not a manufacturer's queue.",
-    href: "/contact",
-  },
+  { h: "Here afterwards", p: "Call us for service on anything we installed.", href: "/about" },
+  { h: "Designed with you", p: "A free design consultation at your house and a written quote.", href: "/how-it-works" },
+  { h: "Two brands", p: "We install Jellyfish and Haven and help you pick the right one.", href: "/lighting-systems" },
+  { h: "One number to call", p: "402-810-3973", href: "/contact" },
 ];
 
 export default function Reviews() {
@@ -130,8 +108,8 @@ export default function Reviews() {
         photo="/img/g-moonrise.jpg"
         photoAlt="An Omaha home under a full moon with its roofline and gables lit, blue with the gables in warm white"
         objectPosition="50% 48%"
-        h1="What Omaha homeowners say after the crew leaves."
-        lede="We would rather send you to the profile than retype our own reviews, so this page does both: the ones we quote in full, and what all of them keep coming back to."
+        h1="What Omaha homeowners say."
+        lede="A few of our reviews, quoted in full. You can read the rest on Google."
         trail={trail}
       />
 
@@ -154,8 +132,7 @@ export default function Reviews() {
               from {reviewProof.countLabel} reviews
             </p>
             <p className="mt-5 max-w-[36ch] text-[0.95rem] leading-relaxed text-muted-foreground">
-              Every one of them left by somebody in this metro, on a platform where we cannot edit,
-              reorder or hide any of it.
+              Left on Google, where anyone can read them.
             </p>
             <div className="mt-7">
               <TextLink href={reviewProof.url}>Read them on Google</TextLink>
@@ -163,11 +140,9 @@ export default function Reviews() {
 
             {/* why the quotes below are typed out rather than pulled in by a widget */}
             <div className="mt-8 border-t border-border pt-6">
-              <p className="label text-muted-foreground">Why there is no review widget</p>
+              <p className="label text-muted-foreground">About this page</p>
               <p className="mt-2 max-w-[36ch] text-sm leading-relaxed text-muted-foreground">
-                A carousel loaded in by script can be filtered, reordered and cached, and you have no way
-                of telling which. Copying six of them by hand and naming the date we read the profile is
-                slower, uglier and checkable.
+                The reviews below are quoted word for word.
               </p>
             </div>
           </div>
@@ -268,8 +243,7 @@ export default function Reviews() {
           </div>
 
           <p className="mt-6 max-w-[80ch] text-sm leading-relaxed text-muted-foreground">
-            We do not write testimonials, edit them for length, or fix anybody&rsquo;s punctuation. If a
-            reviewer changes or removes what they wrote, it comes off this page.{" "}
+            Reviews are quoted word for word.{" "}
             <Link
               href={reviewProof.url}
               className="font-semibold text-foreground underline decoration-accent decoration-2 underline-offset-4"
@@ -284,8 +258,8 @@ export default function Reviews() {
         * A page of testimony with no photograph of the thing being testified about. Three
         * installs, so the quotes above have something to point at. */}
       <PhotoStrip
-        title="The work behind the rating."
-        lede="Every review on this page was written by somebody in this metro about a house in this metro. These are installs of the kind they are describing."
+        title="Some of our work."
+        lede="Installs from around the Omaha area."
         shots={pick("reviews", 3)}
         cols={3}
         ground="raise"
@@ -298,7 +272,7 @@ export default function Reviews() {
         <div className="shell">
           <SectionHead
             onDark
-            title="Practices, not adjectives."
+            title="How we work."
           />
           <div className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
             {practice.map((f) => (
@@ -306,7 +280,7 @@ export default function Reviews() {
                 <h3 className="font-display text-lg font-bold leading-snug text-on-dark">{f.h}</h3>
                 <p className="mt-2.5 flex-1 text-[0.95rem] leading-relaxed text-on-dark-muted">{f.p}</p>
                 <div className="mt-5 border-t border-on-dark/12 pt-4">
-                  <TextLink onDark href={f.href}>See how</TextLink>
+                  <TextLink onDark href={f.href}>Read more</TextLink>
                 </div>
               </article>
             ))}
