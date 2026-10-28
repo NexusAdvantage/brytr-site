@@ -191,7 +191,7 @@ export default async function SystemPage({ params }: { params: Promise<{ slug: s
       <section className="section bg-muted">
         <div className="shell">
           <SectionHead
-            title={`${s.name}: the honest read.`}
+            title={`${s.name}: what to know.`}
           />
 
           {/* NOT items-start. The two columns hold different numbers of rows — six wins against a
@@ -228,7 +228,7 @@ export default async function SystemPage({ params }: { params: Promise<{ slug: s
                   * fix as the Covered / Not covered pair on /warranty. */}
                 <p className="label flex items-center gap-3 text-foreground">
                   <span className="block size-3 border-2 border-foreground/35" aria-hidden />
-                  {d?.notFor.h ?? "Where it falls short"}
+                  {d?.notFor.h ?? "What it needs"}
                 </p>
               </div>
               {d?.notFor && (
@@ -246,7 +246,7 @@ export default async function SystemPage({ params }: { params: Promise<{ slug: s
                 </ul>
               )}
               <p className="mt-auto border-t border-border bg-muted px-6 py-4 text-sm leading-relaxed text-muted-foreground">
-                You would find all of this out anyway. We would rather you found it here.
+                Questions about any of it? We go through it all at the free design consultation.
               </p>
             </div>
           </div>
@@ -337,7 +337,7 @@ export default async function SystemPage({ params }: { params: Promise<{ slug: s
           <div className="shell">
             <SectionHead
               onDark
-              title={`${rel.a} against ${rel.b}.`}
+              title={`${rel.a} and ${rel.b}.`}
             />
             <div className="mt-9">
               <SpecTable
