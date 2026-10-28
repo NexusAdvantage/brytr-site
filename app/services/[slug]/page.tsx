@@ -79,23 +79,23 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
  * applied to a box, and the section gets its color from the one place this site is allowed to
  * take it from. */
 const valueCards: { scene: string; h: string; p: string }[] = [
-  { scene: "warm", h: "One cost, not ten",
-    p: "You pay for an install once. The ten year version of hanging lights is ten rentals or ten purchases, and nobody prices it that way at the door." },
+  { scene: "warm", h: "Installed once",
+    p: "It goes up once and stays up, so there is nothing to buy or hang again next year." },
   { scene: "amber", h: "Nobody goes up a ladder",
-    p: "Not in November to put them up, not in January to take them down, and not in between when a section goes dark." },
+    p: "Not in November to put them up and not in January to take them down." },
   { scene: "red", h: "January is a month, not a job",
     p: "There is nothing to take down, so the weekend you normally lose to it stays yours." },
   { scene: "green", h: "Any color, any night",
-    p: "Warm white on a Tuesday in March, red and green in December, team colors on a Saturday. Same run, from your phone." },
+    p: "Warm white for everyday, red and green in December, team colors on gameday. All from your phone." },
   { scene: "blue", h: "Nothing in the garage",
-    p: "No boxes, no tangles, no rental return, and no shelf given up to something used six weeks a year." },
+    p: "No boxes, no tangles and nothing to store." },
   /* THIS CARD READ "Color matched to your fascia, so in daylight it reads as trim rather than
      a seasonal add-on", and then briefly "from the curb in daylight". Brytr does not color
      match and there is no curb check, so the card now makes the same point off the fixing,
      which is the thing that actually keeps a run looking like part of the building. It renders
      on eleven service pages, so it was worth getting right twice. */
-  { scene: "violet", h: "It reads as part of the house",
-    p: "Screwed into the fascia and sealed in once, so in daylight it reads as trim rather than a seasonal add-on." },
+  { scene: "violet", h: "Low profile by day",
+    p: "The track runs along the roofline and blends in during the day." },
 ];
 
 export default async function ServicePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -110,6 +110,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
   const quotePick = pick(`svc-quote-${s.slug}`, 1)[0];
   const quoteShot = quotePick ? images[quotePick.photo] : undefined;
   const sys = s.system ? systemBySlug(s.system) : undefined;
+  const rooflineSys = sys?.slug === "haven-evolution" || sys?.slug === "jellyfish-lighting";
   const faqs = serviceFaqsFor(s.name);
   const alsoSee = (d?.alsoSee ?? [])
     .map((sl) => services.find((r) => r.slug === sl))
@@ -157,7 +158,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       <section className="section bg-card">
         <div className="shell grid gap-10 lg:grid-cols-[58fr_42fr] lg:gap-14">
           <div>
-            <SectionHead title={`What ${s.name.toLowerCase()} actually is.`} />
+            <SectionHead title={`${s.name}, in plain terms.`} />
             {/* ONE PARAGRAPH. `secondPara` was a second body paragraph stacked straight under the
               * heading, which rules.md bans and which the p+p count on this page was measuring. The
               * lede carries the definition; the checklist under it carries the specifics. The data
@@ -281,12 +282,18 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 * subject of the line beneath it, which is the device removed from every section on
                 * the home page. Folded into the line it was introducing. */}
               <div className="min-w-0 flex-1">
+                {/* Roofline services name both brands: Brytr installs Jellyfish and Haven and the
+                  * choice is made at the consultation. */}
                 <p className="font-display text-lg font-bold text-on-dark">
-                  The hardware under it: {sys.name}
+                  {rooflineSys ? "The system: Jellyfish or Haven" : `The system: ${sys.name}`}
                 </p>
-                <p className="mt-1 text-sm text-on-dark-muted">{sys.short}</p>
+                <p className="mt-1 text-sm text-on-dark-muted">
+                  {rooflineSys ? "Both are permanent roofline systems. We help you pick one at the design consultation." : sys.short}
+                </p>
               </div>
-              <TextLink onDark href={`/lighting-systems/${sys.slug}`}>See the spec</TextLink>
+              <TextLink onDark href={rooflineSys ? "/lighting-systems" : `/lighting-systems/${sys.slug}`}>
+                {rooflineSys ? "See both systems" : "See the system"}
+              </TextLink>
             </div>
           )}
         </div>
@@ -333,7 +340,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               ))}
             </ul>
             <p className="mt-6 text-xs leading-relaxed text-muted-foreground">
-              Ladder time, storage and takedown are the parts customers tell us they underestimated.
+              No ladder, no storage and no takedown.
             </p>
           </div>
         </section>
@@ -438,13 +445,13 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
             * The panel stretches and its footer link is pushed to the bottom. The slack is now
             * inside a card, which reads as padding, instead of outside one, which reads as a hole. */}
           <aside className="flex flex-col rounded-lg bg-primary p-6 shadow-[var(--shadow-dark)]">
-            <h3 className="text-xl text-on-dark">Nearest crews</h3>
-            <p className="mt-2 text-sm text-on-dark-muted">Drive from our shop on C Street.</p>
+            <h3 className="text-xl text-on-dark">Areas we serve</h3>
+            <p className="mt-2 text-sm text-on-dark-muted">The Omaha metro and Council Bluffs.</p>
             <ul className="mt-4 divide-y divide-on-dark/10 border-t border-on-dark/10">
               {metroCities.slice(0, 6).map((c) => (
                 <li key={c.slug}>
                   <Link href={`/service-areas/${c.slug}`} className="flex justify-between gap-4 py-2.5 text-sm text-on-dark-muted hover:text-accent">
-                    <span>{c.name}</span><span className="u text-accent">{c.drive}</span>
+                    <span>{c.name}</span>
                   </Link>
                 </li>
               ))}
@@ -454,11 +461,10 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               * 27 Aug 2026. The two claims left are about people and materials, which is what this
               * paragraph is for. */}
             <p className="mt-5 text-sm leading-relaxed text-on-dark-muted">
-              Drive time changes what we can promise about a service call. It does not change who
-              turns up or what goes on the house.
+              Call us for service on anything we installed.
             </p>
             <div className="mt-auto border-t border-on-dark/12 pt-4">
-              <TextLink onDark href="/service-areas">Every town we drive to</TextLink>
+              <TextLink onDark href="/service-areas">Every town we serve</TextLink>
             </div>
           </aside>
         </div>
