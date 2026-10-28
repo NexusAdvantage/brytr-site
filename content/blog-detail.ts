@@ -27,7 +27,7 @@ export const postPhotos: Record<string, PostPhoto> = {
   "how-to-choose-a-permanent-lighting-installer": {
     photo: "/img/crew-roof-fascia.jpg",
     photoAlt:
-      "A Brytr installer sitting on the shingles of an Omaha roof in daylight, working along the line where the fascia meets the wall",
+      "An installer on an Omaha roof in daylight, working along the fascia",
     objectPosition: "50% 55%",
   },
   "permanent-lights-vs-hanging-christmas-lights": {
@@ -107,9 +107,9 @@ export const relatedByCategory: Record<string, string[]> = {
 /* One line of framing per category, used as the group note on the hub. */
 export const categoryNote: Record<string, string> = {
   "Before you buy": "The decisions that happen before anybody quotes anything.",
-  Install: "What happens to the building, and what it does to your fascia.",
-  Product: "Hardware and terms, including the ones that are hard to compare.",
-  Local: "Things that are only true in Omaha, or only true in Nebraska.",
+  Install: "How permanent lighting goes on a house.",
+  Product: "The hardware and how long it lasts.",
+  Local: "Omaha and Nebraska topics.",
 };
 
 /* Why the featured post is the one to start with.
@@ -120,7 +120,7 @@ export const categoryNote: Record<string, string> = {
  * card does not. */
 export const startHere: Record<string, string> = {
   "are-permanent-christmas-lights-worth-it":
-    "Start here because it is the question underneath all the others, and because the answer is not always yes.",
+    "A good place to start, because the answer is not always yes.",
 };
 
 export const photoForPost = (slug: string) => postPhotos[slug];
