@@ -43,21 +43,21 @@ const BOOK = { href: "/free-design-consultation", label: "Book a free design" };
  * Kept as a named constant so the wording cannot drift between the pages that share it. */
 const CORE = [
   { h: "Installed once, and left there",
-    p: "Routed into your fascia and sealed. No ladder in November, nothing to take down in January." },
-  { h: "Any color, any night, one app",
-    p: "Warm white most of the year, red and green in December, team colors on a Saturday. Same run." },
-  { h: "The crew that fits it is local",
-    p: "The shop is in west Omaha, and the people who measure your roofline are the people who come back to it." },
+    p: "It stays up year round. No ladder in November, nothing to take down in January." },
+  { h: "Any color, from the app",
+    p: "Warm white for everyday, red and green in December, team colors on gameday." },
+  { h: "Based in Omaha",
+    p: "We are in west Omaha, and you can call us for service on anything we installed." },
 ];
 
 export const valueProps: Record<string, ValueProp> = {
   "/about": {
-    title: "A local crew, and the system they fit.",
-    lede: "We install permanent outdoor lighting in the Omaha metro and nothing else, which is why the phone gets answered by the people who did the work.",
+    title: "Permanent lighting, installed in Omaha.",
+    lede: "We install permanent outdoor lighting in the Omaha metro and Council Bluffs.",
     points: [
-      { h: "It is the only thing we do", p: "Not a roofing company with a lighting arm, and not a seasonal side line." },
-      { h: "The same faces, start to finish", p: "The crew that measures your house is the crew that fits it and comes back to it." },
-      { h: "No dispatcher in the middle", p: "The people who fitted it are the people you reach when something needs looking at." },
+      { h: "Jellyfish and Haven", p: "We install both and help you pick the right one for your house." },
+      { h: "Designed with you", p: "A free design consultation and a written quote." },
+      { h: "Here afterwards", p: "Call us for service on anything we installed." },
     ],
     photos: ["homeWideRanch", "crewPortrait", "installDayGarage"],
     cta: BOOK,
@@ -65,15 +65,15 @@ export const valueProps: Record<string, ValueProp> = {
   },
 
   "/blog": {
-    title: "Written from doing the work.",
-    lede: "Everything here comes out of installs in the Omaha metro, so it answers what homeowners actually ask rather than what ranks.",
+    title: "Guides to permanent lighting.",
+    lede: "Plain answers to common questions about permanent outdoor lighting.",
     points: [
-      { h: "No ladder, ever again", p: "The run is fixed into the fascia once and stays there through every season." },
-      { h: "Warm white is the everyday setting", p: "Color is there when you want it. Most nights of the year this looks like good trim lighting." },
+      { h: "No ladder, ever again", p: "It goes up once and stays up through every season." },
+      { h: "Warm white for everyday", p: "Color is there when you want it, and warm white when you do not." },
       /* WAS "It disappears in daylight / Channel color matched to your fascia, so from the curb at
          noon it reads as part of the house." Brytr does not color match the channel. The daylight
          argument now rests on the daylight photographs, which are real and on the gallery. */
-      { h: "It reads as trim in daylight", p: "A slim track tucked up into the eave line. We publish the daylight photographs so you can judge that yourself." },
+      { h: "Low profile by day", p: "The track runs along the roofline and blends in during the day." },
     ],
     photos: ["seqEveryday", "dayShakeGable", "winterSnowDusk"],
     cta: BOOK,
@@ -81,10 +81,10 @@ export const valueProps: Record<string, ValueProp> = {
   },
 
   "/compare": {
-    title: "The same crew, whichever system.",
+    title: "Jellyfish and Haven.",
     lede: "Brytr installs Haven and Jellyfish. These pages describe the other brands people ask us about, plainly and without scoring them.",
     points: [
-      { h: "Hardware is half the decision", p: "The other half is who fastens it to your building and who answers the phone afterwards." },
+      { h: "Two brands", p: "We install Jellyfish and Haven." },
       { h: "Described, not ranked", p: "What each brand is, how it is sold and who installs it locally." },
       { h: "Specs at the consultation", p: "Hardware changes between generations, so we go through the exact product on site." },
     ],
@@ -94,17 +94,17 @@ export const valueProps: Record<string, ValueProp> = {
   },
 
   "/contact": {
-    title: "A call, then a date on your own lawn.",
-    lede: "The useful next step is somebody standing on your driveway at dusk with a tape measure, not another brochure.",
+    title: "Start with a call.",
+    lede: "Call or send a message and we will set up a free design consultation at your house.",
     points: [
-      { h: "Same-day reply, most days", p: "A person from the shop, not a call center taking a message for somebody else." },
+      { h: "We will get back to you", p: "Call 402-810-3973 or use the form." },
       /* WAS "On your elevation, against your own fascia color, with the scenes built while we are
          there." The middle clause was the color-matching claim, on the page people reach when
          they are ready to call. 29 Aug 2026. */
-      { h: "The design happens on site", p: "On your own elevation, with the scenes built and switched through while we are there." },
+      { h: "We design it with you", p: "We visit and plan the lighting with you at your house." },
       /* "itemised" -> "itemized" in the same pass. A British spelling the color sweep missed
          outright, because the rule only covered the -ise verbs I had thought to list. */
-      { h: "You keep the quote either way", p: "Written, itemized, and yours whether you book the work or not." },
+      { h: "A written quote", p: "The consultation and the quote are free." },
     ],
     photos: ["homePrairieTwilight", "walkthroughDusk", "crewPortrait"],
     cta: BOOK,
@@ -113,7 +113,7 @@ export const valueProps: Record<string, ValueProp> = {
 
   "/faq": {
     title: "The short answer, first.",
-    lede: "Permanent lighting is one aluminum channel routed into your eave, one run of addressable LEDs and one app, fitted once and left on the building.",
+    lede: "Permanent lighting is a track along your roofline with LEDs in it, controlled from an app. It goes up once and stays up.",
     points: CORE,
     photos: ["seqSecurity", "dayBrickGable", "homeEaveDownlights"],
     cta: BOOK,
@@ -122,7 +122,7 @@ export const valueProps: Record<string, ValueProp> = {
 
   "/free-design-consultation": {
     title: "See it on your own house first.",
-    lede: "We come out, measure the roofline, and design it with you on your own elevation. You end up holding a written number either way.",
+    lede: "We visit, design it with you, and give you a written quote.",
     points: [
       /* WAS: "No design fee, no deposit to get a drawing, and nobody follows up for a year."
        * Three claims, and the deposit and design-fee halves are pricing terms nobody at Brytr
@@ -133,9 +133,9 @@ export const valueProps: Record<string, ValueProp> = {
        * up for a year" is not true - there is a follow-up sequence. And "Your materials, not a
        * catalogue" was the color-matching claim wearing a different hat: it promised we hold
        * channel color against your fascia, and we do not match the channel to anything. */
-      { h: "The visit and the quote are free", p: "The on-site measure, the design and the written quote cost nothing." },
-      { h: "Measured on the property", p: "We walk it with you and measure the roofline rather than quoting off a satellite photograph." },
-      { h: "Scenes built while we are there", p: "You leave the appointment knowing what the app does, not reading about it later." },
+      { h: "The visit and the quote are free", p: "The design consultation and the written quote cost nothing." },
+      { h: "At your house", p: "We come to you and look at the property with you." },
+      { h: "Jellyfish or Haven", p: "We help you pick the system that suits your house." },
     ],
     photos: ["sceneWarmBlueBand", "walkthroughDusk", "homeStuccoStone"],
     cta: BOOK,
@@ -144,11 +144,11 @@ export const valueProps: Record<string, ValueProp> = {
 
   "/gallery": {
     title: "Every frame is a Brytr install.",
-    lede: "No renders, no stock houses and no borrowed shots. These are real Omaha properties photographed on nights the systems were already running.",
+    lede: "Photos of homes in the Omaha area with Brytr lighting installed.",
     points: [
-      { h: "One system, every scene here", p: "Nothing on this page needed different hardware. It is the same run set to different things." },
-      { h: "Daylight frames included", p: "Galleries in this trade are night shots only. There are daytime frames here as well." },
-      { h: "Zoned, so color lands where you chose", p: "Gables scarlet with the eaves left white is two zones, not a compromise." },
+      { h: "Many scenes, same lights", p: "The same lighting can be set to different colors and scenes from the app." },
+      { h: "Day and night", p: "There are a few daytime photos here as well." },
+      { h: "Color by zone", p: "Different parts of the house can be set to different colors." },
     ],
     photos: ["aerialRedRoofline", "sceneAmberCyan", "gamedayRedBlueGables"],
     cta: BOOK,
@@ -159,21 +159,21 @@ export const valueProps: Record<string, ValueProp> = {
     /* WAS: "Installed in a day, and left on the building." The duration survived here in the
      * TITLE after the same claim was taken out of the points below it, three lines further down,
      * in the same commit. A heading is the one line on a band a reader cannot miss. */
-    title: "Fitted into the fascia, and left on the building.",
-    lede: "Measured on site, routed into the fascia, sealed as it goes, commissioned on your phone and signed off with you.",
+    title: "How it works.",
+    lede: "We visit, design it with you, give you a written quote, and handle the install.",
     points: [
       /* WAS "Into fascia, never through shingles". Sometimes the roof requires a penetration -
          client's punch list, 29 Aug 2026 - so the absolute is now a qualified claim that is
          always true. The sealing half, which is the part that actually matters, is unchanged. */
-      { h: "Into the fascia wherever the roof allows", p: "Every penetration sealed at the moment it is made, which is where installs fail at year five." },
+      { h: "Installed once", p: "It stays up year round." },
       /* WAS: "Most homes are a single day / One crew, one visit, and the drive cleared before we
        * leave." The duration claim is out on the client's instruction. What is left is the part
        * that was never in doubt and is the actual reassurance: the site gets cleared. */
-      { h: "The drive is cleared before we leave", p: "One visit, and nothing left on your property when it is done." },
+      { h: "Controlled from an app", p: "Scenes and schedules from your phone." },
       /* WAS "Checked twice before we go / The sightline from the curb, then every scene walked
          through with you." The daylight curb check is on the client's punch list as not true, so
          what is left is the scene walk, which is. 29 Aug 2026. */
-      { h: "Walked through before we go", p: "Every scene switched through with you, so nobody is handed an app they have not used." },
+      { h: "Here afterwards", p: "Call us for service on anything we installed." },
     ],
     photos: ["installDayPavilion", "detailGableMiter", "crewRoofFascia"],
     cta: BOOK,
@@ -181,12 +181,12 @@ export const valueProps: Record<string, ValueProp> = {
   },
 
   "/lighting-systems": {
-    title: "The hardware, and who fits it.",
-    lede: "We fit more than one manufacturer, so what goes on your house is the system that suits it rather than the only one we sell.",
+    title: "The systems we install.",
+    lede: "We install Jellyfish and Haven. We help you pick the one that suits your house at the design consultation.",
     points: [
-      { h: "Named on the quote", p: "Manufacturer, series and channel finish in writing, so you know exactly what is being fastened to your building." },
-      { h: "One number to call", p: "The people who fitted it are the people who turn up." },
-      { h: "Add to it later", p: "Landscape, patio and hardscape join the same controller without replacing what is already up." },
+      { h: "Two brands", p: "Jellyfish and Haven, both permanent and app controlled." },
+      { h: "One number to call", p: "Call us for service on anything we installed." },
+      { h: "Add to it later", p: "Start with the roofline and add landscape or patio lighting later." },
     ],
     photos: ["archAtNight", "serviceRoofline", "serviceSoffit"],
     cta: BOOK,
@@ -199,11 +199,11 @@ export const valueProps: Record<string, ValueProp> = {
    * a live 404 on the client's domain. */
   "/recent-projects": {
     title: "Finished work, photographed as it was.",
-    lede: "Real Omaha properties, shot on nights the systems were already running rather than staged for a camera.",
+    lede: "Homes in the Omaha area with Brytr lighting installed.",
     points: [
-      { h: "Whole properties, not just rooflines", p: "House, pergola, beds and hardscape on one controller, each on its own zone." },
-      { h: "Every roof shape is here", p: "Low ranch, complicated gables, flat modern edges. The hard ones are the ones worth looking at." },
-      { h: "Still on the buildings", p: "These are installs we continue to service, not a portfolio from a company that has moved on." },
+      { h: "More than rooflines", p: "Pergolas, beds and hardscape as well as the house." },
+      { h: "All kinds of roofs", p: "Ranches, gables and flat modern edges." },
+      { h: "Here afterwards", p: "Call us for service on anything we installed." },
     ],
     photos: ["homeBrickGablesGold", "poolPergolaDusk", "hardscapeSeatwall"],
     cta: BOOK,
@@ -212,11 +212,11 @@ export const valueProps: Record<string, ValueProp> = {
 
   "/reviews": {
     title: "What the neighbors said about the work.",
-    lede: "Every review here is verbatim from Google, from homeowners in the Omaha metro who have had a system on the building through a full year.",
+    lede: "Reviews from homeowners, quoted word for word.",
     points: [
-      { h: "They write about the same things", p: "Communication, the crew, and how it looked the first night. That is more useful than an average." },
-      { h: "The work is still ours to fix", p: "A five star install stops meaning much if nobody answers in February. We answer." },
-      { h: "Neighbors notice", p: "The most common line in these reviews is somebody being asked who did it." },
+      { h: "In their words", p: "What customers wrote about working with us." },
+      { h: "Here afterwards", p: "Call us for service on anything we installed." },
+      { h: "Read them all", p: "Every review is on our Google profile." },
     ],
     photos: ["seqWarmChristmas", "homeWhiteTwoStorey", "christmasEntryShrubs"],
     cta: BOOK,
@@ -225,20 +225,20 @@ export const valueProps: Record<string, ValueProp> = {
 
   "/service-areas": {
     title: "The metro, and Council Bluffs.",
-    lede: "Every town we serve is inside about thirty-five minutes of the shop, which is what lets a call in February be answered the same week.",
+    lede: "We serve the Omaha metro and Council Bluffs.",
     points: [
-      { h: "A service call is a visit", p: "Not a route day booked for next month. That is the whole reason the area stops where it does." },
+      { h: "Here afterwards", p: "Call us for service on anything we installed." },
       /* WAS: "Same price in every town / No travel charge inside the metro, and no border premium
        * on the Iowa side." A uniform-pricing guarantee across nineteen towns and two states.
        * Nobody at Brytr has told us how travel is or is not priced. Replaced with the thing this
        * band was really for, which is why the service area stops where it does - and that is a
        * drive time, not a price. */
-      { h: "One shop, one set of people", p: "Every town is served out of west Omaha rather than by a local franchise." },
+      { h: "Based in west Omaha", p: "Our office is at 13436 C St in Omaha." },
       /* WAS: "Your own crew, not a franchise". The client's correction in August was that the
        * crews are subcontractors, not employees, so "your own crew" is false. What is true and is
        * the actual point of this band is that everything is dispatched from one shop rather than
        * from a franchise head office. */
-      { h: "One shop, not a franchise", p: "Elkhorn, Bellevue and Council Bluffs are all served out of west Omaha." },
+      { h: "Free design consultation", p: "We come to your house and design it with you." },
     ],
     photos: ["winterGradientSnow", "homeShakeBrick", "deckRanchWarm"],
     cta: BOOK,
@@ -246,8 +246,8 @@ export const valueProps: Record<string, ValueProp> = {
   },
 
   "/services": {
-    title: "Every surface runs on the same channel.",
-    lede: "Roofline, soffit, beds, trees, walls and pergolas all run on the same channel and the same controller, so what you fit first does not limit what you add.",
+    title: "What we install.",
+    lede: "Roofline, soffit, landscape, hardscape and patio lighting, controlled from an app. You can start with one and add more later.",
     points: CORE,
     photos: ["serviceWholeHome", "servicePatio", "serviceLandscape"],
     cta: BOOK,
@@ -271,12 +271,12 @@ const shots = (seed: string, n: number) => pick(seed, n).map((s) => s.photo);
 
 export function serviceValueProp(s: Service): ValueProp {
   return {
-    title: "Part of the same system.",
-    lede: `${s.name} runs on the same channel and the same controller as everything else we fit, so adding to it later is a wiring afternoon rather than a second system.`,
+    title: "Installed once, run from an app.",
+    lede: "It is installed once and controlled from an app, and you can add more lighting later.",
     points: [
-      { h: "Fitted once, then left alone", p: "Routed in and sealed on install day. Nothing to put up in November and nothing to take down." },
-      { h: "Its own zone in the app", p: "It comes on and goes off independently, so the back of the property can stay dark while the front is lit." },
-      { h: "Ours to service", p: "The crew that fitted it is twenty minutes away." },
+      { h: "Installed once", p: "Nothing to put up in November and nothing to take down." },
+      { h: "Scenes and schedules", p: "Set it from your phone, or put it on a schedule." },
+      { h: "Here afterwards", p: "Call us for service on anything we installed." },
     ],
     photos: [s.photo ?? "homeWideRanch", ...shots(`vb-${s.slug}`, 2)],
     cta: BOOK,
@@ -286,23 +286,18 @@ export function serviceValueProp(s: Service): ValueProp {
 
 export function cityValueProp(c: City): ValueProp {
   return {
-    title: `${c.name} is a drive, not a route day.`,
-    /* Omaha's own drive time is the string "In town", which read as "In town from the shop in
-     * west Omaha" on the one city page most people land on. Every other town is a duration and
-     * reads correctly, so the exception is handled rather than the sentence rewritten for all. */
-    lede:
-      c.drive === "In town"
-        ? "The shop is in west Omaha, so an install here is booked inside the week and a service call is a visit rather than a route day."
-        : `${c.drive} from the shop in west Omaha, which is what lets an install here be booked inside the week and a service call be a visit.`,
+    title: `Permanent lighting in ${c.name}.`,
+    /* Drive times are no longer printed. They were never confirmed by Brytr. */
+    lede: `We install permanent outdoor lighting in ${c.name} and the rest of the Omaha metro and Council Bluffs.`,
     points: [
-      { h: "The same crew as every town", p: "One shop, one set of people, and no local franchise holding the terms." },
+      { h: "Jellyfish and Haven", p: "We install both and help you pick the right one." },
       /* WAS: "No travel charge / Priced by the foot exactly as it is in Omaha, with nothing added
        * for the drive." This rendered on all twelve city pages: a pricing basis plus a
        * no-surcharge guarantee, neither of them from Brytr. */
-      { h: "Booked out of west Omaha", p: "The same people who measure the house are the ones the shop sends back to it." },
+      { h: "Here afterwards", p: "Call us for service on anything we installed." },
       /* WAS "Against your own fascia color, before anything is ordered" - the color-matching
          claim, on all eighteen city pages. 29 Aug 2026. */
-      { h: "Designed on your own elevation", p: "Walked and measured on the property, before anything is ordered." },
+      { h: "Designed with you", p: "A free design consultation at your house and a written quote." },
     ],
     photos: shots(`vb-city-${c.slug}`, 3),
     cta: BOOK,
@@ -310,14 +305,14 @@ export function cityValueProp(c: City): ValueProp {
   };
 }
 
-export function systemValueProp(name: string, slug: string): ValueProp {
+export function systemValueProp(_name: string, slug: string): ValueProp {
   return {
-    title: "The hardware is half of it.",
-    lede: `${name} is what gets fastened to the building. Who fastens it, and who answers when a section goes dark, is the other half of what you are buying.`,
+    title: "Installed by Brytr.",
+    lede: "Installed by Brytr in the Omaha metro and Council Bluffs.",
     points: [
-      { h: "Named on your quote", p: "Series, channel finish and diode spacing in writing before anybody drills." },
-      { h: "One number to call", p: "The call comes to the people who fitted it, either way." },
-      { h: "Not the only one we fit", p: "If another system suits your building better we will say so, because we install both." },
+      { h: "On your quote", p: "The system is named on your written quote." },
+      { h: "One number to call", p: "Call us for service on anything we installed." },
+      { h: "Two brands", p: "We install Jellyfish and Haven and help you pick the right one." },
     ],
     photos: shots(`vb-sys-${slug}`, 3),
     cta: BOOK,
@@ -327,11 +322,11 @@ export function systemValueProp(name: string, slug: string): ValueProp {
 
 export function compareValueProp(a: string, b: string, slug: string): ValueProp {
   return {
-    title: "Chosen for your house, fitted by our crew.",
-    lede: `People ask us about ${a} and ${b} often. The useful question is which system suits your building, and who is installing it.`,
+    title: "Chosen for your house.",
+    lede: `People ask us about ${a} and ${b}. The useful question is which system suits your house.`,
     points: [
       { h: "Plain descriptions", p: "No scores and no rankings. Just what each brand is and how it is sold." },
-      { h: "The install matters", p: "How the channel is fastened and sealed decides how any system looks in year five." },
+      { h: "Here afterwards", p: "Call us for service on anything we installed." },
       { h: "Measured on site", p: "We go through exact hardware and pricing at the free design consultation." },
     ],
     photos: shots(`vb-cmp-${slug}`, 3),
@@ -343,7 +338,7 @@ export function compareValueProp(a: string, b: string, slug: string): ValueProp 
 export function postValueProp(slug: string): ValueProp {
   return {
     title: "What this is, briefly.",
-    lede: "Permanent outdoor lighting is one aluminum channel routed into your eave, one run of addressable LEDs and one app, fitted once and left on the building.",
+    lede: "Permanent outdoor lighting is a track along your roofline with LEDs in it, controlled from an app. It goes up once and stays up.",
     points: CORE,
     photos: shots(`vb-post-${slug}`, 3),
     cta: BOOK,
