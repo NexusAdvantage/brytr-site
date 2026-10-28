@@ -80,7 +80,7 @@ const CARD_RATIO = "aspect-4/3";
 const groups: { h: string; note: string; lede: string; srcs: string[] }[] = [
   {
     h: "The everyday setting",
-    note: "Where the system sits most nights",
+    note: "Warm white",
     /* This group used to hold three shots, two of which were pink rather than warm white, so
      * the group arguing "this is the setting you are actually buying" made that argument with
      * photographs of something else. They moved to the single-color group and this one was
@@ -90,7 +90,7 @@ const groups: { h: string; note: string; lede: string; srcs: string[] }[] = [
      * warm white front elevations. This is the most important group on the page and it is now the
      * second largest, which is the shape the argument always wanted. */
     lede:
-      "The setting nobody pictures before the consultation, and the one that sells it: warm white on a schedule, most nights of the year.",
+      "Warm white on a schedule, for everyday.",
     srcs: [
       "/img/seq-everyday.jpg",
       "/img/scene-warm-white.jpg",
@@ -105,9 +105,9 @@ const groups: { h: string; note: string; lede: string; srcs: string[] }[] = [
   },
   {
     h: "Occasions, saved as scenes",
-    note: "Set once, scheduled, forgotten",
+    note: "Holidays and gamedays",
     lede:
-      "Saved scenes, not different hardware. They run on a date range and put themselves back afterwards.",
+      "Saved scenes on the same lights. Put them on a schedule or switch them from the app.",
     /* LEAD SWAPPED 1 Sep 2026. This group led with christmas-detail.jpg, which renders full
        width at 1240px - the largest image slot on the page - and measures 38.5 on Laplacian
        sharpness against a library median of 58.8. It is the softest frame in its own group and
@@ -132,7 +132,7 @@ const groups: { h: string; note: string; lede: string; srcs: string[] }[] = [
     h: "The whole elevation in the same color",
     note: "The whole property, one tap",
     lede:
-      "The largest group here, which is the answer to anybody who thinks this is a Christmas product.",
+      "One color across the whole house, any night of the year.",
     srcs: [
       "/img/g-blue-elevation.jpg",
       "/img/g-pool-red.jpg",
@@ -147,16 +147,16 @@ const groups: { h: string; note: string; lede: string; srcs: string[] }[] = [
   },
   {
     h: "Color held apart by zone",
-    note: "The look most people land on",
+    note: "Two colors at once",
     lede:
-      "Gables in color, eaves left white, landscape left warm. Where most people land after a month of playing with it.",
+      "Gables in color, eaves left white, landscape left warm.",
     srcs: ["/img/g-blue-white.jpg", "/img/g-ranch-blue-white.jpg", "/img/g-moonrise.jpg"],
   },
   {
     h: "Close up, and off the house",
-    note: "The channel, and the structures",
+    note: "Details and structures",
     lede:
-      "Nobody in this trade photographs the hardware, which is why it is worth photographing.",
+      "A closer look at the lighting, and lighting on structures.",
     /* Same swap, same reason. g-gable-detail.jpg measures 36.6 and was leading full width;
        patio-pergola.jpg is 94.6 at the same 16/9. Both stay in the group. */
     srcs: ["/img/patio-pergola.jpg", "/img/g-gable-detail.jpg", "/img/detail-gable-miter.jpg"],
@@ -178,7 +178,7 @@ export default function Gallery() {
           * "Doesn't make sense", and he is right - it is a sentence about our photography, on a
           * page a visitor opens to look at houses. */
         h1="Finished installs, and what each one was set to."
-        lede="Every photograph on this page is a Brytr system on a real Omaha home: no renders, no stock houses, no borrowed shots. Grouped by what the system is set to rather than by house, because the point is that none of these needed different hardware."
+        lede="Brytr installs on Omaha homes, grouped by what the lighting is set to."
         trail={trail}
       />
 
@@ -201,8 +201,8 @@ export default function Gallery() {
         * swapped out to get from one to the other. Every competitor's gallery is open to the
         * suspicion that the color shots are a different install. This set closes it. */}
       <PhotoStrip
-        title="The same roofline, photographed as the settings changed."
-        lede="A drone held its position over one property west of Omaha for a minute and a half while the scenes were switched through from a phone. Same roof, same sky, same camera. Read them left to right."
+        title="The same roofline, with different scenes."
+        lede="One house, photographed as the scenes were changed from the app. Read them left to right."
         shots={sequence}
         cols={5}
         frame="16/9"
@@ -298,22 +298,22 @@ export default function Gallery() {
         * flattering, and because a badly detailed channel is invisible at night and obvious in
         * daylight. Publishing the daylight photograph is the argument. */}
       <PhotoPair
-        title="The same hardware, photographed in daylight."
-        lede="A night shot flatters any install. Daylight does not: in daylight a badly fixed channel has nowhere to hide. Two houses, uncropped."
+        title="In daylight."
+        lede="Two homes with Brytr lighting, photographed during the day."
         a="dayBrickGable"
         b="dayShakeGable"
-        aLabel="Brick and white fascia. The channel runs under the roof edge, and you have to know it is there to find it."
-        bLabel="A shake gable on a second house, so this is not one lucky angle. The run reads as a narrow strip below the gutter line."
+        aLabel="Brick and white fascia in daylight."
+        bLabel="A shake gable in daylight."
         ground="muted"
       />
 
       <PhotoPair
         title="The same arch, before dark and after."
-        lede="A straight rake is easy. This octagonal turret is about as awkward as a front elevation gets, and the run keeps going through it."
+        lede="An arched entry, by day and at night."
         a="archByDay"
         b="archAtNight"
-        aLabel="Daylight. Nothing visible under the roof edge, on a curve where nothing can be hidden behind a fascia board."
-        bLabel="After dark: one continuous run following every facet of the octagon, with no break at the corners."
+        aLabel="In daylight."
+        bLabel="After dark."
         ground="card"
       />
 
@@ -327,28 +327,28 @@ export default function Gallery() {
               * true now: the daylight frames were in Brytr's own library the whole time and are
               * directly above this section. Leaving the old sentence in place would have been the
               * site telling a reader to disbelieve a photograph it had just shown them. */
-            title="How to judge any of these, including ours."
+            title="What to look at."
           />
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
             {[
               [
-                "The line, not the dots",
-                "One continuous line rather than a string of bulbs. That is the diffuser doing its job.",
+                "The line",
+                "A continuous line of light along the roof.",
                 "Zoom in on any gable.",
               ],
               [
                 "Where the color stops",
-                "Color lands where the homeowner chose and stops there. Every run is its own zone.",
-                "The everyday setting is white, not color.",
+                "Different parts of the house can be set to different colors.",
+                "Warm white for everyday.",
               ],
               [
-                "What nobody photographs",
+                "Questions",
                 /* WAS "Mitered corners, sealed terminations, capped ends, and channel matched to
                    the fascia." Two of those four are things Brytr does not do. What is left is the
                    two that are true plus the one thing a reader can actually check for themselves
                    in any installer's photographs. */
-                "Sealed terminations, capped ends, and a run that holds its line the length of an elevation.",
-                "We will show you ours in person.",
+                "Ask us about any of these at the design consultation.",
+                "Book a free design.",
               ],
             ].map(([h, p, note]) => (
               <article key={h} className="flex flex-col rounded-lg bg-raise p-7 ring-1 ring-on-dark/10">
@@ -373,8 +373,7 @@ export default function Gallery() {
             </p>
             <h2 className="mt-3 font-display text-2xl font-bold text-foreground">The scene library</h2>
             <p className="mt-3 text-[1.05rem] leading-relaxed text-muted-foreground">
-              Organized by what the system is set to. Use it to work out what you would actually run,
-              and to see that the everyday setting is a bigger part of owning this than December is.
+              Organized by what the lighting is set to. Use it to get ideas for your own house.
             </p>
           </div>
 
@@ -385,8 +384,7 @@ export default function Gallery() {
             </p>
             <h2 className="mt-3 font-display text-2xl font-bold text-on-dark">The installs, in full</h2>
             <p className="mt-3 text-[1.05rem] leading-relaxed text-on-dark-muted">
-              The same photographs organized by property instead: finished systems in the metro,
-              each with what is lit, how it is zoned, and the decision that made it work.
+              Installs organized by property instead.
             </p>
             <div className="mt-6 border-t border-on-dark/12 pt-5">
               <TextLink onDark href="/recent-projects">See the installs, by property</TextLink>
@@ -395,7 +393,7 @@ export default function Gallery() {
         </div>
       </section>
 
-      <PageCta variant="phone" photos={valueProps["/gallery"].photos} panelLink={{ href: "/recent-projects", label: "The installs, told as case studies" }} />
+      <PageCta variant="phone" photos={valueProps["/gallery"].photos} panelLink={{ href: "/recent-projects", label: "See recent projects" }} />
     </Shell>
   );
 }

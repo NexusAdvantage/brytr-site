@@ -62,10 +62,15 @@ export default async function SystemPage({ params }: { params: Promise<{ slug: s
    * first question and keep the rest. */
   const generic = serviceFaqsFor(s.name);
   const faqs = [
-    {
-      q: `Is ${s.name} quoted separately?`,
-      a: "No. It is measured with the rest of the house and it appears on the same written quote rather than as an add-on afterwards.",
-    },
+    s.tier === "Control"
+      ? {
+          q: "Which app will I use?",
+          a: "Jellyfish systems use the Jellyfish app and Haven systems use the Haven app.",
+        }
+      : {
+          q: `Who installs ${s.name}?`,
+          a: "We do. Brytr installs it in the Omaha metro and Council Bluffs, and we are here for service afterwards.",
+        },
     ...generic.slice(1),
   ];
   /* No head to head section while the comparison pages are hidden, 28 Oct 2026. */
@@ -130,7 +135,7 @@ export default async function SystemPage({ params }: { params: Promise<{ slug: s
                 headA="Value"
                 /* The footnote only cites rows this sheet actually carries. A footnote about a
                  * row that is not on screen is a reader catching us out. */
-                source="Manufacturer figures where the manufacturer publishes them. Anything about how it is installed, or how it behaves on a house we have wired, is ours."
+                source="General details. We go over the exact product with you at the design consultation."
               />
             </div>
           </div>
@@ -143,15 +148,15 @@ export default async function SystemPage({ params }: { params: Promise<{ slug: s
             {/* The eyebrow was carrying the subject and the heading was carrying only the answer,
               * so "Not priced on its own." read as a fragment with the label gone. Folded. */}
             <h3 className="font-display text-xl font-bold text-on-dark">
-              This one is not priced on its own.
+              Part of your quote.
             </h3>
             <p className="mt-3 text-[0.95rem] leading-relaxed text-on-dark-muted">
               {s.tier === "Control"
                 /* "There is no subscription and nothing to renew" removed 27 Aug 2026. Whether
                    the manufacturer charges for the app is the manufacturer's business and we have
                    not checked it; asserting it on Brytr's site made it Brytr's promise. */
-                ? "The app and the controller are part of every install rather than a line item."
-                : "This is hardware inside a quote rather than a product you buy from us. What you are quoted is the job it belongs to, measured on your own roofline."}
+                ? "You control the lighting from the app for the system you have."
+                : "It is included in the written quote for your house."}
             </p>
             {/* "WHAT YOU ARE NOT PAYING FOR" WAS HERE, on all six of these pages, and it is gone.
               *
@@ -177,11 +182,10 @@ export default async function SystemPage({ params }: { params: Promise<{ slug: s
               * /app-and-controls was being told which of two packages was wrong for their
               * house by a page that sells neither. */}
             <p className="mt-6 text-sm leading-relaxed text-on-dark-muted">
-              It is measured with the rest of the house rather than quoted on its own, and it lands on
-              the same written quote as the roofline.
+              We go over it with you at the free design consultation.
             </p>
             <div className="mt-4">
-              <TextLink onDark href="/free-design-consultation">Get it measured</TextLink>
+              <TextLink onDark href="/free-design-consultation">Book a free design</TextLink>
             </div>
           </div>
         </div>
@@ -217,7 +221,7 @@ export default async function SystemPage({ params }: { params: Promise<{ slug: s
                 ))}
               </ul>
               <p className="mt-auto border-t border-border bg-muted px-6 py-4 text-sm leading-relaxed text-muted-foreground">
-                We install this hardware, so none of this is a guess about somebody else&rsquo;s product.
+                Installed by Brytr, and we are here for service afterwards.
               </p>
             </div>
 
@@ -265,8 +269,8 @@ export default async function SystemPage({ params }: { params: Promise<{ slug: s
       <PhotoStrip
         /* Not "on three houses" — the heading counted the row of photographs directly beneath it,
           * which is the rule I keep breaking, this time on the template that makes nine pages. */
-        title="The same hardware, on houses that are nothing like each other."
-        lede="Specifications describe a part. These show what the part does to an elevation, which is the only question a homeowner is actually asking."
+        title="Homes with Brytr lighting."
+        lede="A few installs from around the Omaha area."
         shots={pick(`sys-${s.slug}`, 3)}
         cols={3}
         ground="card"
@@ -282,14 +286,14 @@ export default async function SystemPage({ params }: { params: Promise<{ slug: s
               onDark
               title={
                 s.tier === "Control"
-                  ? "The layer over everything else."
-                  : "A line of the lineup, not a system on its own."
+                  ? "How you control it."
+                  : "Part of what we install."
               }
             />
             <p className="mt-5 text-lg leading-relaxed text-on-dark/85">{d?.position ?? s.short}</p>
             <ul className="mt-7 space-y-3">
-              <Check onDark>Fitted and signed off by the crew who measured it</Check>
-              <Check onDark>Named on the quote rather than implied</Check>
+              <Check onDark>Installed by Brytr</Check>
+              <Check onDark>Named on your written quote</Check>
             </ul>
             <div className="mt-8 flex flex-wrap gap-x-7 gap-y-2">
               <TextLink onDark href="/lighting-systems">The whole lineup</TextLink>
