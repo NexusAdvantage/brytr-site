@@ -31,12 +31,9 @@ import { compareValueProp } from "@/content/value-props";
  * chosen next comparisons, and the field that matters most on a page like this — WHAT WE
  * HAVE NOT VERIFIED about the right-hand column, named per competitor.
  *
- * And the page has THREE FRAMES, because a page where we are competing and a page where we
- * are refereeing should not read the same:
- *   compete  — our system in the left column. Seven pages.
- *   referee  — `neutral`: neither product is ours. No stance panel, no tier cards, and the
- *              closer is the phone rather than the form, because we are not selling here.
- *   labor   — `labor`: a company against a Saturday. The comparison is the work.
+ * 28 Oct 2026: rewritten to describe brands rather than rank them, at the client's request.
+ * Two frames now: compete (a system we install next to another brand) and labor (pro install
+ * next to a DIY kit). The referee frame and the "what we do not know" section are gone.
  */
 
 /* The verdict's opening sentence, except where that sentence is three words long. "We
@@ -68,7 +65,7 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
   const c = compareBySlug(slug);
   if (!c) notFound();
   const d = detailForCompare(c.slug);
-  const frame: "compete" | "referee" | "labor" = c.neutral ? "referee" : c.labor ? "labor" : "compete";
+  const frame: "compete" | "labor" = c.labor ? "labor" : "compete";
   const alsoSee = (d?.alsoSee ?? [])
     .map((sl) => compares.find((o) => o.slug === sl))
     .filter((o): o is (typeof compares)[number] => !!o && o.slug !== c.slug);
@@ -78,12 +75,7 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
     { name: `${c.a} vs ${c.b}`, href: `/compare/${c.slug}` },
   ];
 
-  const frameLabel =
-    frame === "referee"
-      ? "We are refereeing this one"
-      : frame === "labor"
-      ? "Labor, not brand"
-      : "We sell one of these two";
+  const frameLabel = c.stance;
 
   return (
     <Shell>
@@ -107,11 +99,9 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
         objectPosition={d?.objectPosition ?? "50% 50%"}
         h1={c.h1}
         lede={
-          frame === "referee"
-            ? "Neither of these is our premium system, so there is no version of this page that helps us. It exists because people ask, and because an answer from somebody with nothing to gain is worth more than an answer from either manufacturer."
-            : frame === "labor"
-            ? "One of these is a company and the other is a Saturday. Comparing them on spec misses the point entirely, so this page compares the work: who does it, how long it takes, and who you ring when a section dies."
-            : "We install two of the brands on this market, which is more than the company quoting against us, and it is the reason the other column here is allowed to win. Where we have not verified something, the page says which thing."
+          frame === "labor"
+            ? "A kit and a professional install both put permanent lights on a roofline. The difference is who does the work, so this page compares the work: who fits it, how long it takes, and who you call if a section needs attention."
+            : "People ask us about the brands they come across, so here is a plain description of each: what it is, how it is sold and who installs it in Omaha. No scores and no rankings."
         }
         trail={trail}
       />
@@ -166,8 +156,8 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
             <div className="border-t border-on-dark/12 bg-primary px-5 py-4">
               <dt className="label text-on-dark-muted">What settles it</dt>
               <dd className="mt-2 text-[0.95rem] leading-relaxed text-on-dark-muted">
-                Your roofline, measured on site. Every row below is true in general and none of
-                them is true of every house.
+                Your roofline, measured on site. We go through the exact hardware and the price at
+                the free design consultation.
               </dd>
             </div>
           </dl>
@@ -180,7 +170,7 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
       <section className="section bg-card">
         <div className="shell">
           <SectionHead
-            title={frame === "labor" ? "The job, not the datasheet." : `${c.a} against ${c.b}, spec by spec.`}
+            title={frame === "labor" ? "The job, side by side." : `${c.a} and ${c.b}, side by side.`}
           />
           <div className="mt-10">
             <SpecTable
@@ -192,45 +182,13 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
               source={
                 frame === "labor"
                   ? "Everything in the left column is what a professional install involves. The right column is what a competent DIY install involves, not a worst case."
-                  : frame === "referee"
-                  ? "Both columns are our own read as installers in this market. Neither manufacturer has given us a datasheet, and we have not asked either of them to review this page."
-                  : `The ${c.a} column is the manufacturer's published spec. The ${c.b} column is our own read as installers in this market, which is worth something and is not the same as a datasheet.`
+                  : "General information about how each brand is sold and installed. Hardware changes between product generations, so we go through exact specs at the design consultation."
               }
             />
           </div>
         </div>
       </section>
 
-      {/* ── WHAT WE HAVE NOT VERIFIED ──
-        * The section that makes the table above trustworthy, and the one no
-        * comparison page in this category publishes. */}
-      {d?.unknowns?.length ? (
-        <section className="section bg-primary">
-          <div className="shell grid items-start gap-10 lg:grid-cols-[42fr_58fr] lg:gap-14">
-            <div>
-              <SectionHead
-                onDark
-                title="What we do not know about this one."
-              />
-              <p className="mt-5 text-lg leading-relaxed text-on-dark/85">
-                Every comparison page you will read on this subject is written with gaps in it. Ours has
-                them listed, because a page that appears to know everything about a competitor is a page
-                that has filled the gaps with plausible sentences.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-x-7 gap-y-2">
-                <TextLink onDark href="/compare">How all of these were judged</TextLink>
-                <TextLink onDark href="/contact">Tell us we have one wrong</TextLink>
-              </div>
-            </div>
-
-            <ul className="divide-y divide-on-dark/12 border-y border-on-dark/12">
-              {d.unknowns.map((u) => (
-                <li key={u} className="py-5 text-[1.05rem] leading-relaxed text-on-dark-muted">{u}</li>
-              ))}
-            </ul>
-          </div>
-        </section>
-      ) : null}
 
       {/* ── OUR OWN WORK, ON A PAGE ABOUT SOMEBODY ELSE'S ──
         * A comparison page is the one place on this site where most of the nouns belong to
@@ -239,7 +197,7 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
         * a reader should know what we can do before they read us being fair about a rival. */}
       <PhotoPair
         title="What we hand over, on two houses."
-        lede="Neither of these is a comparison. Everything else here is a claim about hardware, and a claim is worth less than a finished roofline."
+        lede="Two finished Brytr installs in the Omaha metro."
         a={pick(`${c.slug}-a`, 1)[0]?.photo ?? "homeShakeBrick"}
         b={pick(`${c.slug}-b`, 1)[0]?.photo ?? "homeWideRanch"}
         aLabel={pick(`${c.slug}-a`, 1)[0]?.caption ?? ""}
@@ -252,7 +210,7 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
       <section className="section bg-muted">
         <div className="shell">
           <SectionHead
-            title="Where each of these actually wins."
+            title="Who each one tends to suit."
           />
           <div className="mt-10 grid gap-5 lg:grid-cols-2">
             {[
@@ -282,17 +240,15 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
           <div className="shell grid items-start gap-10 lg:grid-cols-[48fr_52fr] lg:gap-14">
             <div>
               <h2 className="mt-4 text-[clamp(1.75rem,3vw,2.5rem)] leading-[1.06] text-foreground">
-                We install a cheaper one too.
+                Two systems, one crew.
               </h2>
               <div className="prose-body mt-6 space-y-4">
                 <p className="text-lg text-foreground">
-                  A dealer with one brand has exactly one recommendation available to them, and you can
-                  predict it before they park.
+                  Brytr installs Haven and Jellyfish.
                 </p>
                 <p className="text-base text-muted-foreground">
-                  Brytr installs Haven and we install Jellyfish. That is the only reason this page can
-                  give the other option real reasons to win, and it is why we will occasionally talk you
-                  into the cheaper hardware: a worse day for us and a better system for you.
+                  Whichever one goes on your house, the same local crew measures it, fits it, seals every
+                  fixing and walks you through the app before we leave.
                 </p>
               </div>
               <div className="mt-7 flex flex-wrap gap-x-7 gap-y-2">
@@ -304,13 +260,13 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
               <div className="border-b border-border bg-primary px-6 py-4">
                 <p className="label flex items-center gap-3 text-on-dark">
                   <span className="block h-4 w-1 bg-accent" aria-hidden />
-                  What we would actually quote you
+                  Where to start
                 </p>
               </div>
               <ul className="divide-y divide-border">
                 {[
-                  ["A complex or two-story roofline", "Haven Evolution, on the roofline.", "/lighting-systems/haven-evolution"],
-                  ["A simple single-story run", "Jellyfish, and we will say so.", "/lighting-systems/jellyfish-lighting"],
+                  ["Jellyfish Lighting", "Permanent roofline lighting, controlled from the Jellyfish app.", "/lighting-systems/jellyfish-lighting"],
+                  ["Haven Evolution", "Permanent roofline lighting, with landscape and bistro fixtures on the same app.", "/lighting-systems/haven-evolution"],
                   ["Landscape or a pergola on the same visit", "Priced with the roofline, on the same controller.", "/services/landscape-lighting"],
                 ].map(([h, p, href]) => (
                   <li key={h}>
@@ -331,56 +287,21 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
         </section>
       )}
 
-      {frame === "referee" && (
-        <section className="section bg-card">
-          <div className="shell">
-            <SectionHead
-              title="On this comparison, the installer matters more than the box."
-            />
-            <ul className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-              {[
-                /* THE FIRST ITEM SAID "Ask for a daylight photo from the curb ... pick the channel
-                   out at noon". The curb-at-noon device is retracted across the site off the
-                   client punch list, so the question keeps the daylight test and drops the
-                   staging. */
-                ["Ask for a daylight photo of a finished job", "Anybody can make a roofline look good at night. The test is whether you can pick the channel out in daylight on a house they finished last year."],
-                ["Ask who is on the ladder", "Whether the people who quote it are the people who fit it. Almost every failure in this trade is workmanship, so this question is the one that predicts year four."],
-                ["Ask when the sealant goes on", "At the moment the screw is driven, or in one pass at the end of the day. Only one of those keeps water out of a fascia board."],
-                /* WAS "Ask about the corners" - a question whose right answer was a mitred
-                   return. We do not mitre, so we were handing readers a test we fail. How the
-                   channel is fixed is a real difference and one we actually win. */
-                ["Ask how the channel is fixed", "Screwed into the fascia, or stuck on with adhesive. One of those is still straight in year eight."],
-                            ["Ask what happens at handover", "Whether somebody walks the scenes with you, or hands you an app and drives off."],
-              ].map(([h, p]) => (
-                <li key={h} className="rounded-lg bg-background p-6 shadow-[var(--shadow-lg)] ring-1 ring-border">
-                  <h3 className="font-display text-[1.05rem] font-bold leading-snug text-foreground">{h}</h3>
-                  <p className="mt-2.5 text-[0.95rem] leading-relaxed text-muted-foreground">{p}</p>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-6 max-w-[80ch] text-sm leading-relaxed text-muted-foreground">
-              Ask us the same five. We would rather be judged on them than on which brand is in our van.
-            </p>
-          </div>
-        </section>
-      )}
 
       {frame === "labor" && (
         <section className="section bg-card">
           <div className="shell grid items-start gap-10 lg:grid-cols-[46fr_54fr] lg:gap-14">
             <div>
               <h2 className="mt-4 text-[clamp(1.75rem,3vw,2.5rem)] leading-[1.06] text-foreground">
-                What a DIY install actually costs.
+                What a DIY install involves.
               </h2>
               <div className="prose-body mt-6 space-y-4">
                 <p className="text-lg text-foreground">
-                  We are not going to pretend a consumer kit is worthless. It is a fraction of the price
-                  and there are people who will fit one well and be pleased with it for years.
+                  A consumer kit costs less upfront, and plenty of people install one well and enjoy it
+                  for years.
                 </p>
                 <p className="text-base text-muted-foreground">
-                  What the price does not include is the list on the right. Every item on it is a cost
-                  that does not appear on the box, which makes it an honest list and a biased one at the
-                  same time.
+                  Here is what the work involves, so you can decide whether it is a project you want to take on.
                 </p>
               </div>
               <div className="mt-7">
@@ -390,18 +311,10 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
 
             <ul className="divide-y divide-border border-y border-border">
               {[
-                ["A weekend at roof height", "The second day is the one where people get careless, and it is the day the corners get done."],
-                ["Holes you drilled yourself", "Every fixing is a penetration in your own fascia. Sealing them properly is the difference between a project and a leak."],
-                /* "It shows in daylight" used to be about mitred returns against bent corners,
-                   and the row under it was "Corners on a miter saw". Both retracted 29 Aug 2026:
-                   we do not mitre. The daylight argument still holds on how the channel sits and
-                   whether the run stays straight, and the sealant row is the honest replacement -
-                   a kit gives you fixings and nothing to close them with. The "at noon" in the
-                   body went with the rest of the noon framing on the same day. */
-                ["It shows in daylight", "Adhesive mounts sit proud of the board and the run wanders. In daylight that is what you look at, and it is the part people regret."],
-                ["Nothing to seal it with", "A kit gives you fixings and no sealant. Every hole you drill in your own fascia stays open to the weather."],
-                ["No number to ring", "A dead section in December is your problem, in the dark, on a ladder, at height, in ice."],
-                ["It reads as a gadget", "At resale, a permanent lighting system reads as a building feature. A strip on adhesive mounts does not."],
+                ["Time at roof height", "Most rooflines take a full weekend on a ladder, including the corners and the end caps."],
+                ["Drilling your own fascia", "Every fixing is a hole in the board, and each one needs sealing to keep water out."],
+                ["How it sits in daylight", "How the channel lines up along the fascia is what you see during the day, so the mounting takes care."],
+                ["Service later", "If a section needs attention down the road, the fix is yours to make."],
               ].map(([h, p]) => (
                 <li key={h} className="py-5">
                   <h3 className="font-display text-[1.05rem] font-bold text-foreground">{h}</h3>
@@ -419,11 +332,10 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
           <div>
             <SectionHead onDark  title="What most people read after this one." />
             <p className="mt-5 text-[1.05rem] leading-relaxed text-on-dark-muted">
-              Chosen, in order, rather than the other eight comparisons printed at the bottom of all nine
-              pages.
+              Other brands people ask us about.
             </p>
             <div className="mt-7">
-              <TextLink onDark href="/compare">The whole market in one table</TextLink>
+              <TextLink onDark href="/compare">Every brand in one table</TextLink>
             </div>
           </div>
 
@@ -435,20 +347,15 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
                   className="flex h-full flex-col rounded-lg bg-primary p-6 ring-1 ring-on-dark/10 transition-all duration-[--dur-base] ease-[--ease-out-expo] hover:-translate-y-0.5 hover:ring-accent/40"
                 >
                   <span className="font-display text-[1.05rem] font-bold leading-snug text-on-dark">
-                    {o.a} against {o.b}
+                    {o.a} and {o.b}
                   </span>
                   <span className="mt-2.5 flex-1 text-sm leading-relaxed text-on-dark-muted">
                     {gist(o.verdict)}
                   </span>
-                  {/* Neutral pages get a neutral label. Putting our accent on a card about two
-                    * rivals is the brand color taking a side on the one page that says it has
-                    * not got one. */}
                   <span
-                    className={`label mt-4 border-t border-on-dark/12 pt-3 ${
- o.neutral ? "text-on-dark-muted" : "text-accent"
-                    }`}
+                    className="label mt-4 border-t border-on-dark/12 pt-3 text-accent"
                   >
-                    {o.neutral ? "We have no stake in this one" : o.labor ? "Labor, not brand" : "Read it"}
+                    {o.labor ? "Labor, not brand" : "Read it"}
                   </span>
                 </Link>
               </li>
@@ -457,22 +364,7 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
         </div>
       </section>
 
-      {/* On the refereeing page we are not selling, so the closer does not carry a form. */}
-      {frame === "referee" ? (
-        <PageCta
-          variant="phone"
-        photos={compareValueProp(c.a, c.b, slug).photos}
-          title="We will tell you which of the two to buy."
-          body="Free, on the phone, with no version of the answer that benefits us. We do not lead with either of these, so there is no version of this answer that puts money in our pocket."
-          omit={["/compare"]}
-          panelLink={{ href: "/lighting-systems", label: "The systems we do install" }}
-        />
-      ) : (
-        /* The two branches are a ternary, not two closers — a neutral comparison closes on the
-          * phone variant, one we sell into closes on the form. Both take the default muted ground,
-          * which alternates against the bg-raise section above. */
-        <PageCta omit={["/compare"]} />
-      )}
+      <PageCta omit={["/compare"]} />
     </Shell>
   );
 }

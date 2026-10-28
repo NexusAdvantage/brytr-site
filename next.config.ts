@@ -76,6 +76,8 @@ const nextConfig: NextConfig = {
       { source: "/warranty", destination: "/", permanent: true },
       { source: "/blog/permanent-lighting-warranty-comparison", destination: "/blog", permanent: true },
       { source: "/financing", destination: "/", permanent: true },
+      /* Removed 28 Oct 2026 with the rest of the brand ranking copy. */
+      { source: "/compare/haven-vs-ghouly", destination: "/compare", permanent: true },
       { source: "/sitemap_index.xml", destination: "/sitemap.xml", permanent: true },
       { source: "/page-sitemap.xml", destination: "/sitemap.xml", permanent: true },
     ];
