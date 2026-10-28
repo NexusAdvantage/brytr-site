@@ -51,7 +51,7 @@ export const metadata: Metadata = {
    * before truncating. */
   title: { absolute: "Contact Brytr Co | Omaha, NE | Permanent Outdoor Lighting" },
   description:
-    "Call Brytr Co on 402-810-3973, send a message, or book the on-site design. Permanent outdoor lighting across the Omaha metro and Council Bluffs.",
+    "Call Brytr Co at 402-810-3973, send a message, or book a free design consultation. Permanent outdoor lighting across the Omaha metro and Council Bluffs.",
   ...pageUrl("/contact"),
 };
 const trail = [{ name: "Home", href: "/" }, { name: "Contact", href: "/contact" }];
@@ -60,12 +60,12 @@ const trail = [{ name: "Home", href: "/" }, { name: "Contact", href: "/contact" 
  * perfect for everything is a contact page that has not thought about it. */
 const routes: { label: string; h: string; href: string; external?: boolean; best: string; bad: string; who: string }[] = [
   {
-    label: "Best for most people",
+    label: "Call us",
     h: site.phone,
     href: site.phoneHref,
-    best: "A price question, a service call on a system that has gone dark, or anything where you want an answer in the next ten minutes rather than tomorrow.",
-    bad: "Nothing, really. It is the fastest route in and it is answered by one of the two owners.",
-    who: "Zac or Sam. If we are on a roof it goes to voicemail and we call back.",
+    best: "Questions, booking a consultation, or service on something we installed.",
+    bad: "If we miss your call, leave a message.",
+    who: "We will get back to you.",
   },
   {
     label: "Best if you want a quote",
@@ -74,26 +74,26 @@ const routes: { label: string; h: string; href: string; external?: boolean; best
     /* "most of them evenings" came off 29 Aug 2026. The client's punch list is explicit that
        appointments are daytime, and this was the last place on the site still offering an
        evening slot. */
-    best: "Booking the on-site measure. Give us the town and roughly what you are lighting and we will come back with times that work.",
-    bad: "Anything urgent. A form is a queue, however short, and a dark run in December should be a phone call.",
-    who: "Read by us, not by an agency or a lead service. It goes nowhere else.",
+    best: "Booking a free design consultation. Tell us the town and what you want lit.",
+    bad: "For anything urgent, call instead.",
+    who: "We will get back to you.",
   },
   {
-    label: "Best for a photograph",
+    label: "Best for a photo",
     h: "Facebook or Instagram",
     href: site.social.instagram,
     external: true,
-    best: "Sending us a picture of something: your own house, a house you drove past, a fault you can see from the ground. A photograph saves ten minutes of describing.",
-    bad: "Anything you need on the record. Messages get missed on social far more often than the phone does.",
-    who: "Also us, and slower than either of the two above.",
+    best: "Sending us a picture of your house or of a look you liked.",
+    bad: "For anything urgent, call instead.",
+    who: "We will get back to you.",
   },
   {
-    label: "Best for the trade",
-    h: "The shop, 13436 C St",
+    label: "Our office",
+    h: "13436 C St, Omaha",
     href: "/about",
-    best: "Builders, roofers, landscapers and property managers who want to talk about a portfolio of addresses or coordinating around other trades.",
-    bad: "Homeowners hoping to look at product. It is a yard and a warehouse rather than a showroom. The useful visit is us coming to you with the samples.",
-    who: "Ring first. There is often nobody there, because the work is at your house.",
+    best: "Our address, if you need it.",
+    bad: "The design consultation happens at your house, so call before stopping by.",
+    who: "We will get back to you.",
   },
 ];
 
@@ -109,10 +109,10 @@ export default function Contact() {
          * library of one. This is a back garden at twilight, which suits a page about
          * talking to a person better than a blue-lit facade does. */
         photo="/img/g-twilight-yard.jpg"
-        photoAlt="An Omaha back garden at twilight: a hipped roofline picked out in pink, warm light in the windows, ferns and a big weeping evergreen in the foreground"
+        photoAlt="An Omaha backyard at twilight: a hipped roofline picked out in pink, warm light in the windows, ferns and a big weeping evergreen in the foreground"
         objectPosition="34% 62%"
-        h1="Talk to Zac or Sam."
-        lede="Calls go to the two people who own the company, not to a call center and not to a lead service that resells your details. If we are on a roof, we ring you back."
+        h1="Contact Brytr Co."
+        lede="Call 402-810-3973 or send us a message. We will get back to you."
         trail={trail}
       />
 
@@ -156,7 +156,7 @@ export default function Contact() {
           <QuoteForm
             variant="full"
             heading="Tell us about the house"
-            submitLabel="Send this to Zac and Sam"
+            submitLabel="Send"
             className="bg-background"
           />
 
@@ -170,8 +170,7 @@ export default function Contact() {
                 {site.phone}
               </a>
               <p className="mt-4 text-[0.95rem] leading-relaxed text-muted-foreground">
-                Best for anything urgent, and for a service call on a system we installed. It
-                reaches the people who put it up rather than a dispatcher.
+                Best for anything urgent, and for service on something we installed.
               </p>
             </div>
 
@@ -186,11 +185,10 @@ export default function Contact() {
                 </p>
               </address>
               <p className="mt-4 text-[0.95rem] leading-relaxed text-muted-foreground">
-                {site.region}. If you are outside that, we will tell you rather than drive out and
-                load the quote.
+                We serve {site.region.replace(/^The/, "the")}.
               </p>
               <div className="mt-5">
-                <TextLink href="/service-areas">Every town, with drive times</TextLink>
+                <TextLink href="/service-areas">Every town we serve</TextLink>
               </div>
             </div>
 
@@ -198,8 +196,8 @@ export default function Contact() {
               <p className="label text-muted-foreground">Elsewhere</p>
               <ul className="mt-4 divide-y divide-border border-y border-border">
                 {[
-                  ["Instagram", site.social.instagram, "Finished installs, most weeks"],
-                  ["Facebook", site.social.facebook, "The same work, and the reviews"],
+                  ["Instagram", site.social.instagram, "Photos of our work"],
+                  ["Facebook", site.social.facebook, "Photos and updates"],
                   [`${reviewProof.platform} profile`, reviewProof.url, `${reviewProof.average} from ${reviewProof.countLabel} reviews`],
                 ].map(([label, href, note]) => (
                   <li key={label} className="py-3.5">
@@ -232,7 +230,7 @@ export default function Contact() {
       <section className="section bg-card">
         <div className="shell">
           <SectionHead
-            title="Every way in, and none of them interchangeable."
+            title="Ways to reach us."
           />
 
           <ul className="mt-10 grid gap-5 lg:grid-cols-2">
@@ -262,11 +260,11 @@ export default function Contact() {
                     <dd className="mt-1.5 text-[0.95rem] leading-relaxed text-foreground">{r.best}</dd>
                   </div>
                   <div className="px-6 py-4">
-                    <dt className="label text-muted-foreground">Bad for</dt>
+                    <dt className="label text-muted-foreground">Good to know</dt>
                     <dd className="mt-1.5 text-[0.95rem] leading-relaxed text-muted-foreground">{r.bad}</dd>
                   </div>
                   <div className="px-6 py-4">
-                    <dt className="label text-muted-foreground">Who picks it up</dt>
+                    <dt className="label text-muted-foreground">What happens next</dt>
                     <dd className="mt-1.5 text-[0.95rem] leading-relaxed text-muted-foreground">{r.who}</dd>
                   </div>
                 </dl>
@@ -284,16 +282,15 @@ export default function Contact() {
           <div>
             <SectionHead
               onDark
-              title="Where your details go, and where they do not."
+              title="What happens next."
             />
             <div className="prose-body mt-6 space-y-4">
             {/* ONE PARAGRAPH. rules.md bans a second body paragraph stacked under a heading, and the
               * measured count was twelve of these on one service page and fifteen on a city page.
               * Kept whichever of the two carried the claim rather than the run-up to it. */}
               <p className="text-base leading-relaxed text-on-dark-muted">
-                So here is the whole of it. Your details reach two people, they are used to answer the
-                thing you asked, and if you go quiet we go quiet. We do not buy leads and we do not sell
-                yours.
+                We use your details to get back to you about your request. The privacy policy has
+                more.
               </p>
             </div>
             <div className="mt-8">
@@ -309,11 +306,10 @@ export default function Contact() {
               </p>
               <ul className="mt-5 divide-y divide-on-dark/10 border-t border-on-dark/10">
                 {[
-                  "One of us reads it and replies",
-                  "We ask for the town if you have not given it",
-                  "We offer times that suit you",
-                  "You get a written quote after the visit",
-                  "The quote stays valid whether or not you reply",
+                  "We get back to you",
+                  "We set up a time for the consultation",
+                  "We visit and design it with you",
+                  "You get a written quote",
                 ].map((x) => (
                   <li key={x} className="py-3 text-[0.95rem] leading-relaxed text-on-dark-muted">{x}</li>
                 ))}
@@ -322,17 +318,15 @@ export default function Contact() {
             <div className="rounded-lg bg-raise p-6 ring-1 ring-on-dark/10">
               <p className="label flex items-center gap-3 text-on-dark">
                 <span className="block h-4 w-1 bg-on-dark/25" aria-hidden />
-                What does not
+                Good to know
               </p>
               <ul className="mt-5 divide-y divide-on-dark/10 border-t border-on-dark/10">
                 {[
-                  /* THREE OF THESE FIVE CAME OFF, 29 Aug 2026. "No drip sequence and no
-                     newsletter", "No follow-up if you stop replying" and "No price that expires to
-                     hurry you" were all promises about the sales process, and the client's punch
-                     list says there is a follow-up sequence and there are same-day savings. The two
-                     left are about what happens to your data, which is what this panel is for. */
-                  "Your details are not sold or shared",
-                  "No third-party lead broker involved",
+                  /* Oct 2026: the data promises that were here are gone. Form details go through
+                     the service providers that run the site's forms, so "not shared" was not
+                     accurate. */
+                  "The consultation is free",
+                  "The written quote is free",
                 ].map((x) => (
                   <li key={x} className="py-3 text-[0.95rem] leading-relaxed text-on-dark-muted">{x}</li>
                 ))}
@@ -350,16 +344,14 @@ export default function Contact() {
         tall
         side="left"
         ground="raise"
-        title="An hour on your own lawn."
-        link={{ href: "/free-design-consultation", label: "What the hour actually involves" }}
+        title="A free design consultation."
+        link={{ href: "/free-design-consultation", label: "About the consultation" }}
       >
         <p>
-          Every one of the routes above ends in the same place: somebody standing on your property
-          with a sample run, showing you what warm white does against your own fascia rather than
-          against a photograph of somebody else&rsquo;s.
+          However you reach us, the next step is the same: a free design consultation at your house.
         </p>
         <p>
-          It costs nothing, and you keep the written quote either way.
+          We design it with you and give you a written quote.
         </p>
       </PhotoSplit>
 
@@ -382,11 +374,11 @@ export default function Contact() {
         * to catch. Muted alternates against raise above and against the card closer below. */}
       <PhotoStrip
         shots={pick("contact-strip", 3)}
-        title="What we would be quoting."
+        title="Some of our work."
         ground="muted"
       />
 
-      <PageCta variant="phone" photos={valueProps["/contact"].photos} panelLink={{ href: "/free-design-consultation", label: "Book the on-site measure" }} 
+      <PageCta variant="phone" photos={valueProps["/contact"].photos} panelLink={{ href: "/free-design-consultation", label: "Book a free design" }} 
         /* The NAP block above is bg-muted, so the closer would have landed on the same ground and the page would
           * have ended in one undifferentiated block. */
         ground="card"

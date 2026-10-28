@@ -29,7 +29,7 @@ function Frame({
           <span className="block h-4 w-1 bg-accent" aria-hidden />
           {label}
         </p>
-        <p className="text-sm text-on-dark-muted">Drawn to what we actually install</p>
+        <p className="text-sm text-on-dark-muted">A simple drawing</p>
       </div>
       {/* text-on-dark, because every drawing below is built on currentColor: without it the
         * inherited body color is near-black and the whole figure renders black-on-night.
@@ -52,17 +52,17 @@ function Diodes({ y, x0, x1, n, r = 1.1, dim }: { y: number; x0: number; x1: num
 
 /* ── 1. WHOLE HOME: the zones ── */
 const zoneRows: [string, string, string][] = [
-  ["Front elevation", "Roofline and gables", "Warm white, most nights"],
-  ["Side elevations", "Eaves only", "Off unless you want them"],
-  ["Landscape", "Trees, beds and walks", "Warm white, dusk to eleven"],
-  ["Structures", "Pergola, patio, hardscape", "Dimmed for dinner"],
+  ["Front elevation", "Roofline and gables", "Warm white"],
+  ["Side elevations", "Eaves", "On or off"],
+  ["Landscape", "Trees, beds and walks", "On a schedule"],
+  ["Structures", "Pergola, patio, hardscape", "Dimmed"],
 ];
 
 function ZonesFigure() {
   return (
     <Frame
       label="The property, switch by switch"
-      caption="Zones are decided on the walk-around and wired that way, which is why the back of the house can stay dark while the front is lit."
+      caption="Different parts of the property can be set up as separate zones, so the back can stay dark while the front is lit."
       tall
     >
       <div className="grid gap-7 lg:grid-cols-[52fr_48fr] lg:items-center">
@@ -113,7 +113,7 @@ function CalendarFigure() {
   return (
     <Frame
       label="A year on one run"
-      caption="Nothing on this strip involves a ladder. Every block is a saved scene with a date range, and the run underneath it is the same run all twelve months."
+      caption="An example year. Every block is a saved scene on the same lights, and none of it needs a ladder."
     >
       <ol className="grid grid-cols-6 gap-2 sm:grid-cols-12">
         {months.map(([m, tone, label]) => (
@@ -125,8 +125,7 @@ function CalendarFigure() {
         ))}
       </ol>
       <p className="mt-6 border-t border-on-dark/10 pt-4 text-sm text-on-dark-muted">
-        Eleven of the twelve are the everyday setting or a scene that runs itself. December is the
-        one people buy it for.
+        Set it up once and let the schedule run.
       </p>
     </Frame>
   );
@@ -137,7 +136,7 @@ function EaveFigure() {
   return (
     <Frame
       label="The eave, in section"
-      caption="This is the join every argument about permanent lighting comes down to: the channel is fastened into the fascia board, and every penetration is sealed as it is made."
+      caption="A simple drawing of where roofline lighting sits on the roof edge."
       tall
     >
       <div className="grid gap-7 lg:grid-cols-[56fr_44fr] lg:items-center">
@@ -174,11 +173,11 @@ function EaveFigure() {
                allows, but some roofs do not allow it and then the fixing goes through and is
                sealed. Saying "untouched" on a drawing labelled "drawn to what we actually
                install" was the worst place on the site to be carrying it. */
-            ["Shingles", "We fix into the fascia wherever the roof allows. Where it does not, the fixing is sealed as it is made."],
-            ["Fascia board", "The structural fixing. Every penetration sealed as it is made."],
-            ["Aluminum channel", "Extruded, screwed to the fascia face, sealed as it goes."],
-            ["Diffuser", "Frosted, facing down, so you see light rather than dots."],
-            ["Conductor", "Inside the channel. Nothing crosses a soffit or a downspout."],
+            ["Shingles", "The roof surface above the track."],
+            ["Fascia board", "The board along the roof edge."],
+            ["Track", "Runs along the roof edge, fastened and sealed."],
+            ["LEDs", "Inside the track."],
+            ["Wiring", "Kept out of sight where possible."],
           ].map(([k, v]) => (
             <li key={k} className="py-3">
               <p className="font-display text-[0.95rem] font-bold text-on-dark">{k}</p>
@@ -194,14 +193,14 @@ function EaveFigure() {
 /* ── 4. SOFFIT: beam angle against overhang depth ── */
 function BeamFigure() {
   const cases: [string, string, number, number][] = [
-    ["Shallow overhang", "Narrow beam, aimed straight down", 22, 8],
-    ["Standard overhang", "Medium beam, slight wall wash", 50, 14],
-    ["Deep overhang", "Wide beam, full wall wash", 78, 20],
+    ["Shallow overhang", "Light aimed down", 22, 8],
+    ["Medium overhang", "Light down the wall", 50, 14],
+    ["Deep overhang", "Light across the wall", 78, 20],
   ];
   return (
     <Frame
-      label="Beam angle against overhang depth"
-      caption="A 16 inch soffit and a 30 inch soffit are not the same fixture. We measure the overhang before choosing one, which is why soffit lighting is quoted separately from roofline."
+      label="Light under the overhang"
+      caption="How soffit lighting looks depends on your overhang. We look at it with you at the design consultation."
     >
       <svg viewBox="0 0 100 52" className="w-full" role="img" aria-label="Three overhang depths, each with the beam spread that suits it">
         {cases.map(([, , x, w]) => (
@@ -231,7 +230,7 @@ function WallFigure() {
   return (
     <Frame
       label="A seat wall, in section"
-      caption="The fixture sits under the cap and aims down the face. Nothing is at seated eye height, which is the difference between hardscape lighting and glare."
+      caption="The light sits under the cap and shines down the face of the wall."
     >
       <svg viewBox="0 0 100 58" className="w-full" role="img" aria-label="Section through a seat wall showing the cap, the under-cap washer and the light on the stone">
         {/* cap */}
@@ -260,7 +259,7 @@ function WallFigure() {
 /* ── 6. LANDSCAPE: what each fixture is for ── */
 function FixturesFigure() {
   const kinds: [string, string, React.ReactNode][] = [
-    ["Uplight", "Two or three per mature tree, aimed up the trunk into the canopy.",
+    ["Uplight", "Aimed up the trunk into the canopy.",
       <g key="u">
         <path d="M50 6c10 6 14 16 12 26H38C36 22 40 12 50 6Z" fill={INK} opacity=".22" />
         <rect x="47" y="32" width="6" height="26" fill={INK} opacity=".5" />
@@ -268,21 +267,21 @@ function FixturesFigure() {
         <path className="text-accent" d="M44 58h12l8-26H36Z" fill={INK} opacity=".16" />
         <Diodes y={57} x0={46} x1={54} n={3} r={1.3} />
       </g>],
-    ["Path light", "Spaced to light the walk, not to line it with runway markers.",
+    ["Path light", "Lights the walk.",
       <g key="p">
         <rect x="47" y="26" width="5" height="32" rx="1" fill={INK} opacity=".55" />
         <path d="M36 18h28l-5 8H41Z" fill={INK} opacity=".55" />
         <path className="text-accent" d="M40 26h20l10 32H30Z" fill={INK} opacity=".16" />
         <Diodes y={25} x0={44} x1={56} n={3} r={1.2} />
       </g>],
-    ["Wall wash", "Low and wide behind planting, so the light lands on the house.",
+    ["Wall wash", "Low behind planting, so the light lands on the house.",
       <g key="w">
         <rect x="8" y="8" width="10" height="50" fill={INK} opacity=".3" />
         <rect x="60" y="50" width="16" height="6" rx="2" fill={INK} opacity=".6" />
         <path className="text-accent" d="M60 50 18 14v42Z" fill={INK} opacity=".14" />
         <Diodes y={52} x0={63} x1={73} n={3} r={1.1} />
       </g>],
-    ["Well light", "Flush in the bed or the walk, for a tree you do not want a fixture beside.",
+    ["Well light", "Set into the ground in a bed or walk.",
       <g key="l">
         <rect x="2" y="52" width="96" height="6" fill={INK} opacity=".4" />
         <rect x="42" y="48" width="16" height="6" rx="1" fill={INK} opacity=".65" />
@@ -293,7 +292,7 @@ function FixturesFigure() {
   return (
     <Frame
       label="Four fixtures, four jobs"
-      caption="A landscape quote is a list of decisions about which of these goes where, and how many. It is not a package."
+      caption="Different lights for different jobs. We plan which ones go where with you."
     >
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {kinds.map(([h, p, art]) => (
@@ -315,7 +314,7 @@ function PergolaFigure() {
   return (
     <Frame
       label="Where a run goes on a structure"
-      caption="On a pergola the light comes off the beam faces and down onto the table. Bistro spans are tensioned to a post, never to a gutter."
+      caption="On a pergola the light runs along the beams and down onto the table. Bistro lights can hang across the space."
     >
       <svg viewBox="0 0 100 56" className="w-full" role="img" aria-label="A pergola elevation showing the beam run, the rafter shadows and a bistro span">
         {/* posts and beam */}
@@ -348,7 +347,7 @@ function ScenesFigure() {
   return (
     <Frame
       label="The library, photographed"
-      caption="Eight of the scenes on this list are the same two Omaha houses on different nights. Nothing here is a render and nothing was recolored."
+      caption="Brytr installs on Omaha homes, set to different scenes."
     >
       <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {shots.map(([name, slot]) => (
@@ -373,7 +372,7 @@ function GamedayFigure() {
   return (
     <Frame
       label="One tap apart"
-      caption="Both of these are saved scenes on the same hardware. The house changes on a schedule; nobody goes outside."
+      caption="Both of these are saved scenes. The house can change on a schedule without anyone going outside."
     >
       <div className="grid gap-4 sm:grid-cols-2">
         {pair.map(([day, src, alt, note]) => (
@@ -397,7 +396,7 @@ function ParapetFigure() {
   return (
     <Frame
       label="A storefront, in elevation"
-      caption="On a building the run follows the parapet and the canopy edge, and the take-off comes off the building's own elevations rather than a tape measure and an estimate."
+      caption="On a business the lighting can follow the roof edge and the canopy."
     >
       <svg viewBox="0 0 100 52" className="w-full" role="img" aria-label="A storefront elevation with the lit parapet, canopy and glazing">
         {/* parapet */}
