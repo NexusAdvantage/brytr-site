@@ -4,7 +4,8 @@ import { site } from "@/content/site";
 import { services } from "@/content/services";
 import { images } from "@/content/images";
 import { cities } from "@/content/cities";
-import { reviews, reviewProof } from "@/content/reviews";
+import { reviews } from "@/content/reviews";
+import { getReviewProof } from "@/lib/review-proof";
 import { googleLogo } from "@/content/badges";
 import { homeFaqs, pricingFaqs } from "@/content/faqs";
 import { SectionHead, QuoteForm } from "@/components/ui/bits";
@@ -654,7 +655,8 @@ export function HowWeWork() {
  *
  * Every word in these cards is verbatim from Google. Dates appear only where Google gave one.
  * ========================================================================= */
-export function Reviews() {
+export async function Reviews() {
+  const reviewProof = await getReviewProof();
   const shown = reviews.slice(0, 6);
   return (
     <section className="section bg-muted">
