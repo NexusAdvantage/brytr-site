@@ -6,7 +6,7 @@ import { site } from "@/content/site";
 import { cities, metroCities } from "@/content/cities";
 import { services } from "@/content/services";
 import { images } from "@/content/images";
-import { reviewProof } from "@/content/reviews";
+import { getReviewProof } from "@/lib/review-proof";
 import { Button } from "@/components/ui/button";
 import { SectionHead, Check, TextLink, QuoteForm } from "@/components/ui/bits";
 import { SiteHero, TrustPlinth } from "@/components/sections/site-hero";
@@ -415,7 +415,7 @@ const CTA_GROUND: Record<"muted" | "card" | "primary" | "raise", string> = {
   raise: "bg-raise",
 };
 
-export function PageCta({
+export async function PageCta({
   city, variant = "form", stats = true, title, body, omit = [], panelLink, ground, photos,
 }: {
   /** Candidate keys into content/images.ts for the closer photograph. Passed per template, so
@@ -443,6 +443,7 @@ export function PageCta({
    *  which would otherwise close by linking to itself. */
   panelLink?: { href: string; label: string };
 }) {
+  const reviewProof = await getReviewProof();
   const nextLinks = [
     /* "how the pricing works" led this list and is gone with /pricing. Callers still passing
        omit={["/pricing"]} are harmless - the filter simply matches nothing now. */
