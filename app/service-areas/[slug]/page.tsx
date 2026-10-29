@@ -7,7 +7,6 @@ import { cities, cityBySlug } from "@/content/cities";
 import { site } from "@/content/site";
 import { photoForCity } from "@/content/city-detail";
 import { serviceFaqsFor } from "@/content/faqs";
-import { reviewProof } from "@/content/reviews";
 import { Shell } from "@/app/layout-shell";
 import { Faq } from "@/components/sections/faq";
 import { PageHero, PageCta, ServiceRows, SectionHead, Check, TextLink } from "@/components/sections/page-parts";
@@ -109,7 +108,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
   return (
     <Shell>
       <Jsonld data={breadcrumb(trail)} />
-      <Jsonld data={localBusiness(c.name)} />
+      <Jsonld data={await localBusiness(c.name)} />
       <Jsonld data={faqSchema(faqs)} />
 
       <PageHero
