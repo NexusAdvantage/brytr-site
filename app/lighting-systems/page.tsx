@@ -9,7 +9,7 @@ import { PhotoPair } from "@/components/sections/photo-parts";
 import { Jsonld, breadcrumb } from "@/lib/schema";
 import { ValueBand } from "@/components/sections/value-band";
 import { valueProps } from "@/content/value-props";
-import { COMPARE_HIDDEN } from "@/content/compares";
+import { COMPARE_HIDDEN, COMPARE_URL } from "@/content/compares";
 
 /* /lighting-systems — WAVE 3, PAGE 1 of the page-by-page pass.
  *
@@ -39,7 +39,7 @@ import { COMPARE_HIDDEN } from "@/content/compares";
 export const metadata: Metadata = {
   title: "Permanent Lighting Systems We Install",
   description:
-    "The permanent lighting we install in Omaha: Jellyfish and Haven roofline lighting, plus soffit, landscape and bistro lighting, all controlled from an app.",
+    "Brytr is an authorized Nebraska dealer for Jellyfish and Haven permanent roofline lighting, plus landscape lighting, all controlled from an app.",
   ...pageUrl("/lighting-systems"),
 };
 const trail = [{ name: "Home", href: "/" }, { name: "Lighting systems", href: "/lighting-systems" }];
@@ -55,19 +55,21 @@ const sheet: { spec: string; value: string; why: string }[] = [
   { spec: "Scenes", value: "Save your own", why: "Holidays, gameday, or any colors you like." },
   { spec: "Schedules", value: "Yes", why: "Set the lights to come on and go off on their own." },
   { spec: "Stays up", value: "Year round", why: "Nothing to hang or take down each season." },
-  { spec: "Installed by", value: "Brytr", why: "We handle the install and we are here for service afterwards." },
+  { spec: "Mounted", value: "To your soffit", why: "Up under the roof edge." },
+  { spec: "Warranty", value: "Lifetime product warranty", why: "Full warranty details come with your quote." },
+  { spec: "Installed by", value: "Brytr", why: "Done by one of our install crews." },
 ];
 
 const identical: string[] = [
   "A free design consultation at your house",
-  "A written quote",
-  "We handle the install",
-  "Call us for service on anything we installed",
+  "Both shown with our demo kit",
+  "Exact pricing for both options",
+  "An app training visit after the install",
 ];
 
-const core: { slug: string; role: string; name: string }[] = [
-  { slug: "jellyfish-lighting", role: "Roofline", name: "Jellyfish Lighting" },
-  { slug: "haven-evolution", role: "Roofline", name: "Haven Lighting" },
+const core: { slug: string; role: string; name: string; spacing: string }[] = [
+  { slug: "jellyfish-lighting", role: "Roofline", name: "Jellyfish Lighting", spacing: "9 inch LED spacing standard, 6 inch on request." },
+  { slug: "haven-evolution", role: "Roofline", name: "Haven Evolution", spacing: "Fully customizable spacing, from a continuous line of light to any spacing you want." },
 ];
 
 const houses: { h: string; profile: string[]; verdict: string; label: string; href: string }[] = [
@@ -86,21 +88,20 @@ const houses: { h: string; profile: string[]; verdict: string; label: string; hr
     h: "A two story home",
     profile: [
       "Roofline lighting on more than one side",
-      "Lighting under the overhang",
       "Colors for gameday and holidays",
     ],
-    verdict: "Soffit lighting can go with the roofline. We look at your house with you and plan it.",
-    label: "Roofline plus soffit lighting",
-    href: "/services/soffit-lighting",
+    verdict: "We measure every side with a laser and price both brands at the visit.",
+    label: "Jellyfish or Haven",
+    href: COMPARE_URL,
   },
   {
     h: "A whole property",
     profile: [
-      "Roofline, plus beds, walls or a pergola",
+      "Roofline, plus paths, trees and beds",
       "Lighting for the yard as well as the house",
     ],
-    verdict: "Landscape and patio lighting can go in with the roofline or be added later.",
-    label: "Roofline plus landscape or bistro",
+    verdict: "Landscape lighting can go in with the roofline or be added later.",
+    label: "Roofline plus landscape lighting",
     href: "/services/landscape-lighting",
   },
 ];
@@ -117,7 +118,7 @@ export default function SystemsHub() {
         photoAlt="Close view of roofline lighting on an Omaha home, warm white LEDs along the gables and eaves"
         objectPosition="50% 55%"
         h1="The lighting systems we install."
-        lede="We install two roofline systems, Jellyfish and Haven, plus soffit, landscape and bistro lighting."
+        lede="We're an authorized Nebraska dealer for both Jellyfish and Haven, and we specialize in Haven Evolution. We also install landscape lighting."
         trail={trail}
       />
 
@@ -158,7 +159,7 @@ export default function SystemsHub() {
                       {c.name}
                     </h3>
                     <p className="mt-3 text-[1.02rem] leading-relaxed text-muted-foreground">
-                      {d?.position ?? sy.short}
+                      {c.spacing}
                     </p>
                   </div>
                 </article>
@@ -224,7 +225,7 @@ export default function SystemsHub() {
               ))}
             </ul>
             <p className="mt-6 max-w-[76ch] text-sm leading-relaxed text-on-dark-muted">
-              We install both brands and help you choose at the design consultation.
+              They&rsquo;re two different products with different looks, features and prices. We walk you through both side by side.
             </p>
           </div>
         </div>
@@ -291,10 +292,10 @@ export default function SystemsHub() {
               <>
                 {" "}
                 <Link
-                  href="/compare"
+                  href={COMPARE_URL}
                   className="text-on-dark underline decoration-accent decoration-2 underline-offset-4"
                 >
-                  How these compare with the brands we do not carry
+                  Jellyfish and Haven side by side
                 </Link>.
               </>
             )}

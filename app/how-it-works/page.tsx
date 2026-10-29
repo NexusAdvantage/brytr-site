@@ -3,9 +3,7 @@ import { pageUrl } from "@/lib/seo";
 import Link from "next/link";
 import { Shell } from "@/app/layout-shell";
 import { PageHero, PageCta, SectionHead, TextLink } from "@/components/sections/page-parts";
-import { InstallDaySequence } from "@/components/sections/install-day";
 import { PhotoStrip } from "@/components/sections/photo-parts";
-import { ChannelDetail } from "@/components/sections/channel-detail";
 
 import { Jsonld, breadcrumb } from "@/lib/schema";
 import { ValueBand } from "@/components/sections/value-band";
@@ -36,7 +34,7 @@ import { valueProps } from "@/content/value-props";
 export const metadata: Metadata = {
   title: "How It Works: Consultation to Install",
   description:
-    "How a Brytr install works: a free design consultation at your house, a written quote, the install, and service afterwards.",
+    "How a Brytr install works: a free consultation at your home, exact pricing at the visit, the install, and an app training visit after.",
   ...pageUrl("/how-it-works"),
 };
 const trail = [{ name: "Home", href: "/" }, { name: "How it works", href: "/how-it-works" }];
@@ -50,19 +48,19 @@ const trail = [{ name: "Home", href: "/" }, { name: "How it works", href: "/how-
 const invisible: [string, string][] = [
   ["Zones", "Different parts of the house can be set up as separate zones in the app."],
   ["Wiring", "We handle the wiring as part of the install."],
-  ["Adding more later", "You can add lighting later, such as landscape or patio lighting."],
-  ["Service", "Call us for service on anything we installed."],
+  ["Adding more later", "You can add landscape lighting or more of the roofline later."],
+  ["Warranty", "Every system is backed by our lifetime product warranty. Full details come with your quote."],
 ];
 
 /* REWRITTEN Oct 2026 as a neutral list of steps. It used to contrast Brytr with "the usual way"
  * in the trade. The component still has three columns, so `trade` now holds plain detail
  * about the step and is not a comparison. */
 const differences: { h: string; us: string; trade: string }[] = [
-  { h: "Design consultation", us: "We visit and design it with you at your house.", trade: "Free, with a written quote." },
-  { h: "Choosing a system", us: "Jellyfish or Haven, picked with you.", trade: "Both are permanent and app controlled." },
-  { h: "The install", us: "We handle the install.", trade: "The lighting stays up year round." },
-  { h: "Your scenes", us: "Set up in the app.", trade: "Warm white, holidays, gameday or your own colors." },
-  { h: "Afterwards", us: "Call us for service on anything we installed.", trade: "402-810-3973" },
+  { h: "Design consultation", us: "About an hour at your home. We measure with a laser and turn on our demo kit.", trade: "Free. Exact pricing for both options at the visit." },
+  { h: "Choosing a system", us: "Jellyfish or Haven, picked with you.", trade: "We're an authorized Nebraska dealer for both." },
+  { h: "The install", us: "Done by one of our install crews, mounted to your soffit.", trade: "Our crews work for us year round." },
+  { h: "App training", us: "A visit after the install, about an hour.", trade: "We set up your everyday lighting and schedule your holidays." },
+  { h: "Afterwards", us: "Call us for service on anything we installed.", trade: "Backed by our lifetime product warranty." },
   /* THE COVENANT ROW IS GONE, both halves of it, 27 Aug 2026.
    *
    * "We pull the rules for your neighborhood, read them, and file the submission ourselves" is an
@@ -90,7 +88,7 @@ export default function HowItWorks() {
           * between your shingles and your gutter". The client's punch list: "Not sure what this
           * means." A headline that has to be decoded is not a headline. */
         h1="How it works, from consultation to install."
-        lede="We visit, design it with you, give you a written quote, and handle the install. We are here for service afterwards."
+        lede="A free consultation at your home, the install, then an app training visit where we set it all up with you."
         trail={trail}
       />
 
@@ -108,16 +106,21 @@ export default function HowItWorks() {
             onDark
             title="The install, start to finish."
           />
-          <div className="mt-10"><InstallDaySequence /></div>
-          <p className="mt-7 max-w-[76ch] text-sm leading-relaxed text-on-dark-muted">
-            A simple drawing of the roof edge.{" "}
-            <Link
-              href="/services/permanent-roofline-lighting"
-              className="text-on-dark underline decoration-accent decoration-2 underline-offset-4"
-            >
-              Roofline lighting in more detail
-            </Link>.
-          </p>
+          {/* Was a four frame drawing of the track going onto a fascia board. Brytr mounts to the
+            * soffit (Zac, 29 Oct 2026), so the drawing was wrong and came out. */}
+          <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              ["The consultation", "About an hour at your home. We measure with a laser, turn on our demo kit and price both Jellyfish and Haven."],
+              ["The install", "One of our install crews mounts the lighting to your soffit."],
+              ["App training", "We come back for about an hour, set up your everyday lighting and schedule your holidays."],
+              ["Every night after", "White at sunset, and your scheduled scenes take over for holidays and special occasions."],
+            ].map(([h, p]) => (
+              <li key={h} className="flex flex-col rounded-lg bg-primary p-6 ring-1 ring-on-dark/10">
+                <h3 className="font-display text-lg font-bold leading-snug text-on-dark">{h}</h3>
+                <p className="mt-2.5 text-[0.95rem] leading-relaxed text-on-dark-muted">{p}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -223,21 +226,18 @@ export default function HowItWorks() {
             * letterboxed; this page is the one that exists to explain what it draws, and here it
             * gets the full shell width. Inside the existing section rather than as a new one, so
             * scripts/section-rhythm.mjs sees no new ground. */}
-          <div className="mt-10 overflow-hidden rounded-lg ring-1 ring-on-dark/10">
-            <ChannelDetail className="block w-full" />
-          </div>
 
           <div className="mt-10 grid gap-5 lg:grid-cols-2">
             <article className="flex flex-col rounded-lg bg-raise p-7 ring-1 ring-on-dark/10">
               <h3 className="font-display text-2xl font-bold text-on-dark">Before</h3>
               <p className="mt-3 text-[1.05rem] leading-relaxed text-on-dark/85">
-                A visit and a written quote.
+                A visit and exact pricing.
               </p>
               <ul className="mt-6 flex-1 divide-y divide-on-dark/10 border-y border-on-dark/10">
                 {[
-                  ["The consultation", "Free. We visit and design it with you."],
-                  ["The written quote", "Yours to look over."],
-                  ["Your HOA", "If you have one, check its rules on exterior lighting."],
+                  ["The consultation", "Free. About an hour at your home, mornings, afternoons or evenings."],
+                  ["Exact pricing", "For both Jellyfish and Haven, before we leave."],
+                  ["Financing", "Available. Ask us about it at the consultation."],
                 ].map(([h, p]) => (
                   <li key={h} className="py-4">
                     <p className="font-display text-[0.95rem] font-bold text-on-dark">{h}</p>
@@ -253,13 +253,13 @@ export default function HowItWorks() {
             <article className="flex flex-col rounded-lg bg-raise p-7 ring-1 ring-on-dark/10">
               <h3 className="font-display text-2xl font-bold text-on-dark">After</h3>
               <p className="mt-3 text-[1.05rem] leading-relaxed text-on-dark/85">
-                We are here for service afterwards.
+                We come back to set it all up with you.
               </p>
               <ul className="mt-6 flex-1 divide-y divide-on-dark/10 border-y border-on-dark/10">
                 {[
-                  ["Something stops working", "Call us. We service anything we installed."],
-                  ["You want to add more", "You can add lighting later, such as landscape or patio lighting."],
-                  ["Questions about the app", "Call us and we can help."],
+                  ["App training", "About an hour. We set up your everyday lighting and schedule your holidays."],
+                  ["Something stops working", "Call us. Every system is backed by our lifetime product warranty."],
+                  ["You want to add more", "You can add landscape lighting or more of the roofline later."],
                 ].map(([h, p]) => (
                   <li key={h} className="py-4">
                     <p className="font-display text-[0.95rem] font-bold text-on-dark">{h}</p>
