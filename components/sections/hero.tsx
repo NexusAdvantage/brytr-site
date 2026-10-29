@@ -23,7 +23,7 @@ export function Hero() {
   return (
     <SiteHero
       h1="Permanent outdoor lighting in Omaha"
-      lede="Warm white every night, any color when you want it, and nobody on a ladder in December."
+      lede="Designed for every day. Ready for any day. Permanent roofline and landscape lighting from a family owned Omaha company."
       photo={bg.src as string}
       photoAlt={bg.alt}
       objectPosition="50% 50%"
