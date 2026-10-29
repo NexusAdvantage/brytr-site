@@ -1,8 +1,10 @@
 import { site } from "@/content/site";
-import { reviewProof } from "@/content/reviews";
+import { getReviewProof } from "@/lib/review-proof";
 import { cities } from "@/content/cities";
 
-export const localBusiness = (city?: string) => ({
+export const localBusiness = async (city?: string) => {
+  const reviewProof = await getReviewProof();
+  return {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "@id": `${site.url}/#business`,
@@ -13,16 +15,24 @@ export const localBusiness = (city?: string) => ({
   telephone: `+1${site.phone.replace(/-/g, "")}`,
   /* Street address, postal code and the profile link all come off Brytr's own Google
    * Business Profile. A LocalBusiness node without a street address is the single most
-   * common reason a local pack listing and a site fail to associate. */
+   * common reason a local pack listing and a site fail to associate.
+   *
+   * The address is ALWAYS the real Omaha one. City pages used to put their own town in
+   * addressLocality ("13436 C St, Blair, NE"), which was wrong. A city page now passes its
+   * town and it goes into areaServed instead. */
   address: {
     "@type": "PostalAddress",
     streetAddress: site.address.street,
-    addressLocality: city ?? site.city,
-    addressRegion: site.state,
+    addressLocality: site.address.city,
+    addressRegion: site.address.state,
     postalCode: site.address.zip,
     addressCountry: "US",
   },
-  areaServed: cities.map((c) => ({ "@type": "City", name: c.name, addressRegion: c.state })),
+  areaServed: (city ? cities.filter((c) => c.name === city) : cities).map((c) => ({
+    "@type": "City",
+    name: c.name,
+    addressRegion: c.state,
+  })),
   aggregateRating: { "@type": "AggregateRating", ratingValue: reviewProof.average, reviewCount: String(reviewProof.count), bestRating: "5" },
   sameAs: [site.social.facebook, site.social.instagram, reviewProof.url],
   /* THE REAL WEEK, restored. This block was empty with a note to ask the client, because an
@@ -44,7 +54,8 @@ export const localBusiness = (city?: string) => ({
       closes: "00:00",
     })),
   ],
-});
+  };
+};
 
 export const breadcrumb = (trail: { name: string; href: string }[]) => ({
   "@context": "https://schema.org",

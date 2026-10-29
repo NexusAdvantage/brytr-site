@@ -27,10 +27,10 @@ import { Jsonld, localBusiness, faqSchema } from "@/lib/schema";
  * this page, and repeating them here is two places to update and one place to forget. */
 export const metadata: Metadata = { ...pageUrl("/") };
 
-export default function Home() {
+export default async function Home() {
   return (
     <>
-      <Jsonld data={localBusiness()} />
+      <Jsonld data={await localBusiness()} />
       {/* FAQPage, which /pricing and /faq already emit and this page did not.
         *
         * It matters more here than on either of those, because a collapsed Radix accordion item's

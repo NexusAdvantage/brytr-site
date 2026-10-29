@@ -1,6 +1,6 @@
 /* Confirmed facts only. Anything not verified from the client is absent by design.
  * Verified: 215+ five-star Google reviews · 5.0 average (Google Business Profile, 28 Aug 2026)
- * One crew from measure to handover · founders Zac Van Buren & Sam Greguska
+ * Owners Zac Van Buren & Sam Greguska
  * Phone 402-810-3973 · Omaha, NE · carries both Haven Evolution and Jellyfish
  */
 /* The review count and average live in content/reviews.ts and are read from there rather than
@@ -10,21 +10,8 @@ import { reviewProof } from "./reviews";
 export const site = {
   name: "Brytr Co",
   legalName: "Brytr Co",
-  /* NOT RENDERED ANYWHERE, DELIBERATELY, AND IT SHOULD STAY THAT WAY.
-   *
-   * It ran for a while as an amber line under the hero h1 and again in the footer, on the reasoning
-   * that freedomexteriorsusa.com repeats one line twice and that this was the company's own words
-   * going unused. The client, on a screenshot of it: "avoid ever using lines like this that are
-   * gimmicky."
-   *
-   * That is a standing rule rather than one deletion. This site does not do slogans - not here, not
-   * as a section heading, not as a caption. What it does instead is state what the thing is and
-   * show a photograph of it. Every heading on the page now names something checkable: what we do,
-   * where we work, how we install it, what it costs.
-   *
-   * Kept in the file because it is Brytr's real tagline and they use it elsewhere - print, the van,
-   * social. It is theirs. It is just not the website's voice. */
-  tagline: "Disappears by day, wows by night.",
+  /* Brytr's tagline, from Zac's answers 29 Oct 2026. Used in the home hero, the closer and the footer. */
+  tagline: "Designed for every day. Ready for any day.",
   phone: "402-810-3973",
   phoneHref: "tel:+14028103973",
   city: "Omaha",
@@ -32,15 +19,11 @@ export const site = {
    * profile exactly, is what ties the two together for the local pack. */
   address: { street: "13436 C St", city: "Omaha", state: "NE", zip: "68144" },
   state: "NE",
-  /* HOURS, CONFIRMED BY THE CLIENT. Nine to nine, six days, closed Sunday. These were absent
-   * from the site and from the LocalBusiness schema on purpose: a previous version guessed them,
-   * and wrong hours in structured data is worse than none, because Google will show a homeowner
-   * a closed sign that is not true. Asked, answered, so they are real now. `openLabel` is the
-   * one-line form for the trust bar; `week` is the machine form the schema needs. */
+  /* HOURS from Zac's answers, 29 Oct 2026: Monday to Saturday, 8am to 8pm, by appointment. */
   hours: {
-    openLabel: "Open Mon to Sat, 9am to 9pm",
+    openLabel: "Mon to Sat, 8am to 8pm",
     week: [
-      { days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "09:00", closes: "21:00" },
+      { days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "08:00", closes: "20:00" },
     ],
     closed: ["Sunday"],
   },
@@ -49,13 +32,13 @@ export const site = {
   founders: [
     {
       name: "Zac Van Buren",
-      role: "Co-founder",
-      handles: ["Design consultations", "Photography and drone work", "Customer walkthroughs"],
+      role: "Co-owner",
+      handles: [],
     },
     {
       name: "Sam Greguska",
-      role: "Co-founder",
-      handles: ["Product and manufacturer relationships", "Install standards", "Crew training"],
+      role: "Co-owner",
+      handles: [],
     },
   ],
   social: {
@@ -78,13 +61,12 @@ export const site = {
        in this string while reviews.ts said the same, and the client has corrected this number
        twice - each correction had to find three files or the site disagreed with itself. */
     { figure: reviewProof.average, label: `Average from ${reviewProof.countLabel} Google reviews`, icon: "stars" },
-    { figure: "1 crew", label: "From the measure to the handover", icon: "hardHat" },
+
     /* This slot held "25 yr — LED rating on the Signature system", which was an invented number
      * on an invented tier. It was swapped for IP66, but that rating came out of the same batch
-     * of specs I wrote without a source, so it is not safe either. Replaced with the one thing
-     * in this row the client confirmed on camera: we do not leave until the customer has seen it
-     * both ways. If Haven publishes an ingress rating, put it back with the datasheet to hand. */
-    { figure: "Every scene", label: "Switched through with you before we leave", icon: "dayNight" },
+     * of specs I wrote without a source, so it is not safe either. Oct 2026: now the brand count,
+     * and the "1 crew" entry is gone because the crews are subcontractors. */
+    { figure: "2 brands", label: "Jellyfish and Haven", icon: "dayNight" },
   ],
 } as const;
 

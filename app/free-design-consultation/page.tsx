@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { pageUrl } from "@/lib/seo";
 import { site } from "@/content/site";
-import { reviews, reviewProof } from "@/content/reviews";
+import { reviews } from "@/content/reviews";
+import { getReviewProof } from "@/lib/review-proof";
 import { Shell } from "@/app/layout-shell";
 import { PageHero, PageCta, SectionHead, Check, TextLink } from "@/components/sections/page-parts";
 import { PhotoPair } from "@/components/sections/photo-parts";
@@ -43,7 +44,7 @@ import { valueProps } from "@/content/value-props";
 
 export const metadata: Metadata = {
   title: "Free Lighting Design Consultation | Omaha",
-  description: "Book a free on-site permanent lighting design consultation in the Omaha metro. We walk the property, measure the roofline, and hand you a written quote.",
+  description: "Book a free permanent lighting design consultation at your home in the Omaha metro. About an hour, both Jellyfish and Haven, and exact pricing at the visit.",
   ...pageUrl("/free-design-consultation"),
 };
 const trail = [{ name: "Home", href: "/" }, { name: "Free design consultation", href: "/free-design-consultation" }];
@@ -52,24 +53,25 @@ const trail = [{ name: "Home", href: "/" }, { name: "Free design consultation", 
  * client has confirmed. If a step cannot be stated without a qualifier it does not belong here. */
 const steps: { h: string; p: string }[] = [
   {
-    h: "We walk the whole property",
-    p: "Front, both sides, the back, the beds, the walk, the patio. We are looking for what the light can do that you have not pictured yet, and for the elevations you have never once thought about.",
+    h: "At your home",
+    p: "Every consultation is at your home and takes about an hour. Mornings, afternoons or evenings all work.",
   },
   {
-    h: "We measure the roofline",
-    p: "A wheel along every elevation, corners counted, zones agreed, hardware chosen. This is the part that makes the number real instead of a range.",
+    h: "We measure",
+    p: "We measure with a laser. We never quote off a photo or Google Earth.",
   },
   {
-    h: "We show you the scenes",
-    p: "The app, on a phone, with the scenes switched through in front of you. You have used it before you have bought it, which is the step most installers leave until handover.",
+    h: "You see both",
+    p: "We turn on our demo kit so you can see Jellyfish and Haven in person.",
   },
   {
-    h: "You get a written quote",
-    p: "One number for the whole scope, itemized. It is based on the measure rather than on a satellite photograph, and it is yours to keep.",
+    h: "Exact pricing",
+    p: "We price out both options and answer any questions about the install before we leave.",
   },
 ];
 
-export default function Consult() {
+export default async function Consult() {
+  const reviewProof = await getReviewProof();
   const quote = reviews.find((r) => r.name === "Meghan Gibbons") ?? reviews[0];
 
   return (
@@ -82,8 +84,8 @@ export default function Consult() {
         objectPosition="22% 62%"
         /* WAS "An hour on your property, and you keep the drawing." There is no drawing. What you
           * actually leave with is a written number, so that is what the headline says. */
-        h1="An hour on your property, and a written quote."
-        lede="We come out, walk the property with you, measure the roofline and put a written number in your hand. It is measured off your own elevation rather than off a satellite photograph, and it is yours to keep."
+        h1="A free design consultation at your house."
+        lede="About an hour at your home. We show you both products and give you exact pricing before we leave."
         trail={trail}
       />
 
@@ -116,8 +118,7 @@ export default function Consult() {
           </ol>
 
           <p className="mt-8 max-w-[80ch] text-sm leading-relaxed text-muted-foreground">
-            A larger property, or a yard you want walked twice, adds to it. None of that changes what
-            the visit costs.
+            Questions before you book? Call {site.phone}.
           </p>
         </div>
       </section>
@@ -129,20 +130,21 @@ export default function Consult() {
       <section className="section bg-muted">
         <div className="shell">
           <SectionHead
-            title="What we bring, and what helps if you have it."
+            title="What to expect, and what helps."
           />
 
           <div className="mt-10 grid gap-5 lg:grid-cols-2">
             <div className="flex flex-col rounded-lg bg-card p-7 shadow-[var(--shadow-lg)] ring-1 ring-border">
-              <h3 className="font-display text-2xl font-bold text-foreground">In the van</h3>
+              <h3 className="font-display text-2xl font-bold text-foreground">What you get</h3>
               <p className="mt-3 text-[1.05rem] leading-relaxed text-muted-foreground">
-                Enough to make the number real before we drive away.
+                What the consultation covers.
               </p>
               <ul className="mt-6 flex-1 divide-y divide-border border-y border-border">
                 {[
-                  ["A measuring wheel", "Every elevation walked and written down, not paced out."],
-                  ["The app, on a phone", "We switch the scenes in front of you, so they are a thing you have used before you buy them."],
-                  ["The quote, before we leave", "Written on the property and handed to you, so you are holding a number rather than waiting on an email."],
+                  ["A visit", "About an hour at your home."],
+                  ["Both products", "Jellyfish and Haven, lit up with our demo kit."],
+                  ["Exact pricing", "For both options, at the visit."],
+                  ["Financing", "Available. Ask us about it."],
                 ].map(([h, p]) => (
                   <li key={h} className="py-4">
                     <p className="font-display text-[0.95rem] font-bold text-foreground">{h}</p>
@@ -155,11 +157,10 @@ export default function Consult() {
             <div className="flex flex-col rounded-lg bg-primary p-7 shadow-[var(--shadow-dark)] ring-1 ring-on-dark/10">
               <h3 className="font-display text-2xl font-bold text-on-dark">Handy, not required</h3>
               <p className="mt-3 text-[1.05rem] leading-relaxed text-on-dark/85">
-                Answer what you know and shrug at the rest. Every one of these is something we would
-                otherwise work out on the walk.
+                None of these are required, but they can help.
               </p>
               <ul className="mt-6 flex-1 space-y-3.5">
-                <Check onDark>Whoever else gets a say, in the driveway rather than on speakerphone</Check>
+                <Check onDark>Anyone else who should have a say</Check>
                 <Check onDark>A rough idea of which elevations matter to you and which do not</Check>
                 <Check onDark>Any photograph of a house you liked, even a screenshot</Check>
                 <Check onDark>Whether there is a rear elevation you actually use in the evening</Check>
@@ -176,12 +177,12 @@ export default function Consult() {
         * matching argument in disguise. What these two frames actually show is the measure and the
         * handover, so that is what the copy says now. */}
       <PhotoPair
-        title="What we are doing while we are standing in your garden."
-        lede="The first is the measure, on the property, against the actual structure. The second is the end of it, looking at the result from where you would normally stand."
+        title="From the install to the finished lighting."
+        lede="Lighting going on a pavilion, and a finished install at dusk."
         a="installDayPavilion"
         b="walkthroughDusk"
-        aLabel="Measuring against the actual structure, not off a satellite photograph."
-        bLabel="And at the end of it, looking at the result from where you would normally stand."
+        aLabel="Lighting going on a poolside pavilion."
+        bLabel="Finished lighting at dusk."
         ground="card"
       />
 
@@ -195,20 +196,16 @@ export default function Consult() {
         <div className="shell">
           <SectionHead
             onDark
-            title="What you get out of an hour."
+            title="What you get."
           />
 
           <div className="mt-10 grid gap-10 lg:grid-cols-[56fr_44fr] lg:gap-14">
             <div>
               <p className="text-lg leading-relaxed text-on-dark/85">
-                It is a sales appointment and we are not going to pretend otherwise. What we will say
-                is that the number at the end of it is measured rather than guessed, that it covers
-                the whole scope rather than a starting point, and that it is written down before
-                anybody leaves your driveway.
+                A lighting design for your home and exact pricing on both brands, at no charge.
               </p>
               <p className="mt-5 text-[1.02rem] leading-relaxed text-on-dark-muted">
-                If you decide against it, you have spent an hour and you know what your house would
-                cost. That is a better position than the one most people are in after a phone call.
+                If you have questions afterwards, call us.
               </p>
               <div className="mt-7">
                 <TextLink onDark href="/gallery">See finished installs first</TextLink>
@@ -244,7 +241,7 @@ export default function Consult() {
                   * the phone. Both removed 27 Aug 2026. What is left is what a phone number is
                   * actually for. */}
                 <p className="mt-4 text-sm leading-relaxed text-on-dark-muted">
-                  It reaches one of the two owners rather than a dispatcher.
+                  Mon to Sat, 8am to 8pm.
                 </p>
               </div>
             </div>
@@ -259,7 +256,7 @@ export default function Consult() {
         variant="phone"
         photos={valueProps["/free-design-consultation"].photos}
         title="Or skip the form and just call."
-        body="Tell us the cross streets and roughly how much roofline you are looking at, and we will tell you what the visit involves before anybody schedules anything."
+        body="Call us with any questions about the consultation."
         panelLink={{ href: "/gallery", label: "See finished installs first" }}
       />
     </Shell>

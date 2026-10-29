@@ -94,8 +94,8 @@ export function Elevation({
   return (
     <svg viewBox="0 0 640 400" className={className} role="img"
       aria-label={night
-        ? `Measured elevation of a home with the roofline channel lit in ${lit?.label ?? "warm white"}`
-        : "Measured elevation of a home in daylight, showing the lighting channel reading as trim"}>
+        ? `Drawing of a home with the roofline lit in ${lit?.label ?? "warm white"}`
+        : "Drawing of a home in daylight with the roofline lighting off"}>
       <rect width="640" height="400" fill={paper} />
 
       {night && (

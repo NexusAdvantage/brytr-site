@@ -3,10 +3,10 @@ import { pageUrl } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { cities, cityBySlug, metroCities } from "@/content/cities";
+import { cities, cityBySlug } from "@/content/cities";
+import { site } from "@/content/site";
 import { photoForCity } from "@/content/city-detail";
 import { serviceFaqsFor } from "@/content/faqs";
-import { reviewProof } from "@/content/reviews";
 import { Shell } from "@/app/layout-shell";
 import { Faq } from "@/components/sections/faq";
 import { PageHero, PageCta, ServiceRows, SectionHead, Check, TextLink } from "@/components/sections/page-parts";
@@ -58,7 +58,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     /* Deliberately distinct from the homepage title so two pages never compete. */
     title: `${c.name} ${c.state} Permanent Lighting Installer`,
-    description: `Permanent outdoor lighting installed in ${c.name}, ${c.state}. Roofline, landscape, hardscape and bistro runs. ${c.drive} from our shop.`,
+    description: `Permanent outdoor lighting installed in ${c.name}, ${c.state}. Roofline and landscape lighting from Brytr Co.`,
     ...pageUrl(`/service-areas/${c.slug}`),
   };
 }
@@ -79,7 +79,7 @@ const servicesFor = (tier: string) =>
   tier === "metro"
     ? ["permanent-outdoor-lighting", "permanent-roofline-lighting", "permanent-christmas-lights", "landscape-lighting"]
     : tier === "iowa"
-    ? ["permanent-roofline-lighting", "permanent-christmas-lights", "hardscape-lighting", "landscape-lighting"]
+    ? ["permanent-roofline-lighting", "permanent-christmas-lights", "gameday-lighting", "landscape-lighting"]
     : ["permanent-outdoor-lighting", "permanent-christmas-lights", "landscape-lighting", "permanent-roofline-lighting"];
 
 export default async function CityPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -102,19 +102,13 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
     { name: c.name, href: `/service-areas/${c.slug}` },
   ];
 
-  /* For the Iowa lead: the metro towns that are FURTHER from the shop than this one is.
-   * Real drive times, so the argument is arithmetic rather than assertion. */
-  const furtherThanThis = metroCities
-    .filter((m) => minutes(m.drive) > minutes(c.drive))
-    .sort((a, b) => minutes(a.drive) - minutes(b.drive));
-
   const bandLabel =
-    c.tier === "metro" ? "Core metro" : c.tier === "iowa" ? "Over the river" : "Route day";
+    c.tier === "iowa" ? "Council Bluffs area" : "Omaha metro";
 
   return (
     <Shell>
       <Jsonld data={breadcrumb(trail)} />
-      <Jsonld data={localBusiness(c.name)} />
+      <Jsonld data={await localBusiness(c.name)} />
       <Jsonld data={faqSchema(faqs)} />
 
       <PageHero
@@ -126,9 +120,9 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
           c.tier === "metro"
             ? " and the rest of the Omaha metro"
             : c.tier === "iowa"
-            ? " and western Iowa"
+            ? " and the Omaha metro"
             : " and eastern Nebraska"
-        }. ${c.drive} from our shop, which is the number that decides how fast we can get back to you.`}
+        }.`}
         trail={trail}
         /* THE OUTSTATE DISCLOSURE IS NOT A PHOTO CREDIT, AND SHOULD NOT LOOK LIKE ONE.
           * All three tiers used to render the same faint footnote in the same slot, so
@@ -156,19 +150,16 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
         <div className="shell flex flex-wrap items-center gap-x-12 gap-y-6 py-8">
           <p className="flex items-baseline gap-3">
             <span className="u font-display text-[clamp(2rem,4vw,2.75rem)] font-bold leading-none text-on-dark">
-              {c.drive}
+              Free
             </span>
-            <span className="text-sm text-on-dark-muted">from the shop</span>
+            <span className="text-sm text-on-dark-muted">design consultation</span>
           </p>
           <ul className="flex flex-wrap items-center gap-x-8 gap-y-2 text-sm text-on-dark-muted">
             <li>
-              <span className="font-semibold text-on-dark">{c.neighborhoods.length}</span> subdivisions listed
+              <span className="font-semibold text-on-dark">Jellyfish and Haven</span> installed
             </li>
             <li>
-              <span className="font-semibold text-on-dark">
-                {c.tier === "outstate" ? "Scheduled route" : "Same week"}
-              </span>{" "}
-              service call
+              <span className="font-semibold text-on-dark">Service</span> on anything we installed
             </li>
             {/* "No travel charge" was the third stat here, on all twelve city pages. A
               * no-surcharge guarantee is a pricing term and nobody at Brytr gave us one. Removed
@@ -177,7 +168,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
               * is what this row is for. */}
           </ul>
           <p className="w-full text-sm leading-relaxed text-on-dark-muted lg:w-auto lg:flex-1">
-            Close enough that a dark section is a visit rather than a route day.
+            We serve {c.tier === "iowa" ? `${c.name} and the Omaha metro` : `${c.name} and the rest of the Omaha metro and Council Bluffs`}.
           </p>
         </div>
       </section>
@@ -189,19 +180,15 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
           <div className="shell grid items-start gap-10 lg:grid-cols-[42fr_58fr] lg:gap-14">
             <div>
               <h2 className="mt-4 text-[clamp(1.75rem,3vw,2.5rem)] leading-[1.06] text-foreground">
-                The subdivisions here, and the towns next door.
+                {c.name} and the towns nearby.
               </h2>
               <div className="prose-body mt-6 space-y-4">
                 <p className="text-lg text-foreground">
-                  {c.name} is core territory.{" "}
-                  {c.drive === "In town" ? "We are in it." : `${c.drive} from the shop.`} Most of what we
-                  have installed is inside this band, which is the reason a service call here is a visit
-                  rather than a project.
+                  We install permanent outdoor lighting in {c.name} and across the Omaha metro.
                 </p>
                 <p className="text-base text-muted-foreground">
-                  Every install is designed on site. We walk the property with you, talk
-                  through what you actually want lit, measure the roofline, and leave you holding a
-                  written quote, and no charge for the visit.
+                  Every install starts with a free consultation at your home. We show you both brands and
+                  give you exact pricing at the visit.
                 </p>
               </div>
               {/* A PHOTOGRAPH, NOT A DRAWING, and the distinction is the check rather than taste.
@@ -231,7 +218,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
               )}
 
               <div className="mt-7 flex flex-wrap gap-x-7 gap-y-2">
-                <TextLink href="/free-design-consultation">Book the on-site measure</TextLink>
+                <TextLink href="/free-design-consultation">Book a free design</TextLink>
               </div>
             </div>
 
@@ -239,10 +226,22 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
               <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-border px-6 py-4">
                 <p className="label flex items-center gap-3 text-foreground">
                   <span className="block h-4 w-1 bg-accent" aria-hidden />
-                  Neighborhoods in {c.name}
+                  {c.neighborhoods.length > 0 ? `Neighborhoods in ${c.name}` : `Towns near ${c.name} we serve`}
                 </p>
-                <p className="text-xs text-muted-foreground">Real subdivisions, not a keyword list</p>
+                <p className="text-xs text-muted-foreground">Some of the areas we serve</p>
               </div>
+              {/* No neighborhoods from Brytr for this town yet, so list the nearby towns instead. */}
+              {c.neighborhoods.length === 0 && (
+                <ul className="divide-y divide-border">
+                  {nearby.map((m) => (
+                    <li key={m.slug}>
+                      <Link href={`/service-areas/${m.slug}`} className="block px-6 py-3.5 text-[1.02rem] text-foreground hover:bg-muted">
+                        {m.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
               {/* AN INLINE LIST, NOT A GRID.
                 * The eighteen cities carry between three and ten subdivisions, and this panel was a
                 * fixed grid — two columns on one variant, four on the other. With four short names
@@ -251,6 +250,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                 * column count is right for a list that varies by a factor of three.
                 * Names sized to their own content, wrapping, so a three-item list is a tight line
                 * and a ten-item list is two. Each name is still its own <li>. */}
+              {c.neighborhoods.length > 0 && (
               <ul className="flex flex-wrap items-baseline gap-x-2.5 gap-y-2 border-b border-border px-6 py-5">
                 {c.neighborhoods.map((n, i) => (
                   <li key={n} className="text-[1.02rem] text-foreground">
@@ -261,9 +261,9 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                   </li>
                 ))}
               </ul>
+              )}
               <p className="bg-muted px-6 py-4 text-sm leading-relaxed text-muted-foreground">
-                Not listed? We still cover it. This is a list of where we have worked, not a boundary.
-                Ring and ask.
+                {c.neighborhoods.length > 0 ? "Not listed? Call us and ask." : `We serve all of ${c.name}. Call us with any questions.`}
               </p>
             </div>
           </div>
@@ -274,7 +274,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
         <section className="section bg-card">
           <div className="shell">
             <SectionHead
-              title={`${c.name} is ${c.drive} from our shop.`}
+              title={`We serve ${c.name}.`}
             />
 
             <div className="mt-10 grid items-start gap-10 lg:grid-cols-[46fr_54fr] lg:gap-14">
@@ -282,18 +282,17 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                 <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-border bg-primary px-6 py-4">
                   <p className="label flex items-center gap-3 text-on-dark">
                     <span className="block h-4 w-1 bg-accent" aria-hidden />
-                    Further from us than {c.name}
+                    Nearby towns we serve
                   </p>
-                  <p className="text-xs text-on-dark-muted">All in Nebraska</p>
+                  <p className="text-xs text-on-dark-muted">Nebraska and Iowa</p>
                 </div>
                 <ul className="divide-y divide-border">
                   <li className="flex items-baseline justify-between gap-4 bg-muted px-6 py-3.5">
                     <span className="font-display text-[0.95rem] font-bold text-foreground">
                       {c.name}, {c.state}
                     </span>
-                    <span className="u text-sm font-medium text-accent-ink">{c.drive}</span>
                   </li>
-                  {furtherThanThis.map((m) => (
+                  {nearby.map((m) => (
                     <li key={m.slug} className="flex items-baseline justify-between gap-4 px-6 py-3.5">
                       <Link
                         href={`/service-areas/${m.slug}`}
@@ -301,29 +300,27 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                       >
                         {m.name}, {m.state}
                       </Link>
-                      <span className="u text-sm text-muted-foreground">{m.drive}</span>
                     </li>
                   ))}
                 </ul>
                 <p className="border-t border-border bg-muted px-6 py-4 text-sm leading-relaxed text-muted-foreground">
-                  Drive times from 13436 C St in normal traffic. We are not claiming Iowa is closer than
-                  Omaha. We are pointing out that it is closer than half of the metro.
+                  We serve the Omaha metro and Council Bluffs.
                 </p>
               </div>
 
               <div>
                 <ul className="divide-y divide-border border-y border-border">
                   {[
-                    ["The same crews", "The people who installed in Dundee last week are the people who install in Manawa this week. Iowa is not handed to anybody else."],
-                    ["The same materials", "The same hardware, the same channel finishes, the same controllers. Nothing is substituted because of a state line."],
+                    ["The same systems", "We install Jellyfish and Haven in Iowa too."],
+                    ["Free design consultation", "We come to your house and design it with you."],
                     /* "No border premium" removed 27 Aug 2026: it stated a pricing basis
                        ("per-foot pricing"), guaranteed no surcharge, and made a claim about what
                        competitors charge, in one sentence. None of the three came from Brytr.
                        AND THE ROW AFTER IT WAS A SECOND "The same crews", left behind when that
                        deletion was made against the diff rather than against the result: one row
                        rendered twice on every Iowa page, with a duplicate React key on it. */
-                    ["The same service afterwards", "A dark section over the river is a visit, same as anywhere else in the radius."],
-                    ["The covenant wording", "Iowa associations word things differently from west Omaha ones. Worth reading the clause either way."],
+                    ["Service afterwards", "Call us for service on anything we installed."],
+                    ["Lifetime product warranty", "Full warranty details come with your quote."],
                   ].map(([h, p]) => (
                     <li key={h} className="py-5">
                       <h3 className="font-display text-[1.05rem] font-bold text-foreground">{h}</h3>
@@ -332,7 +329,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                   ))}
                 </ul>
                 <div className="mt-7 flex flex-wrap gap-x-7 gap-y-2">
-                  <TextLink href="/free-design-consultation">Book the on-site measure</TextLink>
+                  <TextLink href="/free-design-consultation">Book a free design</TextLink>
                   </div>
               </div>
             </div>
@@ -343,7 +340,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                   <span className="block h-4 w-1 bg-accent" aria-hidden />
                   Neighborhoods in {c.name}
                 </p>
-                <p className="text-xs text-on-dark-muted">Where we have worked, not a boundary</p>
+                <p className="text-xs text-on-dark-muted">Some of the areas we serve</p>
               </div>
               {/* Inline, for the same reason as the light variant above. */}
               <ul className="flex flex-wrap items-baseline gap-x-2.5 gap-y-2 px-6 py-5">
@@ -365,17 +362,15 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
         <section className="section bg-card">
           <div className="shell">
             <SectionHead
-              title={`${c.name} is a route day, and that is why the price is the same.`}
+              title={`We serve ${c.name}.`}
             />
 
             <div className="mt-10 grid items-start gap-10 lg:grid-cols-[54fr_46fr] lg:gap-14">
               <ul className="divide-y divide-border border-y border-border">
                 {[
-                  ["What a route day is", `A crew leaves the shop early, works ${c.name} and the towns around it for the day, and comes back. Two or three properties, sometimes four on smaller runs.`],
-                  ["What it means for your date", "We hold a window rather than a day until there is enough work out here to fill it, then it firms up and we ring you. That wait is the honest cost of not being charged for the drive."],
-                  ["What it does not change", "The crew, the method, the sealing and the scene walk before anybody leaves. Identical to a metro job, because it is the same two people."],
-                  ["What it means for a service call", "Scheduled onto the next route rather than same-week. If something is genuinely urgent we will tell you honestly whether that is days or a fortnight."],
-                  ["Why we still do it", `There is nobody out here carrying more than one brand, so the alternative for a ${c.name} homeowner is one brand and one price. That is worth a drive.`],
+                  ["Free design consultation", "We come to your house and design it with you."],
+                  ["Two brands", "We install Jellyfish and Haven."],
+                  ["Service afterwards", "Call us for service on anything we installed."],
                 ].map(([h, p]) => (
                   <li key={h} className="py-5">
                     <h3 className="font-display text-[1.05rem] font-bold text-foreground">{h}</h3>
@@ -391,7 +386,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                       <span className="block h-4 w-1 bg-accent" aria-hidden />
                       Neighborhoods in {c.name}
                     </p>
-                    <p className="text-xs text-muted-foreground">Real subdivisions</p>
+                    <p className="text-xs text-muted-foreground">Some of the areas we serve</p>
                   </div>
                   <ul className="divide-y divide-border">
                     {c.neighborhoods.map((n) => (
@@ -399,18 +394,17 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                     ))}
                   </ul>
                   <p className="border-t border-border bg-muted px-6 py-4 text-sm leading-relaxed text-muted-foreground">
-                    Not listed? Ring and ask. Out here the question is the route rather than the address.
+                    Not listed? Call us and ask.
                   </p>
                 </div>
 
                 <div className="rounded-lg bg-primary p-6 shadow-[var(--shadow-dark)]">
-                  <p className="label text-accent">Worth saying plainly</p>
+                  <p className="label text-accent">Questions</p>
                   <p className="mt-2.5 text-[0.95rem] leading-relaxed text-on-dark-muted">
-                    If you want a company that can be at your house tomorrow for one dark section, that is
-                    not us at {c.drive}. We would rather tell you now than after you have paid a deposit.
+                    Call us at {site.phone}.
                   </p>
                   <div className="mt-5 border-t border-on-dark/12 pt-4">
-                    <TextLink onDark href="/service-areas">The whole radius, with drive times</TextLink>
+                    <TextLink onDark href="/service-areas">Every town we serve</TextLink>
                   </div>
                 </div>
               </div>
@@ -424,7 +418,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
       <section className="section bg-muted">
         <div className="shell">
           <SectionHead
-            title={`What ${c.name} books.`}
+            title={`What we install in ${c.name}.`}
             /* One sentence on eighteen pages. The three bands genuinely do book different
               * work — the metro adds landscape and hardscape on the same visit, the Iowa side
               * skews to roofline first, and out here it is whole-property in one trip because
@@ -450,79 +444,37 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
         * PhotoStrip itself is still live on fourteen other pages with fourteen different headings,
         * which is why the component is untouched. */}
 
-      {/* ── COVENANTS ──
-        * Three genuinely different situations, so three different paragraphs. */}
+      {/* ── HOW IT RUNS ──
+        * Was the HOA section. Brytr asked for HOAs to be left off the site, 29 Oct 2026, so this
+        * slot now says how the lighting runs day to day, in the words Zac gave us. */}
       <section className="section bg-primary">
         <div className="shell grid items-start gap-10 lg:grid-cols-[46fr_54fr] lg:gap-14">
           <div>
-            {/* TITLE WAS "We handle the paperwork, not you." Removed 28 Aug 2026 on the client's
-              * instruction: Brytr has not told us they administer HOA submissions, and this
-              * section promised it in a heading on twelve city pages. What survives is the part
-              * that is genuinely useful and promises nothing - what a board actually looks at. */}
             <SectionHead
               onDark
-              title="What an association will want to see."
+              title="Designed for every day. Ready for any day."
             />
-            {/* THE SCENE RANGE, DRAWN. This section carried 175 words, one card and no visual of
-              * any kind, which the house rules call undesigned outright. It is also the section
-              * about what an association will and will not allow, so the useful thing to show
-              * beside it is the range the run can actually be set to. Same linework as the eave
-              * section on /how-it-works. */}
-            {/* CAPPED. At full column width the drawing rendered over 600px tall and dominated a
-              * section it was only meant to support. */}
             <div className="mt-7 max-w-[30rem] overflow-hidden rounded-lg bg-raise p-4 ring-1 ring-on-dark/10">
               <ChannelFigure variant="spectrum" className="block w-full" />
             </div>
-            {/* THE METRO AND IOWA PARAGRAPHS BOTH ENDED BY TELLING THE READER TO BRING THE
-              * COVENANT TO THE VISIT SO WE COULD READ THE CLAUSE WITH THEM. Off the client punch
-              * list, 29 Aug 2026: HOA has never been a problem for Brytr and it is not something
-              * discussed on site, so the site cannot be offering a covenant review at the
-              * appointment. Both now stop at reading your own clause first, which is advice
-              * rather than a service. */}
             <p className="mt-6 text-lg leading-relaxed text-on-dark/85">
-              {c.tier === "metro"
-                ? `Several ${c.name} developments have specific covenant language about permanent exterior lighting, and a fair amount of it was written before this product existed. Worth reading the lighting clause before you plan anything.`
-                : c.tier === "iowa"
-                ? `Iowa associations word this differently from the west Omaha ones, and there are fewer of them. If ${c.name} has one, read the lighting clause before you plan anything.`
-                : `Most ${c.name} properties have no restriction at all, and out here it is more often a city permit question than a covenant one.`}
+              Your lights turn on automatically every night at sunset in white, for security, accent
+              lighting and curb appeal.
             </p>
-            {/* THERE USED TO BE FOUR OF THESE and they printed on all eighteen pages under
-              * whichever intro the tier generated. On Norfolk that meant a paragraph saying "most
-              * properties have no restriction at all" followed by four bullets promising to pull
-              * your covenant and eat the cost if the board refused — the page arguing with itself,
-              * and promising a service nobody at Brytr has confirmed. Three now, per branch, and
-              * they describe what boards ask for rather than what we would do about it. */}
             <ul className="mt-7 space-y-3">
-              {c.tier === "outstate" ? (
-                <>
-                  <Check onDark>Whether there is an association at all is worth checking before you plan</Check>
-                  <Check onDark>Boards usually want a spec sheet and a drawing of the elevation</Check>
-                  <Check onDark>Out here it is more often a city permit question than a covenant one</Check>
-                </>
-              ) : (
-                <>
-                  {/* The four that were here promised to pull the covenant, file the submission,
-                    * and refund you if the board refused. Three service commitments and a money
-                    * one, none of them from Brytr. What is left describes what boards ask for. */}
-                  <Check onDark>Boards want a spec sheet and a drawing of your elevation</Check>
-                  <Check onDark>Read the lighting clause before you plan anything</Check>
-                  <Check onDark>Nothing should go on the house before an approval lands</Check>
-                </>
-              )}
+              <Check onDark>Elegant white lighting every night</Check>
+              <Check onDark>No more climbing a ladder to hang holiday lights</Check>
+              <Check onDark>Fun colors for any occasion, 365 days a year</Check>
             </ul>
           </div>
 
           <div className="rounded-lg bg-raise p-7 ring-1 ring-on-dark/10">
-            <p className="label text-accent">What actually wins an approval</p>
+            <p className="label text-accent">Scheduled ahead of time</p>
             <ul className="mt-5 divide-y divide-on-dark/10 border-y border-on-dark/10">
               {[
-                /* WAS "Boards worry about what it looks like at noon, not at night. A curb shot of
-                   a finished install answers the real objection." Same retraction as everywhere
-                   else: no curb, no noon. The advice is unchanged and still true. */
-                ["A daylight photograph", "Boards worry about how it looks in daylight, not at night. A daytime photograph of a finished install answers the real objection."],
-                ["The words on the spec sheet", "“Architectural exterior lighting, fixed to the fascia” describes it accurately. “Permanent Christmas lights” describes it badly and gets refused."],
-                ["Naming the zones", "A board that knows the back elevation can be left dark is a board with less to object to."],
-                ["Somebody else’s approval", "If a neighbor in your association already has one, that is usually the whole conversation."],
+                ["Holidays", "Christmas, the 4th of July and Halloween take over automatically."],
+                ["Special occasions", "Birthdays and game days, set once in the app."],
+                ["App training", "After the install we come back, set up your everyday lighting and schedule your holidays."],
               ].map(([h, p]) => (
                 <li key={h} className="py-4">
                   <p className="font-display text-[0.95rem] font-bold text-on-dark">{h}</p>
@@ -530,7 +482,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                 </li>
               ))}
             </ul>
-            <div className="mt-6"><TextLink onDark href="/faq">More on covenants</TextLink></div>
+            <div className="mt-6"><TextLink onDark href="/faq">More questions and answers</TextLink></div>
           </div>
         </div>
       </section>
@@ -544,7 +496,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
         side={c.tier === "iowa" ? "right" : "left"}
         ground="muted"
         title={`How we design it in ${c.name}.`}
-        link={{ href: "/free-design-consultation", label: "What the hour actually involves" }}
+        link={{ href: "/free-design-consultation", label: "About the consultation" }}
       >
         {/* A HEADING THAT NAMES THE TOWN HAS TO BE FOLLOWED BY SOMETHING ABOUT THE TOWN.
           *
@@ -557,11 +509,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
           * per band and carries the drive. The satellite-photograph line is shared and that is fine
           * — it is an argument about method, true everywhere, and it is no longer the opening. */}
         <p>
-          {c.tier === "metro"
-            ? `${c.drive === "In town" ? "We are in town" : `${c.drive} from the shop`}, so the measure and the install usually land in the same week, and there is a good chance a crew is already working within a couple of streets of you.`
-            : c.tier === "iowa"
-            ? `${c.drive} from the shop, over the river, which in practice is closer than half the Nebraska metro. Same crews and the same materials as anywhere else we work.`
-            : `${c.drive} from the shop, so ${c.name} runs as a route day rather than a single call. That is worth knowing before the measure: it is the reason we will want to walk the whole property while we are on it rather than quote the roofline and come back in a season.`}
+          {`It starts with a free design consultation at your home in ${c.name}. It takes about an hour, and mornings, afternoons and evenings all work.`}
         </p>
         {/* THE SECOND SENTENCE READ "because warm white against red brick is a different color
           * from warm white against white siding and no catalog will tell you that." The client's
@@ -570,9 +518,8 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
           * for is simply that a sample run on your own house tells you more than a photograph of
           * somebody else's does, which is what it says now. */}
         <p>
-          Nothing is quoted off a satellite photograph. We come out, walk the property with you and
-          switch a sample run on against your own house, which tells you more in a minute than a
-          photograph of somebody else&rsquo;s elevation will. You keep the written quote either way.
+          We measure with a laser, turn on our demo kit to show you Jellyfish and Haven, and give you
+          exact pricing for both before we leave.
         </p>
       </PhotoSplit>
 
@@ -599,7 +546,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
               <ServiceLeaflet focus={c.slug} className="aspect-4/3 w-full" />
             </div>
             <div className="mt-6">
-              <TextLink href="/service-areas">Every town we drive to, with drive times</TextLink>
+              <TextLink href="/service-areas">Every town we serve</TextLink>
             </div>
           </div>
 
@@ -612,9 +559,8 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                 >
                   <span className="font-display text-[0.95rem] font-bold text-foreground">
                     {n.name}
-                    {n.state === "IA" ? ", IA" : ""}
                   </span>
-                  <span className="u shrink-0 text-xs text-accent-ink">{n.drive}</span>
+                  <span className="u shrink-0 text-xs text-accent-ink">{n.state}</span>
                 </Link>
               </li>
             ))}
@@ -641,14 +587,14 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
               <h3 className="text-lg text-on-dark">{c.name} at a glance</h3>
               <dl className="mt-4 divide-y divide-on-dark/12 border-y border-on-dark/12">
                 {[
-                  ["Drive from the shop", c.drive],
-                  ["Band", bandLabel],
+                  ["State", c.state === "IA" ? "Iowa" : "Nebraska"],
+                  ["Area", bandLabel],
                   /* These two rows used to read "Subdivisions listed 6" and "Neighboring towns 4",
                     * which is this page counting two of its own lists back at the reader. What a
                     * reader actually wants from a glance card is what the visit costs and how soon. */
-                  ["The measure", "Free, and on site"],
-                  ["Written quote", "Yours to keep"],
-                  ["Systems carried", "Haven and Jellyfish"],
+                  ["Design consultation", "Free"],
+                  ["Exact pricing", "At the visit"],
+                  ["Systems", "Jellyfish and Haven"],
                   /* ["Travel charge", "None"] removed 28 Aug 2026 - a no-surcharge guarantee is
                      a pricing term and Brytr has given us none. */
                 ].map(([k, v]) => (
@@ -659,9 +605,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                 ))}
               </dl>
               <p className="mt-5 text-sm leading-relaxed text-on-dark-muted">
-                {c.tier === "outstate"
-                  ? "Out here the honest answer to “when” is “on the next route”, and we will give you the real week."
-                  : "A service call in this band gets scheduled inside the week."}
+                Call us for service on anything we installed.
               </p>
             </div>
           </div>

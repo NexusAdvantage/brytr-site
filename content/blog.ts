@@ -1,4 +1,3 @@
-import { COMPARE_HIDDEN } from "./compares";
 export type Post = {
   slug: string; title: string; h1: string; keyword: string; category: string;
   dek: string; read: string; links: { label: string; href: string };
@@ -7,192 +6,133 @@ export type Post = {
 
 const B = (s: Post) => s;
 
+/* Oct 2026: posts rewritten as general guides. First person claims about Brytr's own
+ * practices, invented figures (break even years, LED life, brightness percentages) and
+ * claims about what customers do were removed. */
 export const posts: Post[] = [
   B({ slug: "are-permanent-christmas-lights-worth-it", title: "Are Permanent Christmas Lights Worth It?",
     h1: "Are permanent Christmas lights worth it?", keyword: "are permanent christmas lights worth it",
-    category: "Before you buy", read: "6 min",
-    dek: "The honest answer depends on three things: how long you are staying, whether anyone in the house will go up a ladder, and whether you will use it outside December.",
+    category: "Before you buy", read: "3 min",
+    dek: "It depends on how long you are staying, whether anyone wants to go up a ladder, and whether you will use the lights outside December.",
     links: { label: "Permanent Christmas lights", href: "/services/permanent-christmas-lights" },
     body: [
-      { p: "If you are moving within two years, probably not. If you are staying five or more, the arithmetic stops being close. Most of the value in a permanent system is not the Christmas lights at all, it is the 335 other nights, which is the part nobody mentions in the quote." },
-      { h: "The questions that decide it" },
-      { list: ["How long are you staying? Under two years and a rented seasonal install is cheaper.", "Who goes up the ladder? If the answer is you, in ice, price that honestly.", "Will you use it in June? Households that do get several times the value out of it."] },
-      { h: "What the numbers actually look like" },
-      { p: "A professional seasonal install in Omaha is an annual cost, every year, forever, and it goes up. A permanent system is a one-time cost with effectively no recurring spend. Somewhere between year four and year seven the lines cross, and after that the permanent system is simply cheaper while also being better." },
-      { callout: "The part that surprises people: the everyday warm white setting is what sells the system. Customers who bought it for Christmas end up leaving it on warm white most of the year." },
-      { h: "When it is genuinely not worth it" },
-      { list: ["You are listing the house inside a year.", "Your roofline is very simple and you genuinely enjoy putting lights up.", "You want it for one event, not for a decade."] },
+      { p: "Permanent lights cost more up front than hanging lights for one season. What you get is lighting that stays up, with no ladder each year, and that you can use the rest of the year too." },
+      { h: "Questions to ask yourself" },
+      { list: ["How long are you staying in the house?", "Who goes up the ladder each year?", "Will you use it outside December, for everyday lighting, holidays or gameday?"] },
+      { h: "How the cost compares" },
+      { p: "Hanging lights, or paying someone to hang them, is a cost that comes back every year. A permanent system is installed once. Getting exact pricing for your own house is the best way to compare the two." },
+      { callout: "You can set permanent lights to warm white for everyday, so they are not only for Christmas." },
+      { h: "When it may not be worth it" },
+      { list: ["You are selling the house soon.", "You enjoy putting lights up yourself.", "You only want lights for one event."] },
     ] }),
   B({ slug: "how-to-choose-a-permanent-lighting-installer", title: "How to Choose a Permanent Lighting Installer",
-    h1: "How to choose a permanent lighting installer, and the questions that make a salesperson uncomfortable.", keyword: "permanent christmas light installers near me",
-    category: "Before you buy", read: "7 min",
-    dek: "This is a building material fastened to your fascia. Ask these questions before you sign anything, and pay attention to which ones make the salesperson uncomfortable.",
+    h1: "How to choose a permanent lighting installer.", keyword: "permanent christmas light installers near me",
+    category: "Before you buy", read: "3 min",
+    dek: "Permanent lighting is fastened to your house and stays there. Here are some questions worth asking before you sign anything.",
     links: { label: "Book a free design consultation", href: "/free-design-consultation" },
     body: [
-      { p: "Anyone can buy a channel and a controller. The variable is whether the company still exists in year five, whether the person on your roof is the person who quoted it, and whether they will tell you when the cheaper option is the right one." },
-      { h: "The questions to ask" },
+      { p: "Permanent lighting is something you will live with for a long time, so it is worth asking a few questions before you pick an installer." },
+      { h: "Questions to ask" },
       { list: [
-        "Will the people who quote it be the people who fit it?",
-        "How many brands do you carry, and why that one?",
-        "Does it fasten into the fascia or through the shingles?",
-        "Show me a daytime photo of a finished install from the street.",
-            "Will you service this if I sell the house?",
-        "What happens if one section fails in year four?",
-        "What does a board actually want to see?",
-        "Can I see the written quote before install day, with no line items added later?",
+        "Which brands do you install, and why that one for my house?",
+        "How is it mounted on my roofline?",
+        "Can I see photos of finished installs, at night and during the day?",
+        "Who do I call if something stops working?",
+        "Which app will I use, and will you show me how it works?",
+        "Do I get exact pricing before the install?",
       ] },
-      { callout: "Question four is the one that separates good installers from the rest. Anyone can make a roofline look good at night. Making the hardware disappear in daylight is the actual craft." },
-      { h: "The answers that should worry you" },
-      { p: "Vagueness about who is on the roof. A single brand described as the only good option. Any reluctance to show a daytime photo. And a phone quote that cannot be put in writing until somebody has been on site." },
+      { callout: "Ask to see photos of finished installs, both at night and during the day." },
+      { h: "Good signs" },
+      { p: "Clear answers, exact pricing, and an installer who is happy to explain how the lighting is mounted and how the app works." },
     ] }),
   B({ slug: "permanent-lights-vs-hanging-christmas-lights", title: "Permanent Lights vs Hanging Christmas Lights",
     h1: "Permanent lights versus hanging them every December.", keyword: "permanent lights vs christmas lights",
-    category: "Before you buy", read: "5 min",
-    dek: "One is a fixture. The other is a chore with a recurring invoice. The real cost, the real labor and the real difference over ten years, laid out properly.",
+    category: "Before you buy", read: "2 min",
+    dek: "One goes up once. The other goes up and comes down every year. Here is how they compare.",
     links: { label: "Permanent Christmas lights", href: "/services/permanent-christmas-lights" },
     body: [
-      { p: "The comparison people run is first-year cost, which permanent loses badly. The comparison that matters is ten-year cost plus ladder time plus what happens in January." },
-      { h: "Ten year view" },
-      { list: ["Permanent: one install, one cost, no takedown, no storage.", "Hung seasonally: ten installs, ten takedowns, ten invoices, ten Januaries.", "Permanent adds everyday use. Seasonal lights sit in a box eleven months a year."] },
-      { h: "The ladder problem" },
-      { p: "Most people who switch do it after a bad experience on a ladder in December, or after paying somebody else to take that risk for the fifth year running. It is worth pricing that honestly rather than treating it as free." },
+      { p: "Hanging lights cost less in the first year. Permanent lights are installed once and stay up, so there is no ladder, takedown or storage each year." },
+      { h: "Over the years" },
+      { list: ["Permanent: installed once, no takedown, no storage.", "Hung each year: put up, taken down and stored every season.", "Permanent lights can also be used the rest of the year."] },
+      { h: "The ladder" },
+      { p: "Going up a ladder in December is part of hanging lights every year. Permanent lights take that off the list." },
     ] }),
   B({ slug: "diy-vs-professional-permanent-light-install", title: "DIY vs Professional Permanent Light Install",
     h1: "DIY kits versus a professional permanent install.", keyword: "diy permanent christmas lights",
-    category: "Before you buy", read: "6 min",
-    dek: "A consumer kit costs a fraction of a professional install. Some people should absolutely buy one. Here is how to tell whether you are one of them.",
-    /* Was the Haven vs Govee comparison, hidden 28 Oct 2026. See COMPARE_HIDDEN. */
-    links: COMPARE_HIDDEN ? { label: "What install day looks like", href: "/how-it-works" } : { label: "Haven vs Govee", href: "/compare/haven-vs-govee" },
+    category: "Before you buy", read: "3 min",
+    dek: "A DIY kit costs less than a professional install. Here is how to think about which one fits you.",
+    links: { label: "How an install works", href: "/how-it-works" },
     body: [
-      { p: "We will say the unpopular thing first: if you have a single-story ranch with easy access, you enjoy this kind of project, and you do not much care how the channel reads in daylight, a DIY kit is a perfectly reasonable purchase." },
-      { h: "Where DIY works" },
-      { list: ["Single story, easy roof access", "You genuinely enjoy the project", "Testing the idea before committing", "Budget is the only consideration"] },
-      { h: "Where it goes wrong" },
-      { list: ["Two stories, or any pitch you would not walk", "Adhesive mounting in a Nebraska freeze-thaw cycle", "Corners and transitions, which is where amateur runs always show", "Wire management, which is what makes an install look cheap in daylight"] },
-      /* THE CALLOUT ENDED "From the curb at noon is where you see whether it was done properly."
-         The noon-from-the-curb device is retracted everywhere else on the site off the client
-         punch list, so it does not get to survive in a blog callout. The point it was making -
-         that daylight is the honest test - is intact without it. */
-      { callout: "The daylight test is the one DIY installs usually fail. At night almost anything looks fine. Daylight is where you see whether it was done properly." },
+      { p: "If you have a single story home with easy roof access and you enjoy this kind of project, a DIY kit can be a reasonable choice." },
+      { h: "When DIY can work" },
+      { list: ["Single story, easy roof access", "You enjoy the project", "You want to try the idea first", "Budget is the main concern"] },
+      { h: "When a professional install makes sense" },
+      { list: ["Two stories, or a roof you would not want to walk", "Lots of corners, gables or dormers", "You want the install handled for you", "You want someone to call for service afterwards"] },
+      { callout: "Whichever way you go, think about how it will look during the day as well as at night." },
     ] }),
-  B({ slug: "do-permanent-lights-damage-soffit-or-fascia", title: "Do Permanent Lights Damage Your Soffit or Fascia?",
-    h1: "Do permanent lights damage your soffit or fascia?", keyword: "do permanent lights damage soffit",
-    category: "Install", read: "5 min",
-    dek: "Done properly, no more than hanging a gutter does. Done badly, it is a leak. The difference is entirely in where it fastens and how it is sealed.",
-    links: { label: "Soffit lighting", href: "/services/soffit-lighting" },
-    body: [
-      { p: "The channel fastens into the fascia board wherever the roof allows, and every penetration is sealed as it is made. That is the whole answer, and it is also the thing that separates a good install from a callback." },
-      { h: "What a correct install looks like" },
-      { list: ["Fasteners into fascia, on a spacing that suits the board", "Every penetration sealed at the time it is made, not afterwards", "Terminations capped, not taped"] },
-      { h: "What causes damage" },
-      /* WAS "Fastening through the roof covering, over-driving fasteners...". Naming the
-         penetration itself as the fault contradicts the correction the client made on the punch
-         list - some roofs require one - so the fault named here is now the unsealed penetration,
-         which is the thing that actually leaks. */
-      { p: "An unsealed penetration, over-driving fasteners into soft or rotten fascia, and skipping sealant on a cold day because it is slow. All three are shortcuts, and all three are why the crew who measures a house is the crew who fits it." },
-      { callout: "If your fascia is already soft or rotten, that gets repaired before anything is mounted to it. Mounting a permanent fixture to failing timber is not an install, it is a deferred problem." },
-    ] }),
-  /* THE WARRANTY ARTICLE WAS HERE and is gone, 28 Aug 2026. "Permanent lighting warranties,
-   * compared brand by brand" - a 6-minute read that told homeowners what to look for in a warranty
-   * document, ranked competitors on who administers theirs, and closed with "Manufacturer coverage
-   * on the hardware plus our own workmanship coverage on the install, both in writing before you
-   * sign."
-   *
-   * Brytr has given us no warranty terms, so the article was advising people on a document we have
-   * never seen and promising coverage nobody authorized. The client's instruction on warranty is to
-   * remove it entirely, and an article ABOUT warranties cannot survive that instruction by being
-   * reworded. It is in git: `git show f7956e9:content/blog.ts`.
-   *
-   * The route dies with the entry - /blog/[slug] is generated from this array - so
-   * /blog/permanent-lighting-warranty-comparison now 404s. It was in the sitemap only via
-   * posts.map(), so that clears itself too. */
-  B({ slug: "permanent-lights-on-stucco-brick-cedar", title: "Permanent Lights on Stucco, Brick and Cedar Homes",
-    h1: "Permanent lights on stucco, brick and cedar homes.", keyword: "permanent lights on stucco",
-    category: "Install", read: "6 min",
-    dek: "Cladding rarely matters, because the channel almost never fastens to it. What matters is the fascia behind the gutter and the depth of the overhang.",
+  B({ slug: "do-permanent-lights-damage-your-soffit", title: "Do Permanent Lights Damage Your Soffit?",
+    h1: "Do permanent lights damage your soffit?", keyword: "do permanent lights damage soffit",
+    category: "Install", read: "2 min",
+    dek: "Permanent lighting is fastened to your house, so it is a fair question. Here is how we mount it.",
     links: { label: "Permanent roofline lighting", href: "/services/permanent-roofline-lighting" },
     body: [
-      { p: "The most common worry we hear is about the wall material. It is usually the wrong worry. The channel mounts to the fascia at the roof edge, so brick, stucco, cedar, vinyl and fiber cement all end up in roughly the same place." },
-      { h: "Where cladding does matter" },
-      { list: ["Stucco: any wall-mounted fixture needs proper anchors and sealing, and we avoid wall mounting where we can", "Brick: drilling into mortar joints rather than brick faces, and only where a wall fixture is genuinely required", "Cedar: fastener choice matters to avoid staining, and pre-drilling avoids splitting", "Vinyl: expansion and contraction is real, so nothing is fastened rigidly through a panel"] },
-      { h: "What actually decides the install" },
-      { p: "The condition of the fascia, the depth of the overhang, and whether there is a gutter in the way. We check all three at the on-site measure, which is one of several reasons we do not quote over the phone." },
+      { p: "Brytr mounts permanent roofline lighting to your soffit, up under the roof edge." },
+      { h: "What to ask any installer" },
+      { list: ["Where it mounts on your house", "Which brands they install and why", "What the warranty covers and who you call"] },
+      { h: "Our answer" },
+      { p: "We mount to your soffit, and every system we install is backed by our lifetime product warranty. Full warranty details come with your quote." },
     ] }),
-  B({ slug: "omaha-hoa-rules-permanent-outdoor-lighting", title: "Omaha HOA Rules for Permanent Outdoor Lighting",
-    h1: "Omaha HOA rules for permanent outdoor lighting.", keyword: "omaha hoa outdoor lighting rules",
-    category: "Local", read: "7 min",
-    dek: "Most Omaha associations allow it. Several of the newer west Omaha developments have specific language. Here is how the approval actually works and who does the paperwork.",
-    links: { label: "Permanent lighting in Omaha", href: "/service-areas/omaha" },
-    body: [
-      { p: "Covenant language on permanent exterior lighting is newer than the product, which means a lot of associations are working out their position as applications arrive. That is good news: a well-presented submission usually gets approved." },
-      { h: "What boards actually object to" },
-      /* A FOURTH ITEM WAS HERE: "Non-matching channel finishes, which color matching resolves."
-       * Deleted 29 Aug 2026. It was not only a color-match claim, it told a homeowner that color
-       * matching is the answer to a board's objection - which would send somebody into a meeting
-       * promising something we do not do. */
-      { list: ["Visible hardware in daylight, which is a design question and answerable with a daytime photo", "Color changing displays running year round, which a scheduling commitment resolves", "Brightness spilling onto neighboring lots, which zoning and aiming resolves"] },
-      { h: "What a submission usually needs" },
-      /* WAS: "We pull your covenant and read the lighting clause, put together a spec sheet and a
-       * rendering of your elevation in the format your board wants, and submit it. Nothing is
-       * mounted before the approval comes back. Typically two weeks."
-       *
-       * Four claims: that Brytr pulls the covenant, prepares the submission, files it, and that
-       * approvals take two weeks. Removed 28 Aug 2026 - the client has not told us they administer
-       * HOA submissions, and the two-week figure came from nowhere. The article keeps its value
-       * because the useful half was always the list of what boards object to, which is above and
-       * is unchanged. */
-      { p: "Most boards want the same three things: the lighting clause in your own covenant, a spec sheet for the hardware, and a drawing or photograph showing what it looks like on your elevation. Read the clause before you plan anything." },
-      { callout: "Worth knowing: an approval is much easier to get with a daylight photograph of a finished install than with a night photograph. Boards are worried about how it looks in daylight, not at midnight." },
-    ] }),
+  /* THE WARRANTY ARTICLE WAS HERE and is gone, 28 Aug 2026. It is in git:
+   * `git show f7956e9:content/blog.ts`. Do not restore it without warranty terms from Brytr. */
+  /* "permanent-lights-on-stucco-brick-cedar" removed 29 Oct 2026: Zac does not want install
+   * details by wall material on the site. Redirects to /blog. */
   B({ slug: "husker-gameday-lighting-ideas", title: "Husker Gameday Lighting Ideas",
     h1: "Husker gameday lighting ideas for your roofline.", keyword: "husker gameday lighting",
-    category: "Local", read: "4 min",
-    dek: "Scarlet is a harder color to get right than people expect. Here is what works on a roofline and what to avoid.",
+    category: "Local", read: "2 min",
+    dek: "A few ideas for setting up Husker colors on your roofline.",
     links: { label: "Gameday lighting", href: "/services/gameday-lighting" },
     body: [
-      { p: "Gameday is the single most-used custom scene our Omaha customers build, ahead of every holiday except Christmas. It is also the one people most often get wrong on a DIY kit, because saturated red at full brightness reads as an alarm rather than as team colors." },
-      { h: "What works" },
-      { list: ["Scarlet at 70 to 80 percent rather than full output", "Alternating scarlet and warm white rather than solid red", "Front elevation only, with the sides left on warm white", "A slow chase for the hour before kickoff, then steady during the game"] },
-      { h: "What to avoid" },
-      { p: "Full-brightness solid red across every elevation, and fast flashing patterns. Both read as an emergency vehicle from down the street, and both are the reason some HOAs got nervous about this category in the first place." },
+      { p: "Gameday scenes are easy to set up on a permanent system. Here are a few ideas for scarlet and cream." },
+      { h: "Ideas to try" },
+      { list: ["Scarlet turned down a bit from full brightness", "Scarlet alternating with warm white", "Color on the front of the house, with the sides left on warm white", "Scheduled to come on before kickoff"] },
+      { h: "What to think about" },
+      { p: "Solid red at full brightness everywhere, or fast flashing patterns, can be a lot for the neighbors. Try a few settings and see what you like." },
     ] }),
   B({ slug: "how-long-do-permanent-led-lights-last", title: "How Long Do Permanent LED Lights Actually Last?",
     h1: "How long do permanent LED lights actually last?", keyword: "how long do permanent led lights last",
-    category: "Product", read: "5 min",
-    dek: "The LED is rarely what fails. Controllers, power supplies and terminations are, and those have much shorter realistic lives than the headline number.",
-    links: { label: "Haven Lighting Evolution", href: "/lighting-systems/haven-evolution" },
+    category: "Product", read: "2 min",
+    dek: "LEDs are long lasting, but they are only one part of a system. Here is what to think about.",
+    links: { label: "The systems we install", href: "/lighting-systems" },
     body: [
-      { p: "A 25 year rating on an LED is a rating on the diode under lab conditions. It is a real number and it is also not the number that decides when you next see us." },
-      { h: "What actually fails, in order" },
-      { list: ["Terminations and connections, usually from water ingress at a badly sealed end cap", "Power supplies, which are the shortest-lived component in almost every system", "Controllers, which are electronics living outdoors in Nebraska", "The LEDs themselves, which mostly dim slowly rather than failing outright"] },
-      { callout: "This ordering is the argument for a professional install. Three of the four failure modes are workmanship, not product." },
-      { h: "What to expect realistically" },
-      { p: "Expect the diodes to still be working in fifteen years at reduced output. Expect to replace a power supply at some point. Expect the sealing quality of the original install to be the single biggest factor in how often anything goes wrong." },
+      { p: "LED life ratings come from the manufacturer. The LEDs are one part of a system that also includes power supplies, a controller and connections." },
+      { h: "The parts of a system" },
+      { list: ["The LEDs", "Power supplies", "The controller", "Connections and the ends of the track"] },
+      { callout: "Ask your installer what happens if a part stops working, and who to call." },
+      { h: "What to expect" },
+      { p: "Like any outdoor electronics, parts can need service over time. Call us for service on anything we installed." },
     ] }),
   B({ slug: "installing-permanent-lights-in-nebraska-winter", title: "Can Permanent Lights Go On in Winter?",
     h1: "Can permanent lights be installed in a Nebraska winter?", keyword: "winter permanent light installation",
-    category: "Install", read: "5 min",
-    dek: "Yes, and we do it all winter. What changes is method, not whether the work happens. Here is what cold actually affects.",
-    links: { label: "How install day works", href: "/how-it-works" },
+    category: "Install", read: "2 min",
+    dek: "Often, yes. It depends on the weather on the day.",
+    links: { label: "How an install works", href: "/how-it-works" },
     body: [
-      { p: "The honest constraint is not temperature, it is sealant and adhesive cure behavior, plus safe footing on the roof. Both are managed by changing method rather than by refusing the work." },
-      { h: "What cold actually changes" },
-      { list: ["Sealant cure times lengthen, so sequencing changes", "Some adhesives are out of spec below a threshold and get substituted", "Channel contracts, so expansion allowance at terminations matters more", "Access and footing decide whether a given day is safe at all"] },
-      { h: "When we reschedule" },
-      { p: "Ice on the roof, or conditions that would mean rushing a seal to get off the ladder. We would rather move you a week than hand you a leak in March. That is a judgment the crew makes on the day, not a policy." },
+      { p: "Winter installs depend on the weather. Plenty of days work fine, and some do not." },
+      { h: "Scheduling" },
+      { p: "If the weather is not right on the day, an install may need to move. We will talk through timing with you when we schedule." },
     ] }),
   B({ slug: "roofline-lighting-design-ideas", title: "Roofline Lighting Design Ideas for Omaha Homes",
     h1: "Roofline lighting design ideas for Omaha homes.", keyword: "roofline lighting ideas",
-    category: "Before you buy", read: "6 min",
-    dek: "Most people over-light the first time. Here is what restraint looks like on the common Omaha roof shapes, and where the money is best spent.",
+    category: "Before you buy", read: "3 min",
+    dek: "A few ideas for lighting common roof shapes.",
     links: { label: "Permanent roofline lighting", href: "/services/permanent-roofline-lighting" },
     body: [
-      { p: "The single most common design mistake is running channel on every available eave and turning it all on. A house lit everywhere reads flat. The point of zoning is that you can light the shape of the building rather than its outline." },
-      { h: "What works on common Omaha rooflines" },
-      { list: ["Two story with a front gable: light the main eave and the gable, leave the sides dark", "Ranch: light the full front run, then spend the rest of the budget on landscape uplighting instead", "Multiple dormers: light the main eave only, or the dormers only, never both at once", "Turret or bay: treat it as its own zone, because it is the feature"] },
-      { h: "Where the money is best spent" },
-      { p: "In a lot of cases the second-best pound is not more roofline, it is two landscape uplights on a mature tree. Roofline lighting draws the outline of the house. Uplighting gives it depth. Together they read as designed rather than decorated." },
-      { callout: "Ask for the design to be done on your own property rather than off a satellite photograph. A design drawn from an aerial view of a roof is guesswork." },
+      { p: "You do not have to light every edge of the roof. Lighting the shape of the house, and leaving some parts dark, can look better than lighting everything." },
+      { h: "Ideas for common rooflines" },
+      { list: ["Two story with a front gable: light the main eave and the gable", "Ranch: light the front, and think about landscape lighting too", "Multiple dormers: try the main eave or the dormers on their own", "Turret or bay: give it its own zone"] },
+      { h: "Adding landscape lighting" },
+      { p: "Roofline lighting outlines the house. Uplighting a tree or two adds depth. Together they can make the whole property look lit." },
+      { callout: "Have the design done at your house. A free design consultation is an easy way to see what works for your home." },
     ] }),
 ];
 

@@ -7,7 +7,7 @@ import { Jsonld, breadcrumb } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "How Brytr Co collects, uses and stores the information you send through this site, who it is shared with, how long it is kept, and how to ask us to delete it.",
+  description: "How Brytr Co collects and uses the information you send through this site, and how to ask us to delete it.",
   ...pageUrl("/privacy-policy"),
   robots: { index: false, follow: true },
 };
@@ -22,7 +22,7 @@ export default function Page() {
       <PageHero
         variant="type"
         h1="Privacy policy"
-        lede="What we collect when you send us a form, what we do with it, and what we will not do with it."
+        lede="What we collect when you send us a form, and how we use it."
         trail={trail}
       />
       <section className="section bg-card">
@@ -32,20 +32,18 @@ export default function Page() {
           <p className="mt-4 text-[1.05rem] leading-relaxed text-muted-foreground">When you submit a form on this site we collect the details you type into it: your name, phone number, email address, property address, the city you selected, what you are looking to light, and anything you write in the notes field.</p>
           <p className="mt-4 text-[1.05rem] leading-relaxed text-muted-foreground">We also receive standard technical information that any website receives, such as your approximate location, browser and the pages you viewed.</p>
           <h2 className="mt-9 text-[1.5rem] text-foreground first:mt-0">Why we collect it</h2>
-          <p className="mt-4 text-[1.05rem] leading-relaxed text-muted-foreground">To reply to your enquiry, to book and prepare for an on-site consultation, and to produce a written quote. That is the whole purpose.</p>
-          <p className="mt-4 text-[1.05rem] leading-relaxed text-muted-foreground">We do not sell your information, we do not share it with other contractors, and we do not add you to a marketing list you did not ask for.</p>
+          <p className="mt-4 text-[1.05rem] leading-relaxed text-muted-foreground">We use your details to respond to you, to set up a design consultation, and to give you a quote.</p>
           <h2 className="mt-9 text-[1.5rem] text-foreground first:mt-0">How long we keep it</h2>
-          <p className="mt-4 text-[1.05rem] leading-relaxed text-muted-foreground">Enquiries that do not become jobs are kept while there is a reasonable prospect of the conversation continuing, and then deleted. Records relating to actual installs are kept for as long as we may need them to service the system.</p>
-          <h2 className="mt-9 text-[1.5rem] text-foreground first:mt-0">Third parties</h2>
-          <p className="mt-4 text-[1.05rem] leading-relaxed text-muted-foreground">The service-area map on this site loads basemap tiles from CARTO, built on OpenStreetMap data, so CARTO will see your IP address when a page with the map on it loads. Web fonts are served from this site rather than from a third party. If Brytr later adds analytics, a booking tool or a finance application, it will be named here before it goes live.</p>
+          <p className="mt-4 text-[1.05rem] leading-relaxed text-muted-foreground">We keep your details for as long as we need them to respond to you and to provide and service any work you ask for.</p>
+          <h2 className="mt-9 text-[1.5rem] text-foreground first:mt-0">Service providers</h2>
+          <p className="mt-4 text-[1.05rem] leading-relaxed text-muted-foreground">Details you submit are used to respond to you. They are handled by the service providers that operate this site&rsquo;s forms, scheduling and maps.</p>
           <h2 className="mt-9 text-[1.5rem] text-foreground first:mt-0">Your choices</h2>
-          <p className="mt-4 text-[1.05rem] leading-relaxed text-muted-foreground">You can ask us what we hold about you, ask us to correct it, or ask us to delete it. Call the number below and we will handle it directly rather than routing you through a form.</p>
+          <p className="mt-4 text-[1.05rem] leading-relaxed text-muted-foreground">You can ask us what we hold about you, ask us to correct it, or ask us to delete it. Call the number below.</p>
           <div className="mt-10 rounded-lg bg-muted p-6">
             <p className="label text-muted-foreground">Questions</p>
             <p className="mt-2 text-[0.95rem] text-muted-foreground">
               Anything on this page you want explained, call{" "}
-              <a href={site.phoneHref} className="u text-foreground underline decoration-accent decoration-2 underline-offset-4">{site.phone}</a>{" "}
-              and ask for Zac or Sam. We would rather answer it directly.
+              <a href={site.phoneHref} className="u text-foreground underline decoration-accent decoration-2 underline-offset-4">{site.phone}</a>.
             </p>
           </div>
           </div>

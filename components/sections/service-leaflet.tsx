@@ -34,7 +34,7 @@ import { site } from "@/content/site";
  * That means the box can resize after Leaflet has measured it, hence the ResizeObserver.
  */
 
-const SHOP: [number, number] = [41.2565, -96.1951]; // west Omaha, where the crews stage
+const SHOP: [number, number] = [41.2565, -96.1951]; // the shop, 13436 C St
 
 /* THE BASEMAP MOVED OFF CARTO, AND THE WAY IT BROKE IS WORTH RECORDING.
  *
@@ -224,7 +224,7 @@ export function ServiceLeaflet({
           keyboard: false,
         })
           .addTo(map)
-          .bindTooltip(`${c.name} · ${c.drive}`, { direction: "top", opacity: 1 })
+          .bindTooltip(c.name, { direction: "top", opacity: 1 })
           .on("click", () => {
             window.location.href = `/service-areas/${c.slug}`;
           });
@@ -240,7 +240,7 @@ export function ServiceLeaflet({
         }),
       })
         .addTo(map)
-        .bindTooltip("Brytr crews stage here", { direction: "top", opacity: 1 });
+        .bindTooltip("Brytr Co, 13436 C St", { direction: "top", opacity: 1 });
 
       /* Fit the towns AND the dashed ring. Fitting the towns alone put Omaha hard on the
        * right edge and sliced the ring in half, because the ring reaches ~30 miles past
@@ -302,12 +302,10 @@ export function ServiceLeaflet({
           The map did not load
         </p>
         <p className="mt-4 max-w-[46ch] text-[1.02rem] leading-relaxed text-on-dark-muted">
-          Something between you and the map service is blocking it. Nothing is missing: every town
-          we drive to is written out beside this panel, with the drive from our shop against each
-          one, and each is a page of its own.
+          Every town we serve is listed on this page, and each has a page of its own.
         </p>
         <p className="mt-5 text-sm text-on-dark-muted">
-          If you want the drive time to an address rather than a town, call and ask.{" "}
+          Not sure if we serve your address? Call us at{" "}
           <a href={site.phoneHref} className="u text-on-dark underline decoration-accent decoration-2 underline-offset-4">{site.phone}</a>.
         </p>
       </div>
@@ -326,15 +324,7 @@ export function ServiceLeaflet({
         <ul className="flex flex-wrap gap-x-6 gap-y-2 rounded-md bg-primary px-4 py-3 ring-1 ring-on-dark/10">
           <li className="flex items-center gap-2 text-sm text-on-dark-muted">
             <span className="size-2.5 rounded-full bg-accent shadow-[0_0_10px_2px_var(--brand-accent)]" aria-hidden />
-            Metro, same week
-          </li>
-          <li className="flex items-center gap-2 text-sm text-on-dark-muted">
-            <span className="size-2.5 rounded-full bg-on-dark/70" aria-hidden />
-            Outstate, by route day
-          </li>
-          <li className="flex items-center gap-2 text-sm text-on-dark-muted">
-            <span className="h-0 w-6 border-t border-dashed border-accent" aria-hidden />
-            Roughly a half hour from the shop
+            Towns we serve
           </li>
         </ul>
       ) : null}

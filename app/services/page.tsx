@@ -32,7 +32,7 @@ import { valueProps } from "@/content/value-props";
 export const metadata: Metadata = {
   title: "Outdoor Lighting Company in Omaha, NE",
   description:
-    "Permanent outdoor lighting for Omaha homes: roofline, Christmas, soffit, landscape, hardscape, pergola and gameday. One channel, one app, installed once.",
+    "Permanent roofline and landscape lighting for Omaha homes, plus Christmas, holiday and gameday scenes. Installed once and controlled from an app.",
   ...pageUrl("/services"),
 };
 const trail = [{ name: "Home", href: "/" }, { name: "Services", href: "/services" }];
@@ -53,23 +53,23 @@ const branches: {
   {
     said: "“I want the house outlined.”",
     start: "permanent-roofline-lighting",
-    why: "The eave line is the run you will use every night of the year, and it is the one that reads from the street.",
-    then: ["soffit-lighting", "holiday-seasonal-scenes", "gameday-lighting"],
-    wiring: "Soffit runs and saved scenes hang off the roofline controller, so the second run is a wiring afternoon rather than a second system.",
+    why: "Roofline lighting runs along the edge of the roof and can be set to any scene.",
+    then: ["permanent-christmas-lights", "holiday-seasonal-scenes", "gameday-lighting"],
+    wiring: "You can add more later.",
   },
   {
     said: "“The yard looks flat after dark.”",
     start: "landscape-lighting",
-    why: "Uplighting mature trees changes the elevation more than trim lighting does, and it works in July as well as December.",
-    then: ["hardscape-lighting", "permanent-outdoor-lighting"],
-    wiring: "Bed, tree and wall fixtures land on one transformer, so the yard can grow a zone at a time without trenching twice.",
+    why: "Landscape lighting for trees, beds and paths works all year.",
+    then: ["permanent-roofline-lighting", "permanent-outdoor-lighting"],
+    wiring: "You can add more later.",
   },
   {
-    said: "“We live out back in the summer.”",
-    start: "patio-pergola-bistro-lighting",
-    why: "An overhead run on a pergola or patio cover earns its money more months of the year than a roofline does.",
-    then: ["hardscape-lighting", "landscape-lighting"],
-    wiring: "A pergola run ties back to the house controller, so the patio and the roofline answer to the same tap in the app.",
+    said: "“We're done hanging Christmas lights.”",
+    start: "permanent-christmas-lights",
+    why: "Installed once. Christmas colors in December and white every other night of the year.",
+    then: ["holiday-seasonal-scenes", "gameday-lighting"],
+    wiring: "You can add more later.",
   },
 ];
 
@@ -78,22 +78,22 @@ const branches: {
 const groups: { heading: string; note: string; slugs: string[] }[] = [
   {
     heading: "On the house",
-    note: "Channel routed into the building itself",
-    slugs: ["permanent-outdoor-lighting", "permanent-roofline-lighting", "soffit-lighting"],
+    note: "Mounted to your soffit",
+    slugs: ["permanent-outdoor-lighting", "permanent-roofline-lighting"],
   },
   {
     heading: "On the ground",
-    note: "Beds, trees, walls and walks",
-    slugs: ["landscape-lighting", "hardscape-lighting"],
+    note: "Paths, trees and beds",
+    slugs: ["landscape-lighting"],
   },
   {
-    heading: "On structures",
-    note: "Anything that is not the house or the ground",
-    slugs: ["patio-pergola-bistro-lighting", "commercial-outdoor-lighting"],
+    heading: "For businesses",
+    note: "Commercial work",
+    slugs: ["commercial-outdoor-lighting"],
   },
   {
     heading: "What you do with it after",
-    note: "Same hardware, different night",
+    note: "Scenes from the app",
     slugs: ["permanent-christmas-lights", "holiday-seasonal-scenes", "gameday-lighting"],
   },
 ];
@@ -109,8 +109,8 @@ export default function ServicesHub() {
         photo="/img/whole-home.jpg"
         photoAlt="A two-story Omaha home with its roofline, gables and front trees lit at night"
         objectPosition="50% 62%"
-        h1="Everything worth lighting on an Omaha property."
-        lede="Roofline, soffit, beds, trees, walls, pergolas and storefronts: all of it on one channel, one controller and one app, so what you install first does not limit what you add later."
+        h1="What we install."
+        lede="Permanent roofline and landscape lighting, controlled from an app. Designed for every day. Ready for any day."
         trail={trail}
       />
 
@@ -125,7 +125,7 @@ export default function ServicesHub() {
       <section className="section bg-card">
         <div className="shell">
           <SectionHead
-            title="What people say first, and what it changes."
+            title="Where to start."
           />
 
           <ol className="mt-10 grid gap-5 lg:grid-cols-3">
@@ -169,7 +169,7 @@ export default function ServicesHub() {
                     <li className="run-stage">
                       <span className="run-node" style={{ "--out": 0.42 } as React.CSSProperties} aria-hidden />
                       <div className="min-w-0 flex-1">
-                        <p className="label text-on-dark-muted">What people add next</p>
+                        <p className="label text-on-dark-muted">You could also add</p>
                         <ul className="mt-3 space-y-2.5">
                           {b.then.map((sl) => {
                             const s = bySlug(sl);
@@ -265,13 +265,13 @@ export default function ServicesHub() {
       <PhotoStrip
         /* Not "Four of the ten" — that counted the rack above AND the row below, in one
           * line. The reader can see how many pictures there are. */
-        title="What changes between houses, and what does not."
-        lede="Everything above attaches to the same channel and the same app, which is why most people end up adding a second and a third thing a season later rather than buying it all at once."
+        title="A few examples."
+        lede="You can start with one and add more later."
         shots={[
-          { photo: "homeBrickGablesGold", caption: "Roofline. The gables, the eaves and the soffit, on the everyday warm white." },
-          { photo: "landscapeTreeBeds", caption: "Landscape. Beds, trunks and paths, coming up with the house rather than on their own timer." },
-          { photo: "patioTimberStone", caption: "Overhead and hardscape. A run along a beam and step lights on the stairs." },
-          { photo: "gamedayRedBlueGables", caption: "And the part you actually touch: a saved scene, on for four hours, off by itself." },
+          { photo: "homeBrickGablesGold", caption: "Roofline. Gables and eaves in warm white." },
+          { photo: "landscapeTreeBeds", caption: "Landscape. Beds, trees and paths." },
+          { photo: "homeWideRanch", caption: "Roofline. One long run in white." },
+          { photo: "gamedayRedBlueGables", caption: "A saved scene in team colors." },
         ]}
         cols={4}
         ground="raise"
@@ -284,7 +284,7 @@ export default function ServicesHub() {
         <div className="shell">
           <SectionHead
             onDark
-            title="The same channel goes on a storefront. The job around it is different."
+            title="Homes and businesses."
           />
           <div className="mt-10 grid gap-5 lg:grid-cols-2">
             {[
@@ -294,15 +294,15 @@ export default function ServicesHub() {
                    client has said so plainly - so the sentence now ends on what the crew
                    actually does while it is up there. */
                 h: "On a house",
-                p: "We work off ladders, seal every fixing as it is driven, and walk every scene with you before we leave.",
-                l: ["Zoned per elevation so the back can stay off", "Scenes saved with you standing there"],
+                p: "Permanent lighting for your home, designed with you and controlled from an app.",
+                l: ["Different parts of the house can be set separately", "Scenes and schedules from your phone"],
                 href: "/services/permanent-outdoor-lighting",
                 cta: "See a whole-home install",
               },
               {
                 h: "On a building",
-                p: "Parapets, canopies and multifamily. Longer runs, scheduled around trading hours, and usually a property manager rather than an owner in the conversation.",
-                l: ["Runs measured off elevations, not guesswork", "Installed outside business hours where needed", "One contact for a portfolio of addresses"],
+                p: "Permanent lighting for businesses. Ask us about your building.",
+                l: ["Your colors saved as scenes", "Schedules set to your hours"],
                 href: "/services/commercial-outdoor-lighting",
                 cta: "See commercial work",
               },
@@ -328,7 +328,7 @@ export default function ServicesHub() {
       <section className="section bg-card">
         <div className="shell">
           <SectionHead
-            title="All of these, everywhere we drive."
+            title="All of these, everywhere we serve."
           />
           <div className="mt-9"><CityTiles /></div>
         </div>

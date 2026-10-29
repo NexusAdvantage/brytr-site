@@ -70,20 +70,20 @@ export const cityPhotos: Record<string, CityPhoto> = {
   },
   springfield: {
     photo: "/img/scene-warm-white.jpg",
-    photoAlt: "An Omaha home, pergola and pool deck on warm white at dusk",
+    photoAlt: "An Omaha home on warm white at dusk",
     objectPosition: "50% 55%",
   },
   blair: {
     photo: "/img/hardscape.jpg",
     photoAlt:
-      "Hardscape lighting washing a limestone retaining wall and pool deck at an Omaha home",
+      "A pool deck and lit roofline at an Omaha home",
     objectPosition: "50% 50%",
   },
 
   /* over the river */
   "council-bluffs": {
     photo: "/img/g-pool-blue.jpg",
-    photoAlt: "An Omaha home, pergola and pool deck lit blue at dusk",
+    photoAlt: "An Omaha home lit blue at dusk",
     objectPosition: "50% 48%",
   },
 
@@ -99,10 +99,9 @@ export const cityPhotos: Record<string, CityPhoto> = {
     objectPosition: "50% 50%",
   },
   ashland: {
-    photo: "/img/g-pool-pergola.jpg",
-    photoAlt:
-      "A lit pergola over a pool patio at an Omaha home, the roofline and pergola fascia set to green",
-    objectPosition: "50% 45%",
+    photo: "/img/g-ranch-blue.jpg",
+    photoAlt: "An Omaha ranch home in blue with a lit rock garden",
+    objectPosition: "50% 48%",
   },
   norfolk: {
     photo: "/img/scene-fourth.jpg",

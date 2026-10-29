@@ -23,6 +23,10 @@
  *
  * Everything here is either a fact about the hardware we install or a judgment we are
  * making as the installer. No invented prices, warranties or timescales.
+ *
+ * Oct 2026: rewritten to general copy. No specs, measurements, install methods or claims
+ * about what customers do that Brytr has not confirmed. Unrendered `shots` arrays were
+ * removed with it.
  */
 
 import type { Shot } from "@/content/photo-sets";
@@ -69,335 +73,169 @@ export const serviceDetail: Record<string, ServiceDetail> = {
   "permanent-outdoor-lighting": {
     pair: {
       a: "seqEveryday", b: "seqGameday",
-      aLabel: "The everyday setting: warm white, roofline, eaves and the band over the garage.",
-      bLabel: "Ninety seconds later. Same fixtures, same evening, one saved scene switched on.",
+      aLabel: "Warm white on the roofline, eaves and garage.",
+      bLabel: "The same house with a gameday scene switched on.",
       title: "The same house, with the setting changed.",
-      lede: "Ninety seconds apart, from a drone that never moved. Same roof, same sky; the only thing that changed is what the controller was told to do.",
+      lede: "Same lights, two different scenes, picked from the app.",
     },
-    /* NOTHING RENDERS `shots` ANY MORE, on any service. The "What it looks like once the crew has
-     * gone" strip was removed from app/services/[slug]/page.tsx on instruction, and it was the only
-     * consumer. Every `shots` array in this file, and the `scene` labels on the set below, are
-     * parked rather than deleted.
-     *
-     * Parked on purpose. These are captions written against one specific frame, which is the
-     * expensive part and the part that cannot be regenerated from the image manifest: "close
-     * enough to count the points and the gaps between them" is about that gable, not about gables.
-     * Deleting them to tidy an unused key would throw away the writing and keep the photographs.
-     * If the section is not coming back, this is a clean block to remove in one commit.
-     *
-     * `photo-sets.ts` is a different thing and is still live: it is the shared pool the fourteen
-     * remaining PhotoStrips draw from. */
-    /* NAMED SCENES, because these three frames are one house from one drone position and the
-     * captions all began "The same...". Without the variable titled, the set reads as a
-     * duplicated photograph. `scene` is what turns a strip into a numbered sequence: see the note
-     * in components/sections/photo-parts.tsx. */
-    shots: [
-      { photo: "seqSecurity", scene: "Dimmed warm white",
-        caption: "Low output, the setting most people leave it on for a Tuesday in March." },
-      { photo: "seqWarmChristmas", scene: "Warm white, full output",
-        caption: "The same run turned up. For a lot of houses this is the entire Christmas scene." },
-      { photo: "seqRedGreen", scene: "Red and green",
-        caption: "Color on the same channel, on the same night, ninety seconds later." },
-    ],
     secondPara:
-      "It is installed once and it stays on the building. Nothing goes up in November and nothing comes down in January.",
+      "It turns on white every night at sunset for security, accent lighting and curb appeal. For holidays and special occasions a scheduled scene takes over on its own.",
     figure: "zones",
     compare: true,
     facts: [
-      ["Runs on", "One channel, one controller"],
-      ["Zones", "Per elevation, unlimited"],
-      ["Everyday setting", "Warm white, dimmable"],
-      ["Install time", "Confirmed in the written quote"],
-      ["Added to later", "Without replacing anything"],
+      ["Systems", "Jellyfish or Haven"],
+      ["Color", "Full color and white"],
+      ["Control", "App, with scenes and schedules"],
+      ["Stays up", "Year round"],
+      ["Add to it", "Later, if you want"],
     ],
     included: [
-      ["The walk-around", "We design on your property, to what you actually want lit rather than to a package."],
-      /* WAS "Extruded aluminum color matched to the fascia". Brytr does not colour match the
-         channel - client's punch list, 29 Aug 2026. */
-      ["Channel and diffuser", "Extruded aluminum track screwed to the fascia, frosted diffuser facing down."],
-      ["Controller and app", "Sited, commissioned, and set up on your phone with your first scenes built while we are there."],
-      ["Zoning", "Front, sides, back and landscape switched separately, so the back can stay dark."],
-      /* WAS "Both states checked / The sightline from the curb, then every scene walked through
-         with you." The daylight curb check is not true either, so what is left is the scene walk,
-         which is. */
-      ["The scene walk", "Every scene switched through with you before anybody leaves, so you have used the app before you own it."],
+      ["Design consultation", "About an hour at your house. We measure, show you both products and price both options."],
+      ["The system", "Jellyfish or Haven, chosen with you at the consultation."],
+      ["The install", "Done by one of our install crews."],
+      ["App training", "A visit after the install to set up your everyday lighting and schedule your holidays."],
     ],
-    alsoSee: ["permanent-roofline-lighting", "landscape-lighting", "patio-pergola-bistro-lighting", "holiday-seasonal-scenes"],
-    /* Was hero-warm-white.jpg captioned "warm white, dimmed" — see the note on heroWarm in
-     * content/images.ts. scene-warm-white.jpg is the one frame that actually shows it. */
+    alsoSee: ["permanent-roofline-lighting", "landscape-lighting", "permanent-christmas-lights", "holiday-seasonal-scenes"],
     proofShot: "/img/scene-warm-white.jpg",
-    proofCaption: "The everyday setting on a west Omaha install: house, pergola and hardscape all on it, scheduled to dusk.",
+    proofCaption: "Warm white on an Omaha home at dusk.",
   },
 
   "permanent-christmas-lights": {
-    shots: [
-      { photo: "christmasRedGreenGables", caption: "Red and green alternating along every gable and eave. Nothing was hung to make this." },
-      { photo: "christmasWreathsNets", caption: "The permanent run alongside the wreaths and nets people still want out. It is not either-or." },
-      { photo: "christmasEntryShrubs", caption: "Snow on the beds, and no ladder went up in December to get here." },
-      { photo: "christmasBrickGable", caption: "Close on a brick gable, close enough to count the points and the gaps between them." },
-    ],
     secondPara:
-      "The hardware that runs red and green in December is the same hardware that runs warm white in March. You are not buying a Christmas product; you are buying a roofline that can be set to Christmas from your phone and then set back.",
+      "The lights that run red and green in December can run warm white the rest of the year. You set Christmas from your phone and then set it back.",
     figure: "calendar",
     compare: true,
     facts: [
       ["Hung each year", "Never again"],
-      ["Christmas colors", "Red and green, alternating pixels"],
-      ["Scheduling", "By date range, unattended"],
+      ["Christmas colors", "Red and green, or any you like"],
+      ["Scheduling", "From the app"],
       ["January takedown", "Nothing to take down"],
       ["Rest of the year", "Warm white, or any scene"],
     ],
     included: [
-      ["Alternating pixel scenes", "Every other diode red, the rest green: a pattern a strand of bulbs cannot do."],
-      ["Date-range scheduling", "On at dusk from the day you choose, off on the day you choose, without you touching it."],
-      ["Warm white underneath", "The same run is your everyday lighting for the other eleven months."],
-      ["No storage", "No boxes, no clips, no ladder in December, no gutter damage in January."],
+      ["Christmas scenes", "Red and green, warm white, or your own colors."],
+      ["Schedules", "Set the lights to come on and go off without touching them."],
+      ["Everyday lighting", "The same lights work the rest of the year."],
+      ["No storage", "No boxes, no clips and no ladder in December."],
     ],
     alsoSee: ["holiday-seasonal-scenes", "permanent-roofline-lighting", "gameday-lighting", "permanent-outdoor-lighting"],
     proofShot: "/img/christmas-detail.jpg",
-    proofCaption: "Close enough to count the pixels: every other diode red, the rest green.",
+    proofCaption: "Red and green on an Omaha roofline.",
   },
 
   "permanent-roofline-lighting": {
     pair: {
       a: "archByDay", b: "archAtNight",
-      aLabel: "The same arched entry in daylight. Nothing to see under the roof edge.",
-      bLabel: "After dark, one continuous run following every facet of the octagon.",
-      title: "The run follows the roof, including where the roof stops being straight.",
-      lede: "Any installer can light a gable. What separates a good roofline job from a cheap one is whether the line keeps going through the awkward part.",
+      aLabel: "An arched entry in daylight.",
+      bLabel: "The same entry after dark.",
+      title: "Day and night.",
+      lede: "The lighting follows the shape of the roof.",
     },
-    shots: [
-      { photo: "detailGableMiter", caption: "The turn at a peak. One continuous line, with no gap and no doubled-up section." },
-      { photo: "homeWideRanch", caption: "A long low ranch, which is the hardest elevation there is, because nothing breaks the run, so every sag shows." },
-      { photo: "homeBrickGablesGold", caption: "A complicated roof. More gables means more corners, and corners are where installs fail." },
-    ],
     secondPara:
-      "Everything that decides whether you still like it in year five happens in the eight inches between your shingles and your gutter. The channel goes into the fascia wherever the roof allows, and the diffuser faces down so the curb sees light rather than diodes.",
-    figure: "eave",
-    compare: true,
-    /* THE "Corners | Mitered at every transition" ROW IS GONE, 29 Aug 2026, with the rest of the
-       mitre claim. Four facts rather than five; this renders as a definition list, so there is no
-       grid remainder to worry about. */
-    facts: [
-      ["Fastened into", "The fascia board"],
-      ["LED spacing", "4 in. on Haven Evolution"],
-      ["Terminations", "Sealed end caps, not tape"],
-      ["By day", "Reads as trim"],
-    ],
-    included: [
-      ["Channel into fascia", "Fixed into the fascia board wherever the roof allows, and every penetration sealed as it is made."],
-      ["Concealed conductor", "The wire runs inside the channel. Nothing drops down a downspout or crosses a soffit."],
-      /* WAS "Color matched / Channel finished to your fascia color, so the hardware disappears in
-         daylight." Replaced with the termination detail, which is the real craft point on a run
-         and is already claimed in content/services.ts. */
-      ["Capped terminations", "Every end cap and joint closed and sealed, which is where water finds its way into a run."],
-    ],
-    alsoSee: ["soffit-lighting", "permanent-outdoor-lighting", "permanent-christmas-lights", "landscape-lighting"],
-    proofShot: "/img/roofline-detail.jpg",
-    proofCaption: "The run following the gable and turning the corner without a break.",
-  },
-
-  "soffit-lighting": {
-    shots: [
-      { photo: "homeEaveDownlights", caption: "Downlights under the eave, spaced at the measure rather than guessed on the day." },
-      { photo: "homeStoneSiding", caption: "Even spacing carried across a broken roofline, which is harder than it looks from the street." },
-      { photo: "patioCovered", caption: "The same detail on a patio cover, seen from underneath where you actually sit." },
-    ],
-    secondPara:
-      "Soffit is a different mounting problem from fascia: the fixture is looking down a wall instead of out from an edge, so spacing and beam angle change and so does what the light actually does to the brick. It runs on the same controller as the roofline.",
+      "It is mounted to your soffit and stays up year round. You control it from an app.",
     figure: "beam",
-    compare: false,
+    compare: true,
     facts: [
-      ["Sits", "Inside the overhang"],
-      ["Throws light", "Down the face of the house"],
-      ["Fixture", "Recessed cans or continuous channel"],
-      ["Beam angle", "Chosen for your overhang depth"],
-      ["Zoned", "Separately from the roofline"],
+      ["Systems", "Jellyfish or Haven"],
+      ["Mounted to", "Your soffit"],
+      ["Color", "Full color and white"],
+      ["Control", "App, with scenes and schedules"],
     ],
     included: [
-      ["Overhang measured", "Depth and height decide the beam angle. A 16 in. soffit and a 30 in. soffit are different fixtures."],
-      ["Aiming", "Wall wash or straight down, set on site with you looking at it, not chosen off a spec sheet."],
-      ["Separate zone", "Soffit and roofline switch independently, because they are rarely wanted at the same brightness."],
-      ["Trim finished", "Cut lines closed and sealed, so the underside looks factory."],
+      ["Design consultation", "We measure your roofline and show you both products with our demo kit."],
+      ["The system", "Jellyfish or Haven, chosen with you at the consultation."],
+      ["The install", "Done by one of our install crews, mounted to your soffit."],
+      ["Warranty", "Backed by our lifetime product warranty. Full details come with your quote."],
     ],
-    alsoSee: ["permanent-roofline-lighting", "permanent-outdoor-lighting", "hardscape-lighting", "landscape-lighting"],
-    proofShot: "/img/soffit-eaves.jpg",
-    proofCaption: "Soffit and eave runs on one Omaha elevation: gables in color, eaves left white.",
-  },
-
-  "hardscape-lighting": {
-    shots: [
-      { photo: "hardscapeSeatwall", caption: "Lit caps along a stone seat wall, with the porch behind it on the same scene." },
-      { photo: "patioTimberStone", caption: "Step lights down the stairs and a run along the beam: one system, two jobs." },
-      { photo: "poolRearWarm", caption: "The back of a house at dusk, the points repeated in the water." },
-    ],
-    secondPara:
-      "Nothing about this involves the roof. Fixtures go into seat walls, step risers, pier caps and retaining courses, wired below grade, and they are aimed at the surface rather than at the sky so the wall reads as lit and the fixture does not.",
-    figure: "wall",
-    compare: false,
-    facts: [
-      ["Built into", "Walls, steps and coping"],
-      ["Fixture", "Under-cap washers and step lights"],
-      ["Aimed", "Down, away from seating"],
-      ["Glare", "None at seated eye height"],
-      ["Runs with", "The landscape transformer"],
-    ],
-    included: [
-      ["Under-cap washers", "Tucked beneath the wall cap so you see the light on the stone and never the fixture."],
-      ["Step and riser lights", "Placed where a foot lands, which is a safety decision before it is a design one."],
-      ["Aimed away from seating", "Anything at seated eye height gets re-aimed on site, with somebody sitting in the chair."],
-      ["Sealed in the stone", "Cable routed behind the course and sealed, so nothing is exposed to a mower or a shovel."],
-    ],
-    alsoSee: ["landscape-lighting", "patio-pergola-bistro-lighting", "permanent-outdoor-lighting", "soffit-lighting"],
-    proofShot: "/img/hardscape.jpg",
-    proofCaption: "Under-cap wash on limestone at an Omaha pool deck, with the fire bowl lit behind it.",
+    alsoSee: ["permanent-outdoor-lighting", "permanent-christmas-lights", "landscape-lighting", "gameday-lighting"],
+    proofShot: "/img/roofline-detail.jpg",
+    proofCaption: "Roofline lighting along a gable.",
   },
 
   "landscape-lighting": {
-    shots: [
-      { photo: "landscapeTreeBeds", caption: "Roofline and landscape on one controller, so the beds come up with the house." },
-      { photo: "landscapeTreeTeal", caption: "One uplight through a mature tree, doing more for the property than a whole roofline would." },
-      { photo: "landscapeBrickUplight", caption: "Roofline, gable accent and uplight, each addressed separately and each doing a different job." },
-    ],
     secondPara:
-      "Beds, trees and paths need genuinely different fixtures from a roofline: in-ground uplights, path fixtures, and beam angles chosen per tree rather than a single spacing. They land in the same app as the house, on their own zone, so the yard can be on when the roofline is off.",
+      "Path lights, tree uplighting and lighting for beds. It can be set apart from the house, so the yard can be on when the roofline is off.",
     figure: "fixtures",
     compare: false,
     facts: [
-      ["Fixtures", "Uplights, path lights, wall wash"],
-      ["Aimed at", "Trunks, canopies, beds and walks"],
-      ["Cable", "Buried, low voltage"],
-      ["Season", "Works in July as well as December"],
-      ["Zoned", "Separately from the house"],
+      ["Lights", "Paths, trees and beds"],
+      ["Control", "From the app"],
+      ["Zoned", "Apart from the house"],
+      ["Season", "Year round"],
     ],
     included: [
-      ["Trees uplit", "Two or three fixtures per mature tree, aimed up the trunk into the canopy, which is what changes an elevation."],
-      ["Beds washed", "Low, wide fixtures behind planting rather than a row of lights pointed at the house."],
-      ["Paths lit for feet", "Path lights spaced to light the walk, not to make a runway out of it."],
-      ["Cable buried", "Low-voltage runs trenched and sleeved under anything that gets dug or mowed."],
+      ["Design consultation", "We walk the yard with you and plan the lighting at the same visit."],
+      ["Trees and beds", "Uplighting for trees and lighting for beds."],
+      ["Paths", "Path lights along your walks."],
+      ["The install", "Done by one of our install crews."],
     ],
-    alsoSee: ["hardscape-lighting", "patio-pergola-bistro-lighting", "permanent-outdoor-lighting", "permanent-roofline-lighting"],
+    alsoSee: ["permanent-roofline-lighting", "permanent-outdoor-lighting", "holiday-seasonal-scenes", "permanent-christmas-lights"],
     proofShot: "/img/landscape.jpg",
-    proofCaption: "Tree uplighting and bed wash on an Omaha property after dark.",
-  },
-
-  "patio-pergola-bistro-lighting": {
-    shots: [
-      { photo: "patioTimberStone", caption: "A timber and stone cover: the run along the beam is the same channel as the roofline." },
-      { photo: "patioCovered", caption: "From underneath, with the furniture in it, which is the only angle that answers the real question." },
-      { photo: "poolPergolaDusk", caption: "Pool and pergola at sunset. This is the reason people add the overhead run." },
-      { photo: "installDayPavilion", caption: "Mid-install on a poolside pavilion. Anything with a structure to fasten to at both ends will take a run." },
-    ],
-    secondPara:
-      "A pergola is the one place on a property where the fixture is meant to be seen, so the run is set out to the structure's own bays rather than to a spacing table. It switches and dims with the rest of the property instead of from a plug by the back door.",
-    figure: "pergola",
-    compare: false,
-    facts: [
-      ["Runs on", "Beams, rafters and fascia"],
-      ["Bistro option", "Catenary, on posts or cable"],
-      ["Dimming", "Per zone, one to a hundred"],
-      ["Used most", "May through October"],
-      ["Ties into", "The house controller"],
-    ],
-    included: [
-      ["Beam runs", "Channel along the beam face, so the light falls on the table rather than in your eyes."],
-      ["Bistro spans", "Catenary wire tensioned properly, sagged evenly, terminated at a post rather than a gutter."],
-      ["Dimmed for dinner", "Set with you at the table. Dinner bright and Christmas bright are not the same setting."],
-      ["One app", "The patio and the roofline answer to the same tap, so the whole property switches together."],
-    ],
-    alsoSee: ["hardscape-lighting", "landscape-lighting", "permanent-outdoor-lighting", "holiday-seasonal-scenes"],
-    proofShot: "/img/patio-pergola.jpg",
-    proofCaption: "A pergola fascia run over an Omaha pool deck at dusk.",
+    proofCaption: "Tree uplighting and bed lighting on an Omaha property after dark.",
   },
 
   "holiday-seasonal-scenes": {
-    shots: [
-      { photo: "halloweenOrangePurple", caption: "October: orange and violet, scheduled for the month and switching itself back." },
-      { photo: "fourthBrickRanch", caption: "July: red, white and blue: the one scene nobody hangs bulbs for, because nobody wants to." },
-      { photo: "christmasGreenRed", caption: "December, and green as the field color rather than the usual alternation." },
-      { photo: "winterGradientSnow", caption: "February, in snow, running a gradient across a single roofline." },
-    ],
     secondPara:
-      "There is no seasonal hardware and no seasonal visit. A scene is a saved state on a system that is already on the house, so the whole of what changes in October is which scene is scheduled.",
+      "There is nothing extra to hang. A scene is a setting on lighting that is already on your house, so changing for a holiday is a tap in the app.",
     figure: "scenes",
     compare: true,
     facts: [
       ["Saved scenes", "As many as you want"],
       ["Switching", "One tap, or by schedule"],
-      ["Colors", "Per pixel, per zone"],
-      ["Most-used scene", "Warm white"],
-      ["Set up with you", "On install day"],
+      ["Colors", "Set by zone"],
     ],
     included: [
-      ["Scene library built with you", "We build the first eight or so while we are there, named the way you would say them out loud."],
-      ["Scheduled by date", "Halloween on the first, Christmas on Thanksgiving, back to warm white in January, unattended."],
-      ["Per-zone color", "The gables can run color while the eaves stay white, which is the look most people land on."],
-      ["Brightness per scene", "Color reads cleaner dialed back, so each scene stores its own output level."],
+      ["Holiday scenes", "Halloween, Christmas, the Fourth and more."],
+      ["Schedules", "Set a scene for a date and let it run."],
+      ["Color by zone", "Different parts of the house can be different colors."],
+      ["Brightness", "Adjust it for each scene."],
     ],
-    alsoSee: ["permanent-christmas-lights", "gameday-lighting", "permanent-outdoor-lighting", "patio-pergola-bistro-lighting"],
+    alsoSee: ["permanent-christmas-lights", "gameday-lighting", "permanent-outdoor-lighting", "permanent-roofline-lighting"],
   },
 
   "gameday-lighting": {
     pair: {
       a: "seqEveryday", b: "seqGameday",
-      aLabel: "Friday. Warm white, and nobody would guess the house does anything else.",
-      bLabel: "Saturday. Scarlet across the elevation with white held at the peaks.",
-      title: "Saturday, and then Sunday again.",
-      lede: "The same house, the same evening, ninety seconds apart. Not a house that is red, but a house that is warm white and can be red for four hours.",
+      aLabel: "Warm white for everyday.",
+      bLabel: "Team colors for gameday.",
+      title: "Everyday, then gameday.",
+      lede: "The same house with a different scene picked in the app.",
     },
-    shots: [
-      { photo: "gamedayRedBlueGables", caption: "Two team colors held apart by zone: one gable red, the next blue, eaves left white." },
-      { photo: "gamedayRedGable", caption: "How far a saturated color spills onto a driveway. Shown rather than described." },
-      { photo: "gamedayRanchWide", caption: "Color across a long low roofline and a curved drive." },
-    ],
     secondPara:
-      "Scarlet on a Saturday is the same run of channel doing something different for an afternoon. It is worth saying plainly because the alternative being sold is a second set of lights for the two months a year anyone would notice.",
+      "Gameday lighting is the same lighting set to your team colors. Nothing extra to buy or hang.",
     figure: "gameday",
     compare: false,
     facts: [
       ["Set by", "One tap in the app"],
-      ["Colors", "Any two, per zone"],
-      ["Scarlet", "Saved as its own scene"],
-      ["Back to normal", "Automatically, that night"],
-      ["Neighbors", "Will ask"],
+      ["Colors", "Your team colors"],
+      ["Saved", "As a scene"],
+      ["Back to normal", "By schedule or one tap"],
     ],
     included: [
-      ["Team colors saved", "Scarlet and cream stored as a scene, at the output level that keeps the red clean."],
-      ["Scheduled to kickoff", "Set it to come up before the game and drop back to warm white when it is over."],
-      ["Per-zone split", "Color on the gables, white on the eaves, so the house reads as lit rather than washed."],
-      ["No re-programming", "The scene stays saved. Next Saturday it is one tap again."],
+      ["Team colors saved", "Your colors saved as a scene."],
+      ["Scheduled", "Set it to come on for the game and go back after."],
+      ["Color by zone", "Color on some parts of the house and white on others."],
+      ["Saved for next time", "Next game it is one tap again."],
     ],
     alsoSee: ["holiday-seasonal-scenes", "permanent-outdoor-lighting", "permanent-roofline-lighting", "permanent-christmas-lights"],
   },
 
   "commercial-outdoor-lighting": {
-    /* HONEST ABOUT THE LIBRARY. Nearly every photograph Brytr has is residential, and the one
-     * frame with a commercial elevation in it has a member of the crew in the foreground. So
-     * this page gets that frame and says what it is, rather than putting three houses under a
-     * commercial heading and hoping nobody notices the difference. */
-    shots: [
-      { photo: "crewPortrait", caption: "A storefront band set to red behind a member of the crew. Commercial work is the same channel and the same controller as a house. The difference is the fixing detail and the hours we can be on site." },
-      { photo: "sceneWhiteRedEntry", caption: "Cool white across a long elevation with one zone changed, which is how most branding scenes are actually built." },
-      { photo: "homeModernStone", caption: "A flat roof edge with no gable to hang a line on, which is the detailing problem most commercial buildings present." },
-    ],
     secondPara:
-      "A parapet, a storefront band and a wrapped elevation are a different survey from a house: the runs are longer, the fixings change with the substrate, and the work happens outside your trading hours. The controller and the app are the same ones we put on a residential job.",
+      "Permanent lighting for businesses, controlled from an app. Ask us about your building at the consultation.",
     figure: "parapet",
     compare: false,
     facts: [
-      ["Buildings", "Storefronts, canopies, multifamily"],
-      ["Measured off", "Elevations, not guesswork"],
-      ["Installed", "Outside trading hours where needed"],
-      ["Contact", "One, for a portfolio"],
-      ["Runs", "Longer, same hardware"],
+      ["Buildings", "Businesses"],
+      ["Color", "Full color and white"],
+      ["Control", "App, with scenes and schedules"],
     ],
     included: [
-      ["Elevation take-off", "Runs measured from the building's own drawings, so the quote is a number rather than a range."],
-      ["Scheduled around trading", "Night and early-morning installs where a storefront cannot lose a day."],
-      ["Property manager workflow", "One point of contact, one invoice format, one schedule across several addresses."],
-      ["Branded scenes", "Company colors saved as scenes, scheduled to seasons and event nights."],
+      ["Design consultation", "We look at the building with you and plan the lighting."],
+      ["Your colors", "Company colors saved as scenes."],
+      ["Schedules", "Set to your hours, seasons and events."],
     ],
-    alsoSee: ["permanent-outdoor-lighting", "permanent-roofline-lighting", "holiday-seasonal-scenes", "hardscape-lighting"],
+    alsoSee: ["permanent-outdoor-lighting", "permanent-roofline-lighting", "holiday-seasonal-scenes", "landscape-lighting"],
   },
 
 };

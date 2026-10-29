@@ -27,7 +27,7 @@ export const postPhotos: Record<string, PostPhoto> = {
   "how-to-choose-a-permanent-lighting-installer": {
     photo: "/img/crew-roof-fascia.jpg",
     photoAlt:
-      "A Brytr installer sitting on the shingles of an Omaha roof in daylight, working along the line where the fascia meets the wall",
+      "An installer working on an Omaha roofline in daylight",
     objectPosition: "50% 55%",
   },
   "permanent-lights-vs-hanging-christmas-lights": {
@@ -42,29 +42,17 @@ export const postPhotos: Record<string, PostPhoto> = {
       "A lit warm white run following the rake of a gable and turning at the peak on an Omaha home",
     objectPosition: "50% 42%",
   },
-  "do-permanent-lights-damage-soffit-or-fascia": {
+  "do-permanent-lights-damage-your-soffit": {
     photo: "/img/day-brick-gable.jpg",
     /* WAS "...as a slim line the color of the trim". Alt text is copy, and this was the
        color-match claim reaching a screen reader after it had been taken out of everything
        sighted readers see. Kept in step with content/images.ts, which is where this string
        is copied from. */
     photoAlt:
-      "A brick gable and white fascia on an Omaha home in daylight, the channel tucked under the roof edge as a slim line below the gutter",
+      "A brick gable on an Omaha home in daylight, the lighting tucked up under the roof edge",
     objectPosition: "50% 52%",
   },
   /* "permanent-lighting-warranty-comparison" removed with the article itself. */
-  "permanent-lights-on-stucco-brick-cedar": {
-    photo: "/img/day-stone-gable.jpg",
-    photoAlt:
-      "A stone and brick gable on an Omaha home under overcast light, the channel following the roof edge above the entry",
-    objectPosition: "50% 52%",
-  },
-  "omaha-hoa-rules-permanent-outdoor-lighting": {
-    photo: "/img/home-porch-flag.jpg",
-    photoAlt:
-      "A gray Omaha two-story at blue hour with warm downlights over the porch and a flag by the door",
-    objectPosition: "50% 58%",
-  },
   "husker-gameday-lighting-ideas": {
     photo: "/img/gameday-red-full.jpg",
     photoAlt:
@@ -99,7 +87,7 @@ export const relatedByCategory: Record<string, string[]> = {
     "permanent-christmas-lights",
     "permanent-roofline-lighting",
   ],
-  Install: ["permanent-roofline-lighting", "soffit-lighting", "permanent-outdoor-lighting"],
+  Install: ["permanent-roofline-lighting", "landscape-lighting", "permanent-outdoor-lighting"],
   Product: ["permanent-outdoor-lighting", "permanent-roofline-lighting", "holiday-seasonal-scenes"],
   Local: ["permanent-christmas-lights", "gameday-lighting", "landscape-lighting"],
 };
@@ -107,9 +95,9 @@ export const relatedByCategory: Record<string, string[]> = {
 /* One line of framing per category, used as the group note on the hub. */
 export const categoryNote: Record<string, string> = {
   "Before you buy": "The decisions that happen before anybody quotes anything.",
-  Install: "What happens to the building, and what it does to your fascia.",
-  Product: "Hardware and terms, including the ones that are hard to compare.",
-  Local: "Things that are only true in Omaha, or only true in Nebraska.",
+  Install: "How permanent lighting goes on a house.",
+  Product: "The hardware and how long it lasts.",
+  Local: "Omaha and Nebraska topics.",
 };
 
 /* Why the featured post is the one to start with.
@@ -120,7 +108,7 @@ export const categoryNote: Record<string, string> = {
  * card does not. */
 export const startHere: Record<string, string> = {
   "are-permanent-christmas-lights-worth-it":
-    "Start here because it is the question underneath all the others, and because the answer is not always yes.",
+    "A good place to start, because the answer is not always yes.",
 };
 
 export const photoForPost = (slug: string) => postPhotos[slug];

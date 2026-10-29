@@ -48,7 +48,7 @@ export function ChannelFigure({
     const y = 150;
     return (
       <svg viewBox="0 0 700 300" className={className} role="img"
-        aria-label="A length of Brytr channel seen face on, with the diodes spaced four inches apart and the spacing dimensioned.">
+        aria-label="A length of Brytr channel seen face on, with LEDs along it.">
         {/* the channel body, face on */}
         <rect x={x0 - 26} y={y - 20} width={x1 - x0 + 52} height="40" rx="8" fill={body} stroke={line} strokeWidth="1.2" />
         {/* the lens line down its length */}
@@ -64,17 +64,8 @@ export function ChannelFigure({
           );
         })}
         {/* the dimension, between the first two diodes */}
-        <path d={`M${x0} ${y + 38}V${y + 58}M${x0 + step} ${y + 38}V${y + 58}`} stroke={faint} strokeWidth="1" />
-        <path d={`M${x0} ${y + 50}H${x0 + step}`} stroke={line} strokeWidth="1" />
-        <path d={`M${x0} ${y + 50}l7 -4v8zM${x0 + step} ${y + 50}l-7 -4v8z`} fill={line} />
-        <text x={x0 + step / 2} y={y + 74} fill={ink} fontSize="17" fontWeight="700" textAnchor="middle" fontFamily="var(--font-display)">
-          4 in.
-        </text>
         <text x={x0 - 26} y={y - 40} fill={inkMuted} fontSize="15" fontFamily="var(--font-body)">
-          The same spacing, the whole length of the run
-        </text>
-        <text x={x0 - 26} y={y + 108} fill={inkMuted} fontSize="15" fontFamily="var(--font-body)">
-          Close enough that the diffuser reads it as a line rather than a row of points
+          LEDs along the length of the track
         </text>
       </svg>
     );
@@ -125,7 +116,7 @@ export function ChannelFigure({
       {/* anchored to the start, not centered: centered on the first run of five it overhung the
         * left edge of the viewBox and the W was cut off. */}
       <text x={x0 - 14} y={y + 96} fill={accent} fontSize="14" fontWeight="700" fontFamily="var(--font-body)">
-        Warm white is where it sits most of the year
+        Warm white for everyday
       </text>
     </svg>
   );

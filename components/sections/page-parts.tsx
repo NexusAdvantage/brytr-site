@@ -1,13 +1,12 @@
 import { Fragment } from "react";
-import { COMPARE_HIDDEN } from "@/content/compares";
+import { COMPARE_HIDDEN, COMPARE_URL } from "@/content/compares";
 import Link from "next/link";
 import Image from "next/image";
 import { site } from "@/content/site";
 import { cities, metroCities } from "@/content/cities";
 import { services } from "@/content/services";
-import { systems } from "@/content/systems";
 import { images } from "@/content/images";
-import { reviewProof } from "@/content/reviews";
+import { getReviewProof } from "@/lib/review-proof";
 import { Button } from "@/components/ui/button";
 import { SectionHead, Check, TextLink, QuoteForm } from "@/components/ui/bits";
 import { SiteHero, TrustPlinth } from "@/components/sections/site-hero";
@@ -221,9 +220,11 @@ export function SpecTable({
     kind === "versus"
       ? `font-display text-[1.1rem] font-bold leading-snug ${valueTone}`
       : `font-display text-[1.05rem] font-bold leading-snug ${valueTone}`;
+  /* Without highlightA both columns get the same weight. The Jellyfish vs Haven table rendered
+   * the left brand bold and the right one plain, which reads as a ranking. */
   const bClass =
     kind === "versus"
-      ? `text-[1.02rem] leading-snug ${highlightA ? bodyTone : valueTone}`
+      ? highlightA ? `text-[1.02rem] leading-snug ${bodyTone}` : aClass
       : `text-[0.95rem] leading-relaxed ${bodyTone}`;
 
   return (
@@ -373,9 +374,9 @@ export function CityTiles({
               }`}
             >
               <span className={`font-display text-[0.95rem] font-bold ${onDark ? "text-on-dark" : "text-foreground"}`}>
-                {c.name}{c.state === "IA" ? ", IA" : ""}
+                {c.name}
               </span>
-              <span className={`u shrink-0 text-xs ${onDark ? "text-accent" : "text-accent-ink"}`}>{c.drive}</span>
+              <span className={`u shrink-0 text-xs ${onDark ? "text-accent" : "text-accent-ink"}`}>{c.state}</span>
             </Link>
           </li>
         ))}
@@ -414,7 +415,7 @@ const CTA_GROUND: Record<"muted" | "card" | "primary" | "raise", string> = {
   raise: "bg-raise",
 };
 
-export function PageCta({
+export async function PageCta({
   city, variant = "form", stats = true, title, body, omit = [], panelLink, ground, photos,
 }: {
   /** Candidate keys into content/images.ts for the closer photograph. Passed per template, so
@@ -442,25 +443,26 @@ export function PageCta({
    *  which would otherwise close by linking to itself. */
   panelLink?: { href: string; label: string };
 }) {
+  const reviewProof = await getReviewProof();
   const nextLinks = [
     /* "how the pricing works" led this list and is gone with /pricing. Callers still passing
        omit={["/pricing"]} are harmless - the filter simply matches nothing now. */
-    { href: "/compare", label: "compare the brands we are asked about" },
-    { href: "/how-it-works", label: "what install day looks like" },
+    { href: COMPARE_URL, label: "Jellyfish and Haven side by side" },
+    { href: "/how-it-works", label: "how an install works" },
   ]
     /* Comparison pages hidden, 28 Oct 2026. See COMPARE_HIDDEN in content/compares.ts. */
-    .filter((l) => !(COMPARE_HIDDEN && l.href === "/compare"))
-    .filter((l) => !omit.includes(l.href))
+    .filter((l) => !(COMPARE_HIDDEN && l.href === COMPARE_URL))
+    .filter((l) => !omit.includes(l.href) && !(omit.includes("/compare") && l.href === COMPARE_URL))
     .slice(0, 3);
 
   const head = (
     <>
       <SectionHead
-        title={title ?? "See it on your house before you buy."}
+        title={title ?? "Start with a free design."}
       />
       <p className="mt-4 max-w-[60ch] text-lg text-muted-foreground">
         {body ??
-          "We measure on site, design it with you, and hand you a written quote. If you decide against it, you’ve lost an hour and gained a plan."}
+          "About an hour at your home. We show you both brands and give you exact pricing at the visit."}
       </p>
         {/* NO TICK LIST. Three fragments restating the paragraph directly above them, under
           * the one heading on the page whose job is to get a form filled in. Removed on
@@ -496,13 +498,12 @@ export function PageCta({
    *                                    text rather than grepping for a string. The crews are
    *                                    subcontracted.
    *
-   * Replaced with two figures anybody can check: the six systems in content/systems.ts and the
-   * twelve towns in content/cities.ts, both counted from the arrays rather than typed, so neither
-   * can drift from what the site actually publishes. */
+   * Replaced with two figures anybody can check: the two brands we install and the twelve towns
+   * in content/cities.ts. (The count of six "systems" read as a contradiction, Oct 2026.) */
   const statList: [string, string][] = [
     [reviewProof.average, `from ${reviewProof.countLabel} reviews`],
     ["Free", "design consultation"],
-    [String(systems.length), "systems we install"],
+    ["2", "brands we install"],
     [String(cities.length), "towns we cover"],
   ];
 
@@ -521,7 +522,7 @@ export function PageCta({
         <div className="shell grid items-center gap-10 lg:grid-cols-[1fr_26rem] lg:gap-14">
           <div>
             {head}
-            <div className="mt-9 border-t border-border pt-7">{readNext}</div>
+            {nextLinks.length > 0 && (<div className="mt-9 border-t border-border pt-7">{readNext}</div>)}
 
             {/* A PHOTOGRAPH, FOR THE SAME REASON THE HOME CLOSER HAS ONE.
               *
@@ -552,13 +553,13 @@ export function PageCta({
             * alternative, because a closer that removes the phone from a trade site is worse than
             * one made of facts. */}
           <div>
-            <QuoteForm variant="compact" dark heading="Book the on-site design" submitLabel="Book my free design" />
+            <QuoteForm variant="compact" dark heading="Book a free design consultation" submitLabel="Book my free design" />
             <p className="mt-4 text-center text-sm text-muted-foreground">
               Or call{" "}
               <a href={site.phoneHref} className="u font-semibold text-foreground underline decoration-accent decoration-2 underline-offset-4">
                 {site.phone}
               </a>
-              . Same-day reply, most days.
+              . Mon to Sat, 8am to 8pm.
             </p>
           </div>
         </div>
@@ -575,7 +576,7 @@ export function PageCta({
             <div>
               <p className="label text-muted-foreground">Or call us directly</p>
               <a href={site.phoneHref} className="u mt-1.5 block text-3xl font-medium text-foreground hover:text-accent-deep">{site.phone}</a>
-              <p className="mt-2 text-xs text-muted-foreground">Same-day reply, most days</p>
+              <p className="mt-2 text-xs text-muted-foreground">Mon to Sat, 8am to 8pm</p>
             </div>
             {stats && (
               <dl className="grid grid-cols-2 gap-4">
@@ -588,7 +589,7 @@ export function PageCta({
               </dl>
             )}
           </div>
-          <div className="mt-7">{readNext}</div>
+          {nextLinks.length > 0 && (<div className="mt-7">{readNext}</div>)}
         </div>
         <QuoteForm variant="full" city={city} />
       </div>

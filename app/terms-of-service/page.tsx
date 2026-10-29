@@ -7,7 +7,7 @@ import { Jsonld, breadcrumb } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
-  description: "The terms that apply to using the Brytr Co website and to requesting a quote, including what a published price does and does not commit us to.",
+  description: "The terms that apply to using the Brytr Co website and to requesting a quote.",
   ...pageUrl("/terms-of-service"),
   robots: { index: false, follow: true },
 };
@@ -31,21 +31,19 @@ export default function Page() {
           <h2 className="mt-9 text-[1.5rem] text-foreground first:mt-0">About this site</h2>
           <p className="mt-4 text-[1.05rem] leading-relaxed text-muted-foreground">This site is published by Brytr Co, a permanent outdoor lighting installer based in Omaha, Nebraska. It exists to explain what we do and to let you request a consultation.</p>
           <h2 className="mt-9 text-[1.5rem] text-foreground first:mt-0">Quotes and pricing</h2>
-          <p className="mt-4 text-[1.05rem] leading-relaxed text-muted-foreground">Nothing on this website is a quote or an offer. Prices are described as ranges because the actual number depends on a measured survey of your property.</p>
-          <p className="mt-4 text-[1.05rem] leading-relaxed text-muted-foreground">A binding price only exists once we have measured on site and given you a written quote. If anything on this site conflicts with your written quote, the written quote governs.</p>
+          <p className="mt-4 text-[1.05rem] leading-relaxed text-muted-foreground">Nothing on this website is a quote or an offer. Pricing depends on your property.</p>
+          <p className="mt-4 text-[1.05rem] leading-relaxed text-muted-foreground">A price only exists once we have given you a written quote. If anything on this site conflicts with your written quote, the written quote governs.</p>
           <h2 className="mt-9 text-[1.5rem] text-foreground first:mt-0">Accuracy</h2>
-          <p className="mt-4 text-[1.05rem] leading-relaxed text-muted-foreground">We try to keep product specifications, service areas and comparisons accurate and current. Manufacturers change specifications without telling installers, so treat any spec here as indicative and ask us to confirm anything you are relying on.</p>
-          <p className="mt-4 text-[1.05rem] leading-relaxed text-muted-foreground">Comparisons of other manufacturers reflect our own experience installing in this category. They are opinion, offered in good faith, and other installers will reasonably disagree.</p>
+          <p className="mt-4 text-[1.05rem] leading-relaxed text-muted-foreground">We try to keep the information on this site accurate and current. Manufacturers can change their products, so ask us to confirm anything you are relying on.</p>
           <h2 className="mt-9 text-[1.5rem] text-foreground first:mt-0">Illustrations</h2>
-          <p className="mt-4 text-[1.05rem] leading-relaxed text-muted-foreground">Some images on this site are measured elevation drawings rather than photographs, and are labeled as such where they appear. They illustrate how the system is built and are not a representation of a specific property.</p>
+          <p className="mt-4 text-[1.05rem] leading-relaxed text-muted-foreground">Some images on this site are drawings rather than photographs. They illustrate how the lighting works and do not show a specific property.</p>
           <h2 className="mt-9 text-[1.5rem] text-foreground first:mt-0">Liability</h2>
-          <p className="mt-4 text-[1.05rem] leading-relaxed text-muted-foreground">This site is provided as is. We are not liable for decisions made purely on the basis of website content rather than on a written quote and a site survey.</p>
+          <p className="mt-4 text-[1.05rem] leading-relaxed text-muted-foreground">This site is provided as is. We are not liable for decisions made purely on the basis of website content rather than on a written quote.</p>
           <div className="mt-10 rounded-lg bg-muted p-6">
             <p className="label text-muted-foreground">Questions</p>
             <p className="mt-2 text-[0.95rem] text-muted-foreground">
               Anything on this page you want explained, call{" "}
-              <a href={site.phoneHref} className="u text-foreground underline decoration-accent decoration-2 underline-offset-4">{site.phone}</a>{" "}
-              and ask for Zac or Sam. We would rather answer it directly.
+              <a href={site.phoneHref} className="u text-foreground underline decoration-accent decoration-2 underline-offset-4">{site.phone}</a>.
             </p>
           </div>
           </div>

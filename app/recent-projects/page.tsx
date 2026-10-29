@@ -49,7 +49,7 @@ export const metadata: Metadata = {
    * so it described something a visitor would not find - the exact defect the lede on the old
    * version of this page carried twice before it. Nothing here counts anything. */
   description:
-    "Finished Brytr permanent lighting installs around the Omaha metro, published from our own project records as each job is completed.",
+    "Finished Brytr permanent lighting installs around the Omaha metro.",
   ...pageUrl("/recent-projects"),
   /* SAID OUT LOUD RATHER THAN ASSUMED. The install instructions asked for this page to be
    * indexable. It already inherits index/follow from the root layout and it already has a sitemap
@@ -66,10 +66,10 @@ export default function RecentProjects() {
       <Jsonld data={breadcrumb(trail)} />
       <PageHero
         photo="/img/patio-pergola.jpg"
-        photoAlt="Lit pergola, pool deck and fire bowls at an Omaha home at dusk"
+        photoAlt="A pool deck and lit roofline at an Omaha home at dusk"
         objectPosition="50% 52%"
-        h1="Finished installs, published as we complete them."
-        lede="Not renders and not stock houses. Brytr jobs around the Omaha metro, photographed on the properties with the systems running. Homeowner addresses stay private, so none of them are named."
+        h1="Recent projects."
+        lede="Brytr installs around the Omaha metro. Homeowner addresses stay private, so none of them are named."
         trail={trail}
       />
 
@@ -96,8 +96,8 @@ export default function RecentProjects() {
       <section className="section bg-muted">
         <div className="shell">
           <SectionHead
-            title="Every job, as it is finished."
-            lede="Fed from Brytr's own project records rather than written up by hand, so this list moves when the work does."
+            title="Recent jobs."
+            lede="Photos from recent installs around the Omaha metro."
           />
           <div id="rwl-output" className="mt-10 min-h-[28rem]" />
           <p className="mt-8 text-[0.95rem] leading-relaxed text-muted-foreground">
@@ -134,8 +134,8 @@ export default function RecentProjects() {
             </p>
             <h2 className="mt-3 font-display text-2xl font-bold text-on-dark">The scene library</h2>
             <p className="mt-3 text-[1.05rem] leading-relaxed text-on-dark-muted">
-              The same photographs organized by what the system is set to instead: the everyday warm
-              white, the saved occasions, one color across every zone, and the two-zone splits.
+              Photos organized by what the lighting is set to instead: warm white, holiday scenes,
+              single colors and two colors at once.
             </p>
             <div className="mt-6 border-t border-on-dark/12 pt-5">
               <TextLink onDark href="/gallery">Open the scene library</TextLink>

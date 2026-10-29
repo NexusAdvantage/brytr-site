@@ -55,7 +55,6 @@ export const reviews: Review[] = [
     text:
       "We couldn’t be happier with the outdoor lighting Brytr installed for our home! From the initial consultation to the final installation, the entire process was professional, seamless, and exceeded our expectations.",
     name: "Meghan Gibbons",
-    when: "2 months ago",
   },
   {
     text:
@@ -77,10 +76,10 @@ export const reviewProof = {
    * defines reviewCount as a number, and "215+" in that slot is invalid structured data
    * that Search Console flags. `countLabel` is what every visible string uses, and the
    * plus is what keeps the sentence true as the profile grows. Never print `count` in copy. */
-  count: 215,
-  countLabel: "215+",
+  count: 288,
+  countLabel: "285+",
   platform: "Google",
   /* the profile itself, so "read them yourself" is a real link */
   url: "https://www.google.com/maps/place/Brytr+-+Permanent+Roofline+%26+Smart+Landscape+Lighting/@41.2226632,-96.1244091,17z",
-  checked: "28 Aug 2026",
+  checked: "29 Oct 2026",
 } as const;

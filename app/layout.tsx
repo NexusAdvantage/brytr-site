@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { reviewProof } from "@/content/reviews";
+import { getReviewProof } from "@/lib/review-proof";
 import { baseOpenGraph } from "@/lib/seo";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -28,7 +28,9 @@ const plexSans = localFont({
   variable: "--font-plex-sans",
   display: "swap",
 });
-export const metadata: Metadata = {
+export async function generateMetadata(): Promise<Metadata> {
+  const reviewProof = await getReviewProof();
+  return {
   metadataBase: new URL("https://brytrco.com"),
   title: {
     default: "Permanent Outdoor Lighting in Omaha, NE | Brytr Co",
@@ -67,7 +69,8 @@ export const metadata: Metadata = {
   openGraph: baseOpenGraph,
   twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },
-};
+  };
+}
 
 /* THE REAL WORK LABS LOADER. Site key FJ-P6qy5SYgFADlj.
  *

@@ -7,10 +7,11 @@ import { PhotoStrip } from "@/components/sections/photo-parts";
 
 import { Jsonld, breadcrumb } from "@/lib/schema";
 import { site } from "@/content/site";
-import { reviewProof } from "@/content/reviews";
+import { cities } from "@/content/cities";
+import { getReviewProof } from "@/lib/review-proof";
 import { ValueBand } from "@/components/sections/value-band";
 import { valueProps } from "@/content/value-props";
-import { COMPARE_HIDDEN } from "@/content/compares";
+import { COMPARE_HIDDEN, COMPARE_URL } from "@/content/compares";
 
 /* /about — WAVE 2, PAGE 2 of the page-by-page pass.
  *
@@ -39,9 +40,9 @@ import { COMPARE_HIDDEN } from "@/content/compares";
 export const metadata: Metadata = {
   /* `absolute` bypasses the root layout's "%s | Brytr Co" template — see the note on
    * /contact. The brand is already in the title, so the template would repeat it. */
-  title: { absolute: "About Brytr Co | Family Owned, Omaha" },
+  title: { absolute: "About Brytr Co | Permanent Lighting, Omaha" },
   description:
-    "The whole Haven line rather than one piece of it, the same crew from the measure to the handover, and more than one brand on the truck. Omaha metro.",
+    "Brytr Co is family owned by Zac and Sam, brothers-in-law born and raised in Omaha. Permanent roofline and landscape lighting, Jellyfish and Haven.",
   ...pageUrl("/about"),
 };
 const trail = [{ name: "Home", href: "/" }, { name: "About", href: "/about" }];
@@ -59,42 +60,45 @@ const trail = [{ name: "Home", href: "/" }, { name: "About", href: "/about" }];
  * at two columns, then two at three - and four cards would leave exactly the orphan row that
  * layout was built to avoid. The replacement is the same kind of claim and is checkable on this
  * site: the daylight frames are on the gallery, and publishing them costs sales. */
+/* REWRITTEN, Oct 2026: this was "Decisions that make us less money", a ledger of claims about
+ * other companies and practices Brytr never confirmed. It is now a plain description of how a
+ * job works. Same five cards, so the grid spans below still hold. `cost` is the short line
+ * under each card. */
 const costs: { chip: string; h: string; p: string; cost: string }[] = [
   {
-    chip: "Costs us margin",
-    h: "More than one brand on the truck.",
-    p: "Almost every permanent lighting company in this metro is a dealer for a single manufacturer, which is a normal way to run the business and means the recommendation is settled before anyone looks at your house. We install Jellyfish and the full Haven line, so what goes on your house is chosen for the building.",
-    cost: "Two sets of stock and two sets of training to keep straight.",
+    chip: "Systems",
+    h: "Jellyfish and Haven.",
+    p: "We install both. Which one goes on your house is decided with you at the design consultation.",
+    cost: "Both run from an app with scenes and schedules.",
   },
   {
-    chip: "Costs us the sale",
-    h: "We will tell you what your house actually needs.",
-    p: "A simple single story roofline with two elevations does not need every fixture we carry, and we say so at the table rather than after you have signed. Sometimes that is a smaller job for us and a better fit for you.",
-    cost: "The add ons we talk people out of, on every house where less is the right answer.",
+    chip: "Design",
+    h: "We design it with you.",
+    p: "About an hour at your home. We measure with a laser, turn on our demo kit and price out both options.",
+    cost: "Free, with exact pricing at the visit.",
   },
   {
-    chip: "Costs us margin",
-    h: "The same crew, measure to handover.",
-    p: "Permanent lighting is fastened into your fascia board and sealed, and the failures in this trade are workmanship far more often than product. The people who measure your house are the people who fit it, and the people who come back to it, which is the only thing that makes any of the rest of this checkable.",
-    cost: "Training and a slower schedule instead of whoever is free that week.",
+    chip: "Install",
+    h: "Our install crews.",
+    p: "We have multiple install crews that work for us year round. The lighting goes up once and stays up.",
+    cost: "Mounted to your soffit.",
   },
   {
-    chip: "Costs us a day",
-    h: "The last hour is unbilled.",
-    /* WAS "The curb check and the scene walkthrough are the two steps most installers skip." The
-       daylight curb check is on the punch list as not true, so it is the walkthrough, singular. */
-    p: "The scene walkthrough is the step most installers skip, and it is the one that catches problems. It is also the reason a crew is still on your property when the lights come up rather than on the next job.",
-    cost: "Roughly an hour of a two-person crew, on every install, billed to nobody.",
+    chip: "Control",
+    h: "App training.",
+    p: "After the install we come back for about an hour, set up your everyday lighting and schedule your holidays.",
+    cost: "White every night, scenes on a schedule.",
   },
   {
-    chip: "Costs us the sale",
-    h: "We publish the daylight photographs.",
-    p: "Every gallery in this trade is a hundred night shots, because darkness flatters any install and a badly fixed channel is invisible at midnight. We put the noon frames up beside them. Some people look at those, decide the hardware is more visible than they had pictured, and do not call back.",
-    cost: "The buyers who would have booked off the night shots alone.",
+    chip: "Service",
+    h: "We are here afterwards.",
+    p: "Call us for service on anything we installed. Every system is backed by our lifetime product warranty.",
+    cost: "402-810-3973",
   },
 ];
 
-export default function About() {
+export default async function About() {
+  const reviewProof = await getReviewProof();
   return (
     <Shell>
       <Jsonld data={breadcrumb(trail)} />
@@ -103,8 +107,8 @@ export default function About() {
         photo="/img/g-ranch-blue-white.jpg"
         photoAlt="A single-story Omaha home in October with the roofline, front beds, rock steps and walk all lit, the entry gable set to blue"
         objectPosition="50% 42%"
-        h1="Built by the people who show up on the roof."
-        lede="Brytr exists because every permanent lighting quote in this metro came from somebody selling exactly one brand and calling it the only good option. We carry two, and the same people take a job from the measure to the handover."
+        h1="About Brytr Co."
+        lede="Brytr is family owned by Zac and Sam, brothers-in-law born and raised in Omaha. We install permanent roofline and landscape lighting."
         trail={trail}
       />
 
@@ -120,22 +124,21 @@ export default function About() {
         <div className="shell grid items-start gap-10 lg:grid-cols-[54fr_46fr] lg:gap-14">
           <div>
             <h2 className="mt-4 text-[clamp(1.75rem,3vw,2.5rem)] leading-[1.06] text-foreground">
-              Why we carry more than we have to.
+              Two brands, picked for your house.
             </h2>
             <div className="prose-body mt-6 space-y-4">
             {/* ONE PARAGRAPH. rules.md bans a second body paragraph stacked under a heading, and the
               * measured count was twelve of these on one service page and fifteen on a city page.
               * Kept whichever of the two carried the claim rather than the run-up to it. */}
               <p className="text-lg text-foreground">
-                Zac and Sam had both been on the other side of this. A homeowner asks three companies
-                for a quote, gets three quotes for three different single-brand systems, and has no way
-                to tell whether the differences matter or whether they are just what each company
-                happens to sell.
+                We&rsquo;re an authorized Nebraska dealer for both Jellyfish and Haven. They&rsquo;re two
+                different products with different looks, features and prices, and at every consultation
+                we walk you through both side by side.
               </p>
             </div>
             <div className="mt-7 flex flex-wrap gap-x-7 gap-y-2">
               <TextLink href="/lighting-systems">The systems we carry</TextLink>
-              {!COMPARE_HIDDEN && <TextLink href="/compare">How they compare</TextLink>}
+              {!COMPARE_HIDDEN && <TextLink href={COMPARE_URL}>Jellyfish vs Haven</TextLink>}
             </div>
           </div>
 
@@ -143,32 +146,15 @@ export default function About() {
             <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-border px-6 py-4">
               <p className="label flex items-center gap-3 text-foreground">
                 <span className="block h-4 w-1 bg-accent" aria-hidden />
-                The Haven lineup
+                What we install
               </p>
-              <p className="text-xs text-muted-foreground">Named on the quote, not implied</p>
+              <p className="text-xs text-muted-foreground">Jellyfish and Haven</p>
             </div>
             <ul className="divide-y divide-border">
               {[
-                {
-                  t: "Haven Evolution",
-                  s: "Roofline",
-                  when: "The channel routed into the eave. A dedicated warm white diode alongside full color.",
-                },
-                {
-                  t: "Haven Q Series",
-                  s: "Soffit",
-                  when: "Fixtures inside the overhang, washing down the face of the house rather than along the roofline.",
-                },
-                {
-                  t: "Haven 9 Series",
-                  s: "Landscape",
-                  when: "Path lights, uplights and bed washers, on the same controller as the roofline.",
-                },
-                {
-                  t: "Haven X Bistro",
-                  s: "Overhead",
-                  when: "Permanent bistro runs for pergolas and patio covers. Rated cable, not a seasonal string.",
-                },
+                { t: "Roofline lighting", s: "Jellyfish or Haven", when: "Permanent lighting mounted to your soffit, in full color and white, run from an app." },
+                { t: "Landscape lighting", s: "The yard", when: "Path lights, uplights and lighting for beds and trees." },
+                { t: "Commercial", s: "Businesses", when: "We do commercial work too." },
               ].map((x) => (
                 <li key={x.t} className="px-6 py-5">
                   <p className="label text-accent-ink">{x.s}</p>
@@ -178,8 +164,7 @@ export default function About() {
               ))}
             </ul>
             <p className="border-t border-border bg-muted px-6 py-5 text-sm leading-relaxed text-muted-foreground">
-              All of it runs from the one controller and the one app, which is why most people add the
-              second and the third thing a season later rather than buying everything at once.{" "}
+              Every system is backed by our lifetime product warranty.{" "}
               <Link href="/services" className="font-semibold text-foreground hover:text-accent-deep">
                 Everything we install
               </Link>.
@@ -195,7 +180,7 @@ export default function About() {
         <div className="shell">
           <SectionHead
             onDark
-            title="Decisions that make us less money."
+            title="How we work."
           />
 
           {/* SIX COLUMNS FOR FIVE CARDS, so both rows finish on a straight edge. At three columns
@@ -217,7 +202,7 @@ export default function About() {
                 <h3 className="font-display text-xl font-bold leading-snug text-on-dark">{c.h}</h3>
                 <p className="mt-2.5 flex-1 text-[0.95rem] leading-relaxed text-on-dark-muted">{c.p}</p>
                 <div className="mt-5 border-t border-on-dark/12 pt-4">
-                  <p className="label text-on-dark-muted">What it costs</p>
+                  <p className="label text-on-dark-muted">In short</p>
                   <p className="mt-1.5 text-sm leading-relaxed text-on-dark/80">{c.cost}</p>
                 </div>
               </article>
@@ -255,11 +240,13 @@ export default function About() {
                   <div className="p-6">
                     <h3 className="font-display text-xl font-bold text-foreground">{f.name}</h3>
                     <p className="label mt-1 text-accent-ink">{f.role}</p>
-                    <ul className="mt-4 divide-y divide-border border-t border-border">
-                      {f.handles.map((h) => (
-                        <li key={h} className="py-2.5 text-[0.95rem] text-muted-foreground">{h}</li>
-                      ))}
-                    </ul>
+                    {f.handles.length > 0 && (
+                      <ul className="mt-4 divide-y divide-border border-t border-border">
+                        {f.handles.map((h) => (
+                          <li key={h} className="py-2.5 text-[0.95rem] text-muted-foreground">{h}</li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 </div>
               </article>
@@ -267,8 +254,9 @@ export default function About() {
           </div>
 
           <p className="mt-5 max-w-[84ch] text-sm leading-relaxed text-muted-foreground">
-            Both of them are named in the reviews rather than in a bio, which is the version worth
-            reading.{" "}
+            Zac and Sam are brothers-in-law, born and raised in Omaha. They started Brytr because they
+            saw growing demand for permanent exterior lighting and wanted a business that works year
+            round, not just one season, and they set out to offer the best products they could find.{" "}
             <Link href="/reviews" className="font-semibold text-foreground hover:text-accent-deep">
               What customers say about working with them
             </Link>.
@@ -281,12 +269,12 @@ export default function About() {
         * do more for that than another paragraph would, and the middle one has a person in it,
         * which every one of the previous four sections was talking about in the abstract. */}
       <PhotoStrip
-        title="What we are actually selling."
-        lede="Not a product line. A crew that turns up, a channel fixed into fascia rather than stapled to a shingle, and a run that still holds a straight line in year eight."
+        title="The work."
+        lede="Permanent lighting along the roofline, installed once and left up."
         shots={[
-          { photo: "crewRoofFascia", caption: "On the roof. The same crew from the measure to the handover, and the same crew if anything ever needs looking at." },
-          { photo: "installDayGarage", caption: "A working day, in daylight, which is when the fixings are visible." },
-          { photo: "walkthroughDusk", caption: "The handover. We do not leave until you have stood on your own lawn and looked at it lit." },
+          { photo: "crewRoofFascia", caption: "On the roof during an install." },
+          { photo: "installDayGarage", caption: "An install in progress." },
+          { photo: "walkthroughDusk", caption: "The finished lighting at dusk." },
         ]}
         cols={3}
         ground="card"
@@ -319,9 +307,9 @@ export default function About() {
                 * from the profile, the two brands off the shelf, and the towns off our own
                 * service-area list. */}
               {[
-                [reviewProof.average, `from ${reviewProof.countLabel} reviews`, `${reviewProof.platform}, ${reviewProof.checked}`],
-                ["2", "brands stocked", "Haven and Jellyfish"],
-                ["12", "towns we install in", "The Omaha metro and Council Bluffs"],
+                [reviewProof.average, `from ${reviewProof.countLabel} reviews`, reviewProof.platform],
+                ["2", "brands installed", "Jellyfish and Haven"],
+                [String(cities.length), "towns we serve", "The Omaha metro and Council Bluffs"],
               ].map(([f, l, src]) => (
                 <div key={l}>
                   <dt className="u text-[clamp(1.8rem,3vw,2.4rem)] font-medium leading-none text-on-dark">{f}</dt>
@@ -340,11 +328,10 @@ export default function About() {
                 {site.address.city}, {site.address.state} {site.address.zip}
               </p>
               <p className="mt-4 text-sm leading-relaxed text-on-dark-muted">
-                A yard and a warehouse rather than a showroom. The useful visit is us coming to you.
-                We drive the Omaha metro and Council Bluffs.
+                Our office is by appointment only. Everything else happens at your home.
               </p>
               <div className="mt-5 border-t border-on-dark/12 pt-4">
-                <TextLink onDark href="/service-areas">Every town we drive to</TextLink>
+                <TextLink onDark href="/service-areas">Every town we serve</TextLink>
               </div>
             </address>
           </div>
