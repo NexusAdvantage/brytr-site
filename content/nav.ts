@@ -75,15 +75,18 @@ export const navTree: NavItem[] = [
       ...(SYSTEM_PAGES_HIDDEN ? [] : [{
         heading: "The hardware",
         /* Two columns wide while the comparison column is hidden, so the menu has no empty slot. */
-        span: COMPARE_HIDDEN ? 2 : undefined,
+        span: 2,
         links: systems.map((s) => ({ label: s.name, href: `/lighting-systems/${s.slug}` })),
       }]),
-      /* Hidden with the comparison pages, 28 Oct 2026. See COMPARE_HIDDEN. */
+      /* The one comparison, Jellyfish vs Haven (29 Oct 2026). */
       ...(COMPARE_HIDDEN
         ? []
         : [{
-            heading: "Against the other brands",
-            links: compares.map((c) => ({ label: `${c.a} vs ${c.b}`, href: `/compare/${c.slug}` })),
+            heading: "The two brands",
+            links: [
+              { label: "Lighting systems", href: "/lighting-systems" },
+              ...compares.map((c) => ({ label: "Jellyfish vs Haven", href: `/compare/${c.slug}` })),
+            ],
           }]),
     ],
     feature: {
