@@ -229,7 +229,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       <section className="section bg-muted">
         <div className="shell">
           <SectionHead
-            title="Everything in the written quote."
+            title="What you get."
           />
           {/* THIS WAS A TWO-COLUMN LIST OF BOLD LABEL PLUS ONE LINE, separated by hairlines, and
             * the client on it: "sections should always have more design than this." He is right,
