@@ -11,7 +11,7 @@ import { pick } from "@/content/photo-sets";
 import { Jsonld, breadcrumb } from "@/lib/schema";
 import { ValueBand } from "@/components/sections/value-band";
 import { valueProps } from "@/content/value-props";
-import { COMPARE_HIDDEN } from "@/content/compares";
+import { COMPARE_HIDDEN, COMPARE_URL } from "@/content/compares";
 
 /* /blog — WAVE 6 of the page-by-page pass.
  *
@@ -211,10 +211,10 @@ export default function BlogHub() {
               <>
                 {" "}
                 <Link
-                  href="/compare"
+                  href={COMPARE_URL}
                   className="font-semibold text-foreground underline decoration-accent decoration-2 underline-offset-4"
                 >
-                  The brands people ask us about
+                  Jellyfish and Haven side by side
                 </Link>.
               </>
             )}
