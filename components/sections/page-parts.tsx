@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { COMPARE_HIDDEN } from "@/content/compares";
+import { COMPARE_HIDDEN, COMPARE_URL } from "@/content/compares";
 import Link from "next/link";
 import Image from "next/image";
 import { site } from "@/content/site";
@@ -220,9 +220,11 @@ export function SpecTable({
     kind === "versus"
       ? `font-display text-[1.1rem] font-bold leading-snug ${valueTone}`
       : `font-display text-[1.05rem] font-bold leading-snug ${valueTone}`;
+  /* Without highlightA both columns get the same weight. The Jellyfish vs Haven table rendered
+   * the left brand bold and the right one plain, which reads as a ranking. */
   const bClass =
     kind === "versus"
-      ? `text-[1.02rem] leading-snug ${highlightA ? bodyTone : valueTone}`
+      ? highlightA ? `text-[1.02rem] leading-snug ${bodyTone}` : aClass
       : `text-[0.95rem] leading-relaxed ${bodyTone}`;
 
   return (
@@ -444,12 +446,12 @@ export function PageCta({
   const nextLinks = [
     /* "how the pricing works" led this list and is gone with /pricing. Callers still passing
        omit={["/pricing"]} are harmless - the filter simply matches nothing now. */
-    { href: "/compare", label: "compare the brands we are asked about" },
+    { href: COMPARE_URL, label: "Jellyfish and Haven side by side" },
     { href: "/how-it-works", label: "how an install works" },
   ]
     /* Comparison pages hidden, 28 Oct 2026. See COMPARE_HIDDEN in content/compares.ts. */
-    .filter((l) => !(COMPARE_HIDDEN && l.href === "/compare"))
-    .filter((l) => !omit.includes(l.href))
+    .filter((l) => !(COMPARE_HIDDEN && l.href === COMPARE_URL))
+    .filter((l) => !omit.includes(l.href) && !(omit.includes("/compare") && l.href === COMPARE_URL))
     .slice(0, 3);
 
   const head = (
@@ -459,7 +461,7 @@ export function PageCta({
       />
       <p className="mt-4 max-w-[60ch] text-lg text-muted-foreground">
         {body ??
-          "We visit, design it with you, and give you a written quote."}
+          "About an hour at your home. We show you both brands and give you exact pricing at the visit."}
       </p>
         {/* NO TICK LIST. Three fragments restating the paragraph directly above them, under
           * the one heading on the page whose job is to get a form filled in. Removed on
@@ -556,7 +558,7 @@ export function PageCta({
               <a href={site.phoneHref} className="u font-semibold text-foreground underline decoration-accent decoration-2 underline-offset-4">
                 {site.phone}
               </a>
-              . We will get back to you.
+              . Mon to Sat, 8am to 8pm.
             </p>
           </div>
         </div>
@@ -573,7 +575,7 @@ export function PageCta({
             <div>
               <p className="label text-muted-foreground">Or call us directly</p>
               <a href={site.phoneHref} className="u mt-1.5 block text-3xl font-medium text-foreground hover:text-accent-deep">{site.phone}</a>
-              <p className="mt-2 text-xs text-muted-foreground">We will get back to you</p>
+              <p className="mt-2 text-xs text-muted-foreground">Mon to Sat, 8am to 8pm</p>
             </div>
             {stats && (
               <dl className="grid grid-cols-2 gap-4">
