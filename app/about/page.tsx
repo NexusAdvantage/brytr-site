@@ -8,7 +8,7 @@ import { PhotoStrip } from "@/components/sections/photo-parts";
 import { Jsonld, breadcrumb } from "@/lib/schema";
 import { site } from "@/content/site";
 import { cities } from "@/content/cities";
-import { reviewProof } from "@/content/reviews";
+import { getReviewProof } from "@/lib/review-proof";
 import { ValueBand } from "@/components/sections/value-band";
 import { valueProps } from "@/content/value-props";
 import { COMPARE_HIDDEN, COMPARE_URL } from "@/content/compares";
@@ -97,7 +97,8 @@ const costs: { chip: string; h: string; p: string; cost: string }[] = [
   },
 ];
 
-export default function About() {
+export default async function About() {
+  const reviewProof = await getReviewProof();
   return (
     <Shell>
       <Jsonld data={breadcrumb(trail)} />
