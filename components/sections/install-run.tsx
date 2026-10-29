@@ -49,12 +49,12 @@
  * house. If the original meant something specific - a sole-installer arrangement with a
  * manufacturer, say - it can come back once we have it in writing. */
 const STAGES: { title: string; body: string }[] = [
-  { title: "Controlled from an app",
-    body: "Scenes, schedules and colors from your phone" },
-  { title: "Two systems to choose from",
-    body: "We install Jellyfish and Haven and help you pick the one that suits your house" },
-  { title: "Here afterwards",
-    body: "Call us for service on anything we installed" },
+  { title: "White every night",
+    body: "On automatically at sunset for security, accent lighting and curb appeal" },
+  { title: "Any occasion, on a schedule",
+    body: "Christmas, the 4th of July, Halloween, birthdays and game days take over on their own" },
+  { title: "No more ladders",
+    body: "No hiring someone or climbing a ladder to hang holiday lights every year" },
 ];
 
 /* The output climbing down the list, so the marks read as a run coming up rather than as three
