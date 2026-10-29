@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { site, nav } from "@/content/site";
-import { COMPARE_HIDDEN } from "@/content/compares";
+import { COMPARE_HIDDEN, COMPARE_URL } from "@/content/compares";
 import { ChannelEdge } from "@/components/ui/bits";
 import { brandLogo } from "@/content/badges";
 import { reviewProof } from "@/content/reviews";
@@ -16,7 +16,7 @@ const company = [
   ["About", "/about"], ["How it works", "/how-it-works"],
   ["Reviews", "/reviews"], ["Gallery", "/gallery"],
   ["Recent projects", "/recent-projects"], ["FAQ", "/faq"],
-  ...(COMPARE_HIDDEN ? [] : [["Compare brands", "/compare"]]),
+  ...(COMPARE_HIDDEN ? [] : [["Jellyfish vs Haven", COMPARE_URL]]),
 ];
 
 export function Footer() {
@@ -68,8 +68,8 @@ export function Footer() {
               </p>
             )}
             <p className="mt-4 text-sm text-on-dark-muted">
-              Permanent outdoor lighting for Omaha homes. Installed once and controlled from your
-              phone. Call us for service on anything we installed.
+              Permanent roofline and landscape lighting for Omaha homes. Designed for every day.
+              Ready for any day.
             </p>
             <div className="mt-5 flex gap-3">
               <a href={site.social.facebook} aria-label="Brytr on Facebook" className="grid size-10 place-items-center rounded-md border border-on-dark/20 text-accent hover:border-accent">
@@ -147,6 +147,7 @@ export function Footer() {
               <p>{site.address.street}</p>
               <p>{site.address.city}, {site.address.state} {site.address.zip}</p>
               <p><a href={site.phoneHref} className="u text-on-dark hover:text-accent">{site.phone}</a></p>
+              <p>{site.hours.openLabel}, by appointment</p>
               <p className="pt-2">
                 <a href={reviewProof.url} target="_blank" rel="noopener noreferrer" className="text-on-dark hover:text-accent">
                   <span className="u">{reviewProof.average}</span> from <span className="u">{reviewProof.countLabel}</span> Google reviews
