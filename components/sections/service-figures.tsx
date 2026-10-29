@@ -55,7 +55,7 @@ const zoneRows: [string, string, string][] = [
   ["Front elevation", "Roofline and gables", "Warm white"],
   ["Side elevations", "Eaves", "On or off"],
   ["Landscape", "Trees, beds and walks", "On a schedule"],
-  ["Structures", "Pergola, patio, hardscape", "Dimmed"],
+  ["Holidays", "Scheduled ahead of time", "Any color"],
 ];
 
 function ZonesFigure() {
@@ -199,8 +199,8 @@ function BeamFigure() {
   ];
   return (
     <Frame
-      label="Light under the overhang"
-      caption="How soffit lighting looks depends on your overhang. We look at it with you at the design consultation."
+      label="Mounted to your soffit"
+      caption="We mount the lighting to your soffit. How it looks depends on your overhang, and we show you with our demo kit at the consultation."
     >
       <svg viewBox="0 0 100 52" className="w-full" role="img" aria-label="Three overhang depths, each with the beam spread that suits it">
         {cases.map(([, , x, w]) => (
