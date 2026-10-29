@@ -7,10 +7,11 @@ import { PhotoStrip } from "@/components/sections/photo-parts";
 
 import { Jsonld, breadcrumb } from "@/lib/schema";
 import { site } from "@/content/site";
+import { cities } from "@/content/cities";
 import { reviewProof } from "@/content/reviews";
 import { ValueBand } from "@/components/sections/value-band";
 import { valueProps } from "@/content/value-props";
-import { COMPARE_HIDDEN } from "@/content/compares";
+import { COMPARE_HIDDEN, COMPARE_URL } from "@/content/compares";
 
 /* /about — WAVE 2, PAGE 2 of the page-by-page pass.
  *
@@ -41,7 +42,7 @@ export const metadata: Metadata = {
    * /contact. The brand is already in the title, so the template would repeat it. */
   title: { absolute: "About Brytr Co | Permanent Lighting, Omaha" },
   description:
-    "Brytr Co installs Jellyfish and Haven permanent outdoor lighting in the Omaha metro and Council Bluffs.",
+    "Brytr Co is family owned by Zac and Sam, brothers-in-law born and raised in Omaha. Permanent roofline and landscape lighting, Jellyfish and Haven.",
   ...pageUrl("/about"),
 };
 const trail = [{ name: "Home", href: "/" }, { name: "About", href: "/about" }];
@@ -73,27 +74,25 @@ const costs: { chip: string; h: string; p: string; cost: string }[] = [
   {
     chip: "Design",
     h: "We design it with you.",
-    p: "We visit, look at the house with you and plan what gets lit. Then you get a written quote.",
-    cost: "The consultation and the quote are free.",
+    p: "About an hour at your home. We measure with a laser, turn on our demo kit and price out both options.",
+    cost: "Free, with exact pricing at the visit.",
   },
   {
     chip: "Install",
-    h: "We handle the install.",
-    p: "The lighting goes up once and stays up. Nothing to hang in November and nothing to take down in January.",
-    cost: "Roofline, soffit, landscape, hardscape and patio.",
+    h: "Our install crews.",
+    p: "We have multiple install crews that work for us year round. The lighting goes up once and stays up.",
+    cost: "Mounted to your soffit.",
   },
   {
     chip: "Control",
-    h: "Scenes on your phone.",
-    /* WAS "The curb check and the scene walkthrough are the two steps most installers skip." The
-       daylight curb check is on the punch list as not true, so it is the walkthrough, singular. */
-    p: "Warm white for everyday, colors for holidays and gameday. Set a scene or put it on a schedule.",
-    cost: "Change it any night you like.",
+    h: "App training.",
+    p: "After the install we come back for about an hour, set up your everyday lighting and schedule your holidays.",
+    cost: "White every night, scenes on a schedule.",
   },
   {
     chip: "Service",
     h: "We are here afterwards.",
-    p: "Call us for service on anything we installed.",
+    p: "Call us for service on anything we installed. Every system is backed by our lifetime product warranty.",
     cost: "402-810-3973",
   },
 ];
@@ -108,7 +107,7 @@ export default function About() {
         photoAlt="A single-story Omaha home in October with the roofline, front beds, rock steps and walk all lit, the entry gable set to blue"
         objectPosition="50% 42%"
         h1="About Brytr Co."
-        lede="Brytr installs permanent outdoor lighting in the Omaha metro and Council Bluffs. We install Jellyfish and Haven, and we are here for service afterwards."
+        lede="Brytr is family owned by Zac and Sam, brothers-in-law born and raised in Omaha. We install permanent roofline and landscape lighting."
         trail={trail}
       />
 
@@ -131,13 +130,14 @@ export default function About() {
               * measured count was twelve of these on one service page and fifteen on a city page.
               * Kept whichever of the two carried the claim rather than the run-up to it. */}
               <p className="text-lg text-foreground">
-                We install Jellyfish and Haven. Both are permanent, app controlled lighting systems,
-                and we help you choose between them at the free design consultation.
+                We&rsquo;re an authorized Nebraska dealer for both Jellyfish and Haven. They&rsquo;re two
+                different products with different looks, features and prices, and at every consultation
+                we walk you through both side by side.
               </p>
             </div>
             <div className="mt-7 flex flex-wrap gap-x-7 gap-y-2">
               <TextLink href="/lighting-systems">The systems we carry</TextLink>
-              {!COMPARE_HIDDEN && <TextLink href="/compare">How they compare</TextLink>}
+              {!COMPARE_HIDDEN && <TextLink href={COMPARE_URL}>Jellyfish vs Haven</TextLink>}
             </div>
           </div>
 
@@ -151,10 +151,9 @@ export default function About() {
             </div>
             <ul className="divide-y divide-border">
               {[
-                { t: "Roofline lighting", s: "Jellyfish or Haven", when: "Permanent roofline lighting in full color and white, run from an app." },
-                { t: "Soffit lighting", s: "Under the overhang", when: "Lighting under the overhang that lights the face of the house." },
+                { t: "Roofline lighting", s: "Jellyfish or Haven", when: "Permanent lighting mounted to your soffit, in full color and white, run from an app." },
                 { t: "Landscape lighting", s: "The yard", when: "Path lights, uplights and lighting for beds and trees." },
-                { t: "Bistro lighting", s: "Overhead", when: "Permanent bistro lighting for pergolas and patio covers." },
+                { t: "Commercial", s: "Businesses", when: "We do commercial work too." },
               ].map((x) => (
                 <li key={x.t} className="px-6 py-5">
                   <p className="label text-accent-ink">{x.s}</p>
@@ -164,7 +163,7 @@ export default function About() {
               ))}
             </ul>
             <p className="border-t border-border bg-muted px-6 py-5 text-sm leading-relaxed text-muted-foreground">
-              You can start with the roofline and add more later.{" "}
+              Every system is backed by our lifetime product warranty.{" "}
               <Link href="/services" className="font-semibold text-foreground hover:text-accent-deep">
                 Everything we install
               </Link>.
@@ -254,7 +253,9 @@ export default function About() {
           </div>
 
           <p className="mt-5 max-w-[84ch] text-sm leading-relaxed text-muted-foreground">
-            Zac and Sam own Brytr.{" "}
+            Zac and Sam are brothers-in-law, born and raised in Omaha. They started Brytr because they
+            saw growing demand for permanent exterior lighting and wanted a business that works year
+            round, not just one season, and they set out to offer the best products they could find.{" "}
             <Link href="/reviews" className="font-semibold text-foreground hover:text-accent-deep">
               What customers say about working with them
             </Link>.
@@ -307,7 +308,7 @@ export default function About() {
               {[
                 [reviewProof.average, `from ${reviewProof.countLabel} reviews`, reviewProof.platform],
                 ["2", "brands installed", "Jellyfish and Haven"],
-                ["12", "towns we serve", "The Omaha metro and Council Bluffs"],
+                [String(cities.length), "towns we serve", "The Omaha metro and Council Bluffs"],
               ].map(([f, l, src]) => (
                 <div key={l}>
                   <dt className="u text-[clamp(1.8rem,3vw,2.4rem)] font-medium leading-none text-on-dark">{f}</dt>
@@ -326,8 +327,7 @@ export default function About() {
                 {site.address.city}, {site.address.state} {site.address.zip}
               </p>
               <p className="mt-4 text-sm leading-relaxed text-on-dark-muted">
-                We come to you for the design consultation. We serve the Omaha metro and Council
-                Bluffs.
+                Our office is by appointment only. Everything else happens at your home.
               </p>
               <div className="mt-5 border-t border-on-dark/12 pt-4">
                 <TextLink onDark href="/service-areas">Every town we serve</TextLink>
