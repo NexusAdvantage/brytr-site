@@ -27,7 +27,7 @@ export const postPhotos: Record<string, PostPhoto> = {
   "how-to-choose-a-permanent-lighting-installer": {
     photo: "/img/crew-roof-fascia.jpg",
     photoAlt:
-      "An installer on an Omaha roof in daylight, working along the fascia",
+      "An installer working on an Omaha roofline in daylight",
     objectPosition: "50% 55%",
   },
   "permanent-lights-vs-hanging-christmas-lights": {
@@ -42,23 +42,17 @@ export const postPhotos: Record<string, PostPhoto> = {
       "A lit warm white run following the rake of a gable and turning at the peak on an Omaha home",
     objectPosition: "50% 42%",
   },
-  "do-permanent-lights-damage-soffit-or-fascia": {
+  "do-permanent-lights-damage-your-soffit": {
     photo: "/img/day-brick-gable.jpg",
     /* WAS "...as a slim line the color of the trim". Alt text is copy, and this was the
        color-match claim reaching a screen reader after it had been taken out of everything
        sighted readers see. Kept in step with content/images.ts, which is where this string
        is copied from. */
     photoAlt:
-      "A brick gable and white fascia on an Omaha home in daylight, the channel tucked under the roof edge as a slim line below the gutter",
+      "A brick gable on an Omaha home in daylight, the lighting tucked up under the roof edge",
     objectPosition: "50% 52%",
   },
   /* "permanent-lighting-warranty-comparison" removed with the article itself. */
-  "permanent-lights-on-stucco-brick-cedar": {
-    photo: "/img/day-stone-gable.jpg",
-    photoAlt:
-      "A stone and brick gable on an Omaha home under overcast light, the channel following the roof edge above the entry",
-    objectPosition: "50% 52%",
-  },
   "husker-gameday-lighting-ideas": {
     photo: "/img/gameday-red-full.jpg",
     photoAlt:

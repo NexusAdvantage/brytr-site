@@ -92,6 +92,8 @@ const nextConfig: NextConfig = {
       { source: "/services/patio-pergola-bistro-lighting", destination: "/services/landscape-lighting", permanent: true },
       { source: "/service-areas/:town(millard|bennington|waterloo|springfield|blair)", destination: "/service-areas", permanent: true },
       { source: "/blog/omaha-hoa-rules-permanent-outdoor-lighting", destination: "/blog", permanent: true },
+      { source: "/blog/permanent-lights-on-stucco-brick-cedar", destination: "/blog", permanent: true },
+      { source: "/blog/do-permanent-lights-damage-soffit-or-fascia", destination: "/blog/do-permanent-lights-damage-your-soffit", permanent: true },
       { source: "/sitemap_index.xml", destination: "/sitemap.xml", permanent: true },
       { source: "/page-sitemap.xml", destination: "/sitemap.xml", permanent: true },
     ];

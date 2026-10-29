@@ -67,16 +67,16 @@ export const posts: Post[] = [
       { h: "When DIY can work" },
       { list: ["Single story, easy roof access", "You enjoy the project", "You want to try the idea first", "Budget is the main concern"] },
       { h: "When a professional install makes sense" },
-      { list: ["Two stories, or a roof you would not want to walk", "Lots of corners, gables or dormers", "You want the wiring hidden and the install handled for you", "You want someone to call for service afterwards"] },
+      { list: ["Two stories, or a roof you would not want to walk", "Lots of corners, gables or dormers", "You want the install handled for you", "You want someone to call for service afterwards"] },
       { callout: "Whichever way you go, think about how it will look during the day as well as at night." },
     ] }),
-  B({ slug: "do-permanent-lights-damage-soffit-or-fascia", title: "Do Permanent Lights Damage Your Soffit or Fascia?",
-    h1: "Do permanent lights damage your soffit or fascia?", keyword: "do permanent lights damage soffit",
+  B({ slug: "do-permanent-lights-damage-your-soffit", title: "Do Permanent Lights Damage Your Soffit?",
+    h1: "Do permanent lights damage your soffit?", keyword: "do permanent lights damage soffit",
     category: "Install", read: "2 min",
     dek: "Permanent lighting is fastened to your house, so it is a fair question. Here is how we mount it.",
     links: { label: "Permanent roofline lighting", href: "/services/permanent-roofline-lighting" },
     body: [
-      { p: "Brytr mounts permanent roofline lighting to your soffit, up under the roof edge. Nothing about the install involves the roof itself." },
+      { p: "Brytr mounts permanent roofline lighting to your soffit, up under the roof edge." },
       { h: "What to ask any installer" },
       { list: ["Where it mounts on your house", "Which brands they install and why", "What the warranty covers and who you call"] },
       { h: "Our answer" },
@@ -84,16 +84,8 @@ export const posts: Post[] = [
     ] }),
   /* THE WARRANTY ARTICLE WAS HERE and is gone, 28 Aug 2026. It is in git:
    * `git show f7956e9:content/blog.ts`. Do not restore it without warranty terms from Brytr. */
-  B({ slug: "permanent-lights-on-stucco-brick-cedar", title: "Permanent Lights on Stucco, Brick and Cedar Homes",
-    h1: "Permanent lights on stucco, brick and cedar homes.", keyword: "permanent lights on stucco",
-    category: "Install", read: "2 min",
-    dek: "The wall material matters less than people think, because roofline lighting mounts to the soffit.",
-    links: { label: "Permanent roofline lighting", href: "/services/permanent-roofline-lighting" },
-    body: [
-      { p: "We mount roofline lighting to your soffit, so brick, stucco, cedar, vinyl and fiber cement homes can all have it." },
-      { h: "Seeing it on your house" },
-      { p: "At the design consultation we measure your roofline with a laser and turn on our demo kit, so you can see Jellyfish and Haven against your own house before you decide." },
-    ] }),
+  /* "permanent-lights-on-stucco-brick-cedar" removed 29 Oct 2026: Zac does not want install
+   * details by wall material on the site. Redirects to /blog. */
   B({ slug: "husker-gameday-lighting-ideas", title: "Husker Gameday Lighting Ideas",
     h1: "Husker gameday lighting ideas for your roofline.", keyword: "husker gameday lighting",
     category: "Local", read: "2 min",
@@ -125,9 +117,7 @@ export const posts: Post[] = [
     dek: "Often, yes. It depends on the weather on the day.",
     links: { label: "How an install works", href: "/how-it-works" },
     body: [
-      { p: "Cold weather can affect an install, mainly through sealants, how materials behave in the cold, and footing on the roof." },
-      { h: "What cold can affect" },
-      { list: ["Sealants take longer to cure", "Materials contract in the cold", "Ice and snow affect whether the roof is safe to work on"] },
+      { p: "Winter installs depend on the weather. Plenty of days work fine, and some do not." },
       { h: "Scheduling" },
       { p: "If the weather is not right on the day, an install may need to move. We will talk through timing with you when we schedule." },
     ] }),
