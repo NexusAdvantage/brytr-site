@@ -62,10 +62,10 @@ export const images: Record<string, Slot> = {
    * hero-warm-white.jpg is still in the archive and still used elsewhere. Every caption on it
    * now describes what is in the frame: a soft pink, not warm white. */
   heroWarm: { src: "/img/scene-warm-white.jpg",
-    alt: "An Omaha home, pergola and pool deck on everyday warm white at dusk",
+    alt: "An Omaha home on everyday warm white at dusk",
     subject: "The everyday setting. Pairs with heroScene, same house and same frame.", ratio: "16/9", priority: true },
   heroScene: { src: "/img/g-pool-red.jpg",
-    alt: "The same Omaha home, pergola and pool deck with every run switched to red",
+    alt: "The same Omaha home with every run switched to red",
     subject: "Same frame as heroWarm, one color scene on.", ratio: "16/9", priority: true },
 
   /* THE HOME HERO IS NOT THE SAME HOUSE AS THE DRAG DEVICE ANY MORE.
@@ -131,7 +131,7 @@ export const images: Record<string, Slot> = {
    * every one of them silently rendered nothing, because a missing key is indistinguishable
    * from an unfilled slot. See scripts/photo-keys.mjs, which now fails the build on that. */
   crewRoofFascia: { src: "/img/crew-roof-fascia.jpg",
-    alt: "An installer on an Omaha roof in daylight, working along the fascia",
+    alt: "An installer working on an Omaha roofline in daylight",
     subject: "The install itself, in daylight, with a person in it.", ratio: "3/4" },
   crewPortrait: { src: "/img/crew-portrait.jpg",
     alt: "A person in a Brytr shirt and cap outside a lit commercial building, its roofline set to red",
@@ -170,7 +170,7 @@ export const images: Record<string, Slot> = {
     alt: "Warm white downlights under the eaves and gable peaks of a shake and brick Omaha home at blue hour, the spacing between points readable along each run",
     subject: "Close enough to read the spacing between the downlights under the eave.", ratio: "3/4" },
   serviceHardscape: { src: "/img/hardscape-seatwall.jpg",
-    alt: "A stone seat wall with lit caps in the foreground and a covered porch behind it washed red at an Omaha home",
+    alt: "A covered porch and roofline washed red at an Omaha home",
     subject: "Lit wall caps in front, a washed porch behind, one scene across both.", ratio: "3/4" },
   /* was g-pool-red.jpg — a pool deck with red umbrellas, which is not what a homeowner
    * pictures when they read "game day". The ranch roofline in scarlet is. */
@@ -215,7 +215,7 @@ export const images: Record<string, Slot> = {
        trim-colored channel. Brytr does not color match, so a screen reader was being told
        something the sales copy has just stopped saying. What the frame shows is a slim line
        tucked under the roof edge, which is the checkable claim and the one we make. */
-    alt: "A brick gable and white fascia on an Omaha home in daylight, the channel tucked under the roof edge as a slim line below the gutter",
+    alt: "A brick gable on an Omaha home in daylight, the lighting tucked up under the roof edge",
     subject: "Daylight, close, the channel in the eave line. The claim, checkable.", ratio: "3/4" },
   dayShakeGable: { src: "/img/day-shake-gable.jpg",
     alt: "A shake gable meeting a shingled roof on an Omaha home in daylight, the run visible only as a narrow strip below the gutter line",
@@ -244,16 +244,16 @@ export const images: Record<string, Slot> = {
     alt: "A timber and stone covered patio at an Omaha home after dark, warm light along the beam and step lights down the stairs",
     subject: "Best patio frame in the library. Beam run and step lights on one system.", ratio: "3/4" },
   poolPergolaDusk: { src: "/img/pool-pergola-dusk.jpg",
-    alt: "A pool and covered pergola at an Omaha home at sunset, the pergola beam and the far roofline both lit warm",
-    subject: "Pool at dusk. The reason people buy the pergola run.", ratio: "3/4" },
+    alt: "A pool at an Omaha home at sunset with the roofline lit warm",
+    subject: "Pool at dusk with the roofline lit.", ratio: "3/4" },
   poolRearWarm: { src: "/img/pool-rear-warm.jpg",
     alt: "The back of an Omaha home at dusk with warm soffit downlights above a pool, the points repeated in the water",
     subject: "Rear elevation. Almost every photograph on this site is a front.", ratio: "3/4" },
   hardscapeSeatwall: { src: "/img/hardscape-seatwall.jpg",
-    alt: "A stone seat wall with lit caps in the foreground and a covered porch behind it washed red at an Omaha home",
-    subject: "Hardscape in front, roofline behind, one scene across both.", ratio: "3/4" },
+    alt: "A covered porch and roofline washed red at an Omaha home",
+    subject: "Porch and roofline in one scene.", ratio: "3/4" },
   deckRanchWarm: { src: "/img/deck-ranch-warm.jpg",
-    alt: "A long Omaha ranch at night with warm white along the roofline and a lit deck and pergola at one end",
+    alt: "A long Omaha ranch at night with warm white along the roofline",
     subject: "House and deck reading as one property rather than two jobs.", ratio: "4/3" },
   /* KEY RENAMED patioRearColour -> patioRearColor with the rest of the spelling pass. The FILE
      on disk keeps its own name: a filename is not user-visible and renaming it would break the
@@ -444,7 +444,7 @@ export const images: Record<string, Slot> = {
  * about being a drawing. We never hue-rotate one photo to fake another color. */
 export const sceneImages: Record<string, Slot> = {
   "Everyday Warm White": { src: "/img/scene-warm-white.jpg",
-    alt: "An Omaha home and pergola on everyday warm white at dusk", subject: "Base night shot, warm white.", ratio: "16/9" },
+    alt: "An Omaha home on everyday warm white at dusk", subject: "Base night shot, warm white.", ratio: "16/9" },
   "Husker Red": { src: "/img/scene-husker-red.jpg",
     alt: "An Omaha ranch home with its roofline in scarlet for a Nebraska game day", subject: "Same house, scarlet.", ratio: "16/9" },
   "Halloween": { src: "/img/scene-halloween.jpg",
@@ -514,7 +514,7 @@ export const galleryShots: GalleryShot[] = [
     alt: "An Omaha home washed violet for Halloween",
     caption: "A Halloween scene, pumpkins included." },
   { src: "/img/patio-pergola.jpg", ratio: "16/9", scene: "Pool deck at dusk",
-    alt: "A lit pergola, pool deck and fire bowls at an Omaha home at dusk",
+    alt: "A pool deck and lit roofline at an Omaha home at dusk",
     caption: "A finished install at dusk. Omaha, Nebraska." },
   { src: "/img/g-pool-red.jpg", ratio: "16/9", scene: "Full red",
     alt: "An Omaha home and pool deck lit red at dusk",
@@ -532,13 +532,13 @@ export const galleryShots: GalleryShot[] = [
     alt: "A long Omaha ranch elevation lit blue and white with landscape uplighting",
     caption: "A long ranch roofline in blue and white." },
   { src: "/img/g-pool-blue.jpg", ratio: "16/9", scene: "Whole property, one tap",
-    alt: "An Omaha home, pergola and pool deck lit blue at dusk",
+    alt: "An Omaha home lit blue at dusk",
     caption: "The whole property switched together." },
   { src: "/img/scene-game-day.jpg", ratio: "16/9", scene: "Team colors",
     alt: "An Omaha ranch home with its roofline in red over white for game day",
     caption: "Red over white. Any two colors can be saved as their own scene." },
   { src: "/img/scene-warm-white.jpg", ratio: "16/9", scene: "Warm white, whole property",
-    alt: "An Omaha home, pergola and pool deck on warm white at dusk",
+    alt: "An Omaha home on warm white at dusk",
     caption: "The whole property on the everyday setting." },
   { src: "/img/g-twilight-yard.jpg", ratio: "16/9", scene: "Dusk, lights coming up",
     alt: "An Omaha home at twilight with its lighting just switched on",

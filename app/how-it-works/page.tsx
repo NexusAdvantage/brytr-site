@@ -47,7 +47,6 @@ const trail = [{ name: "Home", href: "/" }, { name: "How it works", href: "/how-
  * both of them. And "Miters at every transition" is gone with the rest of the mitre claim. */
 const invisible: [string, string][] = [
   ["Zones", "Different parts of the house can be set up as separate zones in the app."],
-  ["Wiring", "We handle the wiring as part of the install."],
   ["Adding more later", "You can add landscape lighting or more of the roofline later."],
   ["Warranty", "Every system is backed by our lifetime product warranty. Full details come with your quote."],
 ];
