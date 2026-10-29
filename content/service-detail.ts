@@ -79,7 +79,7 @@ export const serviceDetail: Record<string, ServiceDetail> = {
       lede: "Same lights, two different scenes, picked from the app.",
     },
     secondPara:
-      "It is installed once and it stays on the house. Nothing goes up in November and nothing comes down in January.",
+      "It turns on white every night at sunset for security, accent lighting and curb appeal. For holidays and special occasions a scheduled scene takes over on its own.",
     figure: "zones",
     compare: true,
     facts: [
@@ -90,14 +90,14 @@ export const serviceDetail: Record<string, ServiceDetail> = {
       ["Add to it", "Later, if you want"],
     ],
     included: [
-      ["Design consultation", "We visit and design it with you at your house."],
+      ["Design consultation", "About an hour at your house. We measure, show you both products and price both options."],
       ["The system", "Jellyfish or Haven, chosen with you at the consultation."],
-      ["The install", "We handle the install."],
-      ["App setup", "Scenes and schedules on your phone."],
+      ["The install", "Done by one of our install crews."],
+      ["App training", "A visit after the install to set up your everyday lighting and schedule your holidays."],
     ],
-    alsoSee: ["permanent-roofline-lighting", "landscape-lighting", "patio-pergola-bistro-lighting", "holiday-seasonal-scenes"],
+    alsoSee: ["permanent-roofline-lighting", "landscape-lighting", "permanent-christmas-lights", "holiday-seasonal-scenes"],
     proofShot: "/img/scene-warm-white.jpg",
-    proofCaption: "Warm white on an Omaha home, with the pergola and hardscape lit too.",
+    proofCaption: "Warm white on an Omaha home at dusk.",
   },
 
   "permanent-christmas-lights": {
@@ -132,64 +132,24 @@ export const serviceDetail: Record<string, ServiceDetail> = {
       lede: "The lighting follows the shape of the roof.",
     },
     secondPara:
-      "The track runs along the roofline and stays up year round. You control it from an app.",
-    figure: "eave",
+      "It is mounted to your soffit and stays up year round. You control it from an app.",
+    figure: "beam",
     compare: true,
     facts: [
       ["Systems", "Jellyfish or Haven"],
-      ["Runs along", "The roofline"],
+      ["Mounted to", "Your soffit"],
       ["Color", "Full color and white"],
       ["Control", "App, with scenes and schedules"],
     ],
     included: [
-      ["Design consultation", "We look at your roofline with you and plan the lighting."],
+      ["Design consultation", "We measure your roofline and show you both products with our demo kit."],
       ["The system", "Jellyfish or Haven, chosen with you at the consultation."],
-      ["The install", "We handle the install and we are here for service afterwards."],
+      ["The install", "Done by one of our install crews, mounted to your soffit."],
+      ["Warranty", "Backed by our lifetime product warranty. Full details come with your quote."],
     ],
-    alsoSee: ["soffit-lighting", "permanent-outdoor-lighting", "permanent-christmas-lights", "landscape-lighting"],
+    alsoSee: ["permanent-outdoor-lighting", "permanent-christmas-lights", "landscape-lighting", "gameday-lighting"],
     proofShot: "/img/roofline-detail.jpg",
     proofCaption: "Roofline lighting along a gable.",
-  },
-
-  "soffit-lighting": {
-    secondPara:
-      "Soffit lighting sits under the overhang and lights the face of the house. It is a different look from roofline lighting, and you can use both.",
-    figure: "beam",
-    compare: false,
-    facts: [
-      ["Sits", "Under the overhang"],
-      ["Lights", "The face of the house"],
-      ["Control", "From the app"],
-      ["Zoned", "Apart from the roofline"],
-    ],
-    included: [
-      ["Design consultation", "We look at the house with you and plan the lighting."],
-      ["The install", "We handle the install."],
-      ["Its own setting", "Soffit and roofline can be set differently."],
-    ],
-    alsoSee: ["permanent-roofline-lighting", "permanent-outdoor-lighting", "hardscape-lighting", "landscape-lighting"],
-    proofShot: "/img/soffit-eaves.jpg",
-    proofCaption: "Soffit and eave lighting on an Omaha home: gables in color, eaves left white.",
-  },
-
-  "hardscape-lighting": {
-    secondPara:
-      "Hardscape lighting goes into walls, steps and columns so the stone is lit at night.",
-    figure: "wall",
-    compare: false,
-    facts: [
-      ["Goes into", "Walls, steps and columns"],
-      ["Lights", "The stone and the steps"],
-      ["Control", "From the app"],
-    ],
-    included: [
-      ["Design consultation", "We look at the patio and yard with you and plan the lighting."],
-      ["Wall and step lighting", "Light on the walls and steps."],
-      ["The install", "We handle the install."],
-    ],
-    alsoSee: ["landscape-lighting", "patio-pergola-bistro-lighting", "permanent-outdoor-lighting", "soffit-lighting"],
-    proofShot: "/img/hardscape.jpg",
-    proofCaption: "Hardscape lighting on stone at an Omaha pool deck.",
   },
 
   "landscape-lighting": {
@@ -204,36 +164,14 @@ export const serviceDetail: Record<string, ServiceDetail> = {
       ["Season", "Year round"],
     ],
     included: [
-      ["Design consultation", "We walk the yard with you and plan the lighting."],
+      ["Design consultation", "We walk the yard with you and plan the lighting at the same visit."],
       ["Trees and beds", "Uplighting for trees and lighting for beds."],
       ["Paths", "Path lights along your walks."],
-      ["The install", "We handle the install."],
+      ["The install", "Done by one of our install crews."],
     ],
-    alsoSee: ["hardscape-lighting", "patio-pergola-bistro-lighting", "permanent-outdoor-lighting", "permanent-roofline-lighting"],
+    alsoSee: ["permanent-roofline-lighting", "permanent-outdoor-lighting", "holiday-seasonal-scenes", "permanent-christmas-lights"],
     proofShot: "/img/landscape.jpg",
     proofCaption: "Tree uplighting and bed lighting on an Omaha property after dark.",
-  },
-
-  "patio-pergola-bistro-lighting": {
-    secondPara:
-      "Permanent lighting on your pergola, patio cover or gazebo, controlled from the app with the rest of your lighting.",
-    figure: "pergola",
-    compare: false,
-    facts: [
-      ["Goes on", "Pergolas, patio covers and gazebos"],
-      ["Bistro option", "Yes"],
-      ["Color", "Warm white or full color"],
-      ["Control", "From the app"],
-    ],
-    included: [
-      ["Design consultation", "We look at the space with you and plan the lighting."],
-      ["Overhead lighting", "Lighting on the pergola or patio cover."],
-      ["Bistro lighting", "Permanent bistro lights if you want them."],
-      ["The install", "We handle the install."],
-    ],
-    alsoSee: ["hardscape-lighting", "landscape-lighting", "permanent-outdoor-lighting", "holiday-seasonal-scenes"],
-    proofShot: "/img/patio-pergola.jpg",
-    proofCaption: "A lit pergola over an Omaha pool deck at dusk.",
   },
 
   "holiday-seasonal-scenes": {
@@ -252,7 +190,7 @@ export const serviceDetail: Record<string, ServiceDetail> = {
       ["Color by zone", "Different parts of the house can be different colors."],
       ["Brightness", "Adjust it for each scene."],
     ],
-    alsoSee: ["permanent-christmas-lights", "gameday-lighting", "permanent-outdoor-lighting", "patio-pergola-bistro-lighting"],
+    alsoSee: ["permanent-christmas-lights", "gameday-lighting", "permanent-outdoor-lighting", "permanent-roofline-lighting"],
   },
 
   "gameday-lighting": {
@@ -297,7 +235,7 @@ export const serviceDetail: Record<string, ServiceDetail> = {
       ["Your colors", "Company colors saved as scenes."],
       ["Schedules", "Set to your hours, seasons and events."],
     ],
-    alsoSee: ["permanent-outdoor-lighting", "permanent-roofline-lighting", "holiday-seasonal-scenes", "hardscape-lighting"],
+    alsoSee: ["permanent-outdoor-lighting", "permanent-roofline-lighting", "holiday-seasonal-scenes", "landscape-lighting"],
   },
 
 };

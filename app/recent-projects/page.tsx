@@ -66,7 +66,7 @@ export default function RecentProjects() {
       <Jsonld data={breadcrumb(trail)} />
       <PageHero
         photo="/img/patio-pergola.jpg"
-        photoAlt="Lit pergola, pool deck and fire bowls at an Omaha home at dusk"
+        photoAlt="A pool deck and lit roofline at an Omaha home at dusk"
         objectPosition="50% 52%"
         h1="Recent projects."
         lede="Brytr installs around the Omaha metro. Homeowner addresses stay private, so none of them are named."

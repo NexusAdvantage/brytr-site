@@ -43,7 +43,7 @@ import { valueProps } from "@/content/value-props";
 
 export const metadata: Metadata = {
   title: "Free Lighting Design Consultation | Omaha",
-  description: "Book a free permanent lighting design consultation at your house in the Omaha metro. We visit, design it with you, and give you a written quote.",
+  description: "Book a free permanent lighting design consultation at your home in the Omaha metro. About an hour, both Jellyfish and Haven, and exact pricing at the visit.",
   ...pageUrl("/free-design-consultation"),
 };
 const trail = [{ name: "Home", href: "/" }, { name: "Free design consultation", href: "/free-design-consultation" }];
@@ -52,20 +52,20 @@ const trail = [{ name: "Home", href: "/" }, { name: "Free design consultation", 
  * client has confirmed. If a step cannot be stated without a qualifier it does not belong here. */
 const steps: { h: string; p: string }[] = [
   {
-    h: "We visit",
-    p: "We come to your house and look at the property with you.",
+    h: "At your home",
+    p: "Every consultation is at your home and takes about an hour. Mornings, afternoons or evenings all work.",
   },
   {
-    h: "We talk it through",
-    p: "Roofline, landscape, patio, colors and scenes. Whatever you have in mind.",
+    h: "We measure",
+    p: "We measure with a laser. We never quote off a photo or Google Earth.",
   },
   {
-    h: "We design it with you",
-    p: "We plan the lighting with you and help you pick Jellyfish or Haven.",
+    h: "You see both",
+    p: "We turn on our demo kit so you can see Jellyfish and Haven in person.",
   },
   {
-    h: "You get a written quote",
-    p: "The consultation and the quote are free.",
+    h: "Exact pricing",
+    p: "We price out both options and answer any questions about the install before we leave.",
   },
 ];
 
@@ -83,7 +83,7 @@ export default function Consult() {
         /* WAS "An hour on your property, and you keep the drawing." There is no drawing. What you
           * actually leave with is a written number, so that is what the headline says. */
         h1="A free design consultation at your house."
-        lede="We visit, design it with you, and give you a written quote."
+        lede="About an hour at your home. We show you both products and give you exact pricing before we leave."
         trail={trail}
       />
 
@@ -139,9 +139,10 @@ export default function Consult() {
               </p>
               <ul className="mt-6 flex-1 divide-y divide-border border-y border-border">
                 {[
-                  ["A visit", "We come to your house."],
-                  ["A design", "Planned with you."],
-                  ["A written quote", "Free, and yours to look over."],
+                  ["A visit", "About an hour at your home."],
+                  ["Both products", "Jellyfish and Haven, lit up with our demo kit."],
+                  ["Exact pricing", "For both options, at the visit."],
+                  ["Financing", "Available. Ask us about it."],
                 ].map(([h, p]) => (
                   <li key={h} className="py-4">
                     <p className="font-display text-[0.95rem] font-bold text-foreground">{h}</p>
@@ -199,7 +200,7 @@ export default function Consult() {
           <div className="mt-10 grid gap-10 lg:grid-cols-[56fr_44fr] lg:gap-14">
             <div>
               <p className="text-lg leading-relaxed text-on-dark/85">
-                A lighting design for your house and a written quote, at no charge.
+                A lighting design for your home and exact pricing on both brands, at no charge.
               </p>
               <p className="mt-5 text-[1.02rem] leading-relaxed text-on-dark-muted">
                 If you have questions afterwards, call us.
@@ -238,7 +239,7 @@ export default function Consult() {
                   * the phone. Both removed 27 Aug 2026. What is left is what a phone number is
                   * actually for. */}
                 <p className="mt-4 text-sm leading-relaxed text-on-dark-muted">
-                  We will get back to you.
+                  Mon to Sat, 8am to 8pm.
                 </p>
               </div>
             </div>
