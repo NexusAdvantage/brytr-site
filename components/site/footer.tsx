@@ -4,7 +4,7 @@ import { site, nav } from "@/content/site";
 import { COMPARE_HIDDEN, COMPARE_URL } from "@/content/compares";
 import { ChannelEdge } from "@/components/ui/bits";
 import { brandLogo } from "@/content/badges";
-import { reviewProof } from "@/content/reviews";
+import { getReviewProof } from "@/lib/review-proof";
 import { services } from "@/content/services";
 import { cities } from "@/content/cities";
 import { systems, SYSTEM_PAGES_HIDDEN } from "@/content/systems";
@@ -19,7 +19,8 @@ const company = [
   ...(COMPARE_HIDDEN ? [] : [["Jellyfish vs Haven", COMPARE_URL]]),
 ];
 
-export function Footer() {
+export async function Footer() {
+  const reviewProof = await getReviewProof();
   return (
     <footer className="bg-primary pb-24 lg:pb-0">
       {/* THE CHANNEL EDGE, and this is the first time it has ever rendered.

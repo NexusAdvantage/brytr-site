@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/content/site";
-import { reviewProof } from "@/content/reviews";
+import { getReviewProof } from "@/lib/review-proof";
 import { googleLogo } from "@/content/badges";
 import { QuoteForm } from "@/components/ui/bits";
 
@@ -143,7 +143,8 @@ export function SiteHero({
  * `bg-primary` events. The photograph's own bottom edge is heavier than flat primary, so the strip
  * still reads as a band beneath the image.
  */
-export function TrustPlinth() {
+export async function TrustPlinth() {
+  const reviewProof = await getReviewProof();
   return (
     <Link
       href={reviewProof.url}
