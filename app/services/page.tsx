@@ -32,7 +32,7 @@ import { valueProps } from "@/content/value-props";
 export const metadata: Metadata = {
   title: "Outdoor Lighting Company in Omaha, NE",
   description:
-    "Permanent outdoor lighting for Omaha homes: roofline, Christmas, soffit, landscape, hardscape, pergola and gameday. Installed once and controlled from an app.",
+    "Permanent roofline and landscape lighting for Omaha homes, plus Christmas, holiday and gameday scenes. Installed once and controlled from an app.",
   ...pageUrl("/services"),
 };
 const trail = [{ name: "Home", href: "/" }, { name: "Services", href: "/services" }];
@@ -54,21 +54,21 @@ const branches: {
     said: "“I want the house outlined.”",
     start: "permanent-roofline-lighting",
     why: "Roofline lighting runs along the edge of the roof and can be set to any scene.",
-    then: ["soffit-lighting", "holiday-seasonal-scenes", "gameday-lighting"],
+    then: ["permanent-christmas-lights", "holiday-seasonal-scenes", "gameday-lighting"],
     wiring: "You can add more later.",
   },
   {
     said: "“The yard looks flat after dark.”",
     start: "landscape-lighting",
     why: "Landscape lighting for trees, beds and paths works all year.",
-    then: ["hardscape-lighting", "permanent-outdoor-lighting"],
+    then: ["permanent-roofline-lighting", "permanent-outdoor-lighting"],
     wiring: "You can add more later.",
   },
   {
-    said: "“We live out back in the summer.”",
-    start: "patio-pergola-bistro-lighting",
-    why: "Overhead lighting on a pergola or patio cover for the nights you spend outside.",
-    then: ["hardscape-lighting", "landscape-lighting"],
+    said: "“We're done hanging Christmas lights.”",
+    start: "permanent-christmas-lights",
+    why: "Installed once. Christmas colors in December and white every other night of the year.",
+    then: ["holiday-seasonal-scenes", "gameday-lighting"],
     wiring: "You can add more later.",
   },
 ];
@@ -78,18 +78,18 @@ const branches: {
 const groups: { heading: string; note: string; slugs: string[] }[] = [
   {
     heading: "On the house",
-    note: "Lighting on the house itself",
-    slugs: ["permanent-outdoor-lighting", "permanent-roofline-lighting", "soffit-lighting"],
+    note: "Mounted to your soffit",
+    slugs: ["permanent-outdoor-lighting", "permanent-roofline-lighting"],
   },
   {
     heading: "On the ground",
-    note: "Beds, trees, walls and walks",
-    slugs: ["landscape-lighting", "hardscape-lighting"],
+    note: "Paths, trees and beds",
+    slugs: ["landscape-lighting"],
   },
   {
-    heading: "On structures",
-    note: "Anything that is not the house or the ground",
-    slugs: ["patio-pergola-bistro-lighting", "commercial-outdoor-lighting"],
+    heading: "For businesses",
+    note: "Commercial work",
+    slugs: ["commercial-outdoor-lighting"],
   },
   {
     heading: "What you do with it after",
@@ -110,7 +110,7 @@ export default function ServicesHub() {
         photoAlt="A two-story Omaha home with its roofline, gables and front trees lit at night"
         objectPosition="50% 62%"
         h1="What we install."
-        lede="Roofline, soffit, landscape, hardscape and patio lighting, controlled from an app. Start with one and add more later."
+        lede="Permanent roofline and landscape lighting, controlled from an app. Designed for every day. Ready for any day."
         trail={trail}
       />
 
@@ -270,7 +270,7 @@ export default function ServicesHub() {
         shots={[
           { photo: "homeBrickGablesGold", caption: "Roofline. Gables and eaves in warm white." },
           { photo: "landscapeTreeBeds", caption: "Landscape. Beds, trees and paths." },
-          { photo: "patioTimberStone", caption: "Overhead and hardscape. Lighting along a beam and on the stairs." },
+          { photo: "homeWideRanch", caption: "Roofline. One long run in white." },
           { photo: "gamedayRedBlueGables", caption: "A saved scene in team colors." },
         ]}
         cols={4}

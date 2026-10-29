@@ -36,7 +36,7 @@ import { valueProps } from "@/content/value-props";
 export const metadata: Metadata = {
   title: "Permanent Lighting FAQ",
   description:
-    "Common questions about permanent outdoor lighting in Omaha: the install, the fascia, HOA rules and winter installs.",
+    "Common questions about permanent outdoor lighting in Omaha: the consultation, how it mounts, the warranty and financing.",
   ...pageUrl("/faq"),
 };
 const trail = [{ name: "Home", href: "/" }, { name: "FAQ", href: "/faq" }];
@@ -68,8 +68,8 @@ const groups: { h: string; note: string; items: typeof homeFaqs; wide?: boolean 
     items: pick(homeFaqs,
       "Can you actually see it during the day?",
       /* "What does it cost?" removed from content/faqs.ts - see the note there. */
-      "Does it damage my soffit or fascia?",
-      "Will my HOA allow it?"),
+      "What happens at the design consultation?",
+      "Do you offer financing?"),
   },
   {
     h: "Product and specs",
@@ -84,8 +84,8 @@ const groups: { h: string; note: string; items: typeof homeFaqs; wide?: boolean 
     note: "What to expect.",
     items: [
       ...pick(homeFaqs,
-        "How long does an install take?",
-        "Do I need to be home for the install?",
+        "How is it mounted?",
+        "Do you show me how to use the app?",
         "Can it be installed in winter?"),
     ],
   },
@@ -95,6 +95,7 @@ const groups: { h: string; note: string; items: typeof homeFaqs; wide?: boolean 
     items: [
       ...pick(homeFaqs, "What happens when a section stops working?"),
       ...pick(service,
+        "Is there a warranty?",
         "What areas do you cover?",
         "How do I get a quote?"),
     ],
@@ -117,7 +118,7 @@ const all = groups.flatMap((g) => g.items);
 const shortAnswers: { q: string; a: string; to: string }[] = [
   {
     q: "Can you see it in the daytime?",
-    a: "The track is low profile and runs along the roofline, so it blends in during the day.",
+    a: "It is mounted to your soffit, up under the roof edge. We bring a demo kit so you can see it in person.",
     to: "Before you buy",
   },
   /* The "What does it cost?" short answer is gone. It stated a pricing basis and pointed at the
@@ -125,8 +126,8 @@ const shortAnswers: { q: string; a: string; to: string }[] = [
    * unsourced. A short answer whose `to` names a group that no longer exists would also have been
    * a link into nothing. */
   {
-    q: "Will it damage my fascia?",
-    a: "It is fastened to the house and sealed. We go over how it mounts at the consultation.",
+    q: "How is it mounted?",
+    a: "We mount it to your soffit.",
     to: "Install",
   },
   {
@@ -135,14 +136,14 @@ const shortAnswers: { q: string; a: string; to: string }[] = [
     to: "Install",
   },
   {
-    q: "Will my HOA allow it?",
-    a: "That depends on your HOA. Check its rules on exterior lighting first.",
+    q: "Do you offer financing?",
+    a: "Yes. Ask us about it at the consultation.",
     to: "Before you buy",
   },
   {
-    q: "How long does it take?",
-    a: "It depends on the house. We can talk about timing when we give you your quote.",
-    to: "Install",
+    q: "Is there a warranty?",
+    a: "Yes. Every system is backed by our lifetime product warranty. Full details come with your quote.",
+    to: "Service and support",
   },
   {
     q: "What if a section goes dark?",
@@ -155,15 +156,11 @@ const shortAnswers: { q: string; a: string; to: string }[] = [
 const cannot: { h: string; p: string }[] = [
   {
     h: "What your house costs",
-    p: "Every house is different, so the price comes in your written quote after the design consultation.",
+    p: "Every house is different, so you get exact pricing at the design consultation, for both Jellyfish and Haven.",
   },
   {
-    /* THE SECOND SENTENCE READ "We pull yours and read it rather than guessing from the
-       neighborhood name." That is the HOA administration claim already taken off the twelve
-       city pages and the consultation page, surviving here in a card nobody was rereading.
-       Brytr does not administer covenant submissions and does not discuss HOA on site. */
-    h: "Whether your covenant allows it",
-    p: "That depends on your HOA's rules. Read them before you plan anything.",
+    h: "Which system fits your house",
+    p: "Jellyfish and Haven look different and are priced differently. We show you both with our demo kit at your house.",
   },
   {
     h: "What suits your house",
@@ -179,7 +176,7 @@ export default function FaqPage() {
 
       <PageHero
         photo="/img/g-pool-firebowl.jpg"
-        photoAlt="An Omaha backyard at night: a lit seat wall, a fire bowl on a pier, and the house roofline behind set to red"
+        photoAlt="An Omaha backyard at night with the house roofline set to red"
         objectPosition="50% 38%"
         h1="Questions and answers."
         lede="Common questions about permanent outdoor lighting, with short answers first."
@@ -298,7 +295,7 @@ export default function FaqPage() {
         photo="poolPergolaDusk"
         label="The answer to most of the above"
         note="A finished install in the Omaha area"
-        caption="A lot of these answers depend on your house. The design consultation is free, and you get a written quote."
+        caption="A lot of these answers depend on your house. The design consultation is free, and you get exact pricing at the visit."
         ground="raise"
       />
 
