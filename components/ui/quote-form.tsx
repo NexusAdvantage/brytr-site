@@ -221,8 +221,7 @@ export function QuoteForm({
                 <>
                   <option>Roofline</option>
                   <option>Landscape</option>
-                  <option>Patio or pergola</option>
-                  <option>Hardscape</option>
+                  <option>Roofline and landscape</option>
                   <option>Not sure yet</option>
                 </>
               )}
