@@ -85,11 +85,11 @@ const bands: { h: string; count: number; promise: string; p: string; href: strin
  * at collect-page-data and took the whole build down. Worth noting because nothing about removing
  * six rows from a content file suggests it can break a route: the crash was two files away. */
 
-export default function AreasHub() {
+export default async function AreasHub() {
   return (
     <Shell>
       <Jsonld data={breadcrumb(trail)} />
-      <Jsonld data={localBusiness()} />
+      <Jsonld data={await localBusiness()} />
 
       <PageHero
         photo="/img/g-ranch-blue-white.jpg"

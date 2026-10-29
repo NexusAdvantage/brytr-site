@@ -7,7 +7,8 @@ import { PageHero, PageCta, SectionHead, TextLink } from "@/components/sections/
 import { PhotoStrip } from "@/components/sections/photo-parts";
 import { pick } from "@/content/photo-sets";
 import { Jsonld, breadcrumb } from "@/lib/schema";
-import { reviews, reviewProof } from "@/content/reviews";
+import { reviews } from "@/content/reviews";
+import { getReviewProof } from "@/lib/review-proof";
 import { googleLogo } from "@/content/badges";
 import { ValueBand } from "@/components/sections/value-band";
 import { valueProps } from "@/content/value-props";
@@ -39,11 +40,14 @@ import { valueProps } from "@/content/value-props";
  * cards. Closer: one, the phone band.
  */
 
-export const metadata: Metadata = {
+export async function generateMetadata(): Promise<Metadata> {
+  const reviewProof = await getReviewProof();
+  return {
   title: `Brytr Reviews: ${reviewProof.average} Across ${reviewProof.countLabel} Google Reviews`,
   description: `Brytr Co holds a ${reviewProof.average} average across ${reviewProof.countLabel} Google reviews for permanent outdoor lighting in the Omaha metro. Read what they mention, then read them on Google.`,
   ...pageUrl("/reviews"),
-};
+  };
+}
 const trail = [{ name: "Home", href: "/" }, { name: "Reviews", href: "/reviews" }];
 
 /* THE TAGS. Each one is keyed to a phrase that is actually in the review, quoted in the
@@ -83,7 +87,8 @@ const practice: { h: string; p: string; href: string }[] = [
   { h: "One number to call", p: "402-810-3973", href: "/contact" },
 ];
 
-export default function Reviews() {
+export default async function Reviews() {
+  const reviewProof = await getReviewProof();
   const featured = reviews.find((r) => r.feature) ?? reviews[0];
   const rest = reviews.filter((r) => r !== featured);
 
