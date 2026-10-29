@@ -8,7 +8,7 @@ import { QuoteForm } from "@/components/ui/bits";
 import { pick } from "@/content/photo-sets";
 import { Jsonld, breadcrumb, localBusiness } from "@/lib/schema";
 import { site } from "@/content/site";
-import { reviewProof } from "@/content/reviews";
+import { getReviewProof } from "@/lib/review-proof";
 import { ValueBand } from "@/components/sections/value-band";
 import { valueProps } from "@/content/value-props";
 
@@ -97,11 +97,12 @@ const routes: { label: string; h: string; href: string; external?: boolean; best
   },
 ];
 
-export default function Contact() {
+export default async function Contact() {
+  const reviewProof = await getReviewProof();
   return (
     <Shell>
       <Jsonld data={breadcrumb(trail)} />
-      <Jsonld data={localBusiness()} />
+      <Jsonld data={await localBusiness()} />
 
       <PageHero
         /* NOT the ranch shot used on /about — that is the same house on the same evening,
