@@ -75,7 +75,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     at("/free-design-consultation", 0.9, "app/free-design-consultation/page.tsx"),
     at("/services", 0.8, "app/services/page.tsx"),
     at("/lighting-systems", 0.8, "app/lighting-systems/page.tsx"),
-    ...(COMPARE_HIDDEN ? [] : [at("/compare", 0.8, "app/compare/page.tsx")]),
     at("/service-areas", 0.8, "app/service-areas/page.tsx"),
     at("/blog", 0.6, "app/blog/page.tsx", "weekly"),
     at("/about", 0.6, "app/about/page.tsx"),

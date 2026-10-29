@@ -1,5 +1,5 @@
 import type { NextConfig } from "next";
-import { COMPARE_HIDDEN } from "./content/compares";
+import { COMPARE_URL } from "./content/compares";
 import { SYSTEM_PAGES_HIDDEN } from "./content/systems";
 
 /* THE DOMAIN CUTOVER, and the two URLs that need catching.
@@ -82,16 +82,16 @@ const nextConfig: NextConfig = {
       { source: "/warranty", destination: "/", permanent: true },
       { source: "/blog/permanent-lighting-warranty-comparison", destination: "/blog", permanent: true },
       { source: "/financing", destination: "/", permanent: true },
-      /* Removed 28 Oct 2026 with the rest of the brand ranking copy. */
-      { source: "/compare/haven-vs-ghouly", destination: "/compare", permanent: true },
-      /* Brand comparison pages hidden at the client's request, 28 Oct 2026. Temporary (307), not
-       * permanent, because they are coming back after a review call. See content/compares.ts. */
-      ...(COMPARE_HIDDEN
-        ? [
-            { source: "/compare", destination: "/lighting-systems", permanent: false },
-            { source: "/compare/:slug*", destination: "/lighting-systems", permanent: false },
-          ]
-        : []),
+      /* One comparison only, Jellyfish vs Haven (Zac, 29 Oct 2026). The index and every
+       * other-brand comparison URL go to it. */
+      { source: "/compare", destination: COMPARE_URL, permanent: false },
+      { source: "/compare/:slug((?!jellyfish-vs-haven$).*)", destination: COMPARE_URL, permanent: true },
+      /* Services and towns Brytr does not offer, removed 29 Oct 2026. */
+      { source: "/services/soffit-lighting", destination: "/services/permanent-roofline-lighting", permanent: true },
+      { source: "/services/hardscape-lighting", destination: "/services/landscape-lighting", permanent: true },
+      { source: "/services/patio-pergola-bistro-lighting", destination: "/services/landscape-lighting", permanent: true },
+      { source: "/service-areas/:town(millard|bennington|waterloo|springfield|blair)", destination: "/service-areas", permanent: true },
+      { source: "/blog/omaha-hoa-rules-permanent-outdoor-lighting", destination: "/blog", permanent: true },
       { source: "/sitemap_index.xml", destination: "/sitemap.xml", permanent: true },
       { source: "/page-sitemap.xml", destination: "/sitemap.xml", permanent: true },
     ];
