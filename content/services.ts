@@ -29,7 +29,7 @@ export const services: Service[] = [
     photo: "serviceWholeHome",
     featured: true,
     lede:
-      "A track along your roofline with LEDs in it, controlled from an app. Warm white for everyday and color whenever you want it.",
+      "Permanent lighting mounted to your soffit along the roofline. It turns on white every night at sunset, and a scheduled scene takes over for holidays and special occasions.",
     includes: [
       "Jellyfish or Haven, chosen at the consultation",
       "Full color and white",
@@ -62,7 +62,7 @@ export const services: Service[] = [
   {
     slug: "permanent-roofline-lighting",
     name: "Permanent Roofline Lighting",
-    short: "Lighting that runs along your roofline.",
+    short: "Permanent lighting mounted to your soffit.",
     title: "Permanent Roofline Lighting for Omaha Homes",
     h1: "Permanent roofline lighting for Omaha homes.",
     keyword: "permanent roofline lighting",
@@ -70,52 +70,13 @@ export const services: Service[] = [
     icon: "roofline",
     photo: "serviceRoofline",
     lede:
-      "A low profile track runs along the roofline and stays up year round. Set it to warm white, a holiday scene or team colors from the app.",
+      "Permanent lighting mounted to your soffit along the roofline. It stays up year round and runs white every night, with holiday scenes and team colors on a schedule.",
     includes: [
       "Jellyfish or Haven, chosen at the consultation",
-      "Low profile track along the roofline",
+      "Mounted to your soffit",
       "App control with scenes and schedules",
     ],
     system: "haven-evolution",
-  },
-  {
-    slug: "soffit-lighting",
-    name: "Soffit Lighting",
-    short: "Lighting under the overhang.",
-    title: "Soffit Lighting for Omaha Homes",
-    h1: "Soffit lighting for Omaha homes.",
-    keyword: "soffit lighting",
-    volume: "5,000/mo",
-    icon: "soffit",
-    photo: "serviceSoffit",
-    lede:
-      "Lighting set under the overhang that lights the face of the house. A different look from roofline lighting.",
-    includes: [
-      "Lighting under the overhang",
-      "Lights the face of the house",
-      "Controlled from the app",
-      "Can be set apart from the roofline",
-    ],
-    system: "haven-q-series",
-  },
-  {
-    slug: "hardscape-lighting",
-    name: "Hardscape Lighting",
-    short: "Built into walls, steps and coping.",
-    title: "Hardscape Lighting: Patios, Walls and Steps",
-    h1: "Hardscape lighting built into the stone.",
-    keyword: "hardscape lighting",
-    volume: "600/mo",
-    icon: "hardscape",
-    photo: "serviceHardscape",
-    lede:
-      "Lighting for walls, steps and columns on your patio and around the yard.",
-    includes: [
-      "Wall lighting",
-      "Step lighting",
-      "Column and pillar lighting",
-      "New or existing hardscape",
-    ],
   },
   {
     slug: "landscape-lighting",
@@ -136,27 +97,6 @@ export const services: Service[] = [
       "Controlled from an app",
     ],
     system: "haven-9-series-landscape-lights",
-  },
-  {
-    slug: "patio-pergola-bistro-lighting",
-    name: "Patio, Pergola and Bistro Lighting",
-    short: "Overhead runs on structures, not trees.",
-    title: "Patio, Pergola and Bistro Lighting",
-    h1: "Patio, pergola and bistro lighting.",
-    keyword: "pergola lighting",
-    volume: "500/mo",
-    icon: "pergola",
-    photo: "servicePatio",
-    featured: true,
-    lede:
-      "Permanent overhead lighting on pergolas, patio covers and gazebos, with no seasonal takedown.",
-    includes: [
-      "Pergola, patio cover or gazebo",
-      "Warm white or full color",
-      "Controlled from an app",
-      "Stays up year round",
-    ],
-    system: "haven-x-bistro-lights",
   },
   {
     slug: "holiday-seasonal-scenes",
@@ -210,7 +150,7 @@ export const services: Service[] = [
     lede:
       "Permanent lighting for businesses. Your colors year round and holiday scenes, controlled from an app.",
     includes: [
-      "Roofline and soffit lighting",
+      "Permanent roofline lighting",
       "Your colors saved as scenes",
       "App control",
       "Schedules",

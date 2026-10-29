@@ -59,12 +59,6 @@ export const postPhotos: Record<string, PostPhoto> = {
       "A stone and brick gable on an Omaha home under overcast light, the channel following the roof edge above the entry",
     objectPosition: "50% 52%",
   },
-  "omaha-hoa-rules-permanent-outdoor-lighting": {
-    photo: "/img/home-porch-flag.jpg",
-    photoAlt:
-      "A gray Omaha two-story at blue hour with warm downlights over the porch and a flag by the door",
-    objectPosition: "50% 58%",
-  },
   "husker-gameday-lighting-ideas": {
     photo: "/img/gameday-red-full.jpg",
     photoAlt:
@@ -99,7 +93,7 @@ export const relatedByCategory: Record<string, string[]> = {
     "permanent-christmas-lights",
     "permanent-roofline-lighting",
   ],
-  Install: ["permanent-roofline-lighting", "soffit-lighting", "permanent-outdoor-lighting"],
+  Install: ["permanent-roofline-lighting", "landscape-lighting", "permanent-outdoor-lighting"],
   Product: ["permanent-outdoor-lighting", "permanent-roofline-lighting", "holiday-seasonal-scenes"],
   Local: ["permanent-christmas-lights", "gameday-lighting", "landscape-lighting"],
 };
