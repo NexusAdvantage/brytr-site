@@ -64,8 +64,8 @@ const routes: { label: string; h: string; href: string; external?: boolean; best
     h: site.phone,
     href: site.phoneHref,
     best: "Questions, booking a consultation, or service on something we installed.",
-    bad: "If we miss your call, leave a message.",
-    who: "We will get back to you.",
+    bad: "Mon to Sat, 8am to 8pm. If we miss your call, leave a message.",
+    who: "Our appointment setter will get back to you.",
   },
   {
     label: "Best if you want a quote",
@@ -92,7 +92,7 @@ const routes: { label: string; h: string; href: string; external?: boolean; best
     h: "13436 C St, Omaha",
     href: "/about",
     best: "Our address, if you need it.",
-    bad: "The design consultation happens at your house, so call before stopping by.",
+    bad: "The office is by appointment only. Everything else happens at your home.",
     who: "We will get back to you.",
   },
 ];
@@ -289,8 +289,8 @@ export default function Contact() {
               * measured count was twelve of these on one service page and fifteen on a city page.
               * Kept whichever of the two carried the claim rather than the run-up to it. */}
               <p className="text-base leading-relaxed text-on-dark-muted">
-                We use your details to get back to you about your request. The privacy policy has
-                more.
+                Our appointment setter gets back to you to set up your free consultation. The privacy
+                policy has more.
               </p>
             </div>
             <div className="mt-8">
@@ -306,10 +306,10 @@ export default function Contact() {
               </p>
               <ul className="mt-5 divide-y divide-on-dark/10 border-t border-on-dark/10">
                 {[
-                  "We get back to you",
+                  "Our appointment setter gets back to you",
                   "We set up a time for the consultation",
-                  "We visit and design it with you",
-                  "You get a written quote",
+                  "We visit, about an hour at your home",
+                  "You get exact pricing for both brands",
                 ].map((x) => (
                   <li key={x} className="py-3 text-[0.95rem] leading-relaxed text-on-dark-muted">{x}</li>
                 ))}
@@ -326,7 +326,7 @@ export default function Contact() {
                      the service providers that run the site's forms, so "not shared" was not
                      accurate. */
                   "The consultation is free",
-                  "The written quote is free",
+                  "Financing is available",
                 ].map((x) => (
                   <li key={x} className="py-3 text-[0.95rem] leading-relaxed text-on-dark-muted">{x}</li>
                 ))}
@@ -351,7 +351,7 @@ export default function Contact() {
           However you reach us, the next step is the same: a free design consultation at your house.
         </p>
         <p>
-          We design it with you and give you a written quote.
+          We measure, show you both brands with our demo kit, and give you exact pricing.
         </p>
       </PhotoSplit>
 

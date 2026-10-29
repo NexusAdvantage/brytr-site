@@ -153,10 +153,10 @@ const groups: { h: string; note: string; lede: string; srcs: string[] }[] = [
     srcs: ["/img/g-blue-white.jpg", "/img/g-ranch-blue-white.jpg", "/img/g-moonrise.jpg"],
   },
   {
-    h: "Close up, and off the house",
-    note: "Details and structures",
+    h: "Close up",
+    note: "Details",
     lede:
-      "A closer look at the lighting, and lighting on structures.",
+      "A closer look at the lighting.",
     /* Same swap, same reason. g-gable-detail.jpg measures 36.6 and was leading full width;
        patio-pergola.jpg is 94.6 at the same 16/9. Both stay in the group. */
     srcs: ["/img/patio-pergola.jpg", "/img/g-gable-detail.jpg", "/img/detail-gable-miter.jpg"],
@@ -302,7 +302,7 @@ export default function Gallery() {
         lede="Two homes with Brytr lighting, photographed during the day."
         a="dayBrickGable"
         b="dayShakeGable"
-        aLabel="Brick and white fascia in daylight."
+        aLabel="Brick and white trim in daylight."
         bLabel="A shake gable in daylight."
         ground="muted"
       />
