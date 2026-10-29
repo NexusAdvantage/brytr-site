@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { pageUrl } from "@/lib/seo";
 import { site } from "@/content/site";
-import { reviews, reviewProof } from "@/content/reviews";
+import { reviews } from "@/content/reviews";
+import { getReviewProof } from "@/lib/review-proof";
 import { Shell } from "@/app/layout-shell";
 import { PageHero, PageCta, SectionHead, Check, TextLink } from "@/components/sections/page-parts";
 import { PhotoPair } from "@/components/sections/photo-parts";
@@ -69,7 +70,8 @@ const steps: { h: string; p: string }[] = [
   },
 ];
 
-export default function Consult() {
+export default async function Consult() {
+  const reviewProof = await getReviewProof();
   const quote = reviews.find((r) => r.name === "Meghan Gibbons") ?? reviews[0];
 
   return (
