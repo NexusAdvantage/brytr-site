@@ -1,8 +1,10 @@
 import { site } from "@/content/site";
-import { reviewProof } from "@/content/reviews";
+import { getReviewProof } from "@/lib/review-proof";
 import { cities } from "@/content/cities";
 
-export const localBusiness = (city?: string) => ({
+export const localBusiness = async (city?: string) => {
+  const reviewProof = await getReviewProof();
+  return {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "@id": `${site.url}/#business`,
@@ -52,7 +54,8 @@ export const localBusiness = (city?: string) => ({
       closes: "00:00",
     })),
   ],
-});
+  };
+};
 
 export const breadcrumb = (trail: { name: string; href: string }[]) => ({
   "@context": "https://schema.org",
