@@ -218,7 +218,7 @@ export default async function Post({ params }: { params: Promise<{ slug: string 
             <div className="rounded-lg bg-primary p-6 shadow-[var(--shadow-dark)]">
               <p className="label text-accent">If this changed your mind</p>
               <p className="mt-2.5 text-sm leading-relaxed text-on-dark-muted">
-                The design consultation is free, and you get a written quote.
+                The design consultation is free, and you get exact pricing at the visit.
               </p>
               <div className="mt-5 border-t border-on-dark/12 pt-4">
                 <TextLink onDark href="/free-design-consultation">About the consultation</TextLink>

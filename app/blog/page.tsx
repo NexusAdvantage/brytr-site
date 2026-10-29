@@ -33,7 +33,7 @@ import { COMPARE_HIDDEN, COMPARE_URL } from "@/content/compares";
 export const metadata: Metadata = {
   title: "Permanent Lighting Resources",
   description:
-    "Guides to permanent outdoor lighting in Omaha: HOA rules, DIY versus professional install, winter installs, and how long LEDs last.",
+    "Guides to permanent outdoor lighting in Omaha: DIY versus professional install, how it mounts, winter installs, and how long LEDs last.",
   ...pageUrl("/blog"),
 };
 const trail = [{ name: "Home", href: "/" }, { name: "Resources", href: "/blog" }];
