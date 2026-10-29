@@ -213,11 +213,10 @@ function Stars({ size = "1rem" }: { size?: string }) {
  * makes nine, which fills three rows exactly at lg and two at md. No new pattern, more of the one
  * that was already there. */
 const SERVICE_CARDS: { slug: string; label: string }[] = [
-  { slug: "permanent-roofline-lighting", label: "Roofline and eaves" },
-  { slug: "landscape-lighting", label: "Landscape and beds" },
-  { slug: "patio-pergola-bistro-lighting", label: "Patio and pergola" },
-  { slug: "hardscape-lighting", label: "Walls, steps and coping" },
-  { slug: "soffit-lighting", label: "Soffit and architectural" },
+  /* Five plus the promo card, so the 3x3 became a full 2x3. Brytr does roofline and landscape
+   * lighting only (Zac, 29 Oct 2026); the other three are what the roofline does. */
+  { slug: "permanent-roofline-lighting", label: "Roofline lighting" },
+  { slug: "landscape-lighting", label: "Landscape lighting" },
   { slug: "permanent-christmas-lights", label: "Christmas, installed once" },
   { slug: "gameday-lighting", label: "Game day colors" },
   { slug: "holiday-seasonal-scenes", label: "Every other holiday" },
@@ -308,7 +307,7 @@ export function Services() {
                 Not sure what your house needs?
               </h3>
               <p className="mt-3 text-[0.95rem] leading-snug text-on-dark-muted">
-                We visit, design it with you, and give you a written quote.
+                About an hour at your home. We show you both brands and give you exact pricing.
               </p>
               <div className="mt-auto pt-8">
                 <Link
@@ -428,12 +427,13 @@ export function WhoWeAre() {
                 * six, and it is the claim rather than a description of the claim. */}
               <h2 className="display-section text-foreground">We&rsquo;re local</h2>
               <p className="mt-5 text-[1.05rem] leading-relaxed text-muted-foreground">
-                Brytr is based in west Omaha. We install permanent outdoor lighting across the Omaha
-                metro and Council Bluffs.
+                Brytr is family owned by Zac and Sam, brothers-in-law born and raised in Omaha. We
+                install permanent roofline and landscape lighting across the Omaha metro and Council
+                Bluffs.
               </p>
               <p className="mt-4 text-[1.05rem] leading-relaxed text-muted-foreground">
-                We install Jellyfish and Haven, we handle the install, and you can call us for service
-                on anything we installed.
+                We&rsquo;re an authorized Nebraska dealer for both Jellyfish and Haven. Our install crews
+                work for us year round, and every system is backed by our lifetime product warranty.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <AccentPill href="/free-design-consultation">Book a free design</AccentPill>
@@ -773,7 +773,7 @@ const WORK: { key: string; scene: string }[] = [
    * new hero photograph - so the hero and the second tile of this grid would have been one
    * property. Same scene, different house. */
   { key: "christmasRedGreenGables", scene: "The December scene" },
-  { key: "poolPergolaDusk", scene: "Pergola run at dusk" },
+  { key: "poolPergolaDusk", scene: "Roofline at sunset" },
   { key: "homeBrickGablesGold", scene: "Gables, warm white" },
   { key: "homeShakeBrick", scene: "Eave downlights" },
   { key: "gamedayRedFull", scene: "Game day, one tap" },
@@ -875,8 +875,8 @@ export const faqItems = [
     "Can you actually see it during the day?",
     /* "What does it cost?" removed with /pricing - it stated a pricing model and linked to a
        page of invented figures. See the note in content/faqs.ts. */
-    "How long does an install take?",
-    "Does it damage my soffit or fascia?",
+    "What happens at the design consultation?",
+    "How is it mounted?",
     "What happens when a section stops working?"
   ),
   ...pick(pricingFaqs, "Is there a charge for the consultation?"),
@@ -939,7 +939,7 @@ export function Closer() {
               * "your neighbors love it. you will regret it." As written that tells a reader they
               * will regret buying, on the section whose only job is the booking - so this reads
               * "won't", on the assumption that "will" was a slip. One word, easy to put back. */
-            title="Talk to us about your house."
+            title="Designed for every day. Ready for any day."
           />
 
           <p className="mt-10 text-base text-muted-foreground">Or call us directly</p>
