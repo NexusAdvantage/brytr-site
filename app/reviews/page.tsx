@@ -77,9 +77,9 @@ const tags = Object.entries(tagCounts).sort((a, b) => b[1] - a[1] || a[0].locale
 /* Rewritten Oct 2026. The cards claimed the same crew quotes, installs and services every job,
  * and dug at franchises. Crews are subcontractors, so these are now plain. */
 const practice: { h: string; p: string; href: string }[] = [
-  { h: "Here afterwards", p: "Call us for service on anything we installed.", href: "/about" },
-  { h: "Designed with you", p: "A free design consultation at your house and a written quote.", href: "/how-it-works" },
-  { h: "Two brands", p: "We install Jellyfish and Haven and help you pick the right one.", href: "/lighting-systems" },
+  { h: "Lifetime product warranty", p: "Every system is backed by it. Full details come with your quote.", href: "/about" },
+  { h: "Designed with you", p: "A free consultation at your home with exact pricing at the visit.", href: "/how-it-works" },
+  { h: "Two brands", p: "An authorized Nebraska dealer for both Jellyfish and Haven.", href: "/lighting-systems" },
   { h: "One number to call", p: "402-810-3973", href: "/contact" },
 ];
 

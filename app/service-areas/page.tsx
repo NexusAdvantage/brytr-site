@@ -286,7 +286,7 @@ export default function AreasHub() {
                      daylight curb check and the client has said so in writing, so the row now
                      promises only the half of it that is real. */
                   "A free design consultation",
-                  "A written quote",
+                  "Exact pricing at the visit",
                   "Service on anything we installed",
                 ].map((x) => (
                   <li key={x} className="py-3 text-[0.95rem] leading-relaxed text-on-dark-muted">{x}</li>
