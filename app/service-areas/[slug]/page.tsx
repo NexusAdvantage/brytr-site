@@ -59,7 +59,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     /* Deliberately distinct from the homepage title so two pages never compete. */
     title: `${c.name} ${c.state} Permanent Lighting Installer`,
-    description: `Permanent outdoor lighting installed in ${c.name}, ${c.state}. Roofline, landscape, hardscape and bistro lighting from Brytr Co.`,
+    description: `Permanent outdoor lighting installed in ${c.name}, ${c.state}. Roofline and landscape lighting from Brytr Co.`,
     ...pageUrl(`/service-areas/${c.slug}`),
   };
 }
@@ -80,7 +80,7 @@ const servicesFor = (tier: string) =>
   tier === "metro"
     ? ["permanent-outdoor-lighting", "permanent-roofline-lighting", "permanent-christmas-lights", "landscape-lighting"]
     : tier === "iowa"
-    ? ["permanent-roofline-lighting", "permanent-christmas-lights", "hardscape-lighting", "landscape-lighting"]
+    ? ["permanent-roofline-lighting", "permanent-christmas-lights", "gameday-lighting", "landscape-lighting"]
     : ["permanent-outdoor-lighting", "permanent-christmas-lights", "landscape-lighting", "permanent-roofline-lighting"];
 
 export default async function CityPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -188,8 +188,8 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                   We install permanent outdoor lighting in {c.name} and across the Omaha metro.
                 </p>
                 <p className="text-base text-muted-foreground">
-                  Every install starts with a free design consultation. We visit, design it with you,
-                  and give you a written quote.
+                  Every install starts with a free consultation at your home. We show you both brands and
+                  give you exact pricing at the visit.
                 </p>
               </div>
               {/* A PHOTOGRAPH, NOT A DRAWING, and the distinction is the check rather than taste.
@@ -227,10 +227,22 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
               <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-border px-6 py-4">
                 <p className="label flex items-center gap-3 text-foreground">
                   <span className="block h-4 w-1 bg-accent" aria-hidden />
-                  Neighborhoods in {c.name}
+                  {c.neighborhoods.length > 0 ? `Neighborhoods in ${c.name}` : `Towns near ${c.name} we serve`}
                 </p>
                 <p className="text-xs text-muted-foreground">Some of the areas we serve</p>
               </div>
+              {/* No neighborhoods from Brytr for this town yet, so list the nearby towns instead. */}
+              {c.neighborhoods.length === 0 && (
+                <ul className="divide-y divide-border">
+                  {nearby.map((m) => (
+                    <li key={m.slug}>
+                      <Link href={`/service-areas/${m.slug}`} className="block px-6 py-3.5 text-[1.02rem] text-foreground hover:bg-muted">
+                        {m.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
               {/* AN INLINE LIST, NOT A GRID.
                 * The eighteen cities carry between three and ten subdivisions, and this panel was a
                 * fixed grid — two columns on one variant, four on the other. With four short names
@@ -239,6 +251,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                 * column count is right for a list that varies by a factor of three.
                 * Names sized to their own content, wrapping, so a three-item list is a tight line
                 * and a ten-item list is two. Each name is still its own <li>. */}
+              {c.neighborhoods.length > 0 && (
               <ul className="flex flex-wrap items-baseline gap-x-2.5 gap-y-2 border-b border-border px-6 py-5">
                 {c.neighborhoods.map((n, i) => (
                   <li key={n} className="text-[1.02rem] text-foreground">
@@ -249,8 +262,9 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                   </li>
                 ))}
               </ul>
+              )}
               <p className="bg-muted px-6 py-4 text-sm leading-relaxed text-muted-foreground">
-                Not listed? Call us and ask.
+                {c.neighborhoods.length > 0 ? "Not listed? Call us and ask." : `We serve all of ${c.name}. Call us with any questions.`}
               </p>
             </div>
           </div>
@@ -307,7 +321,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                        deletion was made against the diff rather than against the result: one row
                        rendered twice on every Iowa page, with a duplicate React key on it. */
                     ["Service afterwards", "Call us for service on anything we installed."],
-                    ["HOA rules", "If you have an HOA, check its rules on exterior lighting first."],
+                    ["Lifetime product warranty", "Full warranty details come with your quote."],
                   ].map(([h, p]) => (
                     <li key={h} className="py-5">
                       <h3 className="font-display text-[1.05rem] font-bold text-foreground">{h}</h3>
@@ -431,77 +445,37 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
         * PhotoStrip itself is still live on fourteen other pages with fourteen different headings,
         * which is why the component is untouched. */}
 
-      {/* ── COVENANTS ──
-        * Three genuinely different situations, so three different paragraphs. */}
+      {/* ── HOW IT RUNS ──
+        * Was the HOA section. Brytr asked for HOAs to be left off the site, 29 Oct 2026, so this
+        * slot now says how the lighting runs day to day, in the words Zac gave us. */}
       <section className="section bg-primary">
         <div className="shell grid items-start gap-10 lg:grid-cols-[46fr_54fr] lg:gap-14">
           <div>
-            {/* TITLE WAS "We handle the paperwork, not you." Removed 28 Aug 2026 on the client's
-              * instruction: Brytr has not told us they administer HOA submissions, and this
-              * section promised it in a heading on twelve city pages. What survives is the part
-              * that is genuinely useful and promises nothing - what a board actually looks at. */}
             <SectionHead
               onDark
-              title="If you have an HOA."
+              title="Designed for every day. Ready for any day."
             />
-            {/* THE SCENE RANGE, DRAWN. This section carried 175 words, one card and no visual of
-              * any kind, which the house rules call undesigned outright. It is also the section
-              * about what an association will and will not allow, so the useful thing to show
-              * beside it is the range the run can actually be set to. Same linework as the eave
-              * section on /how-it-works. */}
-            {/* CAPPED. At full column width the drawing rendered over 600px tall and dominated a
-              * section it was only meant to support. */}
             <div className="mt-7 max-w-[30rem] overflow-hidden rounded-lg bg-raise p-4 ring-1 ring-on-dark/10">
               <ChannelFigure variant="spectrum" className="block w-full" />
             </div>
-            {/* THE METRO AND IOWA PARAGRAPHS BOTH ENDED BY TELLING THE READER TO BRING THE
-              * COVENANT TO THE VISIT SO WE COULD READ THE CLAUSE WITH THEM. Off the client punch
-              * list, 29 Aug 2026: HOA has never been a problem for Brytr and it is not something
-              * discussed on site, so the site cannot be offering a covenant review at the
-              * appointment. Both now stop at reading your own clause first, which is advice
-              * rather than a service. */}
             <p className="mt-6 text-lg leading-relaxed text-on-dark/85">
-              {c.tier === "metro"
-                ? "Check your HOA's rules on exterior lighting before you plan anything."
-                : c.tier === "iowa"
-                ? "If you have an HOA, check its rules on exterior lighting before you plan anything."
-                : "If you have an HOA, check its rules on exterior lighting before you plan anything."}
+              Your lights turn on automatically every night at sunset in white, for security, accent
+              lighting and curb appeal.
             </p>
-            {/* THERE USED TO BE FOUR OF THESE and they printed on all eighteen pages under
-              * whichever intro the tier generated. On Norfolk that meant a paragraph saying "most
-              * properties have no restriction at all" followed by four bullets promising to pull
-              * your covenant and eat the cost if the board refused — the page arguing with itself,
-              * and promising a service nobody at Brytr has confirmed. Three now, per branch, and
-              * they describe what boards ask for rather than what we would do about it. */}
             <ul className="mt-7 space-y-3">
-              {c.tier === "outstate" ? (
-                <>
-                  <Check onDark>Read your HOA&rsquo;s rules before you plan anything</Check>
-                  <Check onDark>Ask your HOA what it needs to see</Check>
-                </>
-              ) : (
-                <>
-                  {/* The four that were here promised to pull the covenant, file the submission,
-                    * and refund you if the board refused. Three service commitments and a money
-                    * one, none of them from Brytr. What is left describes what boards ask for. */}
-                  <Check onDark>Read your HOA&rsquo;s rules before you plan anything</Check>
-                  <Check onDark>Ask your HOA what it needs to see</Check>
-                  <Check onDark>Wait for approval before anything goes on the house</Check>
-                </>
-              )}
+              <Check onDark>Elegant white lighting every night</Check>
+              <Check onDark>No more climbing a ladder to hang holiday lights</Check>
+              <Check onDark>Fun colors for any occasion, 365 days a year</Check>
             </ul>
           </div>
 
           <div className="rounded-lg bg-raise p-7 ring-1 ring-on-dark/10">
-            <p className="label text-accent">Things that can help</p>
+            <p className="label text-accent">Scheduled ahead of time</p>
             <ul className="mt-5 divide-y divide-on-dark/10 border-y border-on-dark/10">
               {[
-                /* WAS "Boards worry about what it looks like at noon, not at night. A curb shot of
-                   a finished install answers the real objection." Same retraction as everywhere
-                   else: no curb, no noon. The advice is unchanged and still true. */
-                ["Photos", "Photos of finished installs show what it looks like by day and at night."],
-                ["Details of the system", "Your written quote names the system you picked."],
-                ["Neighbors", "If a neighbor already has permanent lighting, ask how their approval went."],
+                ["Holidays", "Christmas, the 4th of July and Halloween take over automatically."],
+                ["Special occasions", "Birthdays and game days, set once in the app."],
+                ["App training", "After the install we come back, set up your everyday lighting and schedule your holidays."],
               ].map(([h, p]) => (
                 <li key={h} className="py-4">
                   <p className="font-display text-[0.95rem] font-bold text-on-dark">{h}</p>
@@ -536,7 +510,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
           * per band and carries the drive. The satellite-photograph line is shared and that is fine
           * — it is an argument about method, true everywhere, and it is no longer the opening. */}
         <p>
-          {`It starts with a free design consultation at your house in ${c.name}.`}
+          {`It starts with a free design consultation at your home in ${c.name}. It takes about an hour, and mornings, afternoons and evenings all work.`}
         </p>
         {/* THE SECOND SENTENCE READ "because warm white against red brick is a different color
           * from warm white against white siding and no catalog will tell you that." The client's
@@ -545,7 +519,8 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
           * for is simply that a sample run on your own house tells you more than a photograph of
           * somebody else's does, which is what it says now. */}
         <p>
-          We visit, design it with you, and give you a written quote.
+          We measure with a laser, turn on our demo kit to show you Jellyfish and Haven, and give you
+          exact pricing for both before we leave.
         </p>
       </PhotoSplit>
 
@@ -619,7 +594,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                     * which is this page counting two of its own lists back at the reader. What a
                     * reader actually wants from a glance card is what the visit costs and how soon. */
                   ["Design consultation", "Free"],
-                  ["Written quote", "Yes"],
+                  ["Exact pricing", "At the visit"],
                   ["Systems", "Jellyfish and Haven"],
                   /* ["Travel charge", "None"] removed 28 Aug 2026 - a no-surcharge guarantee is
                      a pricing term and Brytr has given us none. */
