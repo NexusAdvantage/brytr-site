@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { reviewProof } from "@/content/reviews";
 import { baseOpenGraph } from "@/lib/seo";
+import { MetaPixel } from "@/components/analytics/meta-pixel";
+import { FirstTouchAttribution } from "@/components/analytics/first-touch";
 import localFont from "next/font/local";
 import "./globals.css";
 /* Section-level CSS, imported after the brand lock so its @layer components rules join
@@ -136,7 +138,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script dangerouslySetInnerHTML={{ __html: RWL_LOADER }} />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        {/* BOTH OF THESE RENDER ONCE, FOR THE WHOLE SITE, and both render nothing visible.
+          *
+          * They are in the root layout rather than on a page because the layout is the only thing
+          * that survives a client navigation. Mounted here they are installed once per hard load
+          * and keep working across every route change after it, which is exactly what a pixel and
+          * an attribution capture both need.
+          *
+          * They sit after children so the page's own markup is in the document first. Neither
+          * renders anything with layout, so the position is about load order and nothing else. */}
+        <MetaPixel />
+        <FirstTouchAttribution />
+      </body>
     </html>
   );
 }
