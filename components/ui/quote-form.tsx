@@ -1,12 +1,13 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { site } from "@/content/site";
 import { Button } from "@/components/ui/button";
 import { Input, Label, Select, Textarea } from "@/components/ui/field";
 import { submitLead, type LeadState } from "@/app/actions/lead";
+import { ATTRIBUTION_KEYS, captureFirstTouch, type FirstTouch } from "@/lib/attribution";
 
 /* THE LEAD FORM. Four variants, one component, and every form on the site is one of them.
  *
@@ -43,6 +44,49 @@ export function QuoteForm({
 }) {
   const [state, formAction, pending] = useActionState<LeadState, FormData>(submitLead, null);
   const pathname = usePathname();
+
+  /* FIRST TOUCH, READ IN AN EFFECT RATHER THAN DURING RENDER.
+   *
+   * localStorage does not exist on the server, so reading it while rendering would either throw
+   * during the prerender or produce markup the client disagrees with. Starting at null means the
+   * server and the browser's first render both emit empty hidden inputs, and the real values land
+   * on the pass straight after hydration. See lib/attribution.ts.
+   *
+   * IT CALLS capture RATHER THAN read, AND THAT IS NOT A STYLE CHOICE. The first version read
+   * storage here and left the writing to FirstTouchAttribution in the root layout. Measured in a
+   * browser, that loses the campaign on the single most important visit there is: somebody landing
+   * straight from an ad onto a page with a form on it. The form is inside children, so it mounts
+   * and runs its effect BEFORE the analytics components that follow children in the layout, and it
+   * read an empty store a tick before the capture wrote it. Every hidden field posted blank.
+   *
+   * captureFirstTouch returns what is already stored when there is something, and otherwise reads
+   * the URL, stores it and returns that, so calling it from both places is safe and the form no
+   * longer depends on mount order to know where its visitor came from. */
+  const [firstTouch, setFirstTouch] = useState<FirstTouch | null>(null);
+  useEffect(() => {
+    setFirstTouch(captureFirstTouch());
+  }, []);
+
+  /* THE META LEAD EVENT, AND THE THREE WAYS IT COULD HAVE BEEN WRONG.
+   *
+   * It fires here and nowhere else, which means it cannot fire on page load: this effect has
+   * nothing to do until a submission has come back.
+   *
+   * It is keyed on state.lead rather than state.ok. A failed post leaves ok false and never gets
+   * here, and the honeypot returns ok true with nothing posted, which must not count as a
+   * conversion. app/actions/lead.ts sets `lead` on exactly one path, the one where the CRM
+   * answered 2xx.
+   *
+   * The ref is the guard against counting one submission twice. useActionState hands back a new
+   * state object per submission so the dependency genuinely changes once per post, but React runs
+   * effects twice in development StrictMode, and a remount for any other reason would replay the
+   * last state. Latching it means one conversion per successful submission, permanently. */
+  const leadFired = useRef(false);
+  useEffect(() => {
+    if (!state?.lead || leadFired.current) return;
+    leadFired.current = true;
+    window.fbq?.("track", "Lead");
+  }, [state]);
 
   const onDark = variant === "financing" || !!dark;
   const mini = variant === "mini";
@@ -108,6 +152,20 @@ export function QuoteForm({
       {/* The city pages still know their own town. Nobody picks it any more, so it travels as a
         * hidden value and the CRM keeps the key it has always mapped. */}
       {city && <input type="hidden" name="city" value={city} />}
+
+      {/* WHICH AD BROUGHT THEM, CARRIED INTO THE CRM WITH THE LEAD.
+        *
+        * One hidden input per attribution key, always rendered, empty when there is nothing
+        * stored. Always rendering them keeps the posted field set identical on every submission,
+        * so a direct visit reads in the CRM as an empty campaign rather than as a missing field,
+        * and nobody has to write a mapping that copes with both shapes.
+        *
+        * The values are whatever was captured on the visitor's FIRST page of their first visit,
+        * which is usually not this page and may not even be this week. lib/attribution.ts has the
+        * reasoning. */}
+      {ATTRIBUTION_KEYS.map((k) => (
+        <input key={k} type="hidden" name={k} value={firstTouch?.[k] ?? ""} />
+      ))}
 
       {/* THE HONEYPOT. Not `display:none` - some bots skip hidden fields and some screen readers
         * announce them - so it is pulled off-screen, taken out of the tab order, and labelled as
