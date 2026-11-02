@@ -44,7 +44,17 @@
 const WEBHOOK =
   "https://services.leadconnectorhq.com/hooks/rkBM51eyu0Wdw5HGwEHs/webhook-trigger/aa8db861-941b-4e3d-8ef2-892290a9356b";
 
-export type LeadState = { ok: boolean; message: string } | null;
+/* `lead` IS NOT THE SAME THING AS `ok`, AND THE HONEYPOT IS WHY.
+ *
+ * `ok` means "show the homeowner the thank you panel". `lead` means "a real submission reached the
+ * CRM". They are the same on every path but one: the honeypot below deliberately answers ok with
+ * nothing posted, because telling a bot it failed is telling it to try again. A pixel conversion
+ * keyed on `ok` alone would therefore count every bot that fills a hidden input as a lead, and
+ * those are the submissions the trap exists to throw away.
+ *
+ * So the form fires its Meta Lead event on `lead`, and renders its success panel on `ok`. Nothing
+ * a visitor sees depends on this field. */
+export type LeadState = { ok: boolean; message: string; lead?: boolean } | null;
 
 const OK =
   "Thanks, we have got it. We reply the same day, and the design walk-around is booked from there.";
@@ -109,6 +119,21 @@ export async function submitLead(_prev: LeadState, formData: FormData): Promise<
     source: "brytrco.com",
     page: get("page"),
     form_variant: get("form"),
+    /* FIRST TOUCH ATTRIBUTION, captured on the visitor's first page and replayed here.
+     *
+     * These ride as hidden inputs on every variant of the form. See lib/attribution.ts for why
+     * they are first touch rather than last, and components/ui/quote-form.tsx for how they get
+     * onto the form. They are sent on every submission whether or not they have values, so the
+     * CRM sees a consistent set of keys and a direct visit reads as an empty campaign rather than
+     * as a missing field.
+     *
+     * fbclid is the one that matters most: it is Meta's click id, and it is what lets a lead in
+     * the CRM be matched back to the ad that produced it. */
+    utm_source: get("utm_source"),
+    utm_medium: get("utm_medium"),
+    utm_campaign: get("utm_campaign"),
+    utm_content: get("utm_content"),
+    fbclid: get("fbclid"),
     submitted_at: new Date().toISOString(),
   };
 
@@ -148,7 +173,10 @@ export async function submitLead(_prev: LeadState, formData: FormData): Promise<
      * lead in the CRM and a lead nowhere. Truncated, because the body is not ours to store. */
     const echo = (await res.text().catch(() => "")).slice(0, 200);
     console.info(`[lead] hook ${hookId} replied ${res.status}: ${echo}`);
-    return { ok: true, message: OK };
+    /* The ONLY return in this file that sets `lead`. Everything above it either failed or was a
+     * bot, and this is the one path where a real submission reached the CRM, so it is the one path
+     * that is allowed to produce a Meta conversion. */
+    return { ok: true, message: OK, lead: true };
   } catch (err) {
     console.error("[lead] webhook post failed", err);
     return { ok: false, message: FAIL };
