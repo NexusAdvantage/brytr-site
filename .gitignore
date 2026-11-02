@@ -32,6 +32,9 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# .env.example holds no values worth hiding and is the only record of which variables the build
+# expects, so it is committed on purpose.
+!.env.example
 
 # vercel
 .vercel
