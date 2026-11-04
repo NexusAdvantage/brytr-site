@@ -3,7 +3,7 @@ import Image from "next/image";
 import { site, nav } from "@/content/site";
 import { COMPARE_HIDDEN } from "@/content/compares";
 import { ChannelEdge } from "@/components/ui/bits";
-import { brandLogo } from "@/content/badges";
+import { brandLogo, bbbSeal } from "@/content/badges";
 import { reviewProof } from "@/content/reviews";
 import { services } from "@/content/services";
 import { cities } from "@/content/cities";
@@ -79,6 +79,43 @@ export function Footer() {
                 <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"/></svg>
               </a>
             </div>
+
+            {/* THE BBB SEAL SITS IN THIS COLUMN AND NOWHERE ELSE, and the column is the argument.
+              * Everything already in it answers "who are you": the wordmark, one sentence of what
+              * the company does, and the two places you can go and look at them. A seal that links
+              * to a third party profile is the same kind of object as those social links, so it
+              * joins them rather than opening a slot of its own somewhere up the page.
+              *
+              * THE FOOTER, SO IT IS ON EVERY PAGE. BBB's own guidance for the dynamic seal is
+              * header or footer for exactly that reason, and the header on this site is a fixed
+              * 4.75rem strip with a phone number and a CTA in it that has no room to spare.
+              *
+              * THE CHIP IS BECAUSE THE ARTWORK IS BLACK. On navy it would be a dark rectangle in a
+              * dark footer. See the note in content/badges.ts: a lighter variant from Brytr's BBB
+              * portal would sit straight on the ground and this wrapper could go.
+              *
+              * `width` and `height` are the file's real pixels, so the row reserves its space
+              * before the image arrives from bbb.org rather than shifting the footer when it does.
+              * Lazy because it is below the fold on all 64 pages that have a footer, and it is a
+              * third party request. */}
+            {bbbSeal && (
+              <a
+                href={bbbSeal.profile}
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                className="mt-5 inline-block rounded-md bg-card p-2"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={bbbSeal.seal}
+                  alt={bbbSeal.alt}
+                  width={bbbSeal.width}
+                  height={bbbSeal.height}
+                  loading="lazy"
+                  className="block"
+                />
+              </a>
+            )}
           </div>
 
           <nav aria-label="Services" className="lg:col-span-1">

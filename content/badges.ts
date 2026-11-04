@@ -78,6 +78,40 @@ export const brandLogoDark: { src: string; width: number; height: number; alt: s
  */
 export const systemLogo: Record<string, string | null> = {};
 
+/* THE BBB SEAL. Somebody else's mark, served from somebody else's server, on purpose.
+ *
+ * It follows the same rule as the Google mark at the top of this file: a third party mark is used
+ * in its own artwork or not at all. This is the exact snippet BBB generated for Brytr, with the
+ * profile link and the seal image they host. Nothing here is redrawn, recolored or retyped.
+ *
+ * IT IS A PLAIN <img> AND NOT next/image, WHICH IS A DELIBERATE EXCEPTION on a site where every
+ * other picture goes through the optimizer. This is a DYNAMIC seal: BBB regenerates it on their
+ * side, and it is supposed to reflect the accreditation as it stands today. Putting it through
+ * Next's optimizer would copy it onto our own CDN and serve that copy, so if the accreditation
+ * ever lapsed or the rating moved we would keep showing the old seal, from our domain, as though
+ * it were current. A seal whose whole job is to be checkable has to be fetched from the people
+ * doing the checking. The same reasoning is why it is not downloaded into /public.
+ *
+ * THE LINK IS PART OF THE SEAL, not decoration around it. The seal is a claim, and the profile it
+ * points at is the evidence. `#sealclick` is BBB's own tracking anchor and is left exactly as they
+ * generated it. `nofollow` is theirs too. `noopener noreferrer` is added because any target=_blank
+ * without it hands the opened tab a handle back to this one, which is a security default rather
+ * than a change to their snippet.
+ *
+ * ON COLOR. This is the black artwork, which cannot be read on the navy footer, so it sits on a
+ * light chip. BBB also publish blue and gray variants of the static seal, and if a lighter dynamic
+ * one exists in Brytr's BBB portal it would sit directly on the navy and the chip could come off.
+ * Worth asking them for. Do not guess at a filename to find out: a wrong one 404s into a broken
+ * image in the footer of all 64 pages that have one.
+ */
+export const bbbSeal: { seal: string; profile: string; width: number; height: number; alt: string } | null = {
+  seal: "https://seal-nebraska.bbb.org/seals/black-seal-200-42-bbb-1000066986.png",
+  profile: "https://www.bbb.org/us/ne/omaha/profile/lighting-systems/brytr-co-0714-1000066986/#sealclick",
+  width: 200,
+  height: 42,
+  alt: "Brytr Co BBB Business Review",
+};
+
 export const reviewProofBadge = {
   /* READ FROM content/reviews.ts, not repeated. Both of these were hardcoded - "5.0" and "196" -
    * and when the client corrected the count to 201 that correction would have fixed reviews.ts and
