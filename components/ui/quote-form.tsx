@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input, Label, Select, Textarea } from "@/components/ui/field";
 import { submitLead, type LeadState } from "@/app/actions/lead";
 import { ATTRIBUTION_KEYS, captureFirstTouch, type FirstTouch } from "@/lib/attribution";
+import { trackGoogleLead } from "@/components/analytics/google-tag";
 
 /* THE LEAD FORM. Four variants, one component, and every form on the site is one of them.
  *
@@ -86,6 +87,8 @@ export function QuoteForm({
     if (!state?.lead || leadFired.current) return;
     leadFired.current = true;
     window.fbq?.("track", "Lead");
+    /* Google Ads gets the same conversion on the same path, under the same latch. */
+    trackGoogleLead();
   }, [state]);
 
   const onDark = variant === "financing" || !!dark;
