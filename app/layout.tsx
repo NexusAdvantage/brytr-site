@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { reviewProof } from "@/content/reviews";
 import { baseOpenGraph } from "@/lib/seo";
 import { MetaPixel } from "@/components/analytics/meta-pixel";
+import { GoogleTag } from "@/components/analytics/google-tag";
 import { FirstTouchAttribution } from "@/components/analytics/first-touch";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -151,6 +152,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           * renders anything with layout, so the position is about load order and nothing else. */}
         <MetaPixel />
         <FirstTouchAttribution />
+        <GoogleTag />
       </body>
     </html>
   );
