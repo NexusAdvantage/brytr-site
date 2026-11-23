@@ -4,6 +4,7 @@ import { baseOpenGraph } from "@/lib/seo";
 import { MetaPixel } from "@/components/analytics/meta-pixel";
 import { GoogleTag } from "@/components/analytics/google-tag";
 import { FirstTouchAttribution } from "@/components/analytics/first-touch";
+import { ReviewMode } from "@/components/review/review-mode";
 import localFont from "next/font/local";
 import "./globals.css";
 /* Section-level CSS, imported after the brand lock so its @layer components rules join
@@ -153,6 +154,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <MetaPixel />
         <FirstTouchAttribution />
         <GoogleTag />
+        {/* Client review mode. Renders nothing unless the browser opened ?review=brytr-zac-review. */}
+        <ReviewMode />
       </body>
     </html>
   );
